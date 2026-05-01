@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة الإصدار الموحدة | ابتدائية ومتوسطة الجبيلة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;700&family=Changa:wght@400;700&family=Tajawal:wght@400;700&family=Reem+Kufi:wght@400;700&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #005B3E; /* أخضر ملكي */
+            --gold: #c5a059; /* ذهبي فاخر */
+            --dark: #1e293b;
+            --bg: #f8fafc;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg);
+            margin: 0; padding: 0; display: flex; height: 100vh; overflow: hidden;
+        }
+        
+        /* -- واجهة لوحة التحكم (Dark Mode) -- */
+        .admin-sidebar {
+            width: 420px; background: var(--dark); color: #fff;
+            padding: 25px; overflow-y: auto; box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+        .admin-header {
+            text-align: center; padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 25px;
+        }
+        .admin-header h2 { color: var(--gold); margin: 0; font-family: 'Changa', sans-serif; font-size: 26px;}
+        .admin-header p { color: #94a3b8; font-size: 14px; margin-top: 8px; }
+        
+        .section-title {
+            background: rgba(255,255,255,0.05); color: var(--gold);
+            padding: 10px 15px; border-radius: 5px; margin: 25px 0 15px 0;
+            font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
+            border-right: 3px solid var(--gold);
+        }
+        .form-group { margin-bottom: 18px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 13px; color: #cbd5e1; }
+        input[type="text"], input[type="date"], select, textarea {
+            width: 100%; padding: 12px; border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.2); color: white; border-radius: 6px;
+            font-family: inherit; transition: 0.3s;
+        }
+        input:focus, select:focus, textarea:focus { border-color: var(--gold); outline: none; background: rgba(0,0,0,0.4); }
+        .flex-row { display: flex; gap: 15px; align-items: center; }
+        
+        button.btn-print {
+            width: 100%; padding: 16px; background: linear-gradient(135deg, #c5a059, #b08940);
+            color: #fff; border: none; border-radius: 6px; font-size: 18px; font-weight: bold;
+            cursor: pointer; margin-top: 30px; transition: 0.3s; box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+        }
+        button.btn-print:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(197, 160, 89, 0.4); }
+
+        /* -- منطقة المعاينة -- */
+        .preview-area {
+            flex-grow: 1; display: flex; justify-content: center;
+            align-items: center; background: #e2e8f0; padding: 20px;
+            overflow-y: auto;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        /* -- الشهادة (A4) -- */
+        .certificate-wrapper {
+            width: 1050px; height: 742px; background: #fff;
+            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            display: flex; justify-content: center; align-items: center; padding: 25px;
+            /* خلفية مزخرفة خفيفة جداً للورقة */
+            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 0 L100 50 L50 100 L0 50 Z" fill="%23f8f9fa" stroke="%23e9ecef" stroke-width="1"/></svg>');
+            background-size: 60px;
+            -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+
+        /* البراويز الاحترافية المحدثة */
+        .frame-vip { border: 4px solid var(--gold); padding: 12px; outline: 1px solid var(--gold); outline-offset: -12px; background: white; }
+        .frame-modern { border: 15px solid var(--primary); outline: 2px solid var(--gold); outline-offset: -20px; background: white; }
+        .frame-classic { border: 20px groove #8b7355; padding: 5px; background: white; }
+        .frame-diploma { border: 8px double var(--dark); padding: 15px; outline: 3px solid var(--dark); outline-offset: 5px; background: white; margin: 10px; width: calc(100% - 20px); height: calc(100% - 20px); }
+
+        /* المحتوى الداخلي */
+        .certificate-content {
+            width: 100%; height: 100%; border: 1px solid rgba(197, 160, 89, 0.3);
+            position: relative; padding: 45px; display: flex; flex-direction: column;
+            background: rgba(255,255,255,0.95);
+        }
+
+        /* شارة التميز (Ribbon) */
+        .ribbon {
+            position: absolute; top: -10px; right: 40px; width: 60px; height: 90px;
+            background: linear-gradient(to bottom, #d4af37, #aa771c);
+            z-index: 5; box-shadow: 2px 5px 10px rgba(0,0,0,0.2);
+        }
+        .ribbon::after {
+            content: ''; position: absolute; bottom: -20px; left: 0;
+            border-left: 30px solid transparent; border-right: 30px solid transparent;
+            border-top: 20px solid #aa771c;
+        }
+
+        /* الترويسة */
+        .cert-header-layout {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            margin-bottom: 25px; font-size: 15px; font-weight: bold; color: var(--dark);
+        }
+        .cert-header-text { text-align: center; line-height: 1.6; }
+        
+        .school-name { font-size: 18px; color: var(--primary); font-family: 'Changa', sans-serif; margin-top: 5px; }
+
+        /* العناوين والنصوص */
+        .cert-title {
+            text-align: center; font-size: 48px; font-weight: bold;
+            color: var(--primary); margin: 20px 0; font-family: 'Reem Kufi', sans-serif;
+            text-shadow: 1px 1px 0px rgba(0,0,0,0.05);
+        }
+        .cert-presentation { text-align: center; font-size: 24px; color: #64748b; margin-bottom: 15px; font-family: 'Amiri', serif;}
+        
+        .cert-name {
+            text-align: center; font-size: 50px; font-weight: bold; color: var(--gold);
+            margin: 15px 0; font-family: 'Aref Ruqaa', serif;
+        }
+        
+        .cert-body {
+            text-align: center; font-size: 26px; line-height: 1.9; margin-bottom: 30px;
+            white-space: pre-wrap; padding: 0 60px; color: #334155;
+        }
+        
+        /* التذييل والتوقيعات */
+        .cert-footer { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; position: relative; }
+        .footer-meta { font-size: 15px; color: #64748b; line-height: 1.8; font-family: 'Tahoma', sans-serif;}
+        
+        .signature-block { text-align: center; width: 240px; }
+        .sig-title { font-weight: bold; margin-bottom: 40px; font-size: 18px; color: var(--dark); }
+        .sig-line { border-top: 1px solid var(--dark); margin: 5px auto; width: 85%; }
+        .sig-name { font-size: 18px; font-weight: bold; color: var(--primary); }
+
+        /* الختم الرقمي الشفاف */
+        .school-stamp {
+            position: absolute; left: 50%; bottom: 0px; transform: translateX(-50%);
+            width: 140px; height: 140px; border: 3px solid rgba(197, 160, 89, 0.4);
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            text-align: center; color: rgba(197, 160, 89, 0.6); font-weight: bold;
+            font-size: 15px; line-height: 1.4; transform: translateX(-50%) rotate(-10deg);
+            pointer-events: none; font-family: 'Amiri', serif;
+            box-shadow: inset 0 0 0 4px rgba(197, 160, 89, 0.1);
+        }
+
+        .hidden { display: none !important; }
+
+        /* -- إعدادات الطباعة -- */
+        @media print {
+            @page { size: A4 landscape; margin: 0; }
+            body { background: white; }
+            .admin-sidebar { display: none; }
+            .preview-area { padding: 0; background: none; }
+            .certificate-wrapper { box-shadow: none; width: 297mm; height: 209mm; transform: scale(1); border:none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- لوحة التحكم -->
+    <div class="admin-sidebar">
+        <div class="admin-header">
+            <h2>الإدارة الرقمية للشهادات</h2>
+            <p>نظام الإصدار المعتمد</p>
+        </div>
+        
+        <div class="section-title">إعدادات القالب الذكي</div>
+        <div class="form-group">
+            <label>القالب (نوع الإصدار)</label>
+            <select id="smartTemplate">
+                <option value="student">شهادة شكر وتقدير "طالب"</option>
+                <option value="teacher">شهادة شكر وتقدير "معلم"</option>
+                <option value="admin">شهادة شكر وتقدير "إداري"</option>
+                <option value="excellence">شهادة تفوق علمي</option>
+                <option value="congrats">تهنئة وإشادة</option>
+                <option value="invite">دعوة رسمية</option>
+                <option value="custom">تصميم مخصص (أخرى)</option>
+            </select>
+        </div>
+
+        <div class="section-title">التصميم العام</div>
+        <div class="form-group">
+            <label>الخط الأساسي للشهادة</label>
+            <select id="fontFamily">
+                <option value="'Amiri', serif">الأميري (كلاسيكي رسمي)</option>
+                <option value="'Tajawal', sans-serif">تجوال (عصري متزن)</option>
+                <option value="'Aref Ruqaa', serif">عارف رقعة (للدعوات والأسماء)</option>
+                <option value="'Cairo', sans-serif">القاهرة (حديث)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>تصميم البرواز (الإطار)</label>
+            <select id="frameStyle">
+                <option value="frame-vip">ملكي فاخر (VIP)</option>
+                <option value="frame-modern">الوزاري الحديث</option>
+                <option value="frame-classic">كلاسيكي خشبي</option>
+                <option value="frame-diploma">إطار الدبلوم المزدوج</option>
+            </select>
+        </div>
+        <div class="form-group flex-row">
+            <label><input type="checkbox" id="showRibbon"> إضافة شريط تميز ذهبي</label>
+        </div>
+
+        <div class="section-title">المحتوى التفصيلي</div>
+        <div class="form-group">
+            <label>العنوان الرئيسي</label>
+            <input type="text" id="certTitle" value="شهادة شكر وتقدير">
+        </div>
+        <div class="form-group">
+            <label>عبارة التقديم</label>
+            <input type="text" id="certIntro" value="يُسعدنا أن نمنح هذه الشهادة لـ:">
+        </div>
+        <div class="form-group">
+            <label>الاسم الكامل</label>
+            <input type="text" id="recipientName" value="أدخل الاسم هنا">
+            <div class="flex-row" style="margin-top: 8px;">
+                <input type="color" id="nameColor" value="#c5a059" style="padding:2px; height:35px;">
+                <input type="number" id="nameSize" value="50" min="30" max="80" style="width: 70px;"> px
+            </div>
+        </div>
+        <div class="form-group">
+            <label>النص (المتن)</label>
+            <textarea id="bodyText" rows="4">تقديراً لجهوده المتميزة وتفوقه الملحوظ خلال العام الدراسي، متمنين له مستقبلاً مشرقاً ومليئاً بالنجاحات.</textarea>
+        </div>
+        
+        <div class="form-group flex-row">
+            <div style="width: 50%;">
+                <label>التاريخ</label>
+                <input type="date" id="certDate">
+            </div>
+            <div style="width: 50%;">
+                <label>رقم الصادر</label>
+                <input type="text" id="certId" placeholder="اختياري">
+            </div>
+        </div>
+
+        <div class="section-title">الاعتمادات</div>
+        <div class="form-group">
+            <label>الاعتماد الأيسر (الأساسي)</label>
+            <input type="text" id="leftTitle" value="مدير المدرسة" style="margin-bottom:5px;">
+            <input type="text" id="leftName" value="اكتب اسم المدير">
+        </div>
+        <div class="form-group">
+            <label>الاعتماد الأيمن (اختياري)</label>
+            <input type="text" id="rightTitle" value="الموجه الطلابي" style="margin-bottom:5px;">
+            <input type="text" id="rightName" placeholder="اتركه فارغاً للإخفاء">
+        </div>
+
+        <button class="btn-print" onclick="window.print()">طباعة / تصدير PDF</button>
+    </div>
+
+    <!-- منطقة عرض الشهادة -->
+    <div class="preview-area">
+        <div id="certificate" class="certificate-wrapper frame-vip">
+            <div class="certificate-content" id="certContent">
+                
+                <!-- شارة التميز -->
+                <div id="displayRibbon" class="ribbon hidden"></div>
+
+                <!-- الترويسة المحدثة بدون مكتب التعليم -->
+                <div class="cert-header-layout">
+                    <div class="cert-header-text">
+                        المملكة العربية السعودية<br>
+                        وزارة التعليم<br>
+                        إدارة التعليم بمنطقة الرياض
+                    </div>
+                    <div style="font-family: 'Amiri', serif; font-size: 28px; color: var(--primary); font-weight: bold; text-align: center; margin-top: 5px;">
+                        ﷽
+                    </div>
+                    <div class="cert-header-text">
+                        <br>
+                        <div class="school-name">ابتدائية ومتوسطة الجبيلة</div>
+                    </div>
+                </div>
+
+                <div id="displayCertTitle" class="cert-title">شهادة شكر وتقدير</div>
+                <div id="displayCertIntro" class="cert-presentation">يُسعدنا أن نمنح هذه الشهادة لـ:</div>
+                <div id="displayName" class="cert-name">أدخل الاسم هنا</div>
+                <div id="displayBody" class="cert-body">تقديراً لجهوده المتميزة وتفوقه الملحوظ خلال العام الدراسي، متمنين له مستقبلاً مشرقاً ومليئاً بالنجاحات.</div>
+                
+                <div class="cert-footer">
+                    <div class="footer-meta">
+                        التاريخ: <span id="displayDate">--/--/----</span><br>
+                        رقم الصادر: <span id="displayId">----</span>
+                    </div>
+
+                    <div class="school-stamp">
+                        ابتدائية ومتوسطة<br>الجبيلة<br><span style="font-size:12px;">مُعْتَمَد</span>
+                    </div>
+
+                    <!-- التوقيع الأيمن -->
+                    <div id="displayRightSig" class="signature-block hidden">
+                        <div id="displayRightTitle" class="sig-title">الموجه الطلابي</div>
+                        <div id="displayRightName" class="sig-name"></div>
+                        <div class="sig-line"></div>
+                    </div>
+                    
+                    <!-- التوقيع الأيسر -->
+                    <div id="displayLeftSig" class="signature-block" style="margin-right: auto;">
+                        <div id="displayLeftTitle" class="sig-title">مدير المدرسة</div>
+                        <div id="displayLeftName" class="sig-name">اكتب اسم المدير</div>
+                        <div class="sig-line"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // قواعد بيانات القوالب الذكية
+        const templates = {
+            student: {
+                title: 'شهادة شكر وتقدير',
+                intro: 'يُسعدنا أن نمنح هذه الشهادة للطالب المتميز /',
+                body: 'تقديراً لجهوده المتميزة وتفوقه الملحوظ وسلوكه النبيل خلال العام الدراسي، سائلين المولى عز وجل له مستقبلاً مشرقاً ومليئاً بالنجاحات.'
+            },
+            teacher: {
+                title: 'شهادة شكر وتقدير',
+                intro: 'تتقدم إدارة المدرسة بوافر الشكر والامتنان للمعلم الفاضل /',
+                body: 'عرفاناً بجهودكم المخلصة وعطائكم اللامحدود في إنجاح العملية التعليمية، وتفانيكم في أداء الرسالة التربوية، سائلين الله لكم دوام التوفيق والسداد.'
+            },
+            admin: {
+                title: 'شهادة شكر وتقدير',
+                intro: 'تُمنح هذه الشهادة بكل فخر واعتزاز للإداري المتميز /',
+                body: 'شكراً لتفانيكم في العمل، وحرصكم المستمر على سير المنظومة التعليمية بكل كفاءة واقتدار، مقدرين لكم هذا التميز المؤسسي.'
+            },
+            excellence: {
+                title: 'شـهـادة تـفـوق',
+                intro: 'بكل فخر واعتزاز، نهنئ الابن المتفوق /',
+                body: 'نفتخر بتفوقك العلمي المتميز وحصولك على أعلى المراتب، ونتمنى لك دوام التقدم والنجاح لتكون لبنة صالحة في بناء وطنك.'
+            },
+            congrats: {
+                title: 'تـهـنـئـة',
+                intro: 'نرفع أسمى آيات التهاني والتبريكات للمكرم /',
+                body: 'بمناسبة هذا الإنجاز المتميز، نسأل الله أن يبارك في جهودكم وأن يكتب لكم مزيداً من التألق والنجاح في مسيرتكم.'
+            },
+            invite: {
+                title: 'دعـوة رسـمـيـة',
+                intro: 'المكرم /',
+                body: 'يسر إدارة ابتدائية ومتوسطة الجبيلة دعوتكم لحضور الحفل الختامي وتكريم المتميزين. حضوركم دعم لأبنائنا وتشريف لنا.\n(الزمان: .......... المكان: ..........)'
+            },
+            custom: {
+                title: 'عنوان الشهادة',
+                intro: 'يُسعدنا أن نمنح هذه الشهادة لـ:',
+                body: 'اكتب النص المخصص هنا...'
+            }
+        };
+
+        // تحديث القوالب عند التغيير
+        document.getElementById('smartTemplate').addEventListener('change', function(e) {
+            const data = templates[e.target.value];
+            document.getElementById('certTitle').value = data.title;
+            document.getElementById('certIntro').value = data.intro;
+            document.getElementById('bodyText').value = data.body;
+            
+            // تحديث العرض فوراً
+            document.getElementById('displayCertTitle').innerText = data.title;
+            document.getElementById('displayCertIntro').innerText = data.intro;
+            document.getElementById('displayBody').innerText = data.body;
+        });
+
+        // دوال الربط المباشر
+        function bindInput(inputId, displayId, property = 'innerText') {
+            document.getElementById(inputId).addEventListener('input', function(e) {
+                if (property === 'innerText') {
+                    document.getElementById(displayId).innerText = e.target.value;
+                } else if (property === 'color') {
+                    document.getElementById(displayId).style.color = e.target.value;
+                } else if (property === 'fontSize') {
+                    document.getElementById(displayId).style.fontSize = e.target.value + 'px';
+                }
+            });
+        }
+
+        // التصميم والإطارات
+        document.getElementById('fontFamily').addEventListener('change', (e) => {
+            document.getElementById('certContent').style.fontFamily = e.target.value;
+        });
+        document.getElementById('frameStyle').addEventListener('change', (e) => {
+            document.getElementById('certificate').className = 'certificate-wrapper ' + e.target.value;
+        });
+        document.getElementById('showRibbon').addEventListener('change', (e) => {
+            const ribbon = document.getElementById('displayRibbon');
+            e.target.checked ? ribbon.classList.remove('hidden') : ribbon.classList.add('hidden');
+        });
+
+        // ربط البيانات
+        bindInput('certTitle', 'displayCertTitle');
+        bindInput('certIntro', 'displayCertIntro');
+        bindInput('recipientName', 'displayName');
+        bindInput('nameColor', 'displayName', 'color');
+        bindInput('nameSize', 'displayName', 'fontSize');
+        bindInput('bodyText', 'displayBody');
+        bindInput('certId', 'displayId');
+        
+        document.getElementById('certDate').addEventListener('change', (e) => {
+            document.getElementById('displayDate').innerText = e.target.value || '--/--/----';
+        });
+
+        // التوقيعات
+        bindInput('leftTitle', 'displayLeftTitle');
+        bindInput('leftName', 'displayLeftName');
+        bindInput('rightTitle', 'displayRightTitle');
+        
+        // إخفاء/إظهار التوقيع الأيمن بناء على وجود اسم
+        document.getElementById('rightName').addEventListener('input', function(e) {
+            document.getElementById('displayRightName').innerText = e.target.value;
+            const rightSig = document.getElementById('displayRightSig');
+            if(e.target.value.trim() !== '') {
+                rightSig.classList.remove('hidden');
+            } else {
+                rightSig.classList.add('hidden');
+            }
+        });
+
+        // ضبط التاريخ الافتراضي
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('certDate').value = today;
+        document.getElementById('displayDate').innerText = today;
+    </script>
+</body>
+</html>
