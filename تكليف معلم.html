@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>استمارة قرار تكليف معلم بإعداد الأسئلة</title>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+<style>
+  :root{
+    --moe:#0b6b3a;
+    --moe2:#0f8a50;
+    --ink:#183026;
+    --muted:#66756e;
+    --line:#d7e6df;
+    --paper:#fffdf8;
+    --soft:#f2faf6;
+    --gold:#b58a3a;
+    --danger:#a43f3f;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:linear-gradient(135deg,#eef7f2 0%,#ffffff 42%,#f7f0df 100%);
+    font-family:"Tahoma","Arial",sans-serif;
+    color:var(--ink);
+  }
+  .app-shell{
+    width:min(1220px,96vw);
+    margin:24px auto 60px;
+    display:grid;
+    grid-template-columns:380px 1fr;
+    gap:18px;
+    align-items:start;
+  }
+  .panel,.preview-wrap{
+    background:rgba(255,255,255,.92);
+    border:1px solid var(--line);
+    border-radius:22px;
+    box-shadow:0 22px 55px rgba(22,64,43,.12);
+    overflow:hidden;
+  }
+  .panel-head{
+    padding:18px 20px;
+    background:linear-gradient(135deg,var(--moe),#0d4f31);
+    color:#fff;
+    position:relative;
+  }
+  .panel-head:after{
+    content:"";
+    position:absolute;inset:auto -40px -70px auto;
+    width:180px;height:180px;border-radius:50%;
+    background:rgba(255,255,255,.08);
+  }
+  .panel-head h1{font-size:20px;margin:0 0 6px;font-weight:800;line-height:1.5}
+  .panel-head p{margin:0;color:#e8fff3;font-size:12.5px;line-height:1.8}
+  .panel-body{padding:18px;display:flex;flex-direction:column;gap:15px}
+  .section-title{
+    display:flex;align-items:center;gap:8px;
+    font-weight:800;color:var(--moe);font-size:14px;
+    border-bottom:1px dashed var(--line);padding-bottom:8px;margin-top:4px;
+  }
+  .section-title:before{content:"";width:8px;height:22px;border-radius:10px;background:linear-gradient(var(--moe2),var(--gold));}
+  label{font-size:12px;color:#385247;font-weight:700;margin-bottom:6px;display:block}
+  input,select,textarea{
+    width:100%;border:1px solid #cfe1d8;border-radius:12px;padding:10px 12px;
+    background:#fff;color:var(--ink);font-family:inherit;font-size:13px;outline:none;
+    transition:.15s ease;
+  }
+  input:focus,select:focus,textarea:focus{border-color:var(--moe2);box-shadow:0 0 0 3px rgba(15,138,80,.12)}
+  textarea{min-height:120px;resize:vertical;line-height:1.7}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .hint{
+    background:#f6fbf8;border:1px solid #dcece4;border-radius:14px;
+    color:#5c6d65;font-size:12px;line-height:1.8;padding:10px 12px;
+  }
+  .btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:sticky;bottom:0;background:rgba(255,255,255,.96);padding-top:10px}
+  button{
+    border:0;border-radius:13px;padding:12px 10px;font-family:inherit;font-weight:800;cursor:pointer;
+    transition:.18s ease;font-size:13px;
+  }
+  .primary{background:linear-gradient(135deg,var(--moe2),var(--moe));color:#fff;box-shadow:0 10px 22px rgba(15,138,80,.22)}
+  .primary:hover{transform:translateY(-1px)}
+  .secondary{background:#eef7f2;color:var(--moe);border:1px solid #cde5d8}
+  .danger{background:#fff2f2;color:var(--danger);border:1px solid #f0caca}
+  .full{grid-column:1/-1}
+  .teacher-table-wrap{max-height:270px;overflow:auto;border:1px solid var(--line);border-radius:14px;background:#fff}
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  th{background:#eff8f3;color:var(--moe);position:sticky;top:0;z-index:1}
+  th,td{border-bottom:1px solid #edf3ef;padding:8px;text-align:right;vertical-align:top}
+  td input{border:0;background:transparent;padding:4px;border-radius:6px;font-size:12px;min-width:100px}
+  td input:focus{background:#fff;box-shadow:0 0 0 2px rgba(15,138,80,.12)}
+  .preview-top{padding:14px 18px;background:#fff;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;align-items:center;position:sticky;top:0;z-index:5}
+  .preview-top b{color:var(--moe)}
+  .count-pill{background:#eff8f3;border:1px solid #cfe7da;color:var(--moe);padding:7px 12px;border-radius:999px;font-weight:800;font-size:12px}
+  .preview-pages{padding:24px;display:flex;flex-direction:column;gap:22px;align-items:center}
+
+  .page{
+    width:210mm;min-height:297mm;background:var(--paper);position:relative;overflow:hidden;
+    padding:13mm 13mm 12mm;border:1px solid #e2e2d6;box-shadow:0 12px 34px rgba(0,0,0,.12);
+    page-break-after:always;break-after:page;
+  }
+  .page:last-child{page-break-after:auto;break-after:auto}
+  .watermark{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:.055;
+    font-size:140px;font-weight:900;color:var(--moe);transform:rotate(-18deg);letter-spacing:6px;white-space:nowrap;
+  }
+  .page:before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 8% 5%,rgba(181,138,58,.16),transparent 18%),
+      radial-gradient(circle at 93% 4%,rgba(15,138,80,.13),transparent 20%),
+      linear-gradient(90deg,rgba(15,138,80,.08) 0 6mm,transparent 6mm calc(100% - 6mm),rgba(181,138,58,.09) calc(100% - 6mm));
+  }
+  .doc-inner{position:relative;z-index:1;min-height:272mm;display:flex;flex-direction:column}
+  .doc-header{
+    display:grid;grid-template-columns:1.4fr .65fr 1.4fr;align-items:center;gap:10px;
+    padding-bottom:8px;border-bottom:3px double var(--moe);
+  }
+  .header-text{font-size:13px;line-height:1.75;font-weight:800;color:#183c2c}
+  .header-text.left{text-align:left;direction:rtl}
+  .logo-box{text-align:center}
+  .logo-box img{max-width:55mm;max-height:22mm;object-fit:contain;display:block;margin:0 auto 2px}
+  .logo-sub{font-size:10.5px;color:#5b6d64;font-weight:700}
+  .doc-meta{
+    display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:10px 0 8px;
+  }
+  .meta-item{border:1px solid #cfe1d8;border-radius:10px;overflow:hidden;background:#fff}
+  .meta-item span{display:inline-block;background:#edf7f2;color:var(--moe);font-weight:800;padding:7px 9px;border-left:1px solid #cfe1d8;min-width:33%}
+  .meta-item b{display:inline-block;padding:7px 9px;font-size:12px;color:#1d362b}
+  .title-block{text-align:center;margin:12px 0 12px}
+  .title-kicker{display:inline-block;background:#eff8f3;color:var(--moe);border:1px solid #cfe5da;border-radius:999px;padding:5px 18px;font-size:12px;font-weight:800;margin-bottom:7px}
+  .main-title{font-size:25px;margin:0;color:#073c25;font-weight:900;letter-spacing:.2px}
+  .sub-title{font-size:13px;color:#66756e;margin-top:6px;font-weight:700}
+  .decision-body{
+    font-size:15px;line-height:2.02;color:#1d332b;text-align:justify;background:rgba(255,255,255,.78);
+    border:1px solid #d9e8df;border-radius:18px;padding:14px 16px;margin-bottom:11px;
+  }
+  .highlight-name{color:var(--moe);font-weight:900;font-size:16px;white-space:nowrap}
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 11px}
+  .info-card{border:1px solid #d7e7df;background:#fff;border-radius:13px;overflow:hidden;min-height:36px;display:flex}
+  .info-card .lab{background:#eff8f3;color:var(--moe);font-weight:900;padding:8px 10px;min-width:92px;border-left:1px solid #d7e7df;font-size:12px;display:flex;align-items:center}
+  .info-card .val{padding:8px 10px;font-weight:800;font-size:12.5px;display:flex;align-items:center;color:#1c3229}
+  .tasks{
+    border:1px solid #d8e6df;border-radius:16px;overflow:hidden;background:#fff;margin:9px 0 10px;
+  }
+  .tasks-title{background:linear-gradient(135deg,#eff8f3,#fffaf0);color:#0a5935;font-weight:900;padding:10px 13px;border-bottom:1px solid #d8e6df;font-size:14px}
+  .tasks ol{margin:0;padding:10px 28px 12px 12px;font-size:13.2px;line-height:1.9}
+  .tasks li{padding:2px 0}
+  .notice{
+    display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:auto;
+  }
+  .notice-box{
+    border:1px solid #e2d4b4;background:#fffaf0;border-radius:15px;padding:10px 12px;font-size:12.5px;line-height:1.75;color:#4d432c;
+  }
+  .notice-box b{color:#8a6727}
+  .signatures{
+    display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px;break-inside:avoid;page-break-inside:avoid;
+  }
+  .signature{
+    background:#fff;border:1px solid #d8e6df;border-radius:16px;min-height:34mm;padding:10px 12px;position:relative;
+  }
+  .signature:after{content:"";position:absolute;left:16px;right:16px;bottom:18px;border-bottom:1px dashed #8fa398}
+  .sig-role{font-size:12px;color:var(--moe);font-weight:900;margin-bottom:6px}
+  .sig-name{font-size:14px;font-weight:900;color:#1f342b}
+  .sig-note{position:absolute;bottom:4px;right:14px;color:#7a8a83;font-size:10.5px}
+  .copy-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-top:9px;font-size:11.5px;color:#566b61;break-inside:avoid;page-break-inside:avoid}
+  .copy-cell{border:1px dashed #c9dbd2;border-radius:10px;padding:6px 8px;background:rgba(255,255,255,.72)}
+  .footer{
+    border-top:1px solid #bfd7cb;margin-top:9px;padding-top:7px;display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;color:#62746b;font-size:10.7px;break-inside:avoid;page-break-inside:avoid;
+  }
+  .footer .center{font-weight:900;color:var(--moe)}
+  .empty-state{text-align:center;color:#66756e;padding:70px 20px;line-height:2}
+  .sample-link{color:var(--moe);text-decoration:underline;cursor:pointer;font-weight:800}
+
+  @media (max-width:1050px){
+    .app-shell{grid-template-columns:1fr}
+    .panel{position:relative;top:auto}
+    .preview-pages{overflow:auto;align-items:flex-start}
+  }
+  @media print{
+    body{background:#fff;margin:0}
+    .panel,.preview-top{display:none!important}
+    .app-shell{width:auto;margin:0;display:block}
+    .preview-wrap{border:0;box-shadow:none;border-radius:0;background:#fff;overflow:visible}
+    .preview-pages{padding:0;display:block}
+    .page{box-shadow:none;border:0;margin:0;width:210mm;min-height:297mm;padding:13mm 13mm 12mm;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+    @page{size:A4 portrait;margin:0}
+    .no-print{display:none!important}
+  }
+</style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="panel">
+      <div class="panel-head">
+        <h1>استمارة قرار تكليف معلم بإعداد الأسئلة</h1>
+        <p>أدخل بيانات القرار مرة واحدة، ثم أضف أسماء المعلمين يدويًا أو عبر ملف، وسيتم توليد قرار مستقل لكل معلم جاهز للطباعة.</p>
+      </div>
+      <div class="panel-body">
+        <div class="section-title">بيانات الجهة والقرار</div>
+        <div class="grid-2">
+          <div><label>الإدارة التعليمية</label><input id="eduAdmin" value="الإدارة العامة للتعليم بمنطقة الرياض"></div>
+          <div><label>اسم المدرسة</label><input id="schoolName" value="ابتدائية ومتوسطة الجبيلة"></div>
+        </div>
+        <div class="grid-2">
+          <div><label>رقم القرار</label><input id="decisionNo" placeholder="مثال: ١٤٤٧/٥٢"></div>
+          <div><label>تاريخ القرار</label><input id="decisionDate" value="26 / 11 / 1447هـ"></div>
+        </div>
+        <div class="grid-2">
+          <div><label>العام الدراسي</label><input id="schoolYear" value="1447هـ"></div>
+          <div><label>الفصل الدراسي</label><select id="semester"><option>الفصل الدراسي الأول</option><option selected>الفصل الدراسي الثاني</option><option>الفصل الدراسي الثالث</option></select></div>
+        </div>
+        <div class="grid-2">
+          <div><label>نوع الاختبار</label><select id="examType"><option selected>اختبارات نهاية الفصل الدراسي</option><option>اختبارات منتصف الفصل الدراسي</option><option>اختبارات الدور الثاني</option><option>اختبارات الفترة</option><option>اختبارات معيارية داخلية</option></select></div>
+          <div><label>موعد التسليم العام</label><input id="defaultDeadline" placeholder="مثال: الأحد ١ / ١٢ / ١٤٤٧هـ"></div>
+        </div>
+        <div class="grid-2">
+          <div><label>مدير المدرسة</label><input id="principal" value="مفلح الشهراني"></div>
+          <div><label>إعداد النموذج</label><input id="preparedBy" value="نايف المطيري"></div>
+        </div>
+        <div><label>تمهيد القرار</label><textarea id="introText">بناءً على الصلاحيات الممنوحة لقائد المدرسة، وحرصًا على جودة أدوات التقويم، وتحقيق العدالة والسرية في إعداد أسئلة الاختبارات، فقد تقرر تكليف المعلم الموضح اسمه أدناه بإعداد أسئلة الاختبار وفق الضوابط والتعليمات المنظمة لذلك.</textarea></div>
+
+        <div class="section-title">إضافة أسماء المعلمين</div>
+        <div class="hint">
+          يمكن رفع ملف Excel أو CSV. يفضّل أن تكون الأعمدة بهذا الترتيب:<br>
+          <b>اسم المعلم، المادة، الصف، نوع الاختبار، موعد التسليم، ملاحظات</b><br>
+          كما يمكنك لصق الأسماء مباشرة، كل معلم في سطر مستقل.
+        </div>
+        <input type="file" id="fileInput" accept=".xlsx,.xls,.csv,.txt" />
+        <textarea id="namesText" placeholder="مثال:
+أحمد محمد العبدالله | العلوم | الرابع الابتدائي | اختبار نهاية الفصل | ١ / ١٢ / ١٤٤٧هـ
+بدر فهد السهلي | الرياضيات | السادس الابتدائي"></textarea>
+        <div class="btns" style="position:static;padding-top:0">
+          <button class="secondary" onclick="addFromText()">إضافة من النص</button>
+          <button class="secondary" onclick="addEmptyRow()">إضافة صف فارغ</button>
+        </div>
+        <div class="teacher-table-wrap" id="tableWrap"></div>
+
+        <div class="section-title">خيارات الطباعة</div>
+        <div class="grid-2">
+          <div><label>إظهار خاتمة صورة للعلم؟</label><select id="showCopies"><option selected>نعم</option><option>لا</option></select></div>
+          <div><label>إظهار شعار الوزارة</label><select id="showLogo"><option selected>نعم</option><option>لا</option></select></div>
+        </div>
+        <div class="btns">
+          <button class="primary" onclick="renderDecisions()">توليد القرارات</button>
+          <button class="primary" onclick="window.print()">طباعة / حفظ PDF</button>
+          <button class="secondary" onclick="loadSample()">تجربة ببيانات نموذجية</button>
+          <button class="danger" onclick="clearAll()">مسح الأسماء</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="preview-wrap">
+      <div class="preview-top">
+        <div><b>معاينة قرارات التكليف</b><div style="font-size:12px;color:#66756e;margin-top:4px">بعد التوليد، استخدم أمر الطباعة أو حفظ PDF.</div></div>
+        <div class="count-pill" id="countPill">0 قرار</div>
+      </div>
+      <div class="preview-pages" id="previewPages">
+        <div class="empty-state">
+          جاهز للتوليد — أضف أسماء المعلمين ثم اضغط <b>توليد القرارات</b>.<br>
+          <span class="sample-link" onclick="loadSample();renderDecisions();">اضغط هنا لمعاينة نموذج سريع</span>
+        </div>
+      </div>
+    </main>
+  </div>
+
+<script>
+let teachers = [];
+const $ = id => document.getElementById(id);
+const esc = v => String(v ?? '').replace(/[&<>'"]/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[s]));
+const field = id => $(id).value.trim();
+
+function normalizeDigits(str){
+  return String(str || '').replace(/0/g,'٠').replace(/1/g,'١').replace(/2/g,'٢').replace(/3/g,'٣').replace(/4/g,'٤').replace(/5/g,'٥').replace(/6/g,'٦').replace(/7/g,'٧').replace(/8/g,'٨').replace(/9/g,'٩');
+}
+
+function inferRow(row){
+  if(Array.isArray(row)){
+    return {
+      name: row[0] || '', subject: row[1] || '', grade: row[2] || '', exam: row[3] || '', deadline: row[4] || '', notes: row[5] || ''
+    };
+  }
+  const keys = Object.keys(row || {});
+  const pick = (...names) => {
+    for(const n of names){
+      const found = keys.find(k => String(k).replace(/\s/g,'').includes(n.replace(/\s/g,'')));
+      if(found) return row[found] || '';
+    }
+    return '';
+  };
+  return {
+    name: pick('اسم المعلم','المعلم','الاسم','الاسم الكامل') || row[keys[0]] || '',
+    subject: pick('المادة','التخصص','المقرر'),
+    grade: pick('الصف','المرحلة','الصف الدراسي'),
+    exam: pick('نوع الاختبار','الاختبار','الفترة'),
+    deadline: pick('موعد التسليم','التسليم','التاريخ'),
+    notes: pick('ملاحظات','ملاحظة')
+  };
+}
+
+function cleanTeacher(t){
+  return {
+    name: String(t.name || '').trim(),
+    subject: String(t.subject || '').trim(),
+    grade: String(t.grade || '').trim(),
+    exam: String(t.exam || '').trim(),
+    deadline: String(t.deadline || '').trim(),
+    notes: String(t.notes || '').trim()
+  };
+}
+
+function addTeachers(rows){
+  rows.map(inferRow).map(cleanTeacher).filter(t => t.name).forEach(t => teachers.push(t));
+  renderTable();
+  renderDecisions();
+}
+
+function addFromText(){
+  const txt = $('namesText').value.trim();
+  if(!txt){ alert('الرجاء كتابة اسم واحد على الأقل.'); return; }
+  const rows = txt.split(/\n+/).map(line => line.trim()).filter(Boolean).map(line => {
+    const parts = line.split(/\||،|,/).map(x => x.trim());
+    return {name:parts[0], subject:parts[1]||'', grade:parts[2]||'', exam:parts[3]||'', deadline:parts[4]||'', notes:parts[5]||''};
+  });
+  addTeachers(rows);
+  $('namesText').value='';
+}
+
+function addEmptyRow(){
+  teachers.push({name:'',subject:'',grade:'',exam:'',deadline:'',notes:''});
+  renderTable();
+}
+
+function updateCell(i,key,value){
+  if(teachers[i]) teachers[i][key]=value;
+  updateCount();
+}
+
+function removeRow(i){
+  teachers.splice(i,1); renderTable(); renderDecisions();
+}
+
+function renderTable(){
+  const wrap = $('tableWrap');
+  if(!teachers.length){ wrap.innerHTML='<div style="padding:18px;color:#66756e;text-align:center;font-size:12px">لم تتم إضافة معلمين بعد.</div>'; updateCount(); return; }
+  wrap.innerHTML = `<table><thead><tr><th>م</th><th>اسم المعلم</th><th>المادة</th><th>الصف</th><th>الاختبار</th><th>التسليم</th><th>ملاحظات</th><th></th></tr></thead><tbody>`+
+    teachers.map((t,i)=>`<tr>
+      <td>${normalizeDigits(i+1)}</td>
+      <td><input value="${esc(t.name)}" oninput="updateCell(${i},'name',this.value)"></td>
+      <td><input value="${esc(t.subject)}" oninput="updateCell(${i},'subject',this.value)"></td>
+      <td><input value="${esc(t.grade)}" oninput="updateCell(${i},'grade',this.value)"></td>
+      <td><input value="${esc(t.exam)}" oninput="updateCell(${i},'exam',this.value)"></td>
+      <td><input value="${esc(t.deadline)}" oninput="updateCell(${i},'deadline',this.value)"></td>
+      <td><input value="${esc(t.notes)}" oninput="updateCell(${i},'notes',this.value)"></td>
+      <td><button class="danger" style="padding:6px 8px;border-radius:8px" onclick="removeRow(${i})">حذف</button></td>
+    </tr>`).join('')+`</tbody></table>`;
+  updateCount();
+}
+
+function updateCount(){
+  const c = teachers.filter(t => String(t.name || '').trim()).length;
+  $('countPill').textContent = normalizeDigits(c) + ' قرار';
+}
+
+function fileToRows(file){
+  const ext = file.name.split('.').pop().toLowerCase();
+  const reader = new FileReader();
+  reader.onload = e => {
+    try{
+      if(['xlsx','xls'].includes(ext)){
+        if(!window.XLSX){ alert('تعذر تحميل قارئ Excel. يمكنك حفظ الملف بصيغة CSV ثم رفعه.'); return; }
+        const data = new Uint8Array(e.target.result);
+        const wb = XLSX.read(data,{type:'array'});
+        const ws = wb.Sheets[wb.SheetNames[0]];
+        const rowsObj = XLSX.utils.sheet_to_json(ws,{defval:''});
+        if(rowsObj.length) addTeachers(rowsObj); else addTeachers(XLSX.utils.sheet_to_json(ws,{header:1,defval:''}));
+      }else{
+        const text = e.target.result;
+        const lines = text.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+        const rows = lines.map(line => line.split(/,|;|\t|\|/).map(x=>x.trim())).filter(r=>r[0]);
+        if(rows.length && /اسم|المعلم|الاسم/.test(rows[0].join(''))) rows.shift();
+        addTeachers(rows);
+      }
+    }catch(err){
+      alert('لم أتمكن من قراءة الملف. تأكد من ترتيب الأعمدة أو جرّب حفظه CSV.');
+      console.error(err);
+    }
+  };
+  if(['xlsx','xls'].includes(ext)) reader.readAsArrayBuffer(file); else reader.readAsText(file,'UTF-8');
+}
+
+$('fileInput').addEventListener('change', e => {
+  const file = e.target.files[0];
+  if(file) fileToRows(file);
+});
+
+function buildDecision(t, idx){
+  const edu = field('eduAdmin');
+  const school = field('schoolName');
+  const no = field('decisionNo') || '__________';
+  const date = field('decisionDate') || '____ / ____ / ______هـ';
+  const year = field('schoolYear') || '__________';
+  const sem = field('semester');
+  const exam = t.exam || field('examType') || 'اختبارات';
+  const deadline = t.deadline || field('defaultDeadline') || 'حسب الموعد المحدد من لجنة الاختبارات';
+  const principal = field('principal') || '__________';
+  const preparedBy = field('preparedBy') || '__________';
+  const intro = field('introText');
+  const logoVisible = field('showLogo') === 'نعم';
+  const copiesVisible = field('showCopies') === 'نعم';
+  const copyRow = copiesVisible ? `<div class="copy-row">
+    <div class="copy-cell">صورة للمعلم المكلف</div>
+    <div class="copy-cell">صورة للجنة الاختبارات</div>
+    <div class="copy-cell">صورة للحفظ في ملف الاختبارات</div>
+  </div>` : '';
+  const logo = logoVisible ? `<img src="https://upload.wikimedia.org/wikipedia/ar/2/20/MOELogo.svg" alt="شعار وزارة التعليم" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div style="display:none;font-weight:900;color:#0b6b3a;font-size:18px">وزارة التعليم</div>` : `<div style="font-weight:900;color:#0b6b3a;font-size:18px">وزارة التعليم</div>`;
+  return `<section class="page">
+    <div class="watermark">وزارة التعليم</div>
+    <div class="doc-inner">
+      <header class="doc-header">
+        <div class="header-text">
+          المملكة العربية السعودية<br>
+          وزارة التعليم<br>
+          ${esc(edu)}<br>
+          ${esc(school)}
+        </div>
+        <div class="logo-box">
+          ${logo}
+          <div class="logo-sub">قرار تكليف داخلي</div>
+        </div>
+        <div class="header-text left">
+          لجنة الاختبارات<br>
+          نموذج تكليف بإعداد الأسئلة<br>
+          العام الدراسي: ${esc(year)}<br>
+          ${esc(sem)}
+        </div>
+      </header>
+
+      <div class="doc-meta">
+        <div class="meta-item"><span>الرقم</span><b>${esc(no)}</b></div>
+        <div class="meta-item"><span>التاريخ</span><b>${esc(date)}</b></div>
+        <div class="meta-item"><span>المرفقات</span><b>لا يوجد</b></div>
+      </div>
+
+      <div class="title-block">
+        <div class="title-kicker">قرار إداري مدرسي</div>
+        <h2 class="main-title">قرار تكليف معلم بإعداد أسئلة اختبار</h2>
+        <div class="sub-title">قرار رقم ${esc(no)} بشأن تكليف معلم بإعداد أسئلة ${esc(exam)}</div>
+      </div>
+
+      <div class="decision-body">
+        ${esc(intro)}<br>
+        وعليه يُكلّف الأستاذ / <span class="highlight-name">${esc(t.name)}</span> بإعداد أسئلة الاختبار وفق البيانات والمهام الموضحة في هذا القرار، على أن يكون التنفيذ وفق ما تقتضيه المصلحة التعليمية، وما تضمنته التعليمات المنظمة لأعمال الاختبارات والتقويم داخل المدرسة.
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card"><div class="lab">اسم المعلم</div><div class="val">${esc(t.name)}</div></div>
+        <div class="info-card"><div class="lab">المادة</div><div class="val">${esc(t.subject || '__________')}</div></div>
+        <div class="info-card"><div class="lab">الصف/المرحلة</div><div class="val">${esc(t.grade || '__________')}</div></div>
+        <div class="info-card"><div class="lab">نوع الاختبار</div><div class="val">${esc(exam)}</div></div>
+        <div class="info-card"><div class="lab">موعد التسليم</div><div class="val">${esc(deadline)}</div></div>
+        <div class="info-card"><div class="lab">ملاحظات</div><div class="val">${esc(t.notes || 'الالتزام بالتعليمات والسرية التامة')}</div></div>
+      </div>
+
+      <div class="tasks">
+        <div class="tasks-title">أولًا: مهام المعلم المكلف ومسؤولياته</div>
+        <ol>
+          <li>إعداد أسئلة الاختبار بما يتوافق مع نواتج التعلم، ومحتوى المقرر، ومستويات التفكير المناسبة للطلاب.</li>
+          <li>بناء الأسئلة وفق جدول مواصفات واضح يراعي التوازن بين الفهم، والتطبيق، والاستدلال، والمهارات العليا.</li>
+          <li>إرفاق نموذج الإجابة وسلّم التصحيح وتوزيع الدرجات بصورة دقيقة وقابلة للمراجعة.</li>
+          <li>مراجعة الأسئلة لغويًا وعلميًا وفنيًا، والتأكد من خلوها من الغموض أو التكرار أو الأخطاء الطباعية.</li>
+          <li>الالتزام التام بسرية الأسئلة وعدم تداولها أو حفظها في أجهزة أو وسائل غير آمنة.</li>
+          <li>تسليم النسخة النهائية للجنة الاختبارات في الموعد المحدد، ورقيًا أو إلكترونيًا وفق ما تعتمده المدرسة.</li>
+        </ol>
+      </div>
+
+      <div class="tasks">
+        <div class="tasks-title">ثانيًا: ضوابط الجودة والاعتماد</div>
+        <ol>
+          <li>للجنة الاختبارات حق مراجعة الأسئلة وطلب التعديل عند الحاجة قبل اعتمادها نهائيًا.</li>
+          <li>لا يُعد الاختبار معتمدًا إلا بعد اكتمال المراجعة، وتسليم نموذج الإجابة، وتوثيق الاستلام.</li>
+          <li>يتحمل المعلم المكلف مسؤولية دقة المحتوى، وسلامة الصياغة، والالتزام بالسرية حتى انتهاء أعمال الاختبار.</li>
+        </ol>
+      </div>
+
+      <div class="notice">
+        <div class="notice-box"><b>إقرار بالاستلام:</b><br>أقرّ أنا المعلم المكلف بالاطلاع على مضمون هذا القرار والالتزام بما ورد فيه من مهام وضوابط ومواعيد.</div>
+        <div class="notice-box"><b>توجيه:</b><br>يبدأ العمل بهذا القرار من تاريخ صدوره، ويبلّغ من يلزم لتنفيذه كلٌّ فيما يخصه.</div>
+      </div>
+
+      <div class="signatures">
+        <div class="signature">
+          <div class="sig-role">توقيع المعلم المكلف</div>
+          <div class="sig-name">${esc(t.name)}</div>
+          <div class="sig-note">الاسم والتوقيع</div>
+        </div>
+        <div class="signature">
+          <div class="sig-role">مدير المدرسة</div>
+          <div class="sig-name">${esc(principal)}</div>
+          <div class="sig-note">الختم والتوقيع</div>
+        </div>
+      </div>
+      ${copyRow}
+      <footer class="footer">
+        <div>إعداد النموذج: ${esc(preparedBy)}</div>
+        <div class="center">صفحة ${normalizeDigits(idx+1)}</div>
+        <div style="text-align:left">${esc(school)}</div>
+      </footer>
+    </div>
+  </section>`;
+}
+
+function renderDecisions(){
+  teachers = teachers.map(cleanTeacher).filter(t=>t.name);
+  renderTable();
+  const pages = $('previewPages');
+  if(!teachers.length){
+    pages.innerHTML = `<div class="empty-state">لا توجد أسماء لتوليد القرارات.<br>أضف أسماء المعلمين أو استخدم البيانات النموذجية.</div>`;
+    updateCount();
+    return;
+  }
+  pages.innerHTML = teachers.map((t,i)=>buildDecision(t,i)).join('');
+  updateCount();
+}
+
+function loadSample(){
+  teachers = [
+    {name:'أحمد بن محمد العبدالله',subject:'العلوم',grade:'الرابع الابتدائي',exam:'اختبار نهاية الفصل الدراسي',deadline:'الأحد ١ / ١٢ / ١٤٤٧هـ',notes:'إرفاق نموذج الإجابة وجدول المواصفات'},
+    {name:'بدر بن فهد السهلي',subject:'الرياضيات',grade:'السادس الابتدائي',exam:'اختبار نهاية الفصل الدراسي',deadline:'الأحد ١ / ١٢ / ١٤٤٧هـ',notes:'مراجعة الصياغة وسلامة توزيع الدرجات'}
+  ];
+  renderTable();
+}
+
+function clearAll(){
+  if(confirm('هل تريد مسح جميع أسماء المعلمين؟')){
+    teachers=[]; renderTable(); renderDecisions();
+  }
+}
+
+renderTable();
+</script>
+</body>
+</html>
