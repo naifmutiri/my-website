@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>منصة دليل توزيع الدرجات 2025 - ابتدائية ومتوسطة الجبيلة</title>
+<style>
+  :root{
+    --moe:#0b6b4f;
+    --moe-dark:#073b34;
+    --moe-deep:#051f1c;
+    --moe-soft:#eaf6f1;
+    --gold:#c8a45d;
+    --gold-light:#f4dfab;
+    --ink:#10231f;
+    --muted:#5f746e;
+    --line:rgba(200,164,93,.58);
+    --paper:#fffdf7;
+    --card:#ffffff;
+    --shadow:0 24px 70px rgba(7,59,52,.16);
+    --radius:24px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"Tahoma","Arial",sans-serif;
+    background:
+      radial-gradient(circle at 8% 4%,rgba(200,164,93,.26),transparent 27%),
+      radial-gradient(circle at 86% 8%,rgba(11,107,79,.18),transparent 30%),
+      linear-gradient(135deg,#f8fbf7 0%,#eef8f3 42%,#ffffff 100%);
+    color:var(--ink);
+    line-height:1.9;
+    overflow-x:hidden;
+  }
+  body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+      linear-gradient(30deg,rgba(11,107,79,.035) 12%,transparent 12.5%,transparent 87%,rgba(11,107,79,.035) 87.5%,rgba(11,107,79,.035)),
+      linear-gradient(150deg,rgba(11,107,79,.035) 12%,transparent 12.5%,transparent 87%,rgba(11,107,79,.035) 87.5%,rgba(11,107,79,.035));
+    background-size:42px 73px;
+    opacity:.72;
+    z-index:-1;
+  }
+  a{color:inherit}
+  .app{display:grid;grid-template-columns:330px 1fr;min-height:100vh}
+  aside{
+    position:sticky;top:0;height:100vh;padding:24px 20px;
+    background:
+      radial-gradient(circle at 20% 0%,rgba(244,223,171,.18),transparent 30%),
+      linear-gradient(180deg,var(--moe-deep),var(--moe-dark));
+    border-left:3px solid var(--gold);
+    overflow:auto;
+    box-shadow:-10px 0 35px rgba(7,59,52,.18) inset;
+    color:#fff;
+  }
+  .brand{
+    border:1px solid rgba(244,223,171,.55);
+    border-radius:30px;
+    padding:18px;
+    background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.045));
+    box-shadow:0 20px 55px rgba(0,0,0,.22);
+    position:relative;
+    overflow:hidden;
+  }
+  .brand:before{content:"";position:absolute;inset:auto -42px -62px auto;width:170px;height:170px;border-radius:50%;background:rgba(200,164,93,.14)}
+  .brand-logo{display:flex;align-items:center;gap:12px;margin-bottom:12px;position:relative;z-index:2}
+  .brand-logo img{width:70px;height:70px;object-fit:contain;background:#fff;border-radius:22px;padding:8px;border:1px solid rgba(200,164,93,.65)}
+  .brand-logo .kicker{font-size:12px;color:#e8f7f1;font-weight:700;letter-spacing:.2px}
+  .brand h1{font-size:22px;margin:0;color:var(--gold-light);line-height:1.55;position:relative;z-index:2}
+  .brand p{margin:8px 0 0;color:#e2f2ed;font-size:13px;position:relative;z-index:2}
+  .school-mini{margin-top:14px;padding:12px;border-radius:20px;background:rgba(255,255,255,.08);border:1px dashed rgba(244,223,171,.55);font-size:12.5px;color:#fff;position:relative;z-index:2}
+  .search{width:100%;margin:18px 0 12px;padding:13px 14px;border-radius:16px;border:1px solid rgba(244,223,171,.62);background:#fff;color:var(--ink);outline:0;box-shadow:0 10px 25px rgba(0,0,0,.12)}
+  .nav{margin:14px 0 18px;display:grid;gap:9px}
+  .nav button,.tool button,.print-btn{
+    border:0;border-radius:16px;padding:12px 14px;color:#fff;
+    background:rgba(255,255,255,.075);
+    border:1px solid rgba(244,223,171,.44);
+    cursor:pointer;text-align:right;font-weight:800;transition:.22s;
+  }
+  .nav button:hover,.nav button.active,.tool button:hover,.print-btn:hover{
+    background:linear-gradient(90deg,rgba(200,164,93,.30),rgba(255,255,255,.12));
+    transform:translateX(-4px);
+    border-color:var(--gold-light);
+  }
+  .tool{border-top:1px dashed rgba(244,223,171,.42);padding-top:16px;display:grid;gap:10px}
+  .sig{
+    margin-top:16px;padding:14px;border-radius:20px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(244,223,171,.42);
+    font-size:13px;color:#fff;
+  }
+  .sig strong{color:var(--gold-light)}
+  main{padding:28px;max-width:1460px;width:100%;margin:auto}
+  .official-strip{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    align-items:center;
+    gap:18px;
+    margin-bottom:22px;
+    padding:18px 22px;
+    border:1.5px solid rgba(200,164,93,.58);
+    border-radius:30px;
+    background:rgba(255,255,255,.78);
+    backdrop-filter:blur(10px);
+    box-shadow:var(--shadow);
+    position:relative;
+    overflow:hidden;
+  }
+  .official-strip:before{content:"";position:absolute;right:-80px;top:-85px;width:220px;height:220px;border-radius:50%;background:rgba(11,107,79,.08)}
+  .official-strip:after{content:"";position:absolute;left:-80px;bottom:-85px;width:220px;height:220px;border-radius:50%;background:rgba(200,164,93,.13)}
+  .official-text{position:relative;z-index:1;font-weight:800;color:var(--moe-dark);font-size:14px}
+  .official-text span{display:block;color:var(--muted);font-weight:700;font-size:12.5px;margin-top:2px}
+  .official-logo{position:relative;z-index:1;display:grid;place-items:center;gap:4px;text-align:center}
+  .official-logo img{width:88px;height:88px;object-fit:contain;background:#fff;border:1px solid rgba(200,164,93,.55);border-radius:24px;padding:9px;box-shadow:0 10px 30px rgba(7,59,52,.10)}
+  .official-logo b{font-size:13px;color:var(--moe-dark)}
+  .hero{display:grid;grid-template-columns:1.18fr .82fr;gap:20px;align-items:stretch;margin-bottom:26px}
+  .hero-card{
+    border-radius:34px;padding:30px;
+    background:
+      radial-gradient(circle at 2% 8%,rgba(244,223,171,.24),transparent 32%),
+      linear-gradient(135deg,var(--moe-dark),var(--moe));
+    box-shadow:var(--shadow);
+    border:1.5px solid rgba(200,164,93,.70);
+    position:relative;overflow:hidden;color:#fff;
+  }
+  .hero-card:before{content:"";position:absolute;top:-90px;left:-90px;width:270px;height:270px;border-radius:50%;background:rgba(244,223,171,.17)}
+  .hero-card:after{content:"";position:absolute;inset:18px;border:1px solid rgba(255,255,255,.12);border-radius:28px;pointer-events:none}
+  .hero h2{margin:0;font-size:39px;line-height:1.45;color:#fff;position:relative;z-index:1}
+  .hero .sub{color:#eaf9f3;font-size:17px;margin-top:12px;position:relative;z-index:1;max-width:92%}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;position:relative;z-index:1}
+  .chip{padding:8px 13px;border-radius:999px;background:rgba(255,255,255,.95);border:1px solid rgba(200,164,93,.65);font-size:13px;color:var(--moe-dark);font-weight:800}
+  .statgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;height:100%}
+  .stat{border-radius:26px;background:rgba(255,255,255,.88);padding:20px;border:1.5px solid rgba(200,164,93,.55);box-shadow:0 14px 38px rgba(7,59,52,.12);position:relative;overflow:hidden}
+  .stat:before{content:"";position:absolute;left:-45px;top:-45px;width:120px;height:120px;border-radius:50%;background:rgba(11,107,79,.055)}
+  .stat b{display:block;font-size:31px;color:var(--moe);line-height:1.2}.stat span{font-size:14px;color:var(--muted);font-weight:700}
+  section{display:none;animation:fade .25s ease}.show{display:block}@keyframes fade{from{opacity:.2;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .section-title{display:flex;justify-content:space-between;gap:15px;align-items:flex-end;margin:28px 0 16px;border-bottom:1px solid rgba(11,107,79,.18);padding-bottom:12px}
+  .section-title h3{font-size:27px;margin:0;color:var(--moe-dark);position:relative;padding-right:16px}
+  .section-title h3:before{content:"";position:absolute;right:0;top:9px;width:6px;height:32px;border-radius:20px;background:linear-gradient(var(--moe),var(--gold))}
+  .section-title p{margin:0;color:var(--muted);font-weight:700}
+  .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+  .card{border-radius:var(--radius);background:rgba(255,255,255,.92);border:1.5px solid rgba(200,164,93,.50);box-shadow:0 14px 40px rgba(7,59,52,.10);padding:20px;position:relative;overflow:hidden;color:var(--ink)}
+  .card:before{content:"";position:absolute;inset:0 0 auto 0;height:5px;background:linear-gradient(90deg,var(--gold),var(--moe),var(--gold))}
+  .card h4{margin:8px 0;color:var(--moe-dark);font-size:21px}.card p{color:var(--ink)}
+  .card .type{display:inline-block;font-size:12.5px;padding:4px 10px;border-radius:99px;background:rgba(11,107,79,.10);color:var(--moe-dark);border:1px solid rgba(11,107,79,.25);font-weight:900}
+  .card .type.final{background:rgba(200,164,93,.16);color:#6b4b14;border-color:rgba(200,164,93,.50)}
+  .card ul{padding-right:20px;margin:12px 0;color:var(--ink)}.card li{margin:5px 0}.card li::marker{color:var(--moe)}
+  .score{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.score span{padding:7px 9px;border-radius:12px;background:var(--moe-soft);font-size:13px;color:var(--moe-dark);border:1px solid rgba(11,107,79,.18);font-weight:800}
+  .open{margin-top:13px;background:linear-gradient(135deg,var(--moe),var(--moe-dark));border:1px solid rgba(200,164,93,.55);color:#fff;border-radius:14px;padding:9px 12px;cursor:pointer;font-weight:900;box-shadow:0 10px 25px rgba(7,59,52,.15)}
+  .open:hover{filter:brightness(1.05);transform:translateY(-1px)}
+  .table-wrap{overflow:auto;border-radius:24px;border:1.5px solid rgba(200,164,93,.52);background:#fff;margin:14px 0;box-shadow:0 16px 42px rgba(7,59,52,.09)}
+  table{width:100%;border-collapse:collapse;min-width:720px}th,td{padding:13px 14px;border-bottom:1px solid rgba(11,107,79,.12);vertical-align:top}th{background:linear-gradient(135deg,var(--moe-dark),var(--moe));color:#fff;font-size:15px}td{color:var(--ink)}tr:hover td{background:#f5fbf8}
+  .timeline{display:grid;gap:14px}.step{display:grid;grid-template-columns:70px 1fr;gap:14px;align-items:start}.num{width:52px;height:52px;border-radius:18px;background:linear-gradient(135deg,var(--gold-light),var(--gold));color:var(--moe-dark);display:grid;place-items:center;font-weight:900;font-size:22px;box-shadow:0 12px 28px rgba(200,164,93,.22)}.step div:last-child{background:rgba(255,255,255,.94);padding:15px;border-radius:20px;border:1.5px solid rgba(200,164,93,.48);color:var(--ink);box-shadow:0 12px 32px rgba(7,59,52,.08)}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:18px}.highlight{background:linear-gradient(180deg,#ffffff,#f8fcfa);border:1.5px solid rgba(200,164,93,.52);color:var(--ink);border-radius:24px;padding:20px;box-shadow:0 14px 38px rgba(7,59,52,.09)}.highlight h3{color:var(--moe-dark);margin-top:0}.muted{color:var(--muted)}
+  dialog{border:0;border-radius:30px;max-width:920px;width:92%;background:#fff;color:var(--ink);box-shadow:0 30px 90px rgba(0,0,0,.35);padding:0}dialog::backdrop{background:rgba(4,25,22,.62)}.modal-head{padding:22px 24px;background:linear-gradient(90deg,var(--moe-dark),var(--moe));display:flex;justify-content:space-between;align-items:center;color:#fff}.modal-head h3{margin:0;color:#fff}.close{border:0;background:#fff;color:var(--moe-dark);border:1px solid rgba(200,164,93,.7);border-radius:12px;padding:8px 12px;cursor:pointer;font-weight:900}.modal-body{padding:22px;max-height:72vh;overflow:auto}
+  .print-only{display:none}.source{font-size:13px;color:var(--muted);margin-top:25px;border-top:1px dashed rgba(11,107,79,.25);padding-top:12px;font-weight:700}
+  .moe-watermark{position:fixed;left:42px;bottom:28px;width:135px;opacity:.045;pointer-events:none;z-index:-1}
+  @media(max-width:1080px){.app{grid-template-columns:1fr}aside{position:relative;height:auto}.hero,.split{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.statgrid{grid-template-columns:repeat(2,1fr)}main{padding:18px}.hero h2{font-size:31px}.official-strip{grid-template-columns:1fr;text-align:center}.official-text{text-align:center}}
+  @media(max-width:680px){.grid{grid-template-columns:1fr}.statgrid{grid-template-columns:1fr}.hero-card{padding:22px}.hero h2{font-size:27px}}
+  @media print{
+    body{background:#fff;color:#111}body:before,.moe-watermark{display:none}.app{display:block}aside,.open,.print-btn,.search,.tool,.chips{display:none!important}main{padding:0}.official-strip{box-shadow:none;border:1px solid #999;border-radius:12px;margin-bottom:8mm;page-break-inside:avoid}.official-logo img{width:70px;height:70px}.hero-card,.card,.highlight,.step div:last-child{box-shadow:none;border:1px solid #b9b9b9;background:#fff;color:#111}.hero{display:block}.hero-card{color:#111}.hero h2,.hero .sub{color:#111}.grid{grid-template-columns:1fr 1fr}.show{display:block}.section-title{page-break-after:avoid}.card,.table-wrap,.step{page-break-inside:avoid}.print-only{display:block}.muted,.source{color:#333}th{background:#eee;color:#111}td{color:#111}.stat{box-shadow:none;border:1px solid #aaa}.stat b{color:#111}@page{size:A4 portrait;margin:10mm}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside>
+    <div class="brand">
+      <div class="brand-logo">
+        <img src="https://upload.wikimedia.org/wikipedia/ar/2/20/MOELogo.svg" alt="شعار وزارة التعليم" />
+        <div>
+          <div class="kicker">وزارة التعليم</div>
+          <h1>منصة رقمية لدليل توزيع الدرجات 2025</h1>
+        </div>
+      </div>
+      <p>نسخة تفاعلية فاخرة بهوية وزارة التعليم لعرض نماذج التقويم وتوزيع درجات المواد الدراسية.</p>
+      <div class="school-mini">
+        الإدارة العامة للتعليم بمنطقة الرياض<br>
+        ابتدائية ومتوسطة الجبيلة<br>
+        إعداد: نايف المطيري<br>
+        مدير المدرسة: مفلح الشهراني
+      </div>
+    </div>
+    <input id="search" class="search" placeholder="ابحث عن مادة أو نموذج..." />
+    <div class="nav">
+      <button class="active" data-target="home">الرئيسية</button>
+      <button data-target="rules">القواعد العامة</button>
+      <button data-target="finals">المواد الختامية</button>
+      <button data-target="formative">المواد التكوينية</button>
+      <button data-target="models">نماذج التقويم 1-12</button>
+      <button data-target="special">المجال الاختياري ومشروع التخرج</button>
+      <button data-target="behavior">السلوك والمواظبة والنشاط</button>
+    </div>
+    <div class="tool">
+      <button class="print-btn" onclick="window.print()">طباعة / حفظ PDF</button>
+      <button onclick="expandAll()">عرض كل الأقسام للطباعة</button>
+    </div>
+    <div class="sig">
+      <strong>البيانات الأساسية</strong><br>
+      الإدارة العامة للتعليم بمنطقة الرياض<br>
+      ابتدائية ومتوسطة الجبيلة<br>
+      إعداد: نايف المطيري<br>
+      مدير المدرسة: مفلح الشهراني
+    </div>
+  </aside>
+  <main>
+    <img class="moe-watermark" src="https://upload.wikimedia.org/wikipedia/ar/2/20/MOELogo.svg" alt="علامة مائية لشعار وزارة التعليم" />
+    <div class="official-strip">
+      <div class="official-text">
+        المملكة العربية السعودية
+        <span>وزارة التعليم · الإدارة العامة للتعليم بمنطقة الرياض</span>
+      </div>
+      <div class="official-logo">
+        <img src="https://upload.wikimedia.org/wikipedia/ar/2/20/MOELogo.svg" alt="شعار وزارة التعليم" />
+        <b>ابتدائية ومتوسطة الجبيلة</b>
+      </div>
+      <div class="official-text" style="text-align:left">
+        منصة دليل توزيع الدرجات 2025
+        <span>إعداد: نايف المطيري · مدير المدرسة: مفلح الشهراني</span>
+      </div>
+    </div>
+    <section id="home" class="show">
+      <div class="hero">
+        <div class="hero-card">
+          <h2>دليل تفاعلي فاخر لتوزيع درجات المواد</h2>
+          <div class="sub">منصة مدرسية تفاعلية تعرض نوع تقويم المادة، توزيع الدرجات، ونماذج الدور الثاني بأسلوب منظم وسريع، مناسب للاطلاع والطباعة والحفظ PDF.</div>
+          <div class="chips"><span class="chip">تقويم تكويني</span><span class="chip">تقويم ختامي</span><span class="chip">الدور الثاني</span><span class="chip">السلوك والمواظبة</span><span class="chip">مشروع التخرج</span></div>
+        </div>
+        <div class="statgrid">
+          <div class="stat"><b>12</b><span>نموذج تقويم رئيسي</span></div>
+          <div class="stat"><b>100</b><span>درجة إجمالية لمعظم النماذج</span></div>
+          <div class="stat"><b>40/60</b><span>أصل متكرر في الدور الثاني</span></div>
+          <div class="stat"><b>20%</b><span>نسبة شرطية في الاختبارات التحريرية الختامية حسب الدليل</span></div>
+        </div>
+      </div>
+      <div class="section-title"><h3>الخريطة المختصرة</h3><p>اضغط على أي بطاقة للتفصيل</p></div>
+      <div class="grid" id="quickCards"></div>
+      <div class="source">المصدر: ملف وزارة التعليم «توزيع درجات المواد الدراسية 2025».</div>
+    </section>
+
+    <section id="rules">
+      <div class="section-title"><h3>القواعد العامة في تقويم المواد الدراسية</h3><p>مختصر تنفيذي من الفصل الأول</p></div>
+      <div class="timeline">
+        <div class="step"><div class="num">1</div><div><b>التقويم التكويني مستمر</b><br>ينفذ بعد كل وحدة دراسية في جميع المواد بهدف دعم التحصيل حتى نهاية الفترة الدراسية.</div></div>
+        <div class="step"><div class="num">2</div><div><b>الاختبارات التحريرية القصيرة</b><br>تجرى من 20 درجة مرتين على الأقل خلال الفترة، ويمكن استبدالها بتطبيقات عملية في المواد التطبيقية.</div></div>
+        <div class="step"><div class="num">3</div><div><b>التقويم الختامي</b><br>يخصص له اختبار تحريري في نهاية الفترة الدراسية للمواد المحددة في الدليل.</div></div>
+        <div class="step"><div class="num">4</div><div><b>الدور الثاني</b><br>عند إخفاق الطالب يحتفظ غالبًا بـ 40 درجة من أعمال الفترة، ويختبر الدور الثاني من 60 درجة، مع اختلاف التفصيل حسب النموذج.</div></div>
+        <div class="step"><div class="num">5</div><div><b>المواد العملية والشفهية</b><br>يكون تقويمها مستمرًا ودوريًا، وعند تعذر الجانب العملي يمكن استخدام مشاريع أو بحوث أو بدائل يراها المعلم مناسبة.</div></div>
+        <div class="step"><div class="num">6</div><div><b>الغياب بدون عذر</b><br>لا يمنح الطالب درجة كاملة في المشاركة والتفاعل في المقرر الذي غاب فيه بدون عذر، ولا تعاد له الاختبارات القصيرة ولا يمنح درجات تعويضية في المشاركة والتفاعل.</div></div>
+      </div>
+    </section>
+
+    <section id="finals">
+      <div class="section-title"><h3>المواد الختامية وتفصيلاتها</h3><p>مواد لها اختبار نهاية فترة ضمن نموذجها</p></div>
+      <div class="grid" id="finalCards"></div>
+      <div class="table-wrap"><table><thead><tr><th>النموذج</th><th>المواد</th><th>التوزيع</th><th>الدور الثاني</th></tr></thead><tbody id="finalTable"></tbody></table></div>
+    </section>
+
+    <section id="formative">
+      <div class="section-title"><h3>المواد التكوينية وتفصيلاتها</h3><p>تقويم مستمر بأدوات متنوعة حسب طبيعة المادة</p></div>
+      <div class="grid" id="formativeCards"></div>
+      <div class="table-wrap"><table><thead><tr><th>النموذج</th><th>المواد/المجال</th><th>التوزيع</th><th>ملاحظات الدور الثاني</th></tr></thead><tbody id="formativeTable"></tbody></table></div>
+    </section>
+
+    <section id="models">
+      <div class="section-title"><h3>نماذج التقويم 1-12</h3><p>كل النماذج في بطاقات مرجعية</p></div>
+      <div class="grid" id="modelCards"></div>
+    </section>
+
+    <section id="special">
+      <div class="section-title"><h3>المجال الاختياري ومشروع التخرج</h3><p>نموذج 12 بتفصيلاته</p></div>
+      <div class="split">
+        <div class="highlight"><h3>المجال الاختياري — نمط حضوري</h3><p>100 درجة لكل فترة في السنة الثالثة، والنجاح من 50 فأكثر. التوزيع: 50 درجة للجانب المعرفي و50 درجة للجانب المهاري. يقدم الطالب في الفترة الأخيرة مشروع التخرج وفق آلية تقويم المشروع.</p></div>
+        <div class="highlight"><h3>نمط التعلم الإلكتروني ذاتي التعلم</h3><p>80 درجة للمهام الأدائية، و20 درجة لاختبار نهاية الفترة بدل مشروع التخرج. التقويم آلي في النظام الإلكتروني المعتمد دون تدخل المعلم، بإشراف عام من المدرسة.</p></div>
+      </div>
+      <div class="table-wrap"><table><thead><tr><th>جانب التقويم</th><th>العنصر</th><th>الدرجة</th><th>التفصيل</th></tr></thead><tbody>
+        <tr><td rowspan="4">المعرفي في المجال الاختياري</td><td>الواجبات</td><td>10</td><td>واجب واحد على الأقل كل أسبوعين حسب طبيعة المجال.</td></tr>
+        <tr><td>ملف الإنجاز</td><td>10</td><td>عشر درجات للملف الإلكتروني، والحد الأعلى سبع درجات للورقي، مع تقييم التنظيم والترتيب والمحتوى.</td></tr>
+        <tr><td>اختبار فتري/تقويم بديل</td><td>10</td><td>يقيس مهارات التفكير العليا ويمكن استخدام تقارير، اختبار مقالي أو موضوعي، أداء، أقران، حقيبة إنجاز، دراسة حالة.</td></tr>
+        <tr><td>اختبار نهائي/تقويم بديل</td><td>20</td><td>بديل تقويمي يراعي طبيعة المجال.</td></tr>
+        <tr><td rowspan="5">المهاري في المجال الاختياري</td><td>الاتصال والتشارك</td><td>10</td><td>التفاعل مع المعلم والأقران والمشاركة الفاعلة في أنشطة التعلم.</td></tr>
+        <tr><td>القيادة والمسؤولية</td><td>10</td><td>الالتزام والانضباط والمهام القيادية ودعم الزملاء وخطط زمنية واضحة.</td></tr>
+        <tr><td>إدارة الوقت والتقارير</td><td>10</td><td>تقديم تقارير الإنجاز الشهرية أو الأسبوعية في وقتها.</td></tr>
+        <tr><td>المهارات الرقمية</td><td>10</td><td>إعداد عروض ومحتوى إلكتروني متميز يوثق الإنجازات والمشاريع.</td></tr>
+        <tr><td>العرض الختامي</td><td>10</td><td>عرض ختامي يشتمل على المهام المنجزة مع المناقشة والإقناع.</td></tr>
+      </tbody></table></div>
+      <div class="section-title"><h3>مشروع التخرج</h3><p>40 معرفي + 60 مهاري</p></div>
+      <div class="table-wrap"><table><thead><tr><th>جانب التقويم</th><th>العنصر</th><th>الدرجة</th><th>تعريف مختصر</th></tr></thead><tbody>
+        <tr><td rowspan="4">معرفي</td><td>الاتصال والتشارك</td><td>10</td><td>التفاعل والمشاركة الفاعلة داخل الصف أو خارجه.</td></tr>
+        <tr><td>القيادة والمسؤولية</td><td>10</td><td>الالتزام والانضباط ودعم الزملاء وخطط المشروع.</td></tr>
+        <tr><td>إدارة الوقت والتقارير</td><td>10</td><td>تقارير إنجاز شهرية أو أسبوعية في وقتها.</td></tr>
+        <tr><td>المهارات الرقمية</td><td>10</td><td>تصميم عروض ومحتوى يوضح الإنجازات.</td></tr>
+        <tr><td rowspan="4">مهاري</td><td>فكرة المشروع</td><td>5</td><td>الأصالة والقابلية للتنفيذ والقيمة المضافة.</td></tr>
+        <tr><td>النموذج الأولي</td><td>5</td><td>مخططات أو تصور أولي للمشروع.</td></tr>
+        <tr><td>المنتج النهائي</td><td>30</td><td>يقيم كل منتج وفق سماته النظرية أو التطبيقية.</td></tr>
+        <tr><td>العرض الختامي</td><td>20</td><td>عرض ومناقشة وإقناع حول ما أنجز خلال الفترة.</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section id="behavior">
+      <div class="section-title"><h3>النشاط والسلوك والمواظبة</h3><p>نماذج 9 و10 و11</p></div>
+      <div class="grid">
+        <div class="card"><span class="type">نموذج 9</span><h4>برامج النشاط الطالبي</h4><p>100 درجة لكل برنامج نشاط. تحسب متوسطات البرامج وترصد في النظام مرتين على الأقل خلال الفترة. التوزيع: المشاركة والتفاعل 50، المهام الأدائية 50.</p></div>
+        <div class="card"><span class="type">نموذج 10</span><h4>السلوك</h4><p>100 درجة تحتسب ضمن المعدل من الثالث الابتدائي إلى الثالث الثانوي. السلوك الإيجابي 80 درجة، والسلوك المتميز 20 درجة.</p></div>
+        <div class="card"><span class="type">نموذج 11</span><h4>المواظبة</h4><p>100 درجة لكل فترة من الثالث الابتدائي إلى الثالث الثانوي. عند بلوغ الغياب بدون عذر أكثر من 10% من أيام العام يحرم الطالب من دخول الاختبار وعليه إعادة الصف.</p></div>
+      </div>
+    </section>
+  </main>
+</div>
+<dialog id="modal"><div class="modal-head"><h3 id="modalTitle"></h3><button class="close" onclick="modal.close()">إغلاق</button></div><div class="modal-body" id="modalBody"></div></dialog>
+<script>
+const models = [
+ {id:1,type:'تكويني', title:'القرآن والدراسات الإسلامية', scores:['المهام والمشاركة 40','شفهي/تحريري 60','المجموع 100'], materials:['القرآن الكريم والدراسات الإسلامية عام: ابتدائي ومتوسط','القرآن والدراسات الإسلامية تحفيظ: ابتدائي ومتوسط','القرآن الكريم وتفسيره: ثانوي','القراءات: ثانوي'], notes:'الدور الثاني يحتفظ فيه الطالب بـ40 من المهام والمشاركة، وتفصل الـ60 بين شفهي وتحريري حسب المادة: عام 15 شفهي +45 تحريري، تحفيظ/قراءات 30+30، القرآن وتفسيره 40 شفهي +20 تحريري.'},
+ {id:2,type:'ختامي', title:'الرياضيات والعلوم', scores:['المهام والمشاركة 40','تقويمات تحريرية 20','اختبار نهاية الفترة 40','المجموع 100'], materials:['الرياضيات: ابتدائي ومتوسط وثانوي','العلوم: ابتدائي ومتوسط'], notes:'الدور الثاني: يحتفظ بـ40 من المهام والمشاركة، ويختبر من 60 اختبارًا تحريريًا.'},
+ {id:3,type:'ختامي', title:'اللغات والكفايات اللغوية', scores:['المهام والمشاركة 40','شفهي/تحريري 20','اختبار نهاية الفترة 40','المجموع 100'], materials:['اللغة العربية: ابتدائي ومتوسط','اللغة الإنجليزية: ابتدائي ومتوسط وثانوي','اللغة الصينية: متوسط وثانوي','الكفايات اللغوية، الدراسات اللغوية، النحو والصرف، المهارات اللغوية: ثانوي'], notes:'الدور الثاني: 40 محفوظة للمهام والمشاركة، و60 موزعة 30 تقويمات شفهية +30 اختبار تحريري. للصفين الأول والثاني الابتدائي يركز تقويم العربية على القراءة والكتابة.'},
+ {id:4,type:'تكويني', title:'مواد نظرية عامة وثانوية', scores:['المهام والمشاركة 40','تقويمات تحريرية 60','المجموع 100'], materials:['الدراسات الاجتماعية، التفكير الناقد، التربية المهنية، المعرفة المالية، مقدمة في الأعمال، مبادئ الاقتصاد، الإدارة المالية، علوم القرآن، المهارات الحياتية، إدارة الفعاليات، علوم الحديث، النصوص الأدبية، تخريج الحديث','الحديث، التوحيد، الفقه، التفسير، التاريخ، الفرائض، مبادئ الإدارة، الجغرافيا، مصطلح الحديث، البلاغة والنقد، العروض والقافية، القواعد الكتابية','اللياقة والثقافة الصحية، صناعة القرار في الأعمال، البحث ومصادر المعلومات، المواطنة الرقمية، الدراسات الأدبية، النفسية والاجتماعية، البلاغية والنقدية، مبادئ القانون، أصول الفقه، تخطيط الحملات التسويقية، الأدب العربي وتاريخه، دراسات في الكتب الستة'], notes:'إجراء التقويمات التحريرية بعد كل وحدة أو مجموعة دروس، وترصد مرتين على الأقل. الدور الثاني: 40 محفوظة و60 اختبار.'},
+ {id:5,type:'تكويني', title:'الفنية والبدنية والمهارات', scores:['المهام والمشاركة 40','تحريري/أدوات متنوعة 60','المجموع 100'], materials:['التربية الفنية: ابتدائي ومتوسط','الفنون: ثانوي','المهارات الحياتية والأسرية: ابتدائي ومتوسط','التربية البدنية والدفاع عن النفس: ابتدائي ومتوسط','التربية الصحية والبدنية: ثانوي','المهارات المهنية: المرحلة التأهيلية لذوي الإعاقة'], notes:'الدور الثاني غالبًا 60 اختبارات شفهية وتطبيقات عملية. في البدنية والصحية والبدنية تكون الـ60 تطبيقات عملية. الطالب ذو العذر الطبي الدائم أو الإعاقة الحركية/الصحية يقوّم بما يتناسب مع قدراته.'},
+ {id:6,type:'تكويني', title:'التقنية والمهارات الرقمية', scores:['المهام والمشاركة 40','تحريري/تطبيقات عملية 60','المجموع 100'], materials:['التجويد تحفيظ: ابتدائي ومتوسط','المهارات الرقمية: ابتدائي ومتوسط','التقنية الرقمية، السكرتارية والإدارة المكتبية، علم البيانات، إنترنت الأشياء، الذكاء الاصطناعي، تطبيقات في القانون، هندسة البرمجيات، التصميم الهندسي، الأمن السيبراني، الإحصاء: ثانوي'], notes:'الدور الثاني: 35 تطبيقات عملية +25 اختبار تحريري، باستثناء السكرتارية والإدارة المكتبية وتطبيقات في القانون: 20 تطبيقات عملية +40 اختبار تحريري.'},
+ {id:7,type:'ختامي', title:'العلوم والصحة والهندسة', scores:['المهام والمشاركة 40','تحريري/تطبيقات عملية 20','اختبار نهاية الفترة 40','المجموع 100'], materials:['مبادئ العلوم الصحية، علوم الأرض والفضاء، أنظمة جسم الإنسان، الأحياء، الفيزياء، الكيمياء، علم البيئة، الهندسة، الرعاية الصحية: ثانوي'], notes:'الدور الثاني: 40 محفوظة، و60 موزعة 20 تطبيقات عملية +40 اختبار تحريري.'},
+ {id:8,type:'تكويني', title:'القرآن الكريم — ثانوي', scores:['أدوات تقويم متنوعة 40','صحة القراءة 20','الحفظ 40','المجموع 100'], materials:['القرآن الكريم: ثانوي'], notes:'الدور الثاني: يحتفظ الطالب بجميع درجاته عدا صحة القراءة والحفظ، ويؤدي اختبار الدور الثاني من 60 درجة تقويمات شفهية.'},
+ {id:9,type:'تكويني', title:'برامج النشاط الطالبي', scores:['المشاركة والتفاعل 50','المهام الأدائية 50','المجموع 100'], materials:['برامج النشاط الطالبي: ابتدائي ومتوسط وثانوي'], notes:'تخصص 100 درجة لكل برنامج نشاط، ويحسب متوسط درجات الطالب في البرامج التي شارك فيها ويرصد في النظام مرتين على الأقل.'},
+ {id:10,type:'خاص', title:'السلوك', scores:['السلوك الإيجابي 80','السلوك المتميز 20','المجموع 100'], materials:['السلوك: من الثالث الابتدائي إلى الثالث الثانوي'], notes:'تحتسب ضمن المعدل. يبدأ الطالب بـ80 درجة سلوك إيجابي وتخصم عند المخالفات، وتتاح فرص تعويض عبر ممارسات السلوك المتميز.'},
+ {id:11,type:'خاص', title:'المواظبة', scores:['الالتزام بالحضور 100','المجموع 100'], materials:['المواظبة: من الثالث الابتدائي إلى الثالث الثانوي'], notes:'100 درجة عن كل فترة. الغياب بدون عذر أكثر من 10% من أيام العام يؤدي إلى الحرمان من الاختبار وإعادة الصف.'},
+ {id:12,type:'تكويني', title:'المجال الاختياري ومشروع التخرج', scores:['المجال الحضوري: معرفي 50 + مهاري 50','الإلكتروني الذاتي: مهام 80 + اختبار 20','مشروع التخرج: معرفي 40 + مهاري 60'], materials:['المجال الاختياري ومشروع التخرج: السنة الثالثة ثانوي'], notes:'يشمل تفاصيل المجال الاختياري بنمط حضوري أو إلكتروني ذاتي التعلم، ومشروع التخرج في نهاية الفترة الدراسية من السنة الثالثة.'}
+];
+function card(m){return `<div class="card searchable" data-text="${[m.title,m.type,m.materials.join(' ')].join(' ')}"><span class="type ${m.type==='ختامي'?'final':''}">نموذج ${m.id} · ${m.type}</span><h4>${m.title}</h4><ul>${m.materials.slice(0,3).map(x=>`<li>${x}</li>`).join('')}${m.materials.length>3?'<li>ومواد أخرى ضمن النموذج...</li>':''}</ul><div class="score">${m.scores.map(s=>`<span>${s}</span>`).join('')}</div><button class="open" onclick="openModel(${m.id})">عرض التفصيل</button></div>`}
+function row(m){return `<tr class="searchable" data-text="${[m.title,m.materials.join(' ')].join(' ')}"><td>نموذج ${m.id} — ${m.type}</td><td>${m.materials.join('<br>')}</td><td>${m.scores.join('<br>')}</td><td>${m.notes}</td></tr>`}
+function openModel(id){const m=models.find(x=>x.id===id); modalTitle.textContent=`نموذج ${m.id}: ${m.title}`; modalBody.innerHTML=`<p><b>نوع التقويم:</b> ${m.type}</p><h4>توزيع الدرجات</h4><ul>${m.scores.map(s=>`<li>${s}</li>`).join('')}</ul><h4>المواد/المراحل</h4><ul>${m.materials.map(s=>`<li>${s}</li>`).join('')}</ul><h4>ملاحظات مهمة</h4><p>${m.notes}</p>`; modal.showModal();}
+function init(){quickCards.innerHTML=models.slice(0,6).map(card).join(''); finalCards.innerHTML=models.filter(m=>m.type==='ختامي').map(card).join(''); formativeCards.innerHTML=models.filter(m=>m.type==='تكويني').map(card).join(''); modelCards.innerHTML=models.map(card).join(''); finalTable.innerHTML=models.filter(m=>m.type==='ختامي').map(row).join(''); formativeTable.innerHTML=models.filter(m=>m.type==='تكويني').map(row).join('');}
+init();
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('main section').forEach(s=>s.classList.remove('show'));document.getElementById(b.dataset.target).classList.add('show');scrollTo({top:0,behavior:'smooth'});}));
+search.addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase();document.querySelectorAll('.searchable').forEach(el=>{el.style.display=(!q||el.dataset.text.toLowerCase().includes(q))?'':'none'});});
+function expandAll(){document.querySelectorAll('main section').forEach(s=>s.classList.add('show'));document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));}
+</script>
+</body>
+</html>
