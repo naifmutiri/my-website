@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة شهادات الشكر والتقدير | ابتدائية ومتوسطة الجبيلة للبنين</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;800&family=Tajawal:wght@400;500;700;800&family=Reem+Kufi:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   المتغيرات الأساسية - الهوية الفاخرة لوزارة التعليم (بنين)
+   ========================================================================== */
+:root {
+  /* ألوان الوزارة الأساسية */
+  --moe-green: #006c35;
+  --moe-green-dark: #004a24;
+  --moe-navy: #003a6a;
+  --moe-navy-deep: #051424;
+  
+  /* تدرجات الذهبي الملكي */
+  --gold-light: #f9e596;
+  --gold-primary: #d4af37;
+  --gold-dark: #997a15;
+  --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+  --gold-gradient-hover: linear-gradient(135deg, #fcf6ba, #bf953f, #fbf5b7, #aa771c, #b38728);
+
+  /* تأثير الزجاج (Glassmorphism) */
+  --glass-bg: rgba(5, 20, 36, 0.65);
+  --glass-border: rgba(212, 175, 55, 0.25);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+
+  /* الخطوط */
+  --font-ui: 'Tajawal', 'Cairo', sans-serif;
+  --font-title: 'Reem Kufi', 'Amiri', serif;
+  --font-cert: 'Cairo', 'Amiri', serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { scroll-behavior: smooth; }
+
+/* ==========================================================================
+   الخلفية الملكية والواجهة العامة
+   ========================================================================== */
+body {
+  font-family: var(--font-ui);
+  background-color: var(--moe-navy-deep);
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(0, 108, 53, 0.15), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(212, 175, 55, 0.12), transparent 25%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  color: #e2e8f0;
+  direction: rtl;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   الشريط العلوي و الهيدر
+   ========================================================================== */
+.top-bar {
+  background: var(--gold-gradient);
+  color: var(--moe-navy-deep);
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: 8px 24px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  position: relative;
+  z-index: 10;
+}
+.top-bar span.divider { color: var(--moe-navy); font-size: 0.7rem; }
+
+.site-header {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 9;
+  box-shadow: var(--glass-shadow);
+}
+
+.header-center { text-align: center; flex-grow: 1; }
+.header-center h1 {
+  font-family: var(--font-title);
+  font-size: 2.2rem;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 5px;
+  text-shadow: 0px 4px 15px rgba(212, 175, 55, 0.2);
+}
+.header-center h2 {
+  font-size: 1.1rem;
+  color: #cbd5e1;
+  font-weight: 600;
+}
+.header-center h3 {
+  font-size: 0.9rem;
+  color: var(--gold-primary);
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.header-logo { height: 75px; width: auto; object-fit: contain; filter: drop-shadow(0 0 10px rgba(212,175,55,0.4)); }
+.vision-logo { display: flex; align-items: center; justify-content: center; }
+.vision-logo img { width: 85px; height: auto; filter: drop-shadow(0 0 8px rgba(212,175,55,0.3)); }
+
+/* ==========================================================================
+   التخطيط الرئيسي (الشريط الجانبي و منطقة المعاينة)
+   ========================================================================== */
+.main-layout {
+  display: flex;
+  min-height: calc(100vh - 170px);
+  padding: 20px;
+  gap: 25px;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+/* --- الشريط الجانبي (لوحة التحكم) --- */
+.sidebar {
+  width: 380px;
+  flex-shrink: 0;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 25px;
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
+  position: sticky;
+  top: 20px;
+  box-shadow: var(--glass-shadow);
+}
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--gold-primary); border-radius: 10px; }
+
+.panel-section { margin-bottom: 25px; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); }
+.section-header {
+  font-family: var(--font-title);
+  color: var(--gold-light);
+  font-size: 1.2rem;
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-header i { font-style: normal; font-size: 1.1rem; }
+
+/* الأزرار (الأنواع والقوالب) */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.btn-select {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: #e2e8f0;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+}
+.btn-select:hover {
+  background: rgba(212, 175, 55, 0.1);
+  transform: translateY(-2px);
+  border-color: var(--gold-primary);
+}
+.btn-select.active {
+  background: var(--gold-gradient);
+  color: var(--moe-navy-deep);
+  border: none;
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+  transform: translateY(-2px);
+}
+
+/* الحقول (النماذج) */
+.form-group { margin-bottom: 15px; }
+.form-group label {
+  display: block; color: var(--gold-primary); font-size: 0.85rem; font-weight: 700; margin-bottom: 8px;
+}
+.form-control {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  transition: all 0.3s;
+  outline: none;
+}
+.form-control:focus {
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+  background: rgba(0, 0, 0, 0.5);
+}
+textarea.form-control { height: 90px; resize: vertical; line-height: 1.6; }
+select.form-control option { background: var(--moe-navy-deep); color: #fff; }
+
+/* العبارات السريعة */
+.tags-container { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.tag-btn {
+  background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.4);
+  color: var(--gold-light); padding: 4px 10px; border-radius: 15px;
+  font-size: 0.75rem; cursor: pointer; transition: all 0.2s;
+}
+.tag-btn:hover { background: var(--gold-primary); color: var(--moe-navy-deep); }
+
+/* أزرار الإجراءات */
+.actions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
+.btn-action {
+  padding: 12px; border: none; border-radius: 12px; cursor: pointer;
+  font-family: var(--font-ui); font-size: 0.95rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: all 0.3s; color: #fff;
+}
+.btn-action:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
+.btn-print { background: var(--gold-gradient); color: var(--moe-navy-deep); box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
+.btn-print:hover { background: var(--gold-gradient-hover); }
+.btn-save { background: linear-gradient(135deg, #006c35, #004a24); }
+.btn-load { background: linear-gradient(135deg, #003a6a, #051424); }
+.btn-clear { background: linear-gradient(135deg, #9b2c2c, #742a2a); grid-column: span 2; }
+
+/* الإعدادات والرفع */
+.toggles { display: flex; flex-wrap: wrap; gap: 10px; }
+.toggle-lbl {
+  background: rgba(0,0,0,0.3); padding: 5px 10px; border-radius: 8px;
+  font-size: 0.8rem; display: flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(255,255,255,0.1); cursor: pointer;
+}
+.toggle-lbl input { accent-color: var(--gold-primary); width: 16px; height: 16px; }
+
+.upload-box {
+  border: 1px dashed var(--gold-primary); background: rgba(212,175,55,0.05);
+  text-align: center; padding: 12px; border-radius: 10px; margin-bottom: 10px;
+  cursor: pointer; transition: all 0.3s; font-size: 0.85rem; color: var(--gold-light);
+}
+.upload-box:hover { background: rgba(212,175,55,0.15); }
+.preview-img { max-height: 60px; max-width: 100%; object-fit: contain; display: none; margin: 10px auto 0; border-radius: 5px; }
+
+/* --- منطقة المعاينة (الشهادة) --- */
+.preview-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0,0,0,0.2);
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
+}
+.preview-hint {
+  background: var(--glass-bg); padding: 10px 25px; border-radius: 20px;
+  color: var(--gold-primary); margin-bottom: 25px; font-weight: 600;
+  border: 1px solid var(--glass-border); font-size: 0.95rem;
+}
+
+/* غلاف الشهادة (يعطي تأثير الورق المرتفع) */
+.certificate-wrapper {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  position: relative;
+  transition: all 0.4s ease;
+  transform-origin: top center;
+}
+
+/* ==========================================================================
+   تصاميم القوالب (CSS) - تم تغيير الألوان الفاتحة لألوان غامقة واضحة للطباعة
+   ========================================================================== */
+/* إعدادات مشتركة للشهادات */
+.cert-master {
+  width: 297mm; min-height: 210mm; /* A4 Landscape */
+  position: relative; overflow: hidden; direction: rtl;
+  font-family: var(--font-cert);
+  padding: 0; margin: 0; box-sizing: border-box;
+}
+.cert-content-inner { position: relative; z-index: 10; padding: 35px 50px; height: 100%; display: flex; flex-direction: column; }
+[contenteditable="true"] { outline: none; transition: background 0.3s; }
+[contenteditable="true"]:hover { background: rgba(212,175,55,0.1); border-radius: 4px; }
+[contenteditable="true"]:focus { background: rgba(212,175,55,0.15); border-bottom: 2px solid var(--gold-primary); }
+
+/* ترويسة الوزارة داخل الشهادة */
+.cert-ministry-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 10px; padding-bottom: 15px; border-bottom: 2px solid rgba(0,0,0,0.1);
+}
+.cmh-text { text-align: center; font-size: 0.9rem; font-weight: 700; line-height: 1.6; color: #1a1a1a; }
+.cmh-logo { height: 70px; width: auto; object-fit: contain; }
+
+/* ذيل الشهادة المشترك */
+.cert-footer-master {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-top: auto; padding-top: 20px;
+}
+.sig-box { text-align: center; min-width: 150px; }
+.sig-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 40px; color: #333; }
+.sig-name { font-weight: 800; font-size: 1.2rem; color: #111; border-top: 1px solid #666; padding-top: 5px; }
+.stamp-box { width: 100px; height: 100px; border: 2px dashed rgba(0,0,0,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(0,0,0,0.3); font-size: 0.8rem; font-weight:bold; }
+
+/* تصميم الوسام الذكي العائم وتأثيراته الفخمة */
+.cert-badge-floating-seal {
+  position: absolute;
+  top: 125px;
+  left: 85px;
+  z-index: 100;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s;
+}
+.cert-badge-floating-seal:hover {
+  transform: scale(1.15) rotate(-5deg);
+  filter: drop-shadow(0 10px 25px rgba(212,175,55,0.5));
+}
+
+/* 1. قالب كلاسيكي وزاري (أخضر وذهبي) */
+.tmpl-classic { background: #fafaf9; }
+.tmpl-classic .border-1 { position: absolute; inset: 15px; border: 4px solid var(--moe-green); }
+.tmpl-classic .border-2 { position: absolute; inset: 22px; border: 1px solid var(--gold-primary); }
+.tmpl-classic .cert-title { font-family: var(--font-title); font-size: 3rem; color: var(--moe-green-dark); text-align: center; margin: 20px 0; font-weight: 800; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
+.tmpl-classic .cert-recipient { font-size: 2.2rem; color: var(--gold-dark); text-align: center; font-weight: 800; margin: 15px 0; }
+.tmpl-classic .cert-body-text { font-size: 1.4rem; color: #333; text-align: center; line-height: 2; padding: 0 40px; }
+.tmpl-classic .cmh-text { color: var(--moe-green); }
+.tmpl-classic .cert-org-name { color: var(--moe-navy) !important; font-weight: 800; }
+.tmpl-classic .cert-recipient-role { color: var(--moe-green-dark) !important; font-weight: 700; }
+
+/* 2. قالب ذهبي فاخر (تم تعديل ألوانه إلى تدرجات ملكية عاجية لتوافق تام مع الطباعة الورقية والوضوح البصري) */
+.tmpl-gold { background: #fcfaf2; color: #1a1a1a; }
+.tmpl-gold .border-1 { position: absolute; inset: 15px; border: 3px solid var(--gold-dark); }
+.tmpl-gold .border-2 { position: absolute; inset: 25px; border: 1px dashed var(--gold-primary); }
+.tmpl-gold .cert-ministry-header { border-bottom-color: rgba(0,0,0,0.15); }
+.tmpl-gold .cmh-text { color: var(--moe-navy); }
+.tmpl-gold .cert-title { font-family: var(--font-title); font-size: 3.2rem; background: linear-gradient(135deg, #6b5310, #8a6a1c, #5a3e0a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; margin: 20px 0; font-weight: 800; }
+.tmpl-gold .cert-recipient { font-size: 2.4rem; color: #5a3e0a; text-align: center; font-weight: 800; margin: 15px 0; text-shadow: 1px 1px 2px rgba(90,62,10,0.15); }
+.tmpl-gold .cert-body-text { font-size: 1.4rem; color: #222222; text-align: center; line-height: 2; }
+.tmpl-gold .sig-title { color: #5a3e0a; font-weight: 700; }
+.tmpl-gold .sig-name { color: #111; border-top-color: var(--gold-dark); }
+.tmpl-gold .stamp-box { border-color: rgba(138,106,28,0.4); color: rgba(138,106,28,0.7); }
+.tmpl-gold .cert-org-name { color: #5a3e0a !important; font-weight: 800; }
+.tmpl-gold .cert-recipient-role { color: #8a6a1c !important; font-weight: 700; }
+
+/* 3. قالب إنجاز (أزرق ملكي فاتح مع حدود كحلية وتفاصيل برونزية غامقة لطباعة مثالية) */
+.tmpl-achieve { background: #f4f8fc; color: #1a1a1a; }
+.tmpl-achieve .border-1 { position: absolute; inset: 20px; border: 2px solid var(--moe-navy); outline: 10px solid rgba(0,58,106,0.08); }
+.tmpl-achieve .cert-ministry-header { border-bottom-color: rgba(0,0,0,0.15); }
+.tmpl-achieve .cmh-text { color: var(--moe-navy); }
+.tmpl-achieve .cert-title { font-family: var(--font-title); font-size: 3rem; color: var(--moe-navy); text-align: center; margin: 20px 0; letter-spacing: 2px; font-weight: 800; }
+.tmpl-achieve .cert-recipient { font-size: 2.4rem; color: var(--moe-green-dark); text-align: center; margin: 15px 0; border-bottom: 2px dashed var(--gold-dark); display: inline-block; padding-bottom: 10px; align-self: center; font-weight: 800; }
+.tmpl-achieve .cert-body-text { font-size: 1.4rem; color: #222222; text-align: center; line-height: 2; margin-top:20px; }
+.tmpl-achieve .sig-title { color: var(--moe-navy); }
+.tmpl-achieve .sig-name { color: #111; border-top-color: var(--moe-navy); }
+.tmpl-achieve .stamp-box { border-color: rgba(0,58,106,0.3); color: rgba(0,58,106,0.6); }
+.tmpl-achieve .cert-org-name { color: var(--moe-navy) !important; font-weight: 800; }
+.tmpl-achieve .cert-recipient-role { color: var(--moe-green-dark) !important; font-weight: 700; }
+
+/* 4. قالب مدرسي / بسيط (أبيض وأزرق) */
+.tmpl-school { background: #ffffff; background-image: radial-gradient(#e2e8f0 1px, transparent 1px); background-size: 20px 20px; }
+.tmpl-school .border-1 { position: absolute; top: 0; left: 0; right: 0; height: 15px; background: var(--moe-navy); }
+.tmpl-school .border-2 { position: absolute; bottom: 0; left: 0; right: 0; height: 15px; background: var(--moe-green); }
+.tmpl-school .cert-title { font-family: var(--font-title); font-size: 2.8rem; color: var(--moe-navy); text-align: center; margin: 25px 0; font-weight: 800; }
+.tmpl-school .cert-recipient { font-size: 2.2rem; color: var(--moe-green-dark); text-align: center; font-weight: 800; margin: 15px 0; background: rgba(0,108,53,0.05); padding: 10px; border-radius: 10px; }
+.tmpl-school .cert-body-text { font-size: 1.3rem; color: #222222; text-align: center; line-height: 2.2; }
+.tmpl-school .cert-org-name { color: var(--moe-navy) !important; font-weight: 800; }
+.tmpl-school .cert-recipient-role { color: var(--moe-green-dark) !important; font-weight: 700; }
+
+
+/* ==========================================================================
+   الفوتر
+   ========================================================================== */
+.site-footer {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid var(--glass-border);
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 -5px 15px rgba(0,0,0,0.4);
+}
+.footer-info {
+  display: flex; justify-content: center; gap: 40px; margin-bottom: 10px;
+}
+.footer-info div { color: var(--gold-light); font-weight: 600; font-size: 0.95rem; }
+.footer-info div span { color: #fff; margin-right: 5px; font-weight: normal; }
+.footer-copy { color: #94a3b8; font-size: 0.8rem; }
+
+/* ==========================================================================
+   الطباعة الاحترافية والكاملة (Fidelity Print)
+   ========================================================================== */
+@media print {
+  @page { size: A4 landscape; margin: 0; }
+  
+  html, body { 
+    width: 297mm !important; 
+    height: 210mm !important; 
+    background-color: #ffffff !important; 
+    background-image: none !important;
+    overflow: hidden !important; 
+    margin: 0 !important; 
+    padding: 0 !important;
+  }
+  
+  .top-bar, .site-header, .sidebar, .preview-hint, .site-footer, #toast { 
+    display: none !important; 
+  }
+  
+  .main-layout { 
+    padding: 0 !important; 
+    margin: 0 !important; 
+    display: block !important; 
+    max-width: none !important; 
+    min-height: auto !important;
+  }
+  
+  .preview-container { 
+    padding: 0 !important; 
+    border: none !important; 
+    box-shadow: none !important; 
+    background: none !important; 
+    max-height: none !important; 
+    overflow: visible !important; 
+    width: 297mm !important;
+    height: 210mm !important;
+  }
+  
+  .certificate-wrapper { 
+    box-shadow: none !important; 
+    border: none !important; 
+    margin: 0 !important; 
+    transform: none !important; 
+    page-break-after: always; 
+    width: 297mm !important;
+    height: 210mm !important;
+  }
+  
+  .cert-master {
+    width: 297mm !important;
+    height: 210mm !important;
+    page-break-inside: avoid !important;
+    position: relative !important;
+  }
+
+  /* تأكيد طباعة تدرجات الألوان العاجية والخلفيات الممتازة بدون هدر الحبر */
+  .tmpl-classic { background: #fafaf9 !important; }
+  .tmpl-gold { background: #fcfaf2 !important; }
+  .tmpl-achieve { background: #f4f8fc !important; }
+  .tmpl-school { background: #ffffff !important; }
+
+  * { 
+    -webkit-print-color-adjust: exact !important; 
+    print-color-adjust: exact !important; 
+    color-adjust: exact !important;
+  }
+}
+
+/* ==========================================================================
+   إشعار منبثق
+   ========================================================================== */
+.toast-msg {
+  position: fixed; top: 30px; left: 50%; transform: translateX(-50%) translateY(-50px);
+  background: var(--moe-green); color: #fff; padding: 12px 30px; border-radius: 30px;
+  font-weight: 700; box-shadow: 0 10px 25px rgba(0,108,53,0.5);
+  opacity: 0; transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); z-index: 9999;
+  border: 1px solid var(--gold-primary);
+}
+.toast-msg.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+/* شريط التمرير للصفحة */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--moe-navy-deep); }
+::-webkit-scrollbar-thumb { background: var(--gold-primary); border-radius: 5px; }
+
+</style>
+</head>
+<body>
+
+<!-- الشريط العلوي -->
+<div class="top-bar">
+  <span>المملكة العربية السعودية</span>
+  <span class="divider">◆</span>
+  <span>وزارة التعليم</span>
+  <span class="divider">◆</span>
+  <span>الإدارة العامة للتعليم بمنطقة الرياض</span>
+  <span class="divider">◆</span>
+  <span>مدرسة بنين مخصصة</span>
+</div>
+
+<!-- الهيدر -->
+<header class="site-header">
+  <!-- الشعار الأيمن المحدث -->
+  <img src="https://upload.wikimedia.org/wikipedia/ar/1/17/Saudi_Ministry_of_Education_Logo_2025.png" class="header-logo" alt="شعار وزارة التعليم">
+  
+  <div class="header-center">
+    <h1>منصة شهادات الشكر والتقدير</h1>
+    <h2>ابتدائية ومتوسطة الجبيلة للبنين</h2>
+    <h3>منصة وزارية محفزة لإصدار وثائق التميز</h3>
+  </div>
+
+  <!-- رؤية 2030 المحدثة -->
+  <div class="vision-logo">
+    <img src="https://upload.wikimedia.org/wikipedia/ar/f/f5/Saudi_Vision_2030_logo.svg" alt="رؤية السعودية 2030">
+  </div>
+</header>
+
+<div class="main-layout">
+  
+  <!-- لوحة التحكم الجانبية -->
+  <aside class="sidebar">
+    
+    <!-- القسم 1: القالب -->
+    <div class="panel-section">
+      <div class="section-header"><i>🎨</i> تصميم الشهادة</div>
+      <div class="grid-2">
+        <button class="btn-select active" onclick="setTemplate('classic', this)">🏛️<span>رسمي وزاري</span></button>
+        <button class="btn-select" onclick="setTemplate('gold', this)">✨<span>ذهبي فاخر</span></button>
+        <button class="btn-select" onclick="setTemplate('achieve', this)">🏆<span>إنجاز وتميز</span></button>
+        <button class="btn-select" onclick="setTemplate('school', this)">🏫<span>مدرسي مبسط</span></button>
+      </div>
+    </div>
+
+    <!-- القسم 2: النوع (مذكور بالكامل لمدارس البنين) -->
+    <div class="panel-section">
+      <div class="section-header"><i>📋</i> الفئة المستهدفة (بنين)</div>
+      <div class="grid-2">
+        <button class="btn-select active" onclick="setType('student', this)">🎒<span>طالب</span></button>
+        <button class="btn-select" onclick="setType('teacher', this)">👨‍🏫<span>معلم</span></button>
+        <button class="btn-select" onclick="setType('parent', this)">👪<span>ولي أمر</span></button>
+        <button class="btn-select" onclick="setType('employee', this)">💼<span>إداري</span></button>
+      </div>
+    </div>
+
+    <!-- القسم 3: البيانات -->
+    <div class="panel-section">
+      <div class="section-header"><i>✍️</i> بيانات الشهادة</div>
+      
+      <div class="form-group">
+        <label>عنوان الشهادة</label>
+        <input type="text" id="f_title" class="form-control" value="شهادة شكر وتقدير" oninput="updatePreview()">
+      </div>
+      
+      <div class="form-group">
+        <label>اسم المُكرَّم</label>
+        <input type="text" id="f_name" class="form-control" placeholder="الاسم الثلاثي للطالب أو المعلم" oninput="updatePreview()">
+      </div>
+      
+      <div class="form-group">
+        <label>الصفة / اللقب</label>
+        <input type="text" id="f_role" class="form-control" value="الطالب المتميز" oninput="updatePreview()">
+      </div>
+      
+      <div class="form-group">
+        <label>نص التكريم (يولد وساماً تفاعلياً تلقائياً)</label>
+        <textarea id="f_body" class="form-control" oninput="updatePreview()"></textarea>
+        <div class="tags-container">
+          <button class="tag-btn" onclick="addText('نظير جهوده المباركة وعطائه المتميز')">+ جهود وعطاء</button>
+          <button class="tag-btn" onclick="addText('لتميزه العلمي وتفوقه الدراسي')">+ تفوق علمي</button>
+          <button class="tag-btn" onclick="addText('لتميزه السلوكي وحسن خلقه بين زملائه')">+ تميز سلوكي</button>
+          <button class="tag-btn" onclick="addText('لانضباطه المدرسي وحرصه على الحضور اليومي')">+ الانضباط المدرسي</button>
+          <button class="tag-btn" onclick="addText('لمشاركته الفاعلة في الأنشطة المدرسية اللاصفية')">+ مشاركة أنشطة</button>
+          <button class="tag-btn" onclick="addText('لجهوده الملموسة والمثمرة في إنجاح برامج المدرسة')">+ إنجاح برامج</button>
+          <button class="tag-btn" onclick="addText('لإبداعه وابتكاره في إنجاز المشاريع المطلوبة منه')">+ إبداع وابتكار</button>
+          <button class="tag-btn" onclick="addText('لمبادرته التطوعية الفاعلة لخدمة المدرسة والمجتمع')">+ مبادرة تطوعية</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>التاريخ الهجري</label>
+        <input type="text" id="f_date" class="form-control" placeholder="التاريخ الهجري" oninput="updatePreview()">
+      </div>
+      
+      <!-- إعدادات ثابتة وموجهة للمدرسة للبنين لضمان الجودة الفائقة -->
+      <div class="form-group" style="display:none;">
+        <input type="text" id="f_org" value="ابتدائية ومتوسطة الجبيلة للبنين">
+        <input type="text" id="f_director" value="مفلح الشهراني">
+      </div>
+      
+      <div class="form-group">
+        <label>اسم المعلم / الموجه (اختياري)</label>
+        <input type="text" id="f_teacher" class="form-control" placeholder="الاسم الكريم" oninput="updatePreview()">
+      </div>
+    </div>
+
+    <!-- القسم 4: الإعدادات والرفع -->
+    <div class="panel-section">
+      <div class="section-header"><i>⚙️</i> الخيارات والتوقيع</div>
+      <div class="toggles mb-3" style="margin-bottom: 15px;">
+        <label class="toggle-lbl"><input type="checkbox" id="show_stamp" checked onchange="updatePreview()"> الختم</label>
+        <label class="toggle-lbl"><input type="checkbox" id="show_sig" checked onchange="updatePreview()"> التوقيع</label>
+      </div>
+
+      <label class="upload-box" for="up_sig">
+        ✍️ انقر لرفع صورة التوقيع (شفافة PNG)
+        <input type="file" id="up_sig" accept="image/*" style="display:none" onchange="uploadImage(this, 'sig_img')">
+      </label>
+      <img id="sig_img" class="preview-img">
+    </div>
+
+    <!-- القسم 5: الإجراءات -->
+    <div class="actions-grid">
+      <button class="btn-action btn-print" style="grid-column: span 2;" onclick="window.print()">🖨️ طباعة الشهادة</button>
+      <button class="btn-action btn-save" onclick="saveData()">💾 حفظ البيانات</button>
+      <button class="btn-action btn-load" onclick="loadData()">📂 استرجاع</button>
+      <button class="btn-action btn-clear" onclick="resetForm()">🗑️ تفريغ الحقول</button>
+    </div>
+
+  </aside>
+
+  <!-- منطقة المعاينة الحية -->
+  <main class="preview-container">
+    <div class="preview-hint">👁️ معاينة حية للتصميم - يمكنك تعديل النصوص بالنقر عليها مباشرة داخل الشهادة وتأمل تغير الوسام الذكي تلقائياً</div>
+    
+    <div class="certificate-wrapper" id="cert_wrapper">
+      <!-- يتم حقن تصميم الشهادة هنا عبر الجافاسكربت -->
+    </div>
+  </main>
+
+</div>
+
+<!-- الفوتر الملكي للبنين -->
+<footer class="site-footer">
+  <div class="footer-info">
+    <div>إدارة التعليم: <span>الرياض</span></div>
+    <div>المدرسة: <span>ابتدائية ومتوسطة الجبيلة للبنين</span></div>
+    <div>مدير المدرسة: <span>الأستاذ / مفلح الشهراني</span></div>
+    <div>إعداد وتصميم: <span>الأستاذ / نايف المطيري</span></div>
+  </div>
+  <div class="footer-copy">
+    © تصميم خاص بوزارة التعليم - منصة شهادات الشكر والتقدير للمدارس
+  </div>
+</footer>
+
+<div id="toast" class="toast-msg">تمت العملية بنجاح!</div>
+
+<script>
+/* ==========================================================================
+   إعدادات وحالة التطبيق
+   ========================================================================== */
+let currentTemplate = 'classic';
+let currentType = 'student';
+let sigData = '';
+
+const defaultTexts = {
+  student: "يسر إدارة المدرسة أن تتقدم بخالص الشكر والتقدير لـ {الاسم} نظير تميزه العلمي وانضباطه السلوكي خلال العام الدراسي، سائلين المولى عز وجل له دوام التوفيق والنجاح.",
+  teacher: "تتقدم إدارة المدرسة بوافر الشكر وعظيم الامتنان للأستاذ {الاسم} نظير جهوده المباركة وعطائه المتميز في الميدان التربوي وحرصه على مصلحة أبنائنا الطلاب.",
+  parent: "بكل معاني التقدير، نشكر ولي الأمر المكرم {الاسم} على تواصله الفعال ومتابعته المستمرة التي كان لها الأثر البالغ في تفوق وتميز ابنه.",
+  employee: "نتقدم بخالص الشكر للزميل {الاسم} تقديراً لجهوده الإدارية المتميزة وإخلاصه في أداء مهام عمله على أكمل وجه."
+};
+
+/* ==========================================================================
+   توليد الشعار الرسمي والجديد 2025 لوزارة التعليم
+   ========================================================================== */
+const moeLogoSvg = `
+<img src="https://upload.wikimedia.org/wikipedia/ar/1/17/Saudi_Ministry_of_Education_Logo_2025.png" class="cmh-logo" alt="وزارة التعليم">
+`;
+
+/* ==========================================================================
+   دالة توليد الوسام الذكي (Smart Badge Engine)
+   تحلل النصوص وتولد أوسمة ذهبية مخصصة حسب سياق التكريم
+   ========================================================================== */
+function generateSmartBadge(bodyText, role) {
+  const text = (bodyText + " " + role).toLowerCase();
+  
+  let badgeTitle = "وسام التميز";
+  let iconPath = ""; 
+  
+  if (text.includes("علمي") || text.includes("تفوق") || text.includes("دراسي") || text.includes("العلمي")) {
+    badgeTitle = "التفوق العلمي";
+    iconPath = `
+      <!-- إكليل الغار المحيط -->
+      <path d="M 35,70 Q 30,50 42,32 Q 45,30 46,33 Q 36,50 39,70 Z" fill="#d4af37" />
+      <path d="M 65,70 Q 70,50 58,32 Q 55,30 54,33 Q 64,50 61,70 Z" fill="#d4af37" />
+      <!-- كتاب مفتوح ذهبي -->
+      <path d="M 36,52 Q 50,47 50,56 Q 50,47 64,52 L 64,62 Q 50,57 50,65 Q 50,57 36,62 Z" fill="#ffffff" stroke="#997a15" stroke-width="1.5" />
+      <path d="M 50,56 L 50,65" stroke="#997a15" stroke-width="1.5" />
+      <!-- نجمة ساطعة في الأعلى -->
+      <polygon points="50,28 53,35 60,35 55,40 57,47 50,43 43,47 45,40 40,35 47,35" fill="#fcf6ba" stroke="#997a15" stroke-width="0.5" />
+    `;
+  } else if (text.includes("سلوك") || text.includes("سلوكي") || text.includes("خلق") || text.includes("قدوة") || text.includes("الخلق")) {
+    badgeTitle = "التميز السلوكي";
+    iconPath = `
+      <!-- قلب ذهبي محاط بنجوم معبرة عن الأخلاق والقيم -->
+      <path d="M 50,37 Q 38,25 38,44 Q 38,58 50,68 Q 62,58 62,44 Q 62,25 50,37 Z" fill="#fcf6ba" stroke="#997a15" stroke-width="1.5" />
+      <polygon points="50,42 52,46 56,46 53,49 54,53 50,51 46,53 47,49 44,46 48,46" fill="#bf953f" />
+      <polygon points="32,32 34,35 38,35 35,37 36,41 32,39 28,41 29,37 26,35 30,35" fill="#d4af37" />
+      <polygon points="68,32 70,35 74,35 71,37 72,41 68,39 64,41 65,37 62,35 66,35" fill="#d4af37" />
+    `;
+  } else if (text.includes("انضباط") || text.includes("حضور") || text.includes("التزام") || text.includes("منضبط") || text.includes("الانضباط")) {
+    badgeTitle = "الانضباط المدرسي";
+    iconPath = `
+      <!-- درع حماية رسمي مع علامة صح ترمز للالتزام والحضور الصارم -->
+      <path d="M 35,32 L 65,32 L 65,50 Q 65,65 50,72 Q 35,65 35,50 Z" fill="#ffffff" stroke="#997a15" stroke-width="2" />
+      <path d="M 43,50 L 48,55 L 57,43" stroke="#006c35" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      <polygon points="50,20 53,26 60,26 55,30 57,36 50,32 43,36 45,30 40,26 47,26" fill="#d4af37" />
+    `;
+  } else if (text.includes("نشاط") || text.includes("أنشطة") || text.includes("برامج") || text.includes("إنجاح") || text.includes("إبداع") || text.includes("ابتكار")) {
+    badgeTitle = "التحفيز والريادة";
+    iconPath = `
+      <!-- شعلة التفوق والريادة المضيئة المعبّرة عن الأنشطة والمشاريع -->
+      <path d="M 46,65 L 54,65 L 56,50 L 44,50 Z" fill="#997a15" />
+      <path d="M 42,48 L 58,48 L 56,53 L 44,53 Z" fill="#bf953f" />
+      <path d="M 50,23 Q 40,38 50,48 Q 60,38 50,23 Z" fill="url(#flameGrad)" />
+      <path d="M 50,30 Q 44,40 50,48 Q 56,40 50,30 Z" fill="#ffd700" />
+    `;
+  } else if (text.includes("مبادرة") || text.includes("تطوع") || text.includes("عطاء") || text.includes("جهود") || text.includes("معلم") || text.includes("أستاذ") || text.includes("إداري")) {
+    badgeTitle = "العطاء والمبادرة";
+    iconPath = `
+      <!-- نجمة خماسية فخمة يعلوها لمعان ذهبي يعبر عن عطاء الكادر التعليمي والطلاب المبادرين -->
+      <path d="M 33,65 Q 26,45 38,25 Q 40,23 42,26 Q 30,45 35,65 Z" fill="#d4af37" />
+      <path d="M 67,65 Q 74,45 62,25 Q 60,23 58,26 Q 70,45 65,65 Z" fill="#d4af37" />
+      <polygon points="50,28 54,38 64,38 56,44 59,54 50,48 41,54 44,44 36,38 46,38" fill="url(#goldGradHeader)" stroke="#997a15" stroke-width="0.5" />
+      <circle cx="50" cy="41" r="3" fill="#ffffff" />
+    `;
+  } else {
+    // الوسام الكلاسيكي العام للشكر والتقدير
+    badgeTitle = "الشكر والتقدير";
+    iconPath = `
+      <path d="M 33,65 Q 26,45 38,25 Q 40,23 42,26 Q 30,45 35,65 Z" fill="#d4af37" />
+      <path d="M 67,65 Q 74,45 62,25 Q 60,23 58,26 Q 70,45 65,65 Z" fill="#d4af37" />
+      <polygon points="50,30 53,38 62,38 55,43 57,51 50,46 43,51 45,43 38,38 47,38" fill="url(#goldGradHeader)" stroke="#997a15" stroke-width="0.5" />
+    `;
+  }
+
+  return `
+    <svg viewBox="0 0 100 100" class="badge-svg-element" style="width: 105px; height: 105px; filter: drop-shadow(0px 6px 10px rgba(0,0,0,0.3));" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="badgeGold" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#ffffff" />
+          <stop offset="30%" stop-color="#fcf6ba" />
+          <stop offset="70%" stop-color="#d4af37" />
+          <stop offset="100%" stop-color="#aa771c" />
+        </linearGradient>
+        <linearGradient id="flameGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#ff4500" />
+          <stop offset="100%" stop-color="#ff8c00" />
+        </linearGradient>
+        <linearGradient id="goldGradHeader" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#fcf6ba"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#aa771c"/>
+        </linearGradient>
+      </defs>
+      <!-- ختم دائري مشرشف خارجي -->
+      <path d="
+        M 50,5 L 52,10 L 58,7 L 59,12 L 65,9 L 65,15 L 71,12 L 70,18 L 76,16 L 74,22 L 80,21 L 77,27 L 83,27 L 79,33 L 84,34 L 80,40 L 85,42 L 80,47 L 84,50 L 79,54 L 83,58 L 77,61 L 80,66 L 74,68 L 76,73 L 70,74 L 71,80 L 65,80 L 65,86 L 59,85 L 58,90 L 52,89 L 50,94 L 48,89 L 42,90 L 41,85 L 35,86 L 35,80 L 29,80 L 30,74 L 24,73 L 26,68 L 20,66 L 23,61 L 17,58 L 21,54 L 16,50 L 20,47 L 15,42 L 20,40 L 16,34 L 21,33 L 17,27 L 23,27 L 20,21 L 26,22 L 24,16 L 30,18 L 29,12 L 35,15 L 35,9 L 41,12 L 42,7 L 48,10 Z" 
+        fill="url(#badgeGold)" stroke="#aa771c" stroke-width="1.2" />
+      
+      <!-- دائرة الخيار الداخلي الأخضر للوزارة -->
+      <circle cx="50" cy="50" r="34" fill="#004a24" stroke="#d4af37" stroke-width="1.8" />
+      <circle cx="50" cy="50" r="31" fill="none" stroke="#fcf6ba" stroke-width="0.5" stroke-dasharray="2,2" />
+      
+      <!-- عناصر الأيقونات المتولدة -->
+      ${iconPath}
+      
+      <!-- ممر النص المنحني بالأعلى والأسفل -->
+      <path id="badgeTextPath" d="M 23,50 A 27,27 0 1,1 77,50" fill="none" stroke="none" />
+      <text font-family="'Cairo', sans-serif" font-size="5" font-weight="900" fill="#fcf6ba" letter-spacing="0.4">
+        <textPath href="#badgeTextPath" startOffset="50%" text-anchor="middle">
+          ${badgeTitle}
+        </textPath>
+      </text>
+    </svg>
+  `;
+}
+
+/* ==========================================================================
+   الوظائف الرئيسية للتحكم بالواجهة والبيانات
+   ========================================================================== */
+function init() {
+  // ضبط التاريخ الهجري الحالي تلقائياً
+  try {
+    document.getElementById('f_date').value = new Date().toLocaleDateString('ar-SA-u-ca-islamic', { year:'numeric', month:'long', day:'numeric' });
+  } catch(e) {
+    document.getElementById('f_date').value = new Date().toLocaleDateString('ar-SA');
+  }
+  
+  // ضبط النص المذكر الافتراضي للبدء
+  document.getElementById('f_body').value = defaultTexts[currentType].replace('{الاسم}', 'الاسم الثلاثي');
+  
+  updatePreview();
+}
+
+function setTemplate(tmpl, btn) {
+  document.querySelectorAll('.panel-section:nth-child(1) .btn-select').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentTemplate = tmpl;
+  updatePreview();
+}
+
+function setType(type, btn) {
+  document.querySelectorAll('.panel-section:nth-child(2) .btn-select').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentType = type;
+  
+  let currentName = document.getElementById('f_name').value || 'الاسم الثلاثي';
+  document.getElementById('f_body').value = defaultTexts[type].replace('{الاسم}', currentName);
+  
+  // تحديث ألقاب بنين تلقائياً
+  const roles = { 
+    student: 'الطالب المتميز', 
+    teacher: 'المعلم الفاضل', 
+    parent: 'ولي الأمر المكرم', 
+    employee: 'الإداري المتميز' 
+  };
+  document.getElementById('f_role').value = roles[type];
+  
+  updatePreview();
+}
+
+function addText(text) {
+  const el = document.getElementById('f_body');
+  el.value = el.value + " " + text;
+  updatePreview();
+}
+
+function uploadImage(input, imgId) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    sigData = e.target.result;
+    document.getElementById(imgId).src = sigData;
+    document.getElementById(imgId).style.display = 'block';
+    updatePreview();
+  };
+  reader.readAsDataURL(file);
+}
+
+/* ==========================================================================
+   بناء وتحديث وعرض الشهادة
+   ========================================================================== */
+function updatePreview() {
+  const title = document.getElementById('f_title').value;
+  const name = document.getElementById('f_name').value || 'اسم المُكرَّم';
+  const role = document.getElementById('f_role').value;
+  const body = document.getElementById('f_body').value;
+  const date = document.getElementById('f_date').value;
+  const teacher = document.getElementById('f_teacher').value;
+  
+  const showStamp = document.getElementById('show_stamp').checked;
+  const showSig = document.getElementById('show_sig').checked;
+  
+  const orgName = document.getElementById('f_org').value;
+  const directorName = document.getElementById('f_director').value;
+
+  // توليد الوسام الذكي تلقائياً بناءً على الكلمات المفتاحية في النص والصفة
+  const smartBadgeHtml = generateSmartBadge(body, role);
+
+  const sigHtml = (showSig && sigData) ? `<img src="${sigData}" style="max-height:50px; max-width:120px; object-fit:contain;">` : '';
+  const stampHtml = showStamp ? `<div class="stamp-box" style="color: #004a24; border-color: #004a24;">ختم مدرسة<br>الجبيلة للبنين</div>` : `<div style="width:100px;"></div>`;
+  
+  const teacherHtml = teacher ? `
+    <div class="sig-box">
+      <div class="sig-title" style="margin-bottom: 20px;">المعلم / الموجه</div>
+      <div class="sig-name" contenteditable="true" style="font-size:1rem;">${teacher}</div>
+    </div>` : `<div class="sig-box"></div>`;
+
+  const html = `
+    <div class="cert-master tmpl-${currentTemplate}">
+      <div class="border-1"></div>
+      <div class="border-2"></div>
+      
+      <!-- الوسام الذكي العائم والمتحرك مدمج بأعلى الشهادة بذكاء -->
+      <div class="cert-badge-floating-seal">
+        ${smartBadgeHtml}
+      </div>
+      
+      <div class="cert-content-inner">
+        
+        <!-- الترويسة الوزارية الرسمية بنين -->
+        <div class="cert-ministry-header">
+          <div class="cmh-text">
+            المملكة العربية السعودية<br>
+            وزارة التعليم<br>
+            إدارة التعليم بمنطقة الرياض
+          </div>
+          ${moeLogoSvg}
+          <div class="cmh-text">
+            الرقم: ....................<br>
+            التاريخ: <span contenteditable="true">${date}</span><br>
+            المرفقات: لا يوجد
+          </div>
+        </div>
+
+        <div class="cert-org-name" style="text-align:center; font-weight:bold; font-size:1.15rem; margin-top:5px; font-family:'Tajawal', sans-serif;">
+          ${orgName}
+        </div>
+
+        <!-- المحتوى والاسم المذكر -->
+        <div class="cert-title" contenteditable="true">${title}</div>
+        
+        <div class="cert-recipient-role" style="text-align:center; font-size:1.25rem; margin-bottom: 10px; font-weight: 600;">إلى ${role}</div>
+        
+        <div class="cert-recipient" contenteditable="true" style="letter-spacing: 0.5px;">${name}</div>
+        
+        <div class="cert-body-text" contenteditable="true">${body}</div>
+
+        <!-- الفوتر والتواقيع المخصصة لمدير المدرسة مفلح الشهراني -->
+        <div class="cert-footer-master">
+          ${teacherHtml}
+          
+          <div style="display:flex; flex-direction:column; align-items:center;">
+             ${stampHtml}
+          </div>
+
+          <div class="sig-box">
+            <div class="sig-title">مدير المدرسة</div>
+            <div style="height:50px; display:flex; align-items:center; justify-content:center; margin-bottom:5px;">
+                ${sigHtml}
+            </div>
+            <div class="sig-name" contenteditable="true">${directorName}</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  `;
+
+  document.getElementById('cert_wrapper').innerHTML = html;
+}
+
+/* ==========================================================================
+   حفظ واسترجاع البيانات محلياً
+   ========================================================================== */
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+function saveData() {
+  const data = {
+    title: document.getElementById('f_title').value,
+    role: document.getElementById('f_role').value,
+    body: document.getElementById('f_body').value,
+    sigData: sigData,
+    tmpl: currentTemplate,
+    type: currentType,
+    teacher: document.getElementById('f_teacher').value
+  };
+  localStorage.setItem('moe_cert_data_boys', JSON.stringify(data));
+  showToast('تم حفظ الإعدادات والوسام الذكي محلياً بنجاح 💾');
+}
+
+function loadData() {
+  const raw = localStorage.getItem('moe_cert_data_boys');
+  if(raw) {
+    const data = JSON.parse(raw);
+    document.getElementById('f_title').value = data.title;
+    document.getElementById('f_role').value = data.role;
+    document.getElementById('f_body').value = data.body;
+    document.getElementById('f_teacher').value = data.teacher || '';
+    sigData = data.sigData;
+    if(sigData) {
+        document.getElementById('sig_img').src = sigData;
+        document.getElementById('sig_img').style.display = 'block';
+    }
+    showToast('تم استرجاع الإعدادات بنجاح 📂');
+    updatePreview();
+  } else {
+    showToast('لا توجد بيانات محفوظة مسبقاً لهذه المنصة ⚠️');
+  }
+}
+
+function resetForm() {
+  document.getElementById('f_name').value = '';
+  document.getElementById('f_teacher').value = '';
+  document.getElementById('f_body').value = defaultTexts[currentType].replace('{الاسم}', 'الاسم الثلاثي');
+  updatePreview();
+  showToast('تم تفريغ الحقول وإعادة النص التكريمي الافتراضي 🗑️');
+}
+
+// بدء التشغيل فور جهوزية الصفحة
+window.onload = init;
+
+</script>
+</body>
+</html>
