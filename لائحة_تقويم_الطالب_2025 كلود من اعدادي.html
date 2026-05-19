@@ -1,0 +1,2665 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="لائحة تقويم الطالب في التعليم العام 2025 - وزارة التعليم - المملكة العربية السعودية">
+    <meta name="author" content="وزارة التعليم - المملكة العربية السعودية">
+    <title>لائحة تقويم الطالب في التعليم العام 2025 | وزارة التعليم</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&family=Amiri:wght@400;700&family=Reem+Kufi:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* =========================================================
+           متغيرات الهوية البصرية - وزارة التعليم السعودية
+           ========================================================= */
+        :root {
+            --emerald-deep: #006c5b;
+            --emerald-dark: #003e34;
+            --emerald-light: #00a88e;
+            --emerald-pale: #e8f5f1;
+            --emerald-mist: #f3faf7;
+            --gold: #c9a14a;
+            --gold-light: #e6c97a;
+            --gold-dark: #a8842f;
+            --ivory: #fbfaf6;
+            --pearl: #f6f4ed;
+            --ink: #1c2a26;
+            --ink-soft: #3d4f4a;
+            --ink-muted: #6b7d78;
+            --line: rgba(0, 108, 91, 0.12);
+            --line-soft: rgba(0, 108, 91, 0.06);
+            --shadow-sm: 0 2px 8px rgba(0, 62, 52, 0.06);
+            --shadow-md: 0 8px 24px rgba(0, 62, 52, 0.08);
+            --shadow-lg: 0 20px 50px rgba(0, 62, 52, 0.12);
+            --shadow-xl: 0 30px 80px rgba(0, 62, 52, 0.18);
+        }
+
+        /* =========================================================
+           إعدادات أساسية وإعادة ضبط
+           ========================================================= */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: 'Tajawal', system-ui, sans-serif;
+            font-weight: 400;
+            color: var(--ink);
+            background: var(--ivory);
+            line-height: 1.85;
+            font-size: 16px;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* خلفية نقشية رقيقة */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 15% 20%, rgba(0, 108, 91, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(201, 161, 74, 0.04) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23006c5b' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        ::selection {
+            background: var(--emerald-deep);
+            color: var(--ivory);
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* =========================================================
+           شريط التنقل العلوي
+           ========================================================= */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(251, 250, 246, 0.92);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--line);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .topbar.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+
+        .topbar-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 14px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand-mark {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: var(--ivory);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            padding: 4px;
+            border: 1px solid var(--line);
+        }
+
+        .brand-mark img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .brand-text { line-height: 1.2; }
+        .brand-text .label-1 {
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--emerald-deep);
+        }
+        .brand-text .label-2 {
+            font-size: 0.78rem;
+            color: var(--ink-muted);
+            margin-top: 2px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 14px;
+            color: var(--ink-muted);
+            font-size: 0.85rem;
+            pointer-events: none;
+        }
+
+        .search-box input {
+            width: 260px;
+            padding: 10px 38px 10px 16px;
+            border: 1px solid var(--line);
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.7);
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: var(--ink);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--emerald-deep);
+            background: var(--ivory);
+            box-shadow: 0 0 0 4px rgba(0, 108, 91, 0.08);
+            width: 320px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--emerald-deep), var(--emerald-dark));
+            color: var(--ivory);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--emerald-deep);
+            border-color: var(--line);
+        }
+
+        .btn-ghost:hover {
+            background: var(--emerald-pale);
+            border-color: var(--emerald-deep);
+        }
+
+        /* =========================================================
+           قسم الواجهة الرئيسية (Hero)
+           ========================================================= */
+        .hero {
+            position: relative;
+            padding: 90px 32px 140px;
+            overflow: hidden;
+            background:
+                radial-gradient(ellipse at top left, rgba(0, 108, 91, 0.08), transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(201, 161, 74, 0.06), transparent 50%),
+                linear-gradient(180deg, var(--ivory) 0%, var(--pearl) 100%);
+        }
+
+        .hero-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .hero-pattern svg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-inner {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid var(--line);
+            border-radius: 30px;
+            color: var(--emerald-deep);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 28px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-eyebrow i { color: var(--gold-dark); }
+
+        .hero h1 {
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2rem, 5vw, 3.6rem);
+            line-height: 1.25;
+            color: var(--emerald-dark);
+            margin-bottom: 22px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(120deg, var(--gold-dark), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+        }
+
+        .hero-subtitle {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+            color: var(--ink-soft);
+            line-height: 1.85;
+        }
+
+        .hero-ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin: 30px 0;
+        }
+
+        .hero-ornament .line {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .hero-ornament .diamond {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            transform: rotate(45deg);
+            box-shadow: 0 0 0 3px rgba(201, 161, 74, 0.15);
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .meta-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid var(--line);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: var(--ink-soft);
+            backdrop-filter: blur(10px);
+        }
+
+        .meta-chip i { color: var(--emerald-deep); }
+
+        /* =========================================================
+           البطاقة التعريفية الرسمية
+           ========================================================= */
+        .identity {
+            max-width: 1280px;
+            margin: -90px auto 60px;
+            padding: 0 32px;
+            position: relative;
+            z-index: 15;
+        }
+
+        .identity-card {
+            position: relative;
+            background: linear-gradient(135deg, #ffffff 0%, var(--emerald-mist) 100%);
+            border-radius: 24px;
+            padding: 0;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--line);
+            overflow: hidden;
+        }
+
+        .identity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            inset-inline-start: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--emerald-dark), var(--emerald-deep) 30%, var(--gold) 70%, var(--gold-dark));
+        }
+
+        .identity-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23006c5b' stroke-opacity='0.04' stroke-width='1'%3E%3Cpath d='M50 0 L100 50 L50 100 L0 50 Z'/%3E%3Cpath d='M50 20 L80 50 L50 80 L20 50 Z'/%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .identity-grid {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(280px, 1fr) 2fr;
+            gap: 0;
+        }
+
+        .identity-emblem {
+            position: relative;
+            padding: 40px 36px;
+            background: linear-gradient(160deg, var(--emerald-dark) 0%, var(--emerald-deep) 100%);
+            color: var(--ivory);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .identity-emblem::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            inset-inline-end: -20%;
+            width: 70%;
+            height: 70%;
+            background: radial-gradient(circle, rgba(201, 161, 74, 0.18), transparent 60%);
+            pointer-events: none;
+        }
+
+        .identity-emblem::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            inset-inline-start: -20%;
+            width: 70%;
+            height: 70%;
+            background: radial-gradient(circle, rgba(201, 161, 74, 0.1), transparent 60%);
+            pointer-events: none;
+        }
+
+        .logo-frame {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            background: var(--ivory);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(201, 161, 74, 0.3);
+            margin-bottom: 20px;
+            transition: transform 0.4s ease;
+        }
+
+        .logo-frame::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 28px;
+            border: 1px solid rgba(201, 161, 74, 0.35);
+            pointer-events: none;
+        }
+
+        .logo-frame:hover {
+            transform: scale(1.04);
+        }
+
+        .logo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-frame .logo-fallback {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--emerald-deep), var(--emerald-dark));
+            border-radius: 14px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-light);
+            font-size: 3.5rem;
+        }
+
+        .identity-emblem h3 {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--gold-light);
+            margin-bottom: 6px;
+            position: relative;
+        }
+
+        .identity-emblem .sub {
+            font-size: 0.92rem;
+            opacity: 0.85;
+            position: relative;
+            font-weight: 300;
+        }
+
+        .identity-emblem .seal-line {
+            margin-top: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+
+        .identity-emblem .seal-line .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+
+        .identity-emblem .seal-line .text {
+            font-size: 0.78rem;
+            color: var(--gold-light);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .identity-details {
+            padding: 40px 40px;
+            position: relative;
+        }
+
+        .identity-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(201, 161, 74, 0.1);
+            border: 1px solid rgba(201, 161, 74, 0.3);
+            border-radius: 30px;
+            color: var(--gold-dark);
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .identity-tag i {
+            font-size: 0.7rem;
+        }
+
+        .identity-title {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--emerald-dark);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .identity-subtitle {
+            color: var(--ink-soft);
+            font-size: 0.95rem;
+            margin-bottom: 26px;
+            line-height: 1.75;
+        }
+
+        .identity-rows {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .identity-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid var(--line-soft);
+            border-radius: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .identity-row:hover {
+            background: var(--ivory);
+            border-color: var(--emerald-pale);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .identity-row .row-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--emerald-pale), rgba(0, 108, 91, 0.08));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--emerald-deep);
+            font-size: 1.05rem;
+            flex-shrink: 0;
+        }
+
+        .identity-row .row-text {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .identity-row .row-label {
+            font-size: 0.75rem;
+            color: var(--ink-muted);
+            font-weight: 500;
+            margin-bottom: 3px;
+            letter-spacing: 0.3px;
+        }
+
+        .identity-row .row-value {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--emerald-dark);
+            line-height: 1.3;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .identity-strip {
+            margin-top: 24px;
+            padding: 16px 18px;
+            background: linear-gradient(135deg, var(--emerald-mist) 0%, transparent 100%);
+            border-inline-start: 3px solid var(--gold);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .identity-strip i {
+            color: var(--emerald-deep);
+            font-size: 1.1rem;
+        }
+
+        .identity-strip .strip-text {
+            flex: 1;
+            font-size: 0.9rem;
+            color: var(--ink-soft);
+            line-height: 1.7;
+        }
+
+        .identity-strip strong {
+            color: var(--emerald-dark);
+        }
+
+        /* =========================================================
+           بطاقات الإحصائيات
+           ========================================================= */
+        .stats {
+            max-width: 1280px;
+            margin: 0 auto 60px;
+            padding: 0 32px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-card {
+            position: relative;
+            background: var(--ivory);
+            border-radius: 18px;
+            padding: 28px 24px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--line-soft);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            inset-inline-end: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--emerald-deep), var(--gold));
+        }
+
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(0, 108, 91, 0.04), transparent 60%);
+            pointer-events: none;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .stat-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--emerald-pale), rgba(0, 108, 91, 0.06));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--emerald-deep);
+            font-size: 1.4rem;
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        .stat-value {
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: 700;
+            font-size: 2.2rem;
+            color: var(--emerald-dark);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .stat-value .unit {
+            font-size: 1rem;
+            color: var(--ink-muted);
+            font-weight: 500;
+        }
+
+        .stat-label {
+            font-size: 0.92rem;
+            color: var(--ink-soft);
+            line-height: 1.6;
+        }
+
+        /* =========================================================
+           التخطيط الرئيسي مع الفهرس الجانبي
+           ========================================================= */
+        .layout {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 40px 32px 80px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .toc {
+            position: sticky;
+            top: 100px;
+            background: var(--ivory);
+            border-radius: 18px;
+            padding: 24px 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--line);
+            max-height: calc(100vh - 130px);
+            overflow-y: auto;
+        }
+
+        .toc-title {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--emerald-deep);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toc-title i { color: var(--gold-dark); }
+
+        .toc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .toc-list a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-size: 0.88rem;
+            color: var(--ink-soft);
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .toc-list a::before {
+            content: '';
+            position: absolute;
+            inset-inline-start: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 0;
+            background: var(--gold);
+            border-radius: 3px;
+            transition: height 0.3s ease;
+        }
+
+        .toc-list a:hover,
+        .toc-list a.active {
+            background: var(--emerald-pale);
+            color: var(--emerald-dark);
+        }
+
+        .toc-list a.active::before { height: 60%; }
+
+        .toc-list .toc-num {
+            min-width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 108, 91, 0.08);
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--emerald-deep);
+            flex-shrink: 0;
+        }
+
+        .toc-list a.active .toc-num {
+            background: var(--emerald-deep);
+            color: var(--ivory);
+        }
+
+        /* =========================================================
+           المحتوى الرئيسي
+           ========================================================= */
+        .content {
+            min-width: 0;
+        }
+
+        .article {
+            background: var(--ivory);
+            border-radius: 20px;
+            margin-bottom: 28px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--line-soft);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            scroll-margin-top: 100px;
+        }
+
+        .article:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .article-header {
+            position: relative;
+            padding: 32px 36px 24px;
+            background: linear-gradient(135deg, var(--emerald-mist) 0%, transparent 100%);
+            border-bottom: 1px solid var(--line-soft);
+        }
+
+        .article-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            inset-inline-start: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--emerald-deep), var(--gold) 60%, transparent);
+        }
+
+        .article-num {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 14px;
+            background: var(--ivory);
+            border: 1px solid var(--line);
+            border-radius: 30px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--emerald-deep);
+            margin-bottom: 14px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .article-num i { color: var(--gold-dark); font-size: 0.7rem; }
+
+        .article-title {
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: 700;
+            font-size: 1.7rem;
+            color: var(--emerald-dark);
+            line-height: 1.35;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .article-title .icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--emerald-deep), var(--emerald-dark));
+            color: var(--gold-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            box-shadow: 0 6px 16px rgba(0, 108, 91, 0.25);
+        }
+
+        .article-body {
+            padding: 30px 36px 36px;
+        }
+
+        .lead {
+            font-size: 1rem;
+            color: var(--ink-soft);
+            line-height: 1.95;
+            margin-bottom: 22px;
+            padding-inline-start: 16px;
+            border-inline-start: 3px solid var(--gold);
+        }
+
+        /* =========================================================
+           التعريفات (المادة الأولى)
+           ========================================================= */
+        .defs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 14px;
+        }
+
+        .def-card {
+            background: linear-gradient(180deg, var(--emerald-mist) 0%, transparent 100%);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 18px 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .def-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            inset-inline-start: 0;
+            width: 3px;
+            height: 0;
+            background: var(--gold);
+            transition: height 0.4s ease;
+        }
+
+        .def-card:hover {
+            border-color: var(--emerald-light);
+            transform: translateX(-4px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .def-card:hover::before { height: 100%; }
+
+        .def-term {
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--emerald-dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .def-term::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .def-text {
+            font-size: 0.88rem;
+            color: var(--ink-soft);
+            line-height: 1.75;
+        }
+
+        /* =========================================================
+           قوائم المواد
+           ========================================================= */
+        .item-list {
+            list-style: none;
+            counter-reset: item-counter;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .item-list > li {
+            counter-increment: item-counter;
+            position: relative;
+            padding: 18px 22px 18px 60px;
+            background: linear-gradient(180deg, rgba(232, 245, 241, 0.4) 0%, transparent 100%);
+            border: 1px solid var(--line-soft);
+            border-radius: 14px;
+            line-height: 1.9;
+            color: var(--ink-soft);
+            transition: all 0.3s ease;
+        }
+
+        html[dir="rtl"] .item-list > li {
+            padding: 18px 60px 18px 22px;
+        }
+
+        .item-list > li::before {
+            content: counter(item-counter);
+            position: absolute;
+            top: 18px;
+            inset-inline-start: 16px;
+            width: 32px;
+            height: 32px;
+            background: var(--ivory);
+            border: 1px solid var(--emerald-pale);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Reem Kufi', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--emerald-deep);
+            transition: all 0.3s ease;
+        }
+
+        .item-list > li:hover {
+            border-color: var(--line);
+            background: linear-gradient(180deg, rgba(232, 245, 241, 0.7) 0%, transparent 100%);
+        }
+
+        .item-list > li:hover::before {
+            background: var(--emerald-deep);
+            color: var(--ivory);
+            border-color: var(--emerald-deep);
+        }
+
+        .item-list strong {
+            color: var(--emerald-dark);
+            font-weight: 700;
+        }
+
+        /* =========================================================
+           الأقسام الفرعية والترقيم المتداخل
+           ========================================================= */
+        .subsection {
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px dashed var(--line);
+        }
+
+        .subsection:first-of-type {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        .subsection-title {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--emerald-deep);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subsection-title::before {
+            content: '';
+            width: 4px;
+            height: 22px;
+            background: linear-gradient(180deg, var(--gold), var(--emerald-deep));
+            border-radius: 4px;
+        }
+
+        .sub-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-inline-start: 10px;
+        }
+
+        .sub-list > li {
+            position: relative;
+            padding-inline-start: 26px;
+            line-height: 1.85;
+            color: var(--ink-soft);
+        }
+
+        .sub-list > li::before {
+            content: '\f111';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            inset-inline-start: 4px;
+            top: 12px;
+            font-size: 0.4rem;
+            color: var(--gold);
+        }
+
+        .sub-list .nested {
+            list-style: none;
+            margin-top: 10px;
+            padding-inline-start: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sub-list .nested li {
+            position: relative;
+            padding-inline-start: 22px;
+            font-size: 0.94rem;
+            color: var(--ink-soft);
+        }
+
+        .sub-list .nested li::before {
+            content: '\f105';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            inset-inline-start: 0;
+            top: 2px;
+            color: var(--emerald-light);
+        }
+
+        html[dir="rtl"] .sub-list .nested li::before {
+            content: '\f104';
+        }
+
+        /* =========================================================
+           جداول المعلومات والصناديق التحذيرية
+           ========================================================= */
+        .info-box {
+            margin: 20px 0;
+            padding: 18px 22px;
+            background: linear-gradient(135deg, rgba(201, 161, 74, 0.08), transparent);
+            border: 1px solid rgba(201, 161, 74, 0.25);
+            border-radius: 14px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .info-box .info-icon {
+            color: var(--gold-dark);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .info-box-content {
+            flex: 1;
+            color: var(--ink-soft);
+            font-size: 0.92rem;
+            line-height: 1.8;
+        }
+
+        .info-box-content strong {
+            color: var(--emerald-dark);
+            display: block;
+            margin-bottom: 4px;
+            font-family: 'Reem Kufi', sans-serif;
+        }
+
+        /* =========================================================
+           فاصل القسم الكبير - الإعاقة
+           ========================================================= */
+        .mega-divider {
+            grid-column: 1 / -1;
+            margin: 60px 0 30px;
+            text-align: center;
+            position: relative;
+            scroll-margin-top: 100px;
+        }
+
+        .mega-divider .ornament {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .mega-divider .ornament .line {
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold));
+        }
+
+        .mega-divider .ornament .line:last-child {
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+        .mega-divider .ornament .star {
+            color: var(--gold);
+            font-size: 1rem;
+        }
+
+        .mega-divider h2 {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            color: var(--emerald-dark);
+            margin-bottom: 14px;
+            line-height: 1.3;
+        }
+
+        .mega-divider p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--ink-soft);
+            font-size: 1rem;
+            line-height: 1.85;
+        }
+
+        /* =========================================================
+           بطاقات فئات الإعاقة
+           ========================================================= */
+        .disability-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 22px;
+            margin-bottom: 30px;
+        }
+
+        .disability-card {
+            position: relative;
+            background: var(--ivory);
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--line-soft);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .disability-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            inset-inline-start: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--emerald-deep), var(--emerald-light), var(--gold));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+        }
+
+        html[dir="rtl"] .disability-card::before {
+            transform-origin: left;
+        }
+
+        .disability-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--emerald-pale);
+        }
+
+        .disability-card:hover::before { transform: scaleX(1); }
+
+        .disability-head {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px dashed var(--line);
+        }
+
+        .disability-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--emerald-deep), var(--emerald-dark));
+            color: var(--gold-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            box-shadow: 0 8px 18px rgba(0, 108, 91, 0.2);
+            position: relative;
+        }
+
+        .disability-icon::after {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            border-radius: 13px;
+            border: 1px solid rgba(230, 201, 122, 0.25);
+        }
+
+        .disability-title {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--emerald-dark);
+            line-height: 1.35;
+        }
+
+        .disability-body ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .disability-body li {
+            position: relative;
+            padding-inline-start: 24px;
+            font-size: 0.92rem;
+            color: var(--ink-soft);
+            line-height: 1.8;
+        }
+
+        .disability-body li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            inset-inline-start: 0;
+            top: 2px;
+            color: var(--gold-dark);
+            font-size: 0.78rem;
+            width: 18px;
+            height: 18px;
+            background: rgba(201, 161, 74, 0.12);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* =========================================================
+           بطاقات الأرقام الإحصائية للإعاقات
+           ========================================================= */
+        .summary-banner {
+            margin: 40px 0;
+            padding: 36px;
+            background: linear-gradient(135deg, var(--emerald-dark) 0%, var(--emerald-deep) 100%);
+            border-radius: 22px;
+            color: var(--ivory);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .summary-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            inset-inline-end: -10%;
+            width: 60%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(201, 161, 74, 0.15), transparent 60%);
+            pointer-events: none;
+        }
+
+        .summary-banner::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23c9a14a' stroke-opacity='0.06' stroke-width='1'%3E%3Cpath d='M0 40 L80 40 M40 0 L40 80'/%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .summary-banner h3 {
+            position: relative;
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 1.4rem;
+            color: var(--gold-light);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .summary-banner p {
+            position: relative;
+            line-height: 1.95;
+            opacity: 0.92;
+        }
+
+        /* =========================================================
+           التذييل
+           ========================================================= */
+        footer {
+            margin-top: 80px;
+            background: linear-gradient(180deg, var(--emerald-dark) 0%, #002820 100%);
+            color: var(--pearl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            inset-inline-start: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 60px 32px 30px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 50px;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer-brand-head {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .footer-brand-mark {
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--emerald-dark);
+            font-size: 1.4rem;
+            box-shadow: 0 8px 20px rgba(201, 161, 74, 0.25);
+        }
+
+        .footer-brand h4 {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            margin-bottom: 4px;
+        }
+
+        .footer-brand .sub {
+            font-size: 0.88rem;
+            color: rgba(246, 244, 237, 0.7);
+        }
+
+        .footer-brand p {
+            font-size: 0.92rem;
+            line-height: 1.85;
+            color: rgba(246, 244, 237, 0.75);
+            max-width: 420px;
+        }
+
+        .footer-col h5 {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(201, 161, 74, 0.18);
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-col ul a {
+            font-size: 0.9rem;
+            color: rgba(246, 244, 237, 0.75);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-col ul a:hover {
+            color: var(--gold-light);
+            transform: translateX(-4px);
+        }
+
+        html[dir="rtl"] .footer-col ul a:hover {
+            transform: translateX(4px);
+        }
+
+        .footer-col ul a i { color: var(--gold); font-size: 0.7rem; }
+
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 24px 32px;
+            border-top: 1px solid rgba(201, 161, 74, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 0.85rem;
+            color: rgba(246, 244, 237, 0.6);
+        }
+
+        .footer-bottom .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(201, 161, 74, 0.1);
+            border: 1px solid rgba(201, 161, 74, 0.25);
+            border-radius: 30px;
+            color: var(--gold-light);
+        }
+
+        /* =========================================================
+           زر الصعود للأعلى
+           ========================================================= */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            inset-inline-start: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--emerald-deep), var(--emerald-dark));
+            color: var(--gold-light);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* =========================================================
+           الاستجابة للموبايل
+           ========================================================= */
+        @media (max-width: 1024px) {
+            .layout {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .toc {
+                position: relative;
+                top: 0;
+                max-height: none;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .identity-grid {
+                grid-template-columns: 1fr;
+            }
+            .identity-rows {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body { font-size: 15px; }
+            .topbar-inner {
+                padding: 12px 18px;
+                flex-wrap: wrap;
+            }
+            .brand-text .label-2 { display: none; }
+            .search-box input { width: 180px; }
+            .search-box input:focus { width: 220px; }
+            .btn-ghost { display: none; }
+            .hero { padding: 60px 18px 100px; }
+            .stats { padding: 0 18px; }
+            .identity { padding: 0 18px; margin-top: -70px; }
+            .identity-emblem { padding: 32px 24px; }
+            .identity-details { padding: 30px 24px; }
+            .logo-frame { width: 120px; height: 120px; }
+            .identity-title { font-size: 1.3rem; }
+            .layout { padding: 24px 18px 60px; }
+            .article-header { padding: 24px 22px 18px; }
+            .article-body { padding: 22px; }
+            .article-title { font-size: 1.3rem; }
+            .article-title .icon { width: 40px; height: 40px; font-size: 1rem; }
+            .item-list > li {
+                padding: 16px 16px 16px 56px;
+            }
+            html[dir="rtl"] .item-list > li {
+                padding: 16px 56px 16px 16px;
+            }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .back-to-top { width: 44px; height: 44px; bottom: 20px; inset-inline-start: 20px; }
+        }
+
+        /* =========================================================
+           تنسيقات الطباعة
+           ========================================================= */
+        @media print {
+            .topbar, .back-to-top, .toc, .nav-actions, footer { display: none !important; }
+            body { background: white; color: black; }
+            body::before, body::after { display: none; }
+            .layout { display: block; padding: 0; }
+            .hero { padding: 30px 0; background: white; }
+            .hero h1 { color: black; }
+            .stats { margin: 20px 0; }
+            .stat-card, .article, .disability-card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            .article-header { background: #f5f5f5; }
+        }
+
+        /* =========================================================
+           رسوم متحركة للظهور
+           ========================================================= */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            animation: fadeUp 0.7s ease forwards;
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <!-- ===== شريط التنقل العلوي ===== -->
+    <header class="topbar" id="topbar">
+        <div class="topbar-inner">
+            <div class="brand">
+                <div class="brand-mark">
+                    <img src="https://upload.wikimedia.org/wikipedia/ar/1/17/Saudi_Ministry_of_Education_Logo_2025.png"
+                         alt="شعار وزارة التعليم"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                    <div style="display:none; width:100%; height:100%; background: linear-gradient(135deg, var(--emerald-deep), var(--emerald-dark)); border-radius: 8px; align-items:center; justify-content:center; color: var(--gold-light);">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                </div>
+                <div class="brand-text">
+                    <div class="label-1">وزارة التعليم</div>
+                    <div class="label-2">المملكة العربية السعودية</div>
+                </div>
+            </div>
+
+            <div class="nav-actions">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="ابحث في اللائحة...">
+                </div>
+                <button class="btn btn-ghost" onclick="window.print()">
+                    <i class="fas fa-print"></i>
+                    <span>طباعة</span>
+                </button>
+                <a href="#article-1" class="btn btn-primary">
+                    <i class="fas fa-book-open"></i>
+                    <span>ابدأ القراءة</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== قسم الواجهة الرئيسية ===== -->
+    <section class="hero">
+        <div class="hero-pattern">
+            <svg viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <circle cx="2" cy="2" r="1" fill="#006c5b" opacity="0.15"/>
+                    </pattern>
+                </defs>
+                <rect width="1440" height="600" fill="url(#dots)"/>
+            </svg>
+        </div>
+        <div class="hero-inner">
+            <div class="hero-eyebrow">
+                <i class="fas fa-certificate"></i>
+                <span>وثيقة تنظيمية رسمية &middot; 1447هـ / 2025م</span>
+            </div>
+            <h1>لائحة تقويم الطالب<br>في <span class="highlight">التعليم العام</span></h1>
+
+            <div class="hero-ornament">
+                <span class="line"></span>
+                <span class="diamond"></span>
+                <span class="line"></span>
+            </div>
+
+            <p class="hero-subtitle">
+                إطار تنظيمي شامل لتقويم أداء الطالب في رياض الأطفال والمرحلتين الابتدائية والمتوسطة والمرحلة الثانوية،
+                بما يحقق العدالة وتكافؤ الفرص، ويرفع كفاءة العملية التعليمية وفق معايير علمية معتمدة،
+                مع إفراد آلية خاصة لتقويم الطلاب ذوي الإعاقة.
+            </p>
+
+            <div class="hero-meta">
+                <span class="meta-chip"><i class="fas fa-file-lines"></i> 9 مواد رئيسية</span>
+                <span class="meta-chip"><i class="fas fa-users"></i> جميع المراحل التعليمية</span>
+                <span class="meta-chip"><i class="fas fa-universal-access"></i> آلية الإعاقة</span>
+                <span class="meta-chip"><i class="fas fa-shield-halved"></i> الإدارة العامة لتقويم الأداء المعرفي والمهاري</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== البطاقة التعريفية الرسمية ===== -->
+    <section class="identity">
+        <div class="identity-card">
+            <div class="identity-grid">
+
+                <!-- الجانب الأيمن: الشعار والاسم الرسمي -->
+                <div class="identity-emblem">
+                    <div class="logo-frame">
+                        <img src="https://upload.wikimedia.org/wikipedia/ar/1/17/Saudi_Ministry_of_Education_Logo_2025.png"
+                             alt="شعار وزارة التعليم - المملكة العربية السعودية"
+                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="logo-fallback">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                    </div>
+                    <h3>وزارة التعليم</h3>
+                    <div class="sub">المملكة العربية السعودية</div>
+                    <div class="seal-line">
+                        <span class="dot"></span>
+                        <span class="text">VISION&nbsp;&nbsp;2030</span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+
+                <!-- الجانب الأيسر: البيانات التفصيلية -->
+                <div class="identity-details">
+                    <div class="identity-tag">
+                        <i class="fas fa-certificate"></i>
+                        <span>بطاقة تعريفية رسمية</span>
+                    </div>
+                    <h2 class="identity-title">لائحة تقويم الطالب في التعليم العام</h2>
+                    <p class="identity-subtitle">
+                        وثيقة تنظيمية لتقويم أداء الطلاب وتحصيلهم الدراسي، مع آلية تقويم الطلاب ذوي الإعاقة
+                    </p>
+
+                    <div class="identity-rows">
+                        <div class="identity-row">
+                            <div class="row-icon"><i class="fas fa-landmark"></i></div>
+                            <div class="row-text">
+                                <div class="row-label">الإدارة</div>
+                                <div class="row-value">الإدارة العامة للتعليم بمنطقة الرياض</div>
+                            </div>
+                        </div>
+
+                        <div class="identity-row">
+                            <div class="row-icon"><i class="fas fa-school"></i></div>
+                            <div class="row-text">
+                                <div class="row-label">المدرسة</div>
+                                <div class="row-value">ابتدائية ومتوسطة الجبيلة</div>
+                            </div>
+                        </div>
+
+                        <div class="identity-row">
+                            <div class="row-icon"><i class="fas fa-user-tie"></i></div>
+                            <div class="row-text">
+                                <div class="row-label">مدير المدرسة</div>
+                                <div class="row-value">الأستاذ / مفلح الشهراني</div>
+                            </div>
+                        </div>
+
+                        <div class="identity-row">
+                            <div class="row-icon"><i class="fas fa-pen-fancy"></i></div>
+                            <div class="row-text">
+                                <div class="row-label">إعداد</div>
+                                <div class="row-value">الأستاذ / نايف المطيري</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="identity-strip">
+                        <i class="fas fa-shield-halved"></i>
+                        <div class="strip-text">
+                            <strong>وثيقة تنظيمية معتمدة</strong> &middot; صادرة عن الإدارة العامة لتقويم الأداء المعرفي والمهاري &middot; للعام الدراسي <strong>1447هـ / 2025م</strong>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== بطاقات الإحصائيات ===== -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-star"></i></div>
+                <div class="stat-value">100<span class="unit"> درجة</span></div>
+                <div class="stat-label">مخصصة لكل مقرر دراسي لتقييم التحصيل العلمي</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-chart-pie"></i></div>
+                <div class="stat-value">20<span class="unit">%</span></div>
+                <div class="stat-label">النسبة الشرطية للحصول على درجة الاختبار التحريري النهائي</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-hands-holding-heart"></i></div>
+                <div class="stat-value">100<span class="unit"> درجة</span></div>
+                <div class="stat-label">للعمل التطوعي في المرحلة الثانوية</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-user-check"></i></div>
+                <div class="stat-value">100<span class="unit"> + 100</span></div>
+                <div class="stat-label">درجات لسلوك الطالب ومثلها للمواظبة</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== التخطيط الرئيسي ===== -->
+    <div class="layout">
+
+        <!-- الفهرس الجانبي -->
+        <aside class="toc">
+            <div class="toc-title">
+                <i class="fas fa-list-ul"></i>
+                <span>محتويات اللائحة</span>
+            </div>
+            <ul class="toc-list">
+                <li><a href="#article-1"><span class="toc-num">1</span> التعريفات</a></li>
+                <li><a href="#article-2"><span class="toc-num">2</span> أهداف اللائحة</a></li>
+                <li><a href="#article-3"><span class="toc-num">3</span> مرتكزات التقويم</a></li>
+                <li><a href="#article-4"><span class="toc-num">4</span> الأسس التنظيمية</a></li>
+                <li><a href="#article-5"><span class="toc-num">5</span> رياض الأطفال والابتدائية والمتوسطة</a></li>
+                <li><a href="#article-6"><span class="toc-num">6</span> المرحلة الثانوية</a></li>
+                <li><a href="#article-7"><span class="toc-num">7</span> تقويم ذوي الإعاقة</a></li>
+                <li><a href="#article-8"><span class="toc-num">8</span> الأحكام الفنية</a></li>
+                <li><a href="#article-9"><span class="toc-num">9</span> الأحكام العامة</a></li>
+                <li><a href="#annex"><span class="toc-num"><i class="fas fa-star" style="font-size:0.7rem"></i></span> الملحق: آلية الإعاقة</a></li>
+            </ul>
+        </aside>
+
+        <!-- المحتوى الرئيسي -->
+        <main class="content" id="contentArea">
+
+            <!-- ============= المادة الأولى: التعريفات ============= -->
+            <article class="article" id="article-1">
+                <header class="article-header">
+                    <span class="article-num"><i class="fas fa-bookmark"></i> المادة الأولى</span>
+                    <h2 class="article-title">
+                        <span class="icon"><i class="fas fa-book"></i></span>
+                        <span>التعريفات</span>
+                    </h2>
+                </header>
+                <div class="article-body">
+                    <p class="lead">
+                        يُقصد بالألفاظ والعبارات الآتية - أينما وردت في هذه اللائحة - المعاني المبيّنة قرينها أمام كل منها ما لم يقتضِ السياق غير ذلك.
+                    </p>
+
+                    <div class="defs-grid">
+                        <div class="def-card">
+                            <div class="def-term">الوزارة</div>
+                            <div class="def-text">وزارة التعليم.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">التعليم العام</div>
+                            <div class="def-text">التعليم حتى نهاية الصف الثاني عشر.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">الإدارة</div>
+                            <div class="def-text">الإدارة العامة لتقويم الأداء المعرفي والمهاري.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">الطالب</div>
+                            <div class="def-text">المتعلم أو المتعلمة بإحدى مراحل التعليم العام.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">المعلم</div>
+                            <div class="def-text">كل من يرخص له بالعمل في مهنة التعليم.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">توزيع منطقي للدرجات</div>
+                            <div class="def-text">انعكاس الفروق الفردية في نتائج الطلاب خلال التقويم التكويني وفق منحنى يرتفع عند الوسط، وينخفض تدريجياً حتى يقل ارتفاعه عند الطرفين؛ لمعالجة تضخم الدرجات وفحص شواهد ذلك.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">مدارس التعليم المستمر</div>
+                            <div class="def-text">الخدمات وبرامج التعليم العام التي تقدمها الوزارة للتعليم مدى الحياة للذين تجاوزوا سنوات التعليم الإلزامية أو خلالها.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">التعليم الإلكتروني</div>
+                            <div class="def-text">توظيف تقنيات التعليم والمعلومات والاتصالات لرفع كفاية العملية التعليمية والتدريبية بجميع أنماطها وضبط جودتها.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">الفترة الدراسية</div>
+                            <div class="def-text">جزء من العام الدراسي له بداية ونهاية وفق الخطة الدراسية المعتمدة.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">المادة الدراسية</div>
+                            <div class="def-text">المقرر الذي يقدم وفق الخطة الدراسية في صف دراسي معين مثل القرآن الكريم والعلوم والرياضيات... إلخ.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">المقرر الدراسي</div>
+                            <div class="def-text">المحتوى الذي تتضمنه الخطة الدراسية، ويدرسه الطالب.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">التقويم</div>
+                            <div class="def-text">عملية منهجية منظمة لجمع المعلومات وتحليلها واستخلاص نتائجها وإصدار أحكام وبناء خطط علاجية وتطويرية في ضوئها.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">التقويم القبلي (التشخيصي)</div>
+                            <div class="def-text">عمليات تقويم تتم في بداية العام الدراسي، أو الفترة الدراسية، أو المقرر، أو الوحدة، أو الدرس؛ وتهدف إلى الوقوف على مدى استعداد الطالب، وتشخيص امتلاكه لمهارات وميول واتجاهات ومعارف وخبرات أساسية سابقة.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">التقويم التكويني</div>
+                            <div class="def-text">عمليات مستمرة خلال الفترة الدراسية / العام الدراسي؛ لتجويد وبناء وتطوير المعارف والمهارات والقيم لدى الطالب، تهدف إلى إصدار أحكام عن مستواه وفق معايير كمية ونوعية يقاس من خلالها التعلم.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">التقويم الختامي</div>
+                            <div class="def-text">عمليات تقويم تتم في ختام فترات التعلم المعتمدة في التقويم الدراسي تهدف إلى إصدار أحكام عن مستوى الطالب، ومدى تحقيقه للأهداف التعليمية، وقياس تقدم التعلم.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">التقويم الذاتي</div>
+                            <div class="def-text">أحد أساليب التقويم يهدف إلى تعزيز مشاركة الطالب من خلال إصدار أحكام حول إنجازاته ونتائج تعلمه.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">أساليب التقويم</div>
+                            <div class="def-text">طرائق وإجراءات منهجية يتم تطبيقها أثناء عملية التقويم باستخدام أدوات تقويم متنوعة لجمع المعلومات وتحليلها واستخلاص نتائجها وإصدار الحكم عليها لقياس نواتج التعلم.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">أدوات التقويم</div>
+                            <div class="def-text">وسائل جمع المعلومات عن أداء الطالب، مثل: الاختبارات (الكتابية / الشفهية / العملية)، والواجبات المنزلية، والمشاركة، والبحوث، والعروض، وغيرها.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">محكات التقويم</div>
+                            <div class="def-text">مؤشرات وشواهد تستخدم للحكم على مستوى الأداء كمياً وكيفياً.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">الاختبارات محكية المرجع</div>
+                            <div class="def-text">نوع من الاختبارات يتم فيها مقارنة أداء الطالب في الاختبار بمحك خارجي محدد مسبقاً دون النظر إلى مستوى أقرانه.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">الاختبارات معيارية المرجع</div>
+                            <div class="def-text">نوع من الاختبارات تستخدم للمقارنة بين أداء الطالب بمستوى أداء أقرانه.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">التقديرات الكمية</div>
+                            <div class="def-text">حكم نهائي مقنن يشير إلى قيمة رقمية تحدد مقدار نواتج التعلم التي حصل عليها الطالب.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">التقديرات الكيفية</div>
+                            <div class="def-text">حكم نهائي مقنن بعبارات لفظية تصف مستوى أداء الطالب، وتتسم بالدقة والموضوعية ومبنية على شواهد وأدلة، يمكن من خلالها الحكم على نواتج التعلم لدى الطالب أثناء الفترة الدراسية أو العام الدراسي.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">الدرجة النهائية</div>
+                            <div class="def-text">مجموع ما تحصل عليه الطالب خلال فترة دراسية.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">النسبة الشرطية</div>
+                            <div class="def-text">الدرجة التي يلزم الطالب الحصول عليها في ورقة الاختبار التحريري نهاية الفترة الدراسية في المرحلة الثانوية / العام الدراسي في المرحلتين الابتدائية والمتوسطة، وتعد إحدى شروط النجاح، ومقدارها 20% من الدرجة المخصصة للاختبار التحريري.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">نواتج التعلم</div>
+                            <div class="def-text">ما يكتسبه الطالب من معارف ومهارات وقيم نتيجة مروره بخبرة تعليمية معينة خلال دراسته مقرراً ما.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">التسريع</div>
+                            <div class="def-text">نظام يسمح للطالب بالانتقال عبر السلم التعليمي إلى صف دراسي أعلى بعد استيفاء شروط وضوابط معينة.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">الطالب ذو الإعاقة</div>
+                            <div class="def-text">طالب لديه قصور طويل الأمد في الوظائف الجسدية، أو العقلية، أو الذهنية، أو الحسية، أو النفسية، إلى الحد الذي يمنعه من أن يتلقى التعليم العام على قدم المساواة مع الآخرين.</div>
+                        </div>
+                        <div class="def-card">
+                            <div class="def-term">الخطة التربوية الفردية</div>
+                            <div class="def-text">وصف للخدمات التربوية والخدمات المساندة التي تقتضيها احتياجات الطالب ذي الإعاقة بناءً على نتائج التشخيص والتقويم، والمعدّ من قبل فريق متعدد التخصصات بالمدرسة.</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ============= المادة الثانية: أهداف اللائحة ============= -->
+            <article class="article" id="article-2">
+                <header class="article-header">
+                    <span class="article-num"><i class="fas fa-bookmark"></i> المادة الثانية</span>
+                    <h2 class="article-title">
+                        <span class="icon"><i class="fas fa-bullseye"></i></span>
+                        <span>أهداف اللائحة</span>
+                    </h2>
+                </header>
+                <div class="article-body">
+                    <ol class="item-list">
+                        <li><strong>تقويم أداء الطالب</strong> في مراحل التعليم العام؛ بما يحقق كفاءة عالية، ويقلل الهدر التعليمي.</li>
+                        <li><strong>تقويم أداء الطالب</strong> في التعليم العام، وتحصيله الدراسي، وضبط ممارساته من الناحية العلمية والإجرائية وفق أسس معيارية معتمدة.</li>
+                        <li><strong>تقويم تعلم الطالب</strong> في التعليم العام بمنهجية علمية تُبيّن مدى تقدمه نحو تحقيق مخرجات التعلم المحددة له في كل صف ومرحلة تعليمية.</li>
+                        <li><strong>تطوير كافة عمليات</strong> وأساليب وأدوات قياس وممارسات تقويم أداء الطالب، وتحصيله الدراسي في مراحل التعليم العام.</li>
+                    </ol>
+                </div>
+            </article>
+
+            <!-- ============= المادة الثالثة: مرتكزات التقويم ============= -->
+            <article class="article" id="article-3">
+                <header class="article-header">
+                    <span class="article-num"><i class="fas fa-bookmark"></i> المادة الثالثة</span>
+                    <h2 class="article-title">
+                        <span class="icon"><i class="fas fa-compass"></i></span>
+                        <span>مرتكزات تقويم الطالب</span>
+                    </h2>
+                </header>
+                <div class="article-body">
+                    <ol class="item-list">
+                        <li><strong>تقويم الطالب</strong> بما يحقق أهداف سياسة التعليم في المملكة العربية السعودية.</li>
+                        <li><strong>إعداد خطط التقويم</strong> وإجراءات تنفيذها، وتمكين المعلم منها بما يحقق كفاية أدائه، والاستفادة من التجارب العالمية الناجحة في ممارسات التقويم لإعداد طالب منافس عالمياً.</li>
+                        <li><strong>دقة تقارير التقويم</strong> الكمية والكيفية، وشموليتها، وصياغتها بلغة مفهومة، وسهولة الوصول إليها من قبل الطالب والأفراد المسموح لهم، والجهات ذات العلاقة.</li>
+                        <li><strong>توافر فرص متكافئة</strong> لجميع الطلاب في أساليب التقويم، وأدواته، وظروف تطبيقه، والقرارات المترتبة على نتائجه.</li>
+                        <li><strong>توافق تقويم الطالب</strong> مع القوانين والمبادئ الأساسية للعدل وحقوق الإنسان؛ بما يكفل احترام إنسانية الطالب وحفظ حقوقه.</li>
+                        <li><strong>تعزيز التقويم</strong> من أجل التعلم في ممارسات التقويم الصفي، وتشجيع الطالب على ممارسة التقويم الذاتي.</li>
+                        <li><strong>استخدام تقويمات متنوعة</strong> لقياس مستويات الطلاب في مجالات مختلفة، ومراعاة الفروق الفردية لدى الطلاب في نتائج التقويم التكويني؛ بحيث تتسق مع منحنى توزيع منطقي للدرجات.</li>
+                        <li><strong>توظيف التقويم</strong> لتنمية المهارات غير المعرفية كمهارات التعلم والإبداع، ومهارات الحياة والمهنة، ومهارات المعلومات والثقافة الرقمية.</li>
+                        <li><strong>اشتمال عمليات التقويم</strong> آليات مناسبة لمتابعة ما بعد نتائج التقويم من قبل المعلمين وإدارة المدرسة والطالب وولي الأمر.</li>
+                        <li><strong>تحليل البيانات</strong> التي تُجمع عن الطالب بمنهجية دقيقة لضمان تحقيق أهداف التقويم بفاعلية، وفحص إجراءات التقويم دورياً.</li>
+                    </ol>
+                </div>
+            </article>
+
+            <!-- ============= المادة الرابعة: أسس تنظيمية ============= -->
+            <article class="article" id="article-4">
+                <header class="article-header">
+                    <span class="article-num"><i class="fas fa-bookmark"></i> المادة الرابعة</span>
+                    <h2 class="article-title">
+                        <span class="icon"><i class="fas fa-sitemap"></i></span>
+                        <span>أسس تنظيمية</span>
+                    </h2>
+                </header>
+                <div class="article-body">
+                    <ol class="item-list">
+                        <li><strong>يشمل هذا التنظيم</strong> رياض الأطفال وجميع مراحل التعليم العام: الابتدائية، المتوسطة، الثانوية؛ الحكومي والخاص (الأهلي والعالمي).</li>
+                        <li><strong>يكون عدد التقويمات</strong> الختامية وفق الخطة الدراسية المعتمدة.</li>
+                        <li><strong>استخدام التقويم التكويني</strong> لقياس مستوى أداء الطالب خلال عملية التعلم.</li>
+                        <li><strong>يكون تقويم نهاية</strong> كل فترة دراسية شاملاً لنواتج التعلم في المقرر الدراسي، ومبنياً على الأسس العلمية في تصميم أدوات التقويم.</li>
+                        <li><strong>تطبق هذه اللائحة</strong> على مقررات الخطة الدراسية جميعها باستثناء المقررات التي تتطلب إيجاد تنظيم خاص لتقويمها.</li>
+                    </ol>
+                </div>
+            </article>
+
+            <!-- ============= المادة الخامسة: رياض الأطفال والابتدائية والمتوسطة ============= -->
+            <article class="article" id="article-5">
+                <header class="article-header">
+                    <span class="article-num"><i class="fas fa-bookmark"></i> المادة الخامسة</span>
+                    <h2 class="article-title">
+                        <span class="icon"><i class="fas fa-school"></i></span>
+                        <span>التقويم في رياض الأطفال والمرحلتين الابتدائية والمتوسطة</span>
+                    </h2>
+                </header>
+                <div class="article-body">
+
+                    <!-- أولاً: رياض الأطفال -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">أولاً: التقويم في رياض الأطفال</h3>
+                        <ul class="sub-list">
+                            <li>يُقوَّم الطفل بطريقة تتناسب مع خصائص نموه؛ للوقوف على قدراته ومهاراته.</li>
+                            <li>تَعتمد معايير تقييم الطفل في هذه المرحلة على مستويات وصفية.</li>
+                            <li>تُدوّن تقارير توضح تطور الطفل ودافعيته للتعلم.</li>
+                        </ul>
+                    </div>
+
+                    <!-- ثانياً: الابتدائية والمتوسطة -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">ثانياً: التقويم في المرحلتين الابتدائية والمتوسطة</h3>
+
+                        <div class="info-box">
+                            <i class="fas fa-info-circle info-icon"></i>
+                            <div class="info-box-content">
+                                <strong>أ) التقويم في الصفين الأول والثاني الابتدائي والصف الأول للتعليم المستمر:</strong>
+                                ينقسم التقويم إلى تقويم تكويني للمواد العامة، وتقويم متنوع (قبلي + تكويني + ختامي) لمادتي الرياضيات واللغة العربية.
+                            </div>
+                        </div>
+
+                        <ul class="sub-list">
+                            <li>يُقوّم التحصيل الدراسي للطالب في الصفين الأول والثاني الابتدائي والصف الأول للتعليم المستمر تقويماً تكوينياً معتمداً على مستويات الأداء؛ ماعدا مادتي الرياضيات واللغة العربية يتم تقويمها تقويماً قبلياً وتكوينياً وختامياً، ويطبق عليها أحكام تقويم المواد في الصفوف من الثالث الابتدائي وحتى الثالث المتوسط والصفين الثاني والثالث من التعليم المستمر.</li>
+                            <li>يُقوَّم أداء الطالب في المواد الدراسية التي تقوّم تقويماً تكوينياً معتمداً على مستويات الأداء في كل معيار من معايير المادة.</li>
+                            <li>يُنقل الطالب للصف الذي يليه إذا حصل على شروط النجاح في مادتي الرياضيات واللغة العربية، وحقق أحد مستويات الإتقان في بقية المواد الدراسية.</li>
+                            <li>يُزود معلم المادة لجنة التوجيه الطلابي بالمدرسة وولي أمر الطالب بنسخ من تقارير التقويم تتضمن تقديرات كمية وكيفية، ومرئياته بصفة دورية، كما يقوم الموجه الطلابي بمشاركة المعلم بمتابعة مستوى تقويم الطالب غير المتقن خلال العام الدراسي.</li>
+                            <li>يستخدم المعلم أدوات وأساليب التقويم المتنوعة، والمناسبة لكل مقرر دراسي، ويوظف نتائجها بصورة تكوينية لأغراض تحسين تعلم وتعليم الطالب.</li>
+                            <li>تُوظف نتائج التقويم التكويني المبني على استراتيجيات التقويم من أجل التعلم بفاعلية؛ لتحسين نتائج تقويم الطالب بصورة مستمرة، والحصول على شواهد تتسم بخصائص الصدق والثبات.</li>
+                            <li>يُدوّن وصف لسلوك ومواظبة الطالب في شهادته لكل فترة دراسية.</li>
+                        </ul>
+
+                        <div class="info-box" style="margin-top: 28px;">
+                            <i class="fas fa-info-circle info-icon"></i>
+                            <div class="info-box-content">
+                                <strong>ب) التقويم في الصفوف من الثالث الابتدائي وحتى الثالث المتوسط والصفين الثاني والثالث من التعليم المستمر:</strong>
+                                تقويم متنوع شامل (قبلي + تكويني + ختامي) مع تخصيص (100) درجة لكل مقرر، وشروط نجاح محددة.
+                            </div>
+                        </div>
+
+                        <ul class="sub-list">
+                            <li>يُقوَّم التحصيل الدراسي للطالب في الصفوف من الثالث الابتدائي وحتى الثالث المتوسط والصفين الثاني والثالث من التعليم المستمر تقويماً متنوعاً قبلياً وتكوينياً وختامياً.</li>
+                            <li>تُخصص <strong>(100)</strong> درجة للمقرر الدراسي.</li>
+                            <li>
+                                يُقوَّم التحصيل الدراسي للطالب في كل فترة دراسية وفق الآتي:
+                                <ul class="nested">
+                                    <li>مواد تقوّم تقويماً تكوينياً فقط.</li>
+                                    <li>
+                                        مواد تقوّم تقويماً تكوينياً وختامياً كالتالي:
+                                        <ul class="nested">
+                                            <li>أدوات تقويم تكوينية خلال الفترة الدراسية.</li>
+                                            <li>اختبار ختامي نهاية الفترة الدراسية.</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>يتم احتساب ما تحصل عليه الطالب في المادة الدراسية - نهاية العام الدراسي - بناءً على متوسط درجاته في الفترات الدراسية.</li>
+                            <li>
+                                يُعد الطالب ناجحاً في المادة الدراسية إذا حقق شروط النجاح التالية:
+                                <ul class="nested">
+                                    <li>حصوله على درجة النهاية الصغرى.</li>
+                                    <li>حصوله على النسبة الشرطية.</li>
+                                    <li>تنفيذه لاختبار نهاية كل فترة دراسية.</li>
+                                </ul>
+                            </li>
+                            <li>يتابع الموجه الطلابي من تدنى مستواه من الطلاب في وقت مبكر.</li>
+                            <li>تُخصص <strong>(100)</strong> درجة لسلوك الطالب و <strong>(100)</strong> درجة لمواظبته.</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ============= المادة السادسة: المرحلة الثانوية ============= -->
+            <article class="article" id="article-6">
+                <header class="article-header">
+                    <span class="article-num"><i class="fas fa-bookmark"></i> المادة السادسة</span>
+                    <h2 class="article-title">
+                        <span class="icon"><i class="fas fa-user-graduate"></i></span>
+                        <span>التقويم في المرحلة الثانوية</span>
+                    </h2>
+                </header>
+                <div class="article-body">
+                    <ol class="item-list">
+                        <li>يُقوَّم التحصيل الدراسي للطالب تقويماً متنوعاً قبلياً وتكوينياً وختامياً.</li>
+                        <li>يستخدم المعلم أدوات وأساليب التقويم المتنوعة والمناسبة لكل مادة دراسية، ويوظف نتائجها بصورة تكوينية لأغراض تحسين تعلم وتعليم الطالب.</li>
+                        <li>تُخصص <strong>(100)</strong> درجة للمادة الدراسية.</li>
+                        <li>
+                            يُقوَّم التحصيل الدراسي للطالب وفق الآتي:
+                            <ul class="nested">
+                                <li>مواد تقوّم تقويماً تكوينياً فقط.</li>
+                                <li>
+                                    مواد تقوّم تقويماً تكوينياً وختامياً كالتالي:
+                                    <ul class="nested">
+                                        <li>أدوات تقويم تكوينية خلال الفترة الدراسية.</li>
+                                        <li>اختبار ختامي نهاية الفترة الدراسية.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            يُعد الطالب ناجحاً في المادة الدراسية إذا حقق شروط النجاح التالية:
+                            <ul class="nested">
+                                <li>حصوله على درجة النهاية الصغرى.</li>
+                                <li>حصوله على النسبة الشرطية.</li>
+                            </ul>
+                        </li>
+                        <li>يحصل الطالب على شهادة إتمام مرحلة الثانوية العامة؛ إذا حقق النجاح في جميع المواد الدراسية.</li>
+                        <li>يتم احتساب معدل الطالب في شهادة إتمام المرحلة الثانوية تراكمياً وفق الوزن النسبي المخصص لكل صف دراسي.</li>
+                        <li>تُخصص <strong>(100)</strong> درجة لسلوك الطالب و <strong>(100)</strong> درجة لمواظبته.</li>
+                        <li>تُخصص <strong>(100)</strong> درجة للعمل التطوعي.</li>
+                    </ol>
+                </div>
+            </article>
+
+            <!-- ============= المادة السابعة: تقويم ذوي الإعاقة ============= -->
+            <article class="article" id="article-7">
+                <header class="article-header">
+                    <span class="article-num"><i class="fas fa-bookmark"></i> المادة السابعة</span>
+                    <h2 class="article-title">
+                        <span class="icon"><i class="fas fa-universal-access"></i></span>
+                        <span>تقويم الطلاب ذوي الإعاقة</span>
+                    </h2>
+                </header>
+                <div class="article-body">
+                    <ol class="item-list">
+                        <li><strong>تتميز أدوات وأساليب التقويم</strong> في مجال الخدمات التعليمية للطلاب ذوي الإعاقة بخصوصية تناسب احتياجات كل فئة.</li>
+                        <li><strong>يمكن أن تجرى عمليات التقويم</strong> في أماكن مناسبة لكل فئة بشكل فردي أو جماعي، وفقاً لاحتياجاتهم وخصائصهم.</li>
+                        <li><strong>تستخدم أدوات التقويم</strong> الكتابية والشفهية والعملية لقياس أداء الطالب في مجال المعلومات المستهدفة.</li>
+                        <li><strong>يعطى الطالب الزمن الكافي</strong> المناسب لقدراته وإمكاناته الكتابية أو القرائية أثناء عملية التقويم.</li>
+                        <li><strong>يمكن - عند الضرورة -</strong> عدم الالتزام بمواعيد وفترات التقويم المحددة.</li>
+                        <li><strong>في حالة تعذر استخدام الأدوات</strong> والأساليب المحددة فإنه يمكن للمعلم تقويم الطالب بالطريقة التي يراها مناسبة لخصائصه واحتياجاته.</li>
+                        <li><strong>في حالة عدم استفادة الطالب</strong> مما يقدم له في فصل التعليم العام؛ يتم تقويمه في محتوى الخطة التعليمية الفردية.</li>
+                        <li><strong>يتولى معلم التربية الخاصة</strong> الإشراف على عمليات التقويم بالتعاون مع معلم التعليم العام.</li>
+                    </ol>
+
+                    <div class="info-box" style="margin-top: 24px;">
+                        <i class="fas fa-arrow-down info-icon"></i>
+                        <div class="info-box-content">
+                            <strong>ملاحظة:</strong>
+                            للاطلاع على الآلية التفصيلية لتقويم كل فئة من فئات الإعاقة (البصرية، السمعية، الفكرية، التوحد، فرط الحركة، الحركية، النطق، صعوبات التعلم، الذكاء الحدّي)، يُرجى الاطلاع على <a href="#annex" style="color: var(--emerald-deep); font-weight: 600; text-decoration: underline;">الملحق الخاص بآلية تقويم الطلاب ذوي الإعاقة</a> في نهاية الوثيقة.
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ============= المادة الثامنة: أحكام فنية ============= -->
+            <article class="article" id="article-8">
+                <header class="article-header">
+                    <span class="article-num"><i class="fas fa-bookmark"></i> المادة الثامنة</span>
+                    <h2 class="article-title">
+                        <span class="icon"><i class="fas fa-gavel"></i></span>
+                        <span>أحكام فنية</span>
+                    </h2>
+                </header>
+                <div class="article-body">
+                    <ol class="item-list">
+                        <li><strong>يُعد سلوك الطالب</strong> ومواظبته عنصرين من عناصر عملية التقويم.</li>
+                        <li><strong>يخضع الطالب</strong> الذي لم يحصل على فرصة التعليم، أو المنقطع عن الدراسة لبرنامج تقويمي يُحدد فيه مستواه الأكاديمي والصف المناسب لعمره.</li>
+                        <li><strong>يمكن للطالب التقدم</strong> بطلب إعادة إصدار شهادة إتمام الثانوية، وفق ضوابط وشروط محددة.</li>
+                        <li><strong>يحق للطالب</strong> الذي يبدي تفوقاً غير عادي الحصول على فرصة التسريع لصف أعلى مرة واحدة في كل مرحلة دراسية.</li>
+                        <li><strong>أسئلة الاختبارات ذات صفة سرية</strong>، ويُعد مسؤولاً عن سريتها كل من اطلع عليها بحكم عمله، أو وُكّل إليه أمر من أمورها، وتُعد الجهة المختصة الضوابط الكفيلة بضمان سريتها، والعقوبات التي تترتب على الإخلال بها.</li>
+                        <li><strong>تُحدد مستويات التقدير العام</strong>، والمدى المقابل لها من النسبة المئوية لنتيجة التقويم.</li>
+                        <li><strong>يُزود الطالب وولي أمره</strong> بنتيجة تحصيله الدراسي.</li>
+                        <li><strong>نتيجة تقويم الطالب</strong> مسألة تخصه وولي أمره والقائمين على تعليمه.</li>
+                        <li><strong>يتم التعامل مع غياب الطالب</strong> عن أداء الاختبار وحالات الغش وفق ضوابط وإجراءات محددة.</li>
+                        <li><strong>تُحلل نتائج الطلاب</strong> محكياً ومعيارياً وتوظف بفاعلية لأغراض تحسين تعلم الطالب، وتحسين طرائق التدريس.</li>
+                    </ol>
+                </div>
+            </article>
+
+            <!-- ============= المادة التاسعة: أحكام عامة ============= -->
+            <article class="article" id="article-9">
+                <header class="article-header">
+                    <span class="article-num"><i class="fas fa-bookmark"></i> المادة التاسعة</span>
+                    <h2 class="article-title">
+                        <span class="icon"><i class="fas fa-scroll"></i></span>
+                        <span>أحكام عامة</span>
+                    </h2>
+                </header>
+                <div class="article-body">
+                    <ol class="item-list">
+                        <li><strong>تتولى الإدارة العامة</strong> لتقويم الأداء المعرفي والمهاري وضع ضوابط استخدام أدوات وأساليب تقويم تكوينية وختامية مناسبة.</li>
+                        <li><strong>يتم التعامل مع تقويم</strong> حالات الطلاب التي لم يرد بها نص في هذه اللائحة بقرار يشتمل على آلية التقويم من الجهة المختصة.</li>
+                        <li><strong>اعتماد التعليم الإلكتروني</strong> بأنماطه المختلفة وفق ضوابط تعدها الوزارة.</li>
+                        <li><strong>تقوم الإدارة العامة</strong> لتقويم الأداء المعرفي والمهاري بتعديل مواد هذه اللائحة، وإصدار التشريعات المنظمة لها.</li>
+                        <li><strong>تسري هذه اللائحة</strong> على ما تم اعتماده من أنظمة تعليمية، وتُلغي كل ما يتعارض معها.</li>
+                    </ol>
+                </div>
+            </article>
+
+            <!-- ===== الملحق: آلية تقويم الطلاب ذوي الإعاقة ===== -->
+            <div class="mega-divider" id="annex">
+                <div class="ornament">
+                    <span class="line"></span>
+                    <i class="fas fa-star star"></i>
+                    <span class="line"></span>
+                </div>
+                <h2>الملحق &middot; آلية تقويم الطلاب ذوي الإعاقة</h2>
+                <p>
+                    حسب ما ورد بالمذكرة التفسيرية للائحة تقويم الطالب (القاعدة 12)، إعداد إدارة التربية الخاصة بالرياض،
+                    الإدارة العامة للتعليم بمنطقة الرياض، وزارة التعليم. تعد الاختبارات المدرسية من أهم أدوات تقويم الطالب
+                    وأكثرها شيوعاً واستخداماً، فالمعلم يطبقها ويأمل أن يتعرف من خلالها على نجاحه في عمله، وعلى جدوى
+                    الأساليب والطرائق التي يستخدمها.
+                </p>
+            </div>
+
+            <!-- بطاقات فئات الإعاقة -->
+            <div class="disability-grid">
+
+                <!-- 1. الإعاقة البصرية -->
+                <div class="disability-card">
+                    <div class="disability-head">
+                        <div class="disability-icon"><i class="fas fa-eye-low-vision"></i></div>
+                        <h3 class="disability-title">تقويم الطلاب ذوي الإعاقة البصرية</h3>
+                    </div>
+                    <div class="disability-body">
+                        <ul>
+                            <li>تناسب أساليب وأدوات التقويم الخصائص الحسية المتوفرة لدى الطلاب ذوي العوق البصري والتي تعتمد على اللمس والسمع والبقايا البصرية.</li>
+                            <li>تتم الاختبارات التقويمية بواحد من الأساليب: الكتابة والقراءة بأسلوب برايل، أو بالأسلوب الشفهي، أو تسجيل أسئلة الاختبار والإجابة عنها بالوسائل المناسبة.</li>
+                            <li>الاستعانة بقارئ كاتب مبصر، والاستفادة من المعينات البصرية لضعاف البصر.</li>
+                            <li>مراعاة المرونة عند تقويم الطلاب المحولين حديثاً من التعليم العام من حيث الموازنة بين حداثتهم في تعلم بعض المهارات مثل القراءة والكتابة بخط برايل ومتطلبات بعض المواد الدراسية.</li>
+                            <li>تشكل لجنة برئاسة قائد المدرسة أو من ينوب عنه وعضوية المختص بالكتابة من وإلى خط برايل ومعلم المادة في كل مدرسة يوجد بها برنامج دمج للمعاقين بصرياً.</li>
+                            <li>تجهيز الأسئلة بما يناسب المعاقين بصرياً (برايل للمكفوفين، وخط مكبر لضعاف البصر).</li>
+                            <li>نقل إجابات الطلاب المكفوفين من خط برايل إلى الخط العادي، ليتمكن المعلم من التصحيح.</li>
+                            <li>استخدام نفس الأسئلة التي تعد لاختبارات طلاب التعليم العام، وفي حالة وجود خرائط أو رسومات أو جداول يُتشاور مع المعلم المختص لمعرفة إمكانية إخراج ذلك بخط برايل أو تعذره، فإذا تعذر ذلك فعلى معلم المادة وضع البديل المناسب.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 2. الإعاقة السمعية -->
+                <div class="disability-card">
+                    <div class="disability-head">
+                        <div class="disability-icon"><i class="fas fa-ear-deaf"></i></div>
+                        <h3 class="disability-title">تقويم الطلاب ذوي الإعاقة السمعية</h3>
+                    </div>
+                    <div class="disability-body">
+                        <ul>
+                            <li>تناسب أساليب التقويم الخصائص الحسية المتوفرة لدى الطلاب ذوي العوق السمعي والتي تعتمد على حاسة البصر والبقايا السمعية.</li>
+                            <li>تتم الاختبارات التقويمية بطرائق التواصل المختلفة مثل: قراءة الشفاه - التلميح - اللفظ المنغم - الإشارة الوصفية - أبجدية الإصابع الإشارية - أو بطريقة التواصل الكلي، بالإضافة إلى الأساليب الكتابية العادية والتقنية كالحاسب الآلي.</li>
+                            <li>استخدام الأسئلة الموضوعية المباشرة والواضحة والابتعاد عن الأسئلة المقالية والمركبة والأسئلة اللفظية التي تحتاج إلى حصيلة لغوية.</li>
+                            <li>لا يتأثر التقويم بمسألة وصحة نطق الحروف ومخارج الصوت في الاختبارات الشفهية ويمكن استبدالها كتابية أو إشارية في حال تعذر التقويم.</li>
+                            <li>لا يتأثر التقويم بالتركيب البنائي للغة المكتوبة من الصم وتنميقه للصياغات وخاصة في المواد الأدبية والاجتماعية وعدم محاسبته على الأخطاء الإملائية والنحوية إلا إذا كان الاختبار يقيس مستوى الإملاء.</li>
+                            <li>يراعى عند الحاجة ترجمة السؤال بالإشارة الوصفية للصم لإيصال المعنى المطلوب في بعض الأسئلة التي يصعب فهمها.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 3. الإعاقة الفكرية -->
+                <div class="disability-card">
+                    <div class="disability-head">
+                        <div class="disability-icon"><i class="fas fa-brain"></i></div>
+                        <h3 class="disability-title">تقويم الطلاب ذوي الإعاقة الفكرية</h3>
+                    </div>
+                    <div class="disability-body">
+                        <ul>
+                            <li>تناسب أساليب التقويم الخصائص الجسمية والعقلية والنفسية لذوي العوق العقلي والتي تعتمد في المقام الأول على التكامل الحسي.</li>
+                            <li>تتم عملية تقويم الطلاب في جميع المراحل وفقاً للتقويم المستمر الذي يمكن من خلاله تطبيق العديد من أساليب التقويم المختلفة كالاختبار الكتابي أو الشفهي أو اختبارات الملاحظة.</li>
+                            <li>في حال تعذر استفادة الطالب ذي العوق الفكري مما قدم له في الصف العادي فيقوّم تقويماً يتناسب مع قدراته.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 4. اضطراب طيف التوحد -->
+                <div class="disability-card">
+                    <div class="disability-head">
+                        <div class="disability-icon"><i class="fas fa-puzzle-piece"></i></div>
+                        <h3 class="disability-title">تقويم الطلاب ذوي اضطراب طيف التوحد</h3>
+                    </div>
+                    <div class="disability-body">
+                        <ul>
+                            <li>تتناسب أساليب وأدوات التقويم مع الخصائص التواصلية والاجتماعية والسلوكية للطلاب ذوي التوحد مع التركيز على أساليب التكامل الحسي.</li>
+                            <li>تستخدم الأساليب التواصلية المختلفة مع الطلاب ذوي التوحد مثل: (الكتابة والقراءة ولوحة التواصل) أثناء تقويمهم، حسب خصائص وإمكانات واحتياجات كل طالب على حدة.</li>
+                            <li>يمكن تجزئة محتويات الاختبار إلى فترات قصيرة تتناسب مع قدرات واحتياجات كل طالب على حدة.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 5. فرط الحركة وتشتت الانتباه -->
+                <div class="disability-card">
+                    <div class="disability-head">
+                        <div class="disability-icon"><i class="fas fa-bolt"></i></div>
+                        <h3 class="disability-title">تقويم الطلاب ذوي اضطراب فرط الحركة وتشتت الانتباه</h3>
+                    </div>
+                    <div class="disability-body">
+                        <ul>
+                            <li>تتناسب أساليب وأدوات التقويم مع الخصائص السلوكية والانفعالية للطلاب ذوي الاضطرابات السلوكية والانفعالية.</li>
+                            <li>يقوم معلم التربية الخاصة بتوزيع محتوى الاختبار على فترات زمنية قصيرة تتناسب مع مستوى الانتباه والتركيز لدى الطالب.</li>
+                            <li>يسمح للطالب الاختبار في ركن خاص بعيد عن المشتتات.</li>
+                            <li>يسمح للطالب بالتوقف والتحرك أثناء أداء الاختبار وذلك حسب مستواه وقدرته على المكوث في المقعد.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 6. الإعاقة الحركية والبدنية والصحية -->
+                <div class="disability-card">
+                    <div class="disability-head">
+                        <div class="disability-icon"><i class="fas fa-wheelchair"></i></div>
+                        <h3 class="disability-title">تقويم الطلاب ذوي الإعاقة الحركية والبدنية والصحية</h3>
+                    </div>
+                    <div class="disability-body">
+                        <ul>
+                            <li>للطالب الحق في استخدام الأطراف الطبيعية والصناعية والوسائل والأجهزة التعويضية المختلفة أثناء عملية التقويم.</li>
+                            <li>للطالب الذي تستدعي ظروفه الصحية أن يؤدي الاختبار في المكان والزمان المناسبين لحالته.</li>
+                            <li>يختبر مع الطلاب العاديين كلما كان ذلك ممكناً.</li>
+                            <li>يمكن تجزئة الاختبار الواحد على فترات قصيرة تبعاً لظروف الطالب البدنية والصحية.</li>
+                            <li>يكون الاختبار لمهارة الإملاء على شكل أسئلة تحريرية يجيب عنها الطالب شفهياً.</li>
+                            <li>يعفى الطالب من اختبار المواد العملية والرسم الكتابي.</li>
+                            <li>يختبر الطالب الذي لا يستطيع الكتابة بأسئلة يتم الإجابة عنها شفهياً ويكلف قائد المدرسة أحد منسوبي المدرسة بالكتابة عن الطالب.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 7. اضطراب النطق والكلام -->
+                <div class="disability-card">
+                    <div class="disability-head">
+                        <div class="disability-icon"><i class="fas fa-comment-dots"></i></div>
+                        <h3 class="disability-title">تقويم الطلاب ذوي اضطراب النطق والكلام</h3>
+                    </div>
+                    <div class="disability-body">
+                        <ul>
+                            <li>يجب مراعاة اضطرابات النطق والكلام التي يعاني منها الطالب وعدم مقارنته أثناء التقويم بالطالب العادي وعدم محاسبته على الأخطاء الناتجة عن تلك الاضطرابات.</li>
+                            <li>يمكن للمعلم استبدال الاختبارات الشفهية باختبارات تحريرية إذا دعت الحاجة إلى ذلك وفق ما تراه لجنة التوجيه والإرشاد.</li>
+                            <li>يمكن للمعلم الاستعانة بمعلم تدريبات النطق والكلام (إخصائي اضطرابات التواصل) أثناء عملية التقويم.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 8. صعوبات التعلم -->
+                <div class="disability-card">
+                    <div class="disability-head">
+                        <div class="disability-icon"><i class="fas fa-book-reader"></i></div>
+                        <h3 class="disability-title">تقويم الطلاب ذوي صعوبات التعلّم</h3>
+                    </div>
+                    <div class="disability-body">
+                        <ul>
+                            <li>الالتزام بتطبيق أدوات القياس والتقويم للطلاب من فئة صعوبات التعلم الذين تم تشخيصهم ضمن هذه الفئة وتقدم لهم الخدمات المساندة في حال عدم توفر برامج صعوبات تعلم في مدارسهم (الابتدائية، المتوسطة، الثانوية).</li>
+                            <li>تطبيق أدوات القياس والتقويم بشكل فردي وفق احتياجات كل طالب ويوثق ذلك في ضبارة لجنة صعوبات التعلم ويوقع عليه أعضاء اللجنة.</li>
+                            <li>في جميع حالات التقويم يتولى معلم صعوبات التعلم الإشراف على اختبارات التقويم للطلاب في المواد التي يتلقون فيها خدمات التربية الخاصة.</li>
+                            <li>في حالة عدم استفادة الطالب مما يقدم له في الفصل العادي فإنه يتم تقويمه في محتوى الخطة التربوية الفردية ويتولى معلم التربية الخاصة إعداد الأسئلة بالتنسيق مع معلم المادة.</li>
+                            <li>في حالة استفادة الطالب مما يقدم له في الفصل العادي في مادة معينة فإنه يتم تقويمه في محتوى الخطة التربوية الفردية ومحتوى المواضيع التي يتعلمها في الفصل العادي في تلك المادة ويراعى في ذلك أن تُعد الأسئلة بالتشاور بين معلم المادة ومعلم التربية الخاصة.</li>
+                            <li>في المواد ذات الكثافة في المحتوى فإنه يتم التركيز على المفاهيم الأساسية في أثناء التقويم.</li>
+                            <li>في حالة كون قراءة الأسئلة مشكلة لدى الطلاب فإنه يجب أن تقرأ لهم بصوت عالٍ للتأكد من فهمهم للمطلوب قبل الإجابة.</li>
+                            <li>إذا كانت الكتابة تصعب على الطالب فيجب أن يتم تقويمه شفوياً أو تكتب له الإجابة أو تسجل على شريط وفق ما تقتضيه مصلحة الطالب.</li>
+                            <li>في حالة تأثير صعوبات التعلم لدى الطالب على أدائه في مواد أخرى لا يتلقى فيها خدمات خاصة كتأثير صعوبات التعلم في القراءة على أدائه في العلوم أو القرآن الكريم فإنه يتم تقويمه بالتعاون بين معلم المادة ومعلم التربية الخاصة، وذلك باختيار الطريقة التي تناسب قدرات واحتياجات ذلك الطالب.</li>
+                            <li>في حالة وجود مشكلة في الانتباه لدى الطالب بالإضافة إلى صعوبات التعلم فإنه يجب تقويمه بشكل فردي بعيداً عن أي مصدر تشتيت للانتباه.</li>
+                            <li>يعطى الطالب فترات راحة في أثناء التقويم تبعاً لقدرته على التركيز والاستمرار في أداء المهمة.</li>
+                            <li>في حالة وجود نشاط زائد لدى الطالب بالإضافة إلى صعوبات التعلم، فإنه يجب السماح له بالقيام من المقعد والمشي ثم الجلوس مرة أخرى في أثناء التقويم.</li>
+                            <li>في حالة كون الطالب يعاني من صعوبة في الحفظ فإنه يجب تقويمه بتجزئة مادة الحفظ إلى أجزاء قصيرة تتناسب وقدرته على الحفظ ويتم تقويمه في كل جزء بعد مساعدته في حفظه قبيل التقويم بفترة وجيزة وفي حالة تعذر ذلك فإنه يتم إعفاؤه من الحفظ والاكتفاء في تقويمه بإدراكه للمفاهيم العامة للموضوع.</li>
+                            <li>في حالة كون تعدد المواضيع في المادة الواحدة يُشكل على الطالب فإنه يجب تجزئة المواضيع وتقويم الطالب في كل موضوع على حدة أو ضم أكثر من موضوع مع بعضها البعض وفق قدرة الطالب.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 9. الذكاء الحدي -->
+                <div class="disability-card">
+                    <div class="disability-head">
+                        <div class="disability-icon"><i class="fas fa-lightbulb"></i></div>
+                        <h3 class="disability-title">تقويم الطلاب ذوي الذكاء الحدّي (برنامج يسير التعليمي)</h3>
+                    </div>
+                    <div class="disability-body">
+                        <ul>
+                            <li>تكون اختباراته مركزة على المفاهيم للمادة الدراسية.</li>
+                            <li>يُعطى الفرصة لإعادة الاختبار في الاختبارات القصيرة (الشفوية - التحريرية).</li>
+                            <li>يُراعى وضع الطالب عند مطالبته بإعداد المشاريع والبحوث والتقارير التي تتطلبها المادة بعدم مقارنته بالطلاب الآخرين.</li>
+                            <li>في المواد التي تتطلب النطق، يؤخذ بعين الاعتبار عدم مقارنته في الأخطاء كالطالب العادي ويحدد له مستوى معين، فإن كان يعاني من اضطرابات النطق والكلام، لا يتم مقارنته أثناء التقويم بالطالب العادي ومحاسبته على الأخطاء الناتجة عن هذه الإضطرابات.</li>
+                            <li>في اختبارات الجانب العملي من المواد ذات الجانبين، يمكن إشراكه مع أحد زملائه العاديين وتقييمه بموجبه.</li>
+                            <li>لا يُظهر المعلم أو المعلمون أي نتائج سلبية للطالب أمام زملائه.</li>
+                            <li>يمكن للمعلم اختبار الطالب في مكان مستقل إذا دعت الحاجة لذلك.</li>
+                            <li>يجب تجزئة المواضيع وتقويم الطالب في كل موضوع على حدة في حال كون المادة متعددة المواضيع أو ضم أكثر من موضوع مع بعضها البعض وفق قدرة الطالب.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- لوحة الإغلاق -->
+            <div class="summary-banner">
+                <h3><i class="fas fa-quote-right"></i> رؤية اللائحة</h3>
+                <p>
+                    تؤكد هذه اللائحة على الانتقال من مفهوم "التقويم للقياس" إلى "التقويم من أجل التعلم"، بما يحقق العدالة وتكافؤ الفرص لجميع الطلاب
+                    دون استثناء، ويوظف نتائج التقويم بفاعلية في تحسين تعلم الطالب وتطوير طرائق التدريس، مع مراعاة خصائص واحتياجات كل فئة
+                    من الطلاب لا سيما ذوي الإعاقة. تسري هذه اللائحة على ما تم اعتماده من أنظمة تعليمية، وتُلغي كل ما يتعارض معها.
+                </p>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- ===== التذييل ===== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-brand-head">
+                    <div class="footer-brand-mark">
+                        <img src="https://upload.wikimedia.org/wikipedia/ar/1/17/Saudi_Ministry_of_Education_Logo_2025.png"
+                             alt="شعار وزارة التعليم"
+                             style="width:100%; height:100%; object-fit:contain;"
+                             onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'fas fa-graduation-cap\' style=\'color: var(--emerald-dark);\'></i>';">
+                    </div>
+                    <div>
+                        <h4>وزارة التعليم</h4>
+                        <div class="sub">المملكة العربية السعودية</div>
+                    </div>
+                </div>
+                <p>
+                    وثيقة لائحة تقويم الطالب في التعليم العام 2025، صادرة عن الإدارة العامة لتقويم الأداء المعرفي والمهاري،
+                    مع آلية تقويم الطلاب ذوي الإعاقة، تماشياً مع رؤية المملكة 2030 لتطوير منظومة التعليم.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h5>البيانات الرسمية</h5>
+                <ul style="font-size: 0.88rem;">
+                    <li style="display: block; padding: 6px 0; border-bottom: 1px dashed rgba(201, 161, 74, 0.12);">
+                        <div style="color: rgba(246, 244, 237, 0.55); font-size: 0.78rem; margin-bottom: 3px;">الإدارة</div>
+                        <div style="color: var(--gold-light); font-weight: 500;">الإدارة العامة للتعليم بمنطقة الرياض</div>
+                    </li>
+                    <li style="display: block; padding: 6px 0; border-bottom: 1px dashed rgba(201, 161, 74, 0.12);">
+                        <div style="color: rgba(246, 244, 237, 0.55); font-size: 0.78rem; margin-bottom: 3px;">المدرسة</div>
+                        <div style="color: var(--gold-light); font-weight: 500;">ابتدائية ومتوسطة الجبيلة</div>
+                    </li>
+                    <li style="display: block; padding: 6px 0; border-bottom: 1px dashed rgba(201, 161, 74, 0.12);">
+                        <div style="color: rgba(246, 244, 237, 0.55); font-size: 0.78rem; margin-bottom: 3px;">مدير المدرسة</div>
+                        <div style="color: var(--gold-light); font-weight: 500;">الأستاذ / مفلح الشهراني</div>
+                    </li>
+                    <li style="display: block; padding: 6px 0;">
+                        <div style="color: rgba(246, 244, 237, 0.55); font-size: 0.78rem; margin-bottom: 3px;">إعداد</div>
+                        <div style="color: var(--gold-light); font-weight: 500;">الأستاذ / نايف المطيري</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h5>روابط وأقسام</h5>
+                <ul>
+                    <li><a href="#article-1"><i class="fas fa-chevron-left"></i> التعريفات الأساسية</a></li>
+                    <li><a href="#article-3"><i class="fas fa-chevron-left"></i> مرتكزات التقويم</a></li>
+                    <li><a href="#article-5"><i class="fas fa-chevron-left"></i> مراحل التعليم العام</a></li>
+                    <li><a href="#annex"><i class="fas fa-chevron-left"></i> آلية ذوي الإعاقة</a></li>
+                    <li><a href="#" onclick="window.print(); return false;"><i class="fas fa-chevron-left"></i> طباعة الوثيقة</a></li>
+                    <li><a href="#topbar"><i class="fas fa-chevron-left"></i> العودة لأعلى الصفحة</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div>© 2025 وزارة التعليم &middot; المملكة العربية السعودية &middot; جميع الحقوق محفوظة</div>
+            <div class="badge"><i class="fas fa-shield-halved"></i> وثيقة رسمية تنظيمية</div>
+        </div>
+    </footer>
+
+    <!-- زر العودة للأعلى -->
+    <button class="back-to-top" id="backToTop" aria-label="العودة للأعلى">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ===== JavaScript ===== -->
+    <script>
+        // ===== ظل شريط التنقل عند التمرير =====
+        const topbar = document.getElementById('topbar');
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                topbar.classList.add('scrolled');
+                backToTop.classList.add('visible');
+            } else {
+                topbar.classList.remove('scrolled');
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // ===== زر العودة للأعلى =====
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ===== تفعيل الرابط النشط في الفهرس بناءً على القسم المرئي =====
+        const tocLinks = document.querySelectorAll('.toc-list a');
+        const sections = document.querySelectorAll('.article, .mega-divider');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    tocLinks.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+                    });
+                }
+            });
+        }, { rootMargin: '-30% 0px -60% 0px' });
+
+        sections.forEach(s => observer.observe(s));
+
+        // ===== خاصية البحث في الوثيقة =====
+        const searchInput = document.getElementById('searchInput');
+        const articles = document.querySelectorAll('.article, .disability-card');
+
+        function debounce(fn, delay) {
+            let t;
+            return function (...args) {
+                clearTimeout(t);
+                t = setTimeout(() => fn.apply(this, args), delay);
+            };
+        }
+
+        const handleSearch = debounce(() => {
+            const q = searchInput.value.trim().toLowerCase();
+            let visibleCount = 0;
+
+            articles.forEach(art => {
+                const text = art.innerText.toLowerCase();
+                if (q === '' || text.includes(q)) {
+                    art.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    art.classList.add('hidden');
+                }
+            });
+
+            // إذا لم يجد شيئاً، نعرض رسالة
+            const noResult = document.getElementById('noResult');
+            if (q !== '' && visibleCount === 0) {
+                if (!noResult) {
+                    const div = document.createElement('div');
+                    div.id = 'noResult';
+                    div.className = 'info-box';
+                    div.style.cssText = 'margin: 20px 0; text-align: center;';
+                    div.innerHTML = '<i class="fas fa-search info-icon"></i><div class="info-box-content"><strong>لا توجد نتائج</strong>لم يتم العثور على نتائج مطابقة للبحث.</div>';
+                    document.getElementById('contentArea').prepend(div);
+                }
+            } else if (noResult) {
+                noResult.remove();
+            }
+        }, 200);
+
+        searchInput.addEventListener('input', handleSearch);
+
+        // ===== رسوم متحركة للظهور التدريجي =====
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = (i * 60) + 'ms';
+                    entry.target.classList.add('reveal');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.stat-card, .disability-card, .def-card').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // ===== الأرقام العربية في الترقيم =====
+        // تحويل الأرقام في item-list إلى عربية باستخدام CSS counter style
+        const style = document.createElement('style');
+        style.textContent = `
+            .item-list { counter-reset: item-counter; }
+            .item-list > li::before {
+                content: counter(item-counter, arabic-indic);
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
