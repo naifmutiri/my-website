@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>منصة عائلة نايف المطيري الطبية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Premium Dark Palette */
+  --bg-main: #0a0c10;
+  --bg-card: rgba(22, 25, 33, 0.75);
+  --bg-glass: rgba(26, 30, 40, 0.6);
+  
+  --gold-primary: #d4af37;
+  --gold-light: #f3e5ab;
+  --gold-dim: rgba(212, 175, 55, 0.15);
+  
+  --text-main: #f8f9fa;
+  --text-muted: #8b92a5;
+  --text-gold: #e2c779;
+  
+  /* Clinic Theme Colors */
+  --c-admission: #e63946; 
+  --c-physio: #2a9d8f;    
+  --c-endo: #9d4edd;      
+  --c-preemie: #4cc9f0;   
+  --c-eye: #f4a261;       
+  --c-ortho: #e76f51;     
+  --c-default: #d4af37;
+
+  --border-light: rgba(255, 255, 255, 0.08);
+  --shadow-glow: 0 0 25px rgba(212, 175, 55, 0.08);
+  --shadow-card: 0 12px 30px rgba(0, 0, 0, 0.5);
+  
+  --radius-md: 16px;
+  --radius-lg: 24px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; background-color: var(--bg-main); color: var(--text-main); font-family: 'Alexandria', sans-serif; overflow: hidden; }
+
+.bg-glow { position: fixed; top: -10%; left: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(212, 175, 55, 0.03) 0%, rgba(10, 12, 16, 0) 70%); border-radius: 50%; pointer-events: none; z-index: 0; }
+
+/* ── APP LAYOUT ── */
+.app { display: flex; flex-direction: column; height: 100%; max-width: 480px; margin: 0 auto; position: relative; z-index: 1; border-left: 1px solid var(--border-light); border-right: 1px solid var(--border-light); background: #0a0c10; }
+.safe-top { height: env(safe-area-inset-top, 44px); flex-shrink: 0; }
+.content { flex: 1; overflow-y: auto; overflow-x: hidden; scroll-behavior: smooth; padding-bottom: 120px; }
+.content::-webkit-scrollbar { display: none; }
+
+/* ── HEADER ── */
+.header { padding: 24px 24px 10px; display: flex; justify-content: space-between; align-items: flex-end; }
+.hdr-greeting { font-size: 11px; color: var(--text-gold); letter-spacing: 1px; margin-bottom: 4px; font-weight: 600; }
+.hdr-title { font-size: 24px; font-weight: 700; color: var(--text-main); }
+
+/* ── ANALYTICS BAR (EXECUTIVE FEATURE) ── */
+.analytics-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 24px; margin-top: 16px; }
+.analytics-card { background: var(--bg-glass); border: 1px solid var(--border-light); padding: 12px; border-radius: var(--radius-md); text-align: center; }
+.an-num { font-family: 'IBM Plex Sans Arabic', sans-serif; font-size: 18px; font-weight: 700; color: var(--text-main); }
+.an-lbl { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+/* ── SECTIONS ── */
+.sec-title { padding: 0 24px; font-size: 13px; font-weight: 600; color: var(--text-muted); margin: 24px 0 14px; display: flex; justify-content: space-between; align-items: center; }
+.btn-text { font-size: 12px; color: var(--text-gold); cursor: pointer; font-weight: 500; display: flex; align-items: center; gap: 4px; }
+
+/* ── PROFILES ── */
+.profiles-scroll { display: flex; gap: 12px; padding: 0 24px 10px; overflow-x: auto; }
+.profiles-scroll::-webkit-scrollbar { display: none; }
+.profile-card { flex-shrink: 0; min-width: 105px; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 12px; text-align: center; transition: all 0.2s; cursor: pointer; }
+.profile-card.active { border-color: var(--gold-primary); background: rgba(212, 175, 55, 0.06); box-shadow: var(--shadow-glow); }
+.pc-av { width: 34px; height: 34px; border-radius: 50%; background: var(--bg-main); border: 1px solid var(--border-light); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--gold-primary); margin: 0 auto 8px; }
+.pc-name { font-size: 13px; font-weight: 600; color: var(--text-main); }
+.pc-file { font-family: 'IBM Plex Sans Arabic', sans-serif; font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+/* ── TICKETS ── */
+.appointments-sec { padding: 0 24px; }
+.appt-ticket { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-lg); margin-bottom: 16px; position: relative; box-shadow: var(--shadow-card); overflow: hidden; display: flex; flex-direction: column; }
+.clinic-line { position: absolute; top: 0; right: 0; bottom: 0; width: 5px; }
+.appt-ticket.is-admission { border-color: rgba(230, 57, 70, 0.35); }
+
+.tkt-header { padding: 16px 20px 12px; display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid var(--border-light); }
+.tkt-clinic-badge { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 10px; font-weight: 700; margin-bottom: 6px; }
+.tkt-patient { font-size: 14px; font-weight: 700; color: var(--text-main); }
+.tkt-doctor { font-size: 12px; color: var(--text-gold); margin-top: 2px; }
+
+.tkt-datetime { display: flex; flex-direction: column; align-items: flex-end; text-align: left; }
+.tkt-day-name { font-size: 12px; color: var(--text-gold); font-weight: 600; margin-bottom: 2px; }
+.tkt-time { font-family: 'IBM Plex Sans Arabic', sans-serif; font-size: 18px; font-weight: 700; color: var(--text-main); direction: ltr; }
+.tkt-date-greg { font-family: 'IBM Plex Sans Arabic', sans-serif; font-size: 11px; color: var(--text-main); margin-top: 4px; }
+.tkt-date-hijri { font-family: 'IBM Plex Sans Arabic', sans-serif; font-size: 10px; color: var(--text-muted); }
+
+.tkt-body { padding: 12px 20px; background: rgba(0,0,0,0.15); display: flex; flex-direction: column; gap: 8px; }
+.tkt-row { display: flex; align-items: center; gap: 10px; }
+.tkt-icon { width: 22px; height: 22px; border-radius: 6px; background: var(--bg-glass); display: flex; align-items: center; justify-content: center; }
+.tkt-icon svg { width: 11px; height: 11px; stroke: var(--text-muted); fill: none; stroke-width: 2; }
+.tkt-text { font-size: 12px; color: var(--text-main); }
+
+.tkt-footer { padding: 8px 20px; border-top: 1px solid rgba(255,255,255,0.03); display: flex; justify-content: flex-end; gap: 10px; background: rgba(0,0,0,0.2); }
+.tkt-btn { font-size: 11px; color: var(--accent-red); cursor: pointer; padding: 4px 8px; border-radius: 4px; display: flex; align-items: center; gap: 4px; font-weight: 500; }
+.tkt-btn:hover { background: rgba(230, 57, 70, 0.1); }
+
+/* ── BOTTOM NAVIGATION & FAB ── */
+.bottom-nav { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(10, 12, 16, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-top: 1px solid var(--border-light); padding: 12px 30px calc(12px + env(safe-area-inset-bottom, 10px)); display: flex; justify-content: space-between; align-items: center; z-index: 50; }
+.nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-muted); font-size: 10px; cursor: pointer; }
+.nav-item.active { color: var(--gold-primary); }
+.nav-item svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; }
+.nav-fab { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-light), var(--gold-primary)); display: flex; align-items: center; justify-content: center; transform: translateY(-18px); cursor: pointer; border: 4px solid var(--bg-main); box-shadow: 0 8px 20px rgba(212, 175, 55, 0.25); }
+.nav-fab svg { width: 22px; height: 22px; stroke: #000; fill: none; stroke-width: 2.5; }
+
+/* ── LUXURY MODALS ── */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 100; display: none; opacity: 0; transition: opacity 0.25s; }
+.modal-overlay.open { display: block; opacity: 1; }
+.modal-content { position: absolute; bottom: 0; left: 50%; transform: translate(-50%, 100%); width: 100%; max-width: 480px; height: 80vh; background: var(--bg-main); border-top-left-radius: var(--radius-lg); border-top-right-radius: var(--radius-lg); border-top: 1px solid var(--gold-primary); padding: 24px; transition: transform 0.3s cubic-bezier(0.1, 0.9, 0.2, 1); overflow-y: auto; }
+.modal-overlay.open .modal-content { transform: translate(-50%, 0); }
+.modal-handle { width: 45px; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin: 0 auto 20px; }
+
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 11px; color: var(--text-gold); margin-bottom: 6px; font-weight: 500; }
+.form-control { width: 100%; background: var(--bg-glass); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 12px 14px; color: var(--text-main); font-family: 'Alexandria', sans-serif; font-size: 13px; outline: none; }
+.form-control:focus { border-color: var(--gold-primary); }
+select.form-control { appearance: none; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%238b92a5" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4"/></svg>'); background-repeat: no-repeat; background-position: left 14px center; }
+
+.btn-primary { width: 100%; background: linear-gradient(135deg, var(--gold-primary), #b08d29); color: #000; border: none; padding: 14px; border-radius: var(--radius-md); font-size: 14px; font-weight: 700; font-family: 'Alexandria', sans-serif; cursor: pointer; margin-top: 8px; }
+
+/* Member Manager Elements */
+.member-editor-row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; align-items: center; margin-bottom: 12px; background: rgba(255,255,255,0.02); padding: 8px; border-radius: 8px; border: 1px solid var(--border-light); }
+.btn-del-sm { color: #e63946; background: none; border: none; cursor: pointer; padding: 4px; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in-up { animation: fadeInUp 0.4s ease forwards; opacity: 0; }
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+
+<div class="app">
+  <div class="safe-top"></div>
+  
+  <div class="header">
+    <div>
+      <div class="hdr-greeting">مستشفى الملك عبدالله الجامعي</div>
+      <div class="hdr-title">عائلة نايف المطيري</div>
+    </div>
+  </div>
+
+  <div class="analytics-bar">
+    <div class="analytics-card">
+      <div class="an-num" id="stat-total">0</div>
+      <div class="an-lbl">إجمالي المواعيد</div>
+    </div>
+    <div class="analytics-card" style="border-color: rgba(230,57,70,0.2)">
+      <div class="an-num" id="stat-admissions" style="color: var(--c-admission)">0</div>
+      <div class="an-lbl">حالات التنويم</div>
+    </div>
+    <div class="analytics-card" style="border-color: rgba(157,78,221,0.2)">
+      <div class="an-num" id="stat-remote" style="color: var(--c-endo)">0</div>
+      <div class="an-lbl">مواعيد عن بعد</div>
+    </div>
+  </div>
+
+  <div class="content">
+    
+    <div class="sec-title">
+      <span>سجلات المراجعين</span>
+      <span class="btn-text" onclick="openMembersModal()">⚙️ إدارة الأفراد</span>
+    </div>
+    <div class="profiles-scroll" id="profiles-container"></div>
+
+    <div class="sec-title" style="margin-top: 24px;">
+      <span>جدول المواعيد المعتمدة</span>
+    </div>
+    <div class="appointments-sec" id="appointments-container"></div>
+  </div>
+
+  <div class="bottom-nav">
+    <div class="nav-item active" onclick="filterByMember('all')">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <span>الرئيسية</span>
+    </div>
+    <div class="nav-fab" onclick="openAddAppointmentModal()">
+      <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </div>
+    <div class="nav-item" onclick="exportData()">
+      <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      <span>نسخة احتياطية</span>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-members" onclick="if(event.target === this) closeMembersModal()">
+  <div class="modal-content">
+    <div class="modal-handle"></div>
+    <div class="hdr-title" style="font-size: 20px; margin-bottom: 20px; text-align: center;">إدارة أفراد العائلة</div>
+    <div id="member-editor-list" style="max-height: 50vh; overflow-y: auto; margin-bottom: 16px;"></div>
+    <button class="btn-primary" style="background: var(--bg-glass); color: var(--text-gold); border: 1px dashed var(--gold-primary);" onclick="addNewMemberField()">+ إضافة فرد جديد</button>
+    <button class="btn-primary" onclick="saveMembersData()">حفظ التغييرات وتحديث البيانات</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-appointment" onclick="if(event.target === this) closeApptModal()">
+  <div class="modal-content">
+    <div class="modal-handle"></div>
+    <div class="hdr-title" style="font-size: 20px; margin-bottom: 20px; text-align: center;">إضافة موعد جديد</div>
+    
+    <div class="form-group">
+      <label>المراجع</label>
+      <select class="form-control" id="inp-appt-member"></select>
+    </div>
+    <div class="form-group">
+      <label>العيادة / التخصص</label>
+      <input type="text" class="form-control" id="inp-appt-clinic" placeholder="مثال: متابعة الأطفال الخدج">
+    </div>
+    <div class="form-group">
+      <label>الطبيب المعالج / الجهة</label>
+      <input type="text" class="form-control" id="inp-appt-doctor" placeholder="مثال: د. نوره السليم">
+    </div>
+    <div class="form-group">
+      <label>الموقع داخل المستشفى</label>
+      <input type="text" class="form-control" id="inp-appt-location" placeholder="مثال: العيادات الخارجية">
+    </div>
+    <div style="display: flex; gap: 12px;">
+      <div class="form-group" style="flex: 1;">
+        <label>التاريخ (ميلادي)</label>
+        <input type="date" class="form-control" id="inp-appt-date">
+      </div>
+      <div class="form-group" style="flex: 1;">
+        <label>الوقت</label>
+        <input type="time" class="form-control" id="inp-appt-time">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>نوع الموعد (للتمييز البصري)</label>
+      <select class="form-control" id="inp-appt-type">
+        <option value="physio">علاج طبيعي</option>
+        <option value="preemie">أطفال خدج</option>
+        <option value="endo">غدد صماء / عيادة افتراضية</option>
+        <option value="eye">عيون وأطفال</option>
+        <option value="ortho">جراحة عظام</option>
+        <option value="admission">⚠️ إجراء طبي (تنويم)</option>
+      </select>
+    </div>
+    <button class="btn-primary" onclick="saveNewAppointment()">إصدار التذكرة الطبية</button>
+  </div>
+</div>
+
+<script>
+// --- INITIAL SYSTEM DATA (Strictly as per SMS) ---
+const defaultMembers = [
+  { id: 0, name: "نوح", fileNo: "0206574" },
+  { id: 1, name: "إبراهيم", fileNo: "0206576" },
+  { id: 2, name: "غيم", fileNo: "0100581" },
+  { id: 3, name: "بشرى", fileNo: "0097807" }
+];
+
+const defaultAppointments = [
+  { id: 1, mId: 2, clinic: "العلاج الطبيعي أطفال", doctor: "د. أروى العمر", location: "العيادات الخارجية", dateGreg: "2026-06-04", time: "14:00", typeCode: "physio", isAdmission: false },
+  { id: 2, mId: 3, clinic: "الغدد الصماء (عيادة افتراضية)", doctor: "د. محمد ابوعباه", location: "عن بُعد (هاتفياً) - الرجاء عدم الحضور", dateGreg: "2026-06-07", time: "15:40", typeCode: "endo", isAdmission: false },
+  { id: 3, mId: 0, clinic: "متابعة الأطفال الخدج", doctor: "د. نوره السليم", location: "العيادات الخارجية", dateGreg: "2026-06-07", time: "14:30", typeCode: "preemie", isAdmission: false },
+  { id: 4, mId: 1, clinic: "إجراء طبي (تنويم)", doctor: "مكتب التنويم", location: "منطقة انتظار مكتب التنويم الدور الأول", dateGreg: "2026-06-18", time: "09:15", typeCode: "admission", isAdmission: true },
+  { id: 5, mId: 0, clinic: "إجراء طبي (تنويم)", doctor: "مكتب التنويم", location: "منطقة انتظار مكتب التنويم الدور الأول", dateGreg: "2026-06-18", time: "09:30", typeCode: "admission", isAdmission: true },
+  { id: 6, mId: 1, clinic: "متابعة الأطفال الخدج", doctor: "د. نوره السليم", location: "العيادات الخارجية", dateGreg: "2026-07-12", time: "13:00", typeCode: "preemie", isAdmission: false },
+  { id: 7, mId: 2, clinic: "عيون الأطفال والحول", doctor: "د. أحمد الجلعود", location: "الطابق الأرضي - العيادات الخارجية", dateGreg: "2026-07-26", time: "15:00", typeCode: "eye", isAdmission: false },
+  { id: 8, mId: 2, clinic: "جراحة عظام الاطفال وترميم الاطراف", doctor: "د. امنه بالجون", location: "العيادات الخارجية", dateGreg: "2026-08-25", time: "14:15", typeCode: "ortho", isAdmission: false }
+];
+
+let members = JSON.parse(localStorage.getItem('nayef_family_members')) || defaultMembers;
+let appointments = JSON.parse(localStorage.getItem('nayef_family_appts')) || defaultAppointments;
+let currentFilter = 'all';
+
+const clinicColors = {
+  "admission": "var(--c-admission)", "physio": "var(--c-physio)", "endo": "var(--c-endo)",
+  "preemie": "var(--c-preemie)", "eye": "var(--c-eye)", "ortho": "var(--c-ortho)"
+};
+
+// --- AUTOMATIC DATE CALCULATION ENGINE ---
+function getSystemDateDetails(dateString, timeString) {
+  if(!dateString) return { dayName: '', hijri: '' };
+  const dateObj = new Date(dateString);
+  
+  // Calculate Day Name (الأحد، الإثنين...)
+  const dayName = dateObj.toLocaleDateString('ar-SA', { weekday: 'long' });
+  
+  // Calculate Accurate Hijri Date via Intl API
+  const hijri = dateObj.toLocaleDateString('ar-SA-u-ca-islamic-umalqura', {
+    day: 'numeric', month: 'long', year: 'numeric'
+  });
+  
+  // Format Time to 12-Hour format (ص / م)
+  let timeFormatted = '';
+  if(timeString) {
+    let [h, m] = timeString.split(':');
+    let hh = parseInt(h);
+    let ampm = hh >= 12 ? 'م' : 'ص';
+    hh = hh % 12 || 12;
+    timeFormatted = `${hh}:${m} ${ampm}`;
+  }
+
+  return { dayName, hijri, timeFormatted };
+}
+
+// --- CORE RENDERING FUNCTIONS ---
+function initSystem() {
+  renderProfiles();
+  renderAppointments();
+  calculateStats();
+  localStorage.setItem('nayef_family_members', JSON.stringify(members));
+  localStorage.setItem('nayef_family_appts', JSON.stringify(appointments));
+}
+
+function calculateStats() {
+  document.getElementById('stat-total').innerText = appointments.length;
+  document.getElementById('stat-admissions').innerText = appointments.filter(a => a.isAdmission).length;
+  document.getElementById('stat-remote').innerText = appointments.filter(a => a.typeCode === 'endo').length;
+}
+
+function renderProfiles() {
+  const container = document.getElementById('profiles-container');
+  let html = `
+    <div class="profile-card ${currentFilter === 'all' ? 'active' : ''}" onclick="filterByMember('all')">
+      <div class="pc-av">🌐</div>
+      <div class="pc-name">الكل</div>
+      <div class="pc-file">السجل الشامل</div>
+    </div>
+  `;
+  html += members.map(m => `
+    <div class="profile-card ${currentFilter === m.id ? 'active' : ''}" onclick="filterByMember(${m.id})">
+      <div class="pc-av">${m.name[0]}</div>
+      <div class="pc-name">${m.name}</div>
+      <div class="pc-file">ملف: ${m.fileNo}</div>
+    </div>
+  `).join('');
+  container.innerHTML = html;
+}
+
+function filterByMember(id) {
+  currentFilter = id;
+  renderProfiles();
+  renderAppointments();
+}
+
+function renderAppointments() {
+  const container = document.getElementById('appointments-container');
+  const filtered = currentFilter === 'all' ? appointments : appointments.filter(a => a.mId === currentFilter);
+  
+  // Sort by date chronologically
+  filtered.sort((a,b) => new Date(a.dateGreg) - new Date(b.dateGreg));
+
+  if(filtered.length === 0) {
+    container.innerHTML = `<div style="text-align:center; padding:40px; color:var(--text-muted); font-size:13px;">لا توجد مواعيد مدرجة.</div>`;
+    return;
+  }
+
+  container.innerHTML = filtered.map((a, index) => {
+    const mem = members.find(m => m.id === a.mId) || { name: 'غير معروف', fileNo: '0000000' };
+    const dateMeta = getSystemDateDetails(a.dateGreg, a.time);
+    const cColor = clinicColors[a.typeCode] || 'var(--c-default)';
+
+    return `
+      <div class="appt-ticket ${a.isAdmission ? 'is-admission' : ''} fade-in-up" style="animation-delay: ${index * 0.05}s">
+        <div class="clinic-line" style="background-color: ${cColor}"></div>
+        <div class="tkt-header">
+          <div>
+            <div class="tkt-clinic-badge" style="background-color: ${cColor}20; color: ${cColor}; border: 1px solid ${cColor}40;">
+              ${a.isAdmission ? '⚠️ إجراء تنويم' : a.clinic}
+            </div>
+            <div class="tkt-patient">${mem.name} <span style="color:var(--text-muted); font-size:11px; font-weight:400;">(ملف: ${mem.fileNo})</span></div>
+          </div>
+          <div class="tkt-datetime">
+            <div class="tkt-day-name">${dateMeta.dayName}</div>
+            <div class="tkt-time">${dateMeta.timeFormatted || a.time}</div>
+            <div class="tkt-date-greg">${a.dateGreg.replace(/-/g, '/')} م</div>
+            <div class="tkt-date-hijri">${dateMeta.hijri} هـ</div>
+          </div>
+        </div>
+        <div class="tkt-body">
+          <div class="tkt-row">
+            <div class="tkt-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="tkt-text"><span style="color:var(--text-muted); font-size:10px; display:block">الجهة الطبية المعالجة</span><b style="color:var(--text-gold)">${a.doctor}</b></div>
+          </div>
+          <div class="tkt-row">
+            <div class="tkt-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div class="tkt-text"><span style="color:var(--text-muted); font-size:10px; display:block">موقع ومقر العيادة</span>${a.location}</div>
+          </div>
+        </div>
+        <div class="tkt-footer">
+          <div class="tkt-btn" onclick="deleteAppointment(${a.id})">🗑️ إلغاء الموعد</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// --- CRUD OPERATIONS: FAMILY MEMBERS ---
+function openMembersModal() {
+  document.getElementById('modal-members').classList.add('open');
+  renderMemberEditorList();
+}
+function closeMembersModal() { document.getElementById('modal-members').classList.remove('open'); }
+
+function renderMemberEditorList() {
+  const container = document.getElementById('member-editor-list');
+  container.innerHTML = members.map((m, i) => `
+    <div class="member-editor-row" data-index="${i}">
+      <input type="text" class="form-control mem-edit-name" value="${m.name}" placeholder="اسم الفرد">
+      <input type="text" class="form-control mem-edit-file" value="${m.fileNo}" placeholder="رقم الملف">
+      <button class="btn-del-sm" onclick="removeMemberField(${i})">🗑️</button>
+    </div>
+  `).join('');
+}
+
+function addNewMemberField() {
+  const nextId = members.length > 0 ? Math.max(...members.map(m => m.id)) + 1 : 0;
+  members.push({ id: nextId, name: '', fileNo: '' });
+  renderMemberEditorList();
+}
+
+function removeMemberField(index) {
+  if(confirm('هل أنت تأكد من حذف هذا الفرد؟ سيتم فصل موارده.')) {
+    members.splice(index, 1);
+    renderMemberEditorList();
+  }
+}
+
+function saveMembersData() {
+  const rows = document.querySelectorAll('.member-editor-row');
+  const updatedMembers = [];
+  rows.forEach((row, i) => {
+    const name = row.querySelector('.mem-edit-name').value.trim();
+    const fileNo = row.querySelector('.mem-edit-file').value.trim();
+    if(name && fileNo) {
+      updatedMembers.push({
+        id: members[i] ? members[i].id : i,
+        name: name,
+        fileNo: fileNo
+      });
+    }
+  });
+  members = updatedMembers;
+  closeMembersModal();
+  initSystem();
+}
+
+// --- CRUD OPERATIONS: APPOINTMENTS ---
+function openAddAppointmentModal() {
+  const select = document.getElementById('inp-appt-member');
+  select.innerHTML = members.map(m => `<option value="${m.id}">${m.name} - ${m.fileNo}</option>`).join('');
+  document.getElementById('modal-appointment').classList.add('open');
+}
+function closeApptModal() { document.getElementById('modal-appointment').classList.remove('open'); }
+
+function saveNewAppointment() {
+  const mId = parseInt(document.getElementById('inp-appt-member').value);
+  const clinic = document.getElementById('inp-appt-clinic').value.trim();
+  const doctor = document.getElementById('inp-appt-doctor').value.trim();
+  const location = document.getElementById('inp-appt-location').value.trim();
+  const dateGreg = document.getElementById('inp-appt-date').value;
+  const time = document.getElementById('inp-appt-time').value;
+  const typeCode = document.getElementById('inp-appt-type').value;
+
+  if(!clinic || !dateGreg || !time) {
+    alert('الرجاء تعبئة البيانات الأساسية (العيادة، التاريخ، الوقت)');
+    return;
+  }
+
+  const newAppt = {
+    id: Date.now(),
+    mId: mId,
+    clinic: clinic,
+    doctor: doctor || "غير محدد",
+    location: location || "المستشفى الرئيسي",
+    dateGreg: dateGreg,
+    time: time,
+    typeCode: typeCode,
+    isAdmission: typeCode === 'admission'
+  };
+
+  appointments.push(newAppt);
+  closeApptModal();
+  initSystem();
+}
+
+function deleteAppointment(id) {
+  if(confirm('هل أنت متأكد من حذف وإلغاء بطاقة هذا الموعد نهائياً؟')) {
+    appointments = appointments.filter(a => a.id !== id);
+    initSystem();
+  }
+}
+
+// --- DATA BACKUP FEATURE ---
+function exportData() {
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({members, appointments}));
+  const downloadAnchor = document.createElement('a');
+  downloadAnchor.setAttribute("href", dataStr);
+  downloadAnchor.setAttribute("download", "سجل_مواعيد_نايف_المطيري.json");
+  document.body.appendChild(downloadAnchor);
+  downloadAnchor.click();
+  downloadAnchor.remove();
+}
+
+// Start Application
+initSystem();
+</script>
+</body>
+</html>
