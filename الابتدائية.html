@@ -1,0 +1,2078 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<meta name="description" content="منصة التقييم الذكية للمرحلة الابتدائية - ابتدائية ومتوسطة الجبيلة. مطابقة لمناهج وزارة التعليم بالمملكة العربية السعودية للفصل الدراسي الثاني 1447هـ" />
+<meta name="theme-color" content="#007a64" />
+<title>منصة التقييم الذكية | المرحلة الابتدائية العليا | ابتدائية ومتوسطة الجبيلة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&amp;family=Amiri:wght@400;700&amp;display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='80' font-size='80'%3E%F0%9F%93%9A%3C/text%3E%3C/svg%3E">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+tailwind.config = {
+    darkMode: 'class',
+    theme: {
+        extend: {
+            fontFamily: { sans: ['Cairo', 'sans-serif'], serif: ['Amiri', 'serif'] },
+            colors: {
+                moe: { light: '#00a388', DEFAULT: '#007a64', dark: '#005f4e', darker: '#003d33' },
+                gold: { DEFAULT: '#d4af37', light: '#f9e596', dark: '#a68424' }
+            },
+            animation: {
+                'fade-in': 'fadeIn 0.5s ease-out',
+                'slide-up': 'slideUp 0.5s ease-out',
+                'bounce-in': 'bounceIn 0.6s ease-out',
+                'shimmer': 'shimmer 2s linear infinite',
+                'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+                'confetti': 'confetti 3s ease-out forwards'
+            },
+            keyframes: {
+                fadeIn: { '0%': { opacity: 0 }, '100%': { opacity: 1 } },
+                slideUp: { '0%': { opacity: 0, transform: 'translateY(20px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+                bounceIn: { '0%': { opacity: 0, transform: 'scale(0.5)' }, '60%': { opacity: 1, transform: 'scale(1.05)' }, '100%': { transform: 'scale(1)' } },
+                shimmer: { '0%': { backgroundPosition: '-1000px 0' }, '100%': { backgroundPosition: '1000px 0' } },
+                pulseGlow: { '0%, 100%': { boxShadow: '0 0 20px rgba(212, 175, 55, 0.4)' }, '50%': { boxShadow: '0 0 40px rgba(212, 175, 55, 0.8)' } },
+                confetti: { '0%': { transform: 'translateY(0) rotate(0deg)', opacity: 1 }, '100%': { transform: 'translateY(500px) rotate(720deg)', opacity: 0 } }
+            }
+        }
+    }
+}
+</script>
+<style>
+:root {
+    --bg-primary: #f3f4f6;
+    --bg-card: rgba(255, 255, 255, 0.95);
+    --text-primary: #1f2937;
+    --text-secondary: #4b5563;
+    --border-color: #e5e7eb;
+}
+.dark {
+    --bg-primary: #0f172a;
+    --bg-card: rgba(30, 41, 59, 0.95);
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --border-color: #334155;
+}
+body { background-color: var(--bg-primary); color: var(--text-primary); transition: background-color 0.3s, color 0.3s; }
+.dark body { background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); }
+.glass-panel { background: var(--bg-card); backdrop-filter: blur(10px); border-color: var(--border-color); }
+.progress-gradient { background: linear-gradient(90deg, #007a64, #d4af37); background-size: 200% 100%; animation: shimmer 3s linear infinite; }
+.dark .text-gray-800 { color: #f1f5f9 !important; }
+.dark .text-gray-700 { color: #e2e8f0 !important; }
+.dark .text-gray-600 { color: #cbd5e1 !important; }
+.dark .text-gray-500 { color: #94a3b8 !important; }
+.dark .bg-white { background-color: #1e293b !important; }
+.dark .bg-gray-50 { background-color: #0f172a !important; }
+.dark .bg-gray-100 { background-color: #1e293b !important; }
+.dark .border-gray-200, .dark .border-gray-100, .dark .border-gray-300 { border-color: #334155 !important; }
+.dark .from-gray-50, .dark .to-gray-50 { --tw-gradient-from: #0f172a !important; --tw-gradient-to: #0f172a !important; }
+
+@media print {
+    body { background: white !important; color: black !important; }
+    .no-print { display: none !important; }
+    .print-full { width: 100% !important; max-width: 100% !important; box-shadow: none !important; border: 0 !important; }
+    .page-break { page-break-before: always; }
+    .glass-panel { background: white !important; backdrop-filter: none !important; }
+}
+.opt-btn { transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; }
+.opt-btn:not(:disabled):hover { border-color: #007a64; background-color: #f0fdfa; transform: translateY(-3px); box-shadow: 0 8px 16px -4px rgba(0, 122, 100, 0.2); }
+.opt-btn:not(:disabled):active { transform: translateY(-1px); }
+.opt-btn.correct { border-color: #10b981 !important; background: linear-gradient(135deg, #d1fae5, #a7f3d0) !important; color: #065f46 !important; font-weight: bold; animation: bounceIn 0.5s ease-out; }
+.opt-btn.wrong { border-color: #ef4444 !important; background: linear-gradient(135deg, #fee2e2, #fecaca) !important; color: #991b1b !important; animation: shake 0.4s ease-out; }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+
+.custom-scrollbar::-webkit-scrollbar { width: 8px; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #007a64, #d4af37); border-radius: 10px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: #f3f4f6; border-radius: 10px; }
+
+.badge { display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 50%; font-size: 28px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.3s; cursor: pointer; }
+.badge:hover { transform: scale(1.15) rotate(8deg); }
+.badge.locked { filter: grayscale(1); opacity: 0.4; }
+.badge.unlocked { animation: pulseGlow 2s ease-in-out infinite; }
+
+.confetti-particle { position: fixed; width: 12px; height: 12px; pointer-events: none; z-index: 999; animation: confetti 3s ease-out forwards; }
+
+/* عرض الكسور بشكل احترافي */
+.frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; font-size: 1em; margin: 0 4px; }
+.frac > .num { border-bottom: 2px solid currentColor; padding: 0 6px; }
+.frac > .den { padding: 2px 6px; }
+
+/* مقياس الحرارة للتقدم */
+.progress-thermometer { position: relative; height: 12px; background: #e5e7eb; border-radius: 100px; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,0.06); }
+.dark .progress-thermometer { background: #334155; }
+
+/* تأثير حركة عند الإجابة */
+@keyframes correctPulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+/* خط النقاط */
+.dotted-divider { background-image: linear-gradient(90deg, currentColor 50%, transparent 50%); background-size: 12px 2px; background-repeat: repeat-x; background-position: 0 50%; height: 2px; }
+
+/* تنسيق الأسئلة الرياضية */
+.math-expr { font-family: 'Cairo', sans-serif; font-size: 1.15em; padding: 4px 10px; background: rgba(0, 122, 100, 0.08); border-radius: 8px; display: inline-block; direction: ltr; margin: 0 4px; font-weight: 700; color: #007a64; }
+.dark .math-expr { background: rgba(0, 163, 136, 0.2); color: #6ee7b7; }
+
+/* تقليل الانيميشن لمن يفضلون */
+@media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* تكبير الخط */
+.font-large { font-size: 1.15em; }
+.font-xlarge { font-size: 1.3em; }
+
+/* تصميم بطاقة المستوى */
+.level-card { background: linear-gradient(135deg, #007a64 0%, #00a388 100%); color: white; }
+.dark .level-card { background: linear-gradient(135deg, #003d33 0%, #007a64 100%); }
+</style>
+</head>
+<body class="text-gray-800 antialiased min-h-screen pb-20">
+
+<!-- شريط الأدوات العائم العلوي -->
+<div class="fixed top-4 left-4 z-50 flex gap-2 no-print">
+    <button onclick="toggleDark()" id="darkBtn" title="الوضع الليلي/النهاري" class="bg-white dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-200 w-10 h-10 rounded-full shadow-lg border border-gray-200 dark:border-slate-600 transition flex items-center justify-center text-xl">🌙</button>
+    <button onclick="changeFontSize()" id="fontBtn" title="تكبير الخط" class="bg-white dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-200 w-10 h-10 rounded-full shadow-lg border border-gray-200 dark:border-slate-600 transition flex items-center justify-center text-xl font-black">أ</button>
+    <button onclick="openHelp()" title="مساعدة" class="bg-white dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-200 w-10 h-10 rounded-full shadow-lg border border-gray-200 dark:border-slate-600 transition flex items-center justify-center text-xl">❓</button>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+
+<!-- الترويسة الرسمية -->
+<header class="bg-white dark:bg-slate-800 shadow-md rounded-2xl p-6 mb-8 flex flex-col md:flex-row justify-between items-center gap-6 border-t-4 border-moe transition">
+    <div class="flex items-center gap-6 flex-wrap justify-center">
+        <img src="https://upload.wikimedia.org/wikipedia/ar/1/17/Saudi_Ministry_of_Education_Logo_2025.png" alt="وزارة التعليم" class="h-20 object-contain" onerror="this.style.display='none'">
+        <div class="h-16 w-px bg-gray-200 dark:bg-slate-600 hidden md:block"></div>
+        <img src="https://upload.wikimedia.org/wikipedia/ar/f/f5/Saudi_Vision_2030_logo.svg" alt="رؤية 2030" class="h-16 object-contain" onerror="this.style.display='none'">
+    </div>
+    <div class="text-center md:text-right">
+        <h2 class="text-xl font-extrabold text-moe-dark dark:text-moe-light mb-1">المملكة العربية السعودية</h2>
+        <h3 class="text-lg font-bold text-gray-700 dark:text-gray-300">الإدارة العامة للتعليم بمنطقة الرياض</h3>
+        <h4 class="text-md font-semibold text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-slate-700 inline-block px-4 py-1 rounded-full mt-2 border border-gray-200 dark:border-slate-600">ابتدائية ومتوسطة الجبيلة</h4>
+    </div>
+</header>
+
+<!-- البانر الرئيسي -->
+<section class="relative overflow-hidden rounded-3xl shadow-xl mb-8 bg-gradient-to-r from-moe-dark via-moe to-moe-light text-white p-8 sm:p-10">
+    <!-- زخارف خلفية -->
+    <div class="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full"></div>
+    <div class="absolute -bottom-20 -left-20 w-60 h-60 bg-gold/10 rounded-full"></div>
+    
+    <div class="relative z-10 flex flex-col md:flex-row gap-8 items-center justify-between">
+        <div class="flex-1 text-center md:text-right">
+            <div class="inline-block bg-white/20 backdrop-blur-sm rounded-full px-4 py-1.5 text-sm font-bold mb-4 border border-white/30 shadow-sm">
+                ✨ الفصل الدراسي الثاني 1447 هـ
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 leading-tight drop-shadow-md">
+                منصة التقييم الذكية <br><span class="text-gold-light">للمرحلة الابتدائية العليا</span>
+            </h1>
+            <p class="text-lg text-white/95 leading-relaxed max-w-3xl font-medium">
+                منصة متكاملة معتمدة على مناهج وزارة التعليم بالمملكة العربية السعودية. تراعي الفروق الفردية وأنماط التعلم (VAK)، وتقيس مهارات التفكير وفق تصنيف بلوم. مزودة بنظام شارات وإنجازات ومتصدرين وشهادات معتمدة.
+            </p>
+        </div>
+        <div class="hidden md:flex text-7xl bg-white text-moe rounded-full w-32 h-32 items-center justify-center shadow-2xl border-4 border-gold-light">
+            🧠
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10 relative z-10">
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-4 text-center hover:bg-white/20 transition">
+            <b class="block text-3xl text-gold-light font-extrabold mb-1" dir="ltr">VAK</b>
+            <span class="text-sm font-semibold">تراعي أنماط التعلم</span>
+        </div>
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-4 text-center hover:bg-white/20 transition">
+            <b id="bankCount" class="block text-3xl text-gold-light font-extrabold mb-1">+150</b>
+            <span class="text-sm font-semibold">قالب أسئلة متنوع</span>
+        </div>
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-4 text-center hover:bg-white/20 transition">
+            <b class="block text-3xl text-gold-light font-extrabold mb-1">3</b>
+            <span class="text-sm font-semibold">صفوف (رابع، خامس، سادس)</span>
+        </div>
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-4 text-center hover:bg-white/20 transition">
+            <b class="block text-3xl text-gold-light font-extrabold mb-1">80%</b>
+            <span class="text-sm font-semibold">شرط الشهادة</span>
+        </div>
+    </div>
+</section>
+
+
+<!-- لوحة الإنجازات والملف الشخصي -->
+<section class="mb-8 grid grid-cols-1 lg:grid-cols-3 gap-6 no-print">
+    <!-- بطاقة المستوى -->
+    <div class="level-card rounded-3xl p-6 shadow-lg relative overflow-hidden">
+        <div class="absolute -top-8 -left-8 w-32 h-32 bg-white/10 rounded-full"></div>
+        <div class="relative z-10">
+            <div class="flex justify-between items-start mb-3">
+                <span class="text-sm font-bold opacity-90">المستوى الحالي</span>
+                <span class="text-3xl">🎓</span>
+            </div>
+            <h3 class="text-3xl font-black mb-2" id="userLevel">المبتدئ</h3>
+            <p class="text-sm opacity-80 mb-3" id="userTitle">ابدأ رحلة التعلم الآن!</p>
+            <div class="bg-white/20 rounded-full h-3 mb-2 overflow-hidden">
+                <div id="xpBar" class="bg-gold h-full rounded-full transition-all duration-700" style="width: 0%"></div>
+            </div>
+            <p class="text-xs font-bold"><span id="currentXp">0</span> XP / <span id="nextXp">100</span> XP للمستوى التالي</p>
+        </div>
+    </div>
+
+    <!-- بطاقة الشارات -->
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-lg border border-gray-100 dark:border-slate-700">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="font-black text-gray-800 dark:text-gray-100 text-lg">🏆 الشارات والإنجازات</h3>
+            <button onclick="openBadges()" class="text-moe text-sm font-bold hover:underline">عرض الكل</button>
+        </div>
+        <div class="grid grid-cols-5 gap-3" id="badgesPreview">
+            <!-- يتم تعبئتها بـ JS -->
+        </div>
+    </div>
+
+    <!-- بطاقة الإحصائيات -->
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-lg border border-gray-100 dark:border-slate-700">
+        <h3 class="font-black text-gray-800 dark:text-gray-100 text-lg mb-4">📊 إحصائياتك</h3>
+        <div class="grid grid-cols-2 gap-3">
+            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-700 dark:to-slate-700 rounded-2xl p-3 text-center">
+                <span class="text-2xl block">📝</span>
+                <b class="block text-2xl text-blue-700 dark:text-blue-300" id="statTests">0</b>
+                <span class="text-xs font-bold text-gray-600 dark:text-gray-300">اختبار مكتمل</span>
+            </div>
+            <div class="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-slate-700 dark:to-slate-700 rounded-2xl p-3 text-center">
+                <span class="text-2xl block">⭐</span>
+                <b class="block text-2xl text-green-700 dark:text-green-300" id="statAvg">--</b>
+                <span class="text-xs font-bold text-gray-600 dark:text-gray-300">متوسط الأداء</span>
+            </div>
+            <div class="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-slate-700 dark:to-slate-700 rounded-2xl p-3 text-center">
+                <span class="text-2xl block">🔥</span>
+                <b class="block text-2xl text-purple-700 dark:text-purple-300" id="statStreak">0</b>
+                <span class="text-xs font-bold text-gray-600 dark:text-gray-300">أيام متتالية</span>
+            </div>
+            <div class="bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-slate-700 dark:to-slate-700 rounded-2xl p-3 text-center">
+                <span class="text-2xl block">🏅</span>
+                <b class="block text-2xl text-orange-700 dark:text-orange-300" id="statCerts">0</b>
+                <span class="text-xs font-bold text-gray-600 dark:text-gray-300">شهادة محققة</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <!-- الإعدادات والشريط الجانبي -->
+    <aside class="lg:col-span-4 no-print">
+        <div class="glass-panel border border-gray-200 dark:border-slate-700 rounded-3xl p-6 shadow-lg sticky top-6" id="settings">
+            <div class="flex items-center gap-3 mb-6 border-b border-gray-200 dark:border-slate-600 pb-4">
+                <span class="text-3xl">⚙️</span>
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">إعداد التقييم</h2>
+            </div>
+            
+            <div class="space-y-5 mb-6">
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">اسم الطالب / الطالبة</label>
+                    <input type="text" id="student" placeholder="الاسم الثلاثي (للشهادة)" class="w-full border-2 border-gray-200 dark:border-slate-600 rounded-xl px-4 py-3 bg-gray-50 dark:bg-slate-700 focus:bg-white dark:focus:bg-slate-600 focus:ring-0 focus:border-moe outline-none transition font-semibold text-moe-dark dark:text-moe-light placeholder-gray-400">
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">الصف</label>
+                        <select id="grade" class="w-full border-2 border-gray-200 dark:border-slate-600 rounded-xl px-3 py-3 bg-gray-50 dark:bg-slate-700 focus:border-moe outline-none transition font-bold text-gray-800 dark:text-gray-100">
+                            <option value="g4">الرابع الابتدائي</option>
+                            <option value="g5">الخامس الابتدائي</option>
+                            <option value="g6">السادس الابتدائي</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">المادة</label>
+                        <select id="subject" class="w-full border-2 border-gray-200 dark:border-slate-600 rounded-xl px-3 py-3 bg-gray-50 dark:bg-slate-700 focus:border-moe outline-none transition font-bold text-gray-800 dark:text-gray-100">
+                            <option value="math">الرياضيات 🧮</option>
+                            <option value="science">العلوم 🔬</option>
+                            <option value="arabic">لغتي الجميلة ✍️</option>
+                            <option value="english">الإنجليزية 🔤</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">عدد الأسئلة</label>
+                    <select id="count" class="w-full border-2 border-gray-200 dark:border-slate-600 rounded-xl px-4 py-3 bg-gray-50 dark:bg-slate-700 focus:border-moe outline-none transition font-bold text-gray-800 dark:text-gray-100 text-lg">
+                        <option value="10">10 أسئلة (تدريب سريع)</option>
+                        <option value="20">20 سؤال</option>
+                        <option value="30" selected>30 سؤال (المعياري)</option>
+                        <option value="40">40 سؤال</option>
+                        <option value="50">50 سؤال (مكثف)</option>
+                        <option value="100">100 سؤال (شامل)</option>
+                    </select>
+                </div>
+
+                <!-- إعدادات إضافية -->
+                <details class="bg-gray-50 dark:bg-slate-700 rounded-xl p-3 border border-gray-200 dark:border-slate-600">
+                    <summary class="font-bold text-gray-700 dark:text-gray-200 cursor-pointer text-sm flex items-center gap-2">
+                        <span>🎛️</span> إعدادات متقدمة
+                    </summary>
+                    <div class="mt-3 space-y-3 text-sm">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" id="optTimer" class="w-4 h-4 accent-moe">
+                            <span class="font-bold text-gray-700 dark:text-gray-200">مؤقت لكل سؤال (60 ثانية)</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" id="optHints" checked class="w-4 h-4 accent-moe">
+                            <span class="font-bold text-gray-700 dark:text-gray-200">تفعيل التلميحات</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" id="optSound" class="w-4 h-4 accent-moe">
+                            <span class="font-bold text-gray-700 dark:text-gray-200">المؤثرات الصوتية</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" id="optShuffle" checked class="w-4 h-4 accent-moe">
+                            <span class="font-bold text-gray-700 dark:text-gray-200">خلط ترتيب الأسئلة</span>
+                        </label>
+                    </div>
+                </details>
+
+                <div class="pt-2 border-t border-gray-200 dark:border-slate-600">
+                    <button onclick="startQuiz()" class="w-full bg-gradient-to-r from-moe to-moe-dark hover:from-moe-dark hover:to-moe-darker text-white font-black py-4 rounded-xl shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1 text-lg flex items-center justify-center gap-2 mb-3">
+                        <span>🚀</span> بدء التقييم
+                    </button>
+                    
+                    <button id="resumeBtn" onclick="resumeQuiz()" class="hidden w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-3 rounded-xl shadow-md transition-all text-base items-center justify-center gap-2 mb-3">
+                        <span>⏱️</span> استكمال المحفوظ
+                    </button>
+                </div>
+            </div>
+
+            <!-- أدوات النظام -->
+            <div class="bg-gray-50 dark:bg-slate-700 p-4 rounded-2xl border border-gray-200 dark:border-slate-600">
+                <h3 class="text-sm font-bold text-gray-500 dark:text-gray-300 mb-3 text-center">أدوات إضافية</h3>
+                <div class="grid grid-cols-2 gap-2">
+                    <button type="button" onclick="window.print()" class="bg-white dark:bg-slate-800 hover:bg-gray-100 text-gray-700 dark:text-gray-200 font-bold py-2 rounded-lg border border-gray-300 dark:border-slate-600 shadow-sm transition text-sm flex items-center justify-center gap-2">
+                        🖨️ طباعة
+                    </button>
+                    <button type="button" onclick="pauseQuiz()" class="bg-white dark:bg-slate-800 hover:bg-blue-50 text-blue-700 dark:text-blue-300 font-bold py-2 rounded-lg border border-blue-200 dark:border-slate-600 shadow-sm transition text-sm flex items-center justify-center gap-2">
+                        ⏸️ حفظ مؤقت
+                    </button>
+                    <button type="button" onclick="showSaved()" class="bg-white dark:bg-slate-800 hover:bg-indigo-50 text-indigo-700 dark:text-indigo-300 font-bold py-2 rounded-lg border border-indigo-200 dark:border-slate-600 shadow-sm transition text-sm flex items-center justify-center gap-2">
+                        📁 السجل
+                    </button>
+                    <button type="button" onclick="showLeaderboard()" class="bg-white dark:bg-slate-800 hover:bg-purple-50 text-purple-700 dark:text-purple-300 font-bold py-2 rounded-lg border border-purple-200 dark:border-slate-600 shadow-sm transition text-sm flex items-center justify-center gap-2">
+                        🥇 المتصدرون
+                    </button>
+                    <button type="button" onclick="checkAnalysis()" class="col-span-2 bg-white dark:bg-slate-800 hover:bg-pink-50 text-pink-700 dark:text-pink-300 font-bold py-2 rounded-lg border border-pink-200 dark:border-slate-600 shadow-sm transition text-sm flex items-center justify-center gap-2">
+                        📊 التحليل المتقدم
+                    </button>
+                    <button type="button" onclick="checkCert()" class="col-span-2 bg-gradient-to-r from-gold to-yellow-500 hover:from-yellow-500 hover:to-gold text-white font-black py-2 rounded-lg shadow-sm transition text-sm flex items-center justify-center gap-2">
+                        🏅 إصدار الشهادة (80%+)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- منطقة العرض الرئيسية -->
+    <main class="lg:col-span-8 space-y-8">
+        <section class="glass-panel border border-gray-200 dark:border-slate-700 rounded-3xl p-6 md:p-8 shadow-lg" id="quizBox">
+            <div class="flex flex-wrap justify-between items-center gap-4 mb-6 pb-4 border-b border-gray-200 dark:border-slate-600">
+                <h2 class="text-2xl font-extrabold text-gray-800 dark:text-gray-100" id="quizTitle">الاستعداد للتقييم</h2>
+                <div class="flex items-center gap-3 flex-wrap">
+                    <span id="timerDisplay" class="hidden bg-gradient-to-r from-gray-700 to-gray-800 text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-inner">
+                        ⏱️ 00:00
+                    </span>
+                    <span id="questionTimer" class="hidden bg-red-500 text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-inner">
+                        ⏱️ 60
+                    </span>
+                    <span id="meta" class="bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300 px-4 py-1.5 rounded-full text-sm font-bold border border-gray-200 dark:border-slate-600">
+                        تأكد من البيانات واضغط بدء
+                    </span>
+                </div>
+            </div>
+            
+            <div class="progress-thermometer mb-8 relative">
+                <div class="h-full w-0 progress-gradient transition-all duration-700 ease-out rounded-full" id="bar"></div>
+            </div>
+            
+            <div id="qArea" class="min-h-[350px] flex flex-col justify-center items-center text-center">
+                <div class="w-32 h-32 bg-gray-50 dark:bg-slate-700 rounded-full flex items-center justify-center border-4 border-dashed border-gray-200 dark:border-slate-600 mb-6">
+                    <span class="text-6xl opacity-60">🎯</span>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-700 dark:text-gray-200 mb-3">محرك القياس والتقويم الذكي</h3>
+                <p class="text-lg text-gray-500 dark:text-gray-400 max-w-lg">
+                    أسئلة متنوعة تخاطب حواسك (بصري، سمعي، حركي)، وتتدرج في الصعوبة من التذكر البسيط إلى الاستنتاج العميق وفق تصنيف بلوم.
+                </p>
+                <div class="mt-6 flex flex-wrap gap-3 justify-center">
+                    <span class="bg-indigo-50 dark:bg-slate-700 text-indigo-700 dark:text-indigo-300 px-4 py-2 rounded-full text-sm font-bold border border-indigo-200 dark:border-slate-600">👁️ بصري</span>
+                    <span class="bg-pink-50 dark:bg-slate-700 text-pink-700 dark:text-pink-300 px-4 py-2 rounded-full text-sm font-bold border border-pink-200 dark:border-slate-600">👂 سمعي</span>
+                    <span class="bg-teal-50 dark:bg-slate-700 text-teal-700 dark:text-teal-300 px-4 py-2 rounded-full text-sm font-bold border border-teal-200 dark:border-slate-600">✋ حركي</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass-panel border border-gray-200 dark:border-slate-700 rounded-3xl p-6 md:p-8 shadow-lg hidden" id="results"></section>
+        <section class="hidden print-full" id="certificate"></section>
+    </main>
+</div>
+
+<!-- التذييل -->
+<footer class="mt-16 text-center text-gray-500 dark:text-gray-400 text-sm no-print border-t border-gray-200 dark:border-slate-700 pt-8 pb-4">
+    <p class="font-bold text-gray-700 dark:text-gray-200 mb-2">المملكة العربية السعودية - وزارة التعليم</p>
+    <p>إعداد: المعلم / نايف المطيري | مدير المدرسة: أ. مفلح الشهراني</p>
+    <div class="mt-4 flex justify-center gap-4 flex-wrap">
+        <span class="bg-green-50 dark:bg-slate-800 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-xs font-bold border border-green-200 dark:border-slate-700">✓ مطابق لمنهج وزارة التعليم</span>
+        <span class="bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-xs font-bold border border-blue-200 dark:border-slate-700">✓ يعمل بدون إنترنت بعد التحميل</span>
+        <span class="bg-purple-50 dark:bg-slate-800 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-xs font-bold border border-purple-200 dark:border-slate-700">✓ متوافق مع رؤية 2030</span>
+    </div>
+</footer>
+
+</div>
+
+<!-- نافذة الشارات المنبثقة -->
+<div id="badgesModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[200] flex items-center justify-center p-4 no-print" onclick="if(event.target===this)closeBadges()">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl custom-scrollbar">
+        <div class="flex justify-between items-center mb-6 border-b dark:border-slate-700 pb-4">
+            <h2 class="text-2xl font-black text-gray-800 dark:text-gray-100 flex items-center gap-2">🏆 الشارات والإنجازات</h2>
+            <button onclick="closeBadges()" class="text-gray-500 hover:text-gray-800 dark:hover:text-gray-100 font-black text-2xl">✕</button>
+        </div>
+        <div id="badgesFull" class="grid grid-cols-2 md:grid-cols-3 gap-4"></div>
+    </div>
+</div>
+
+<!-- نافذة المساعدة -->
+<div id="helpModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[200] flex items-center justify-center p-4 no-print" onclick="if(event.target===this)closeHelp()">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl custom-scrollbar">
+        <div class="flex justify-between items-center mb-6 border-b dark:border-slate-700 pb-4">
+            <h2 class="text-2xl font-black text-gray-800 dark:text-gray-100 flex items-center gap-2">❓ دليل الاستخدام</h2>
+            <button onclick="closeHelp()" class="text-gray-500 hover:text-gray-800 dark:hover:text-gray-100 font-black text-2xl">✕</button>
+        </div>
+        <div class="space-y-4 text-gray-700 dark:text-gray-200">
+            <div class="bg-blue-50 dark:bg-slate-700 p-4 rounded-2xl border border-blue-200 dark:border-slate-600">
+                <h3 class="font-black mb-2 text-blue-800 dark:text-blue-300">🎯 كيف أبدأ؟</h3>
+                <p class="text-sm leading-relaxed">اكتب اسمك، اختر صفك والمادة وعدد الأسئلة، ثم اضغط "بدء التقييم". الأسئلة مأخوذة من منهج الفصل الدراسي الثاني 1447هـ.</p>
+            </div>
+            <div class="bg-green-50 dark:bg-slate-700 p-4 rounded-2xl border border-green-200 dark:border-slate-600">
+                <h3 class="font-black mb-2 text-green-800 dark:text-green-300">🏅 كيف أحصل على الشهادة؟</h3>
+                <p class="text-sm leading-relaxed">يجب أن تحقق 80% فأكثر من الأسئلة الصحيحة. ستحصل على شهادة فاخرة قابلة للطباعة برمز تحقق QR.</p>
+            </div>
+            <div class="bg-purple-50 dark:bg-slate-700 p-4 rounded-2xl border border-purple-200 dark:border-slate-600">
+                <h3 class="font-black mb-2 text-purple-800 dark:text-purple-300">⭐ ما هي نقاط XP؟</h3>
+                <p class="text-sm leading-relaxed">كل إجابة صحيحة = 10 نقاط، إجابة سريعة = +5 نقاط إضافية. اجمع النقاط لرفع مستواك من "مبتدئ" إلى "نابغة"!</p>
+            </div>
+            <div class="bg-orange-50 dark:bg-slate-700 p-4 rounded-2xl border border-orange-200 dark:border-slate-600">
+                <h3 class="font-black mb-2 text-orange-800 dark:text-orange-300">💾 هل تحفظ المنصة تقدمي؟</h3>
+                <p class="text-sm leading-relaxed">نعم! يمكنك إيقاف الاختبار مؤقتاً والعودة لاحقاً. كما تُحفظ نتائجك السابقة في "السجل المحفوظ" والمتصدرين.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- الإشعارات -->
+<div id="toast" class="fixed top-5 left-1/2 transform -translate-x-1/2 z-[100] px-6 py-3 rounded-full shadow-2xl transition-all duration-300 opacity-0 pointer-events-none text-white font-bold text-sm sm:text-base text-center w-max max-w-[90%]"></div>
+
+<!-- حاوية الكونفيتي -->
+<div id="confettiContainer" class="fixed inset-0 pointer-events-none z-[150] overflow-hidden no-print"></div>
+
+
+<!-- ============================================== -->
+<!-- منطق التطبيق وبنك الأسئلة المحسن -->
+<!-- ============================================== -->
+<script>
+const subjectNames = { math: 'الرياضيات', science: 'العلوم', arabic: 'لغتي الجميلة', english: 'اللغة الإنجليزية' };
+const gradeNames = { g4: 'الرابع الابتدائي', g5: 'الخامس الابتدائي', g6: 'السادس الابتدائي' };
+const motiv = [
+    'استنتاج دقيق يا بطل! 🌟',
+    'أحسنت، فهم عميق للمهارة 👏',
+    'تفكير تحليلي ممتاز! 🚀',
+    'إجابة صحيحة، تطبيق رائع 🏆',
+    'مبدع كعادتك، استمر ✨',
+    'عمل رائع، أنت على الطريق الصحيح 🎯',
+    'مذهل! إجابتك دقيقة 💎'
+];
+
+const rnd = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
+
+let quiz = [], idx = 0, answers = [];
+let timerInterval, questionTimerInterval;
+let timeElapsed = 0, questionTimeLeft = 60;
+let userProfile = {};
+
+// ===== نظام شارات الإنجاز =====
+const BADGES = [
+    { id: 'first_test', icon: '🎯', name: 'البداية الموفقة', desc: 'أكمل اختبارك الأول', condition: (p) => p.totalTests >= 1 },
+    { id: 'high_score', icon: '🌟', name: 'النجم اللامع', desc: 'احصل على 90% أو أكثر', condition: (p) => p.bestScore >= 90 },
+    { id: 'perfect', icon: '💎', name: 'الكمال', desc: 'احصل على 100%', condition: (p) => p.bestScore >= 100 },
+    { id: 'speed', icon: '⚡', name: 'البرق السريع', desc: 'أنهِ اختبار 30 سؤال في أقل من 15 دقيقة', condition: (p) => p.fastTest === true },
+    { id: 'persistent', icon: '🔥', name: 'المثابر', desc: 'أكمل 10 اختبارات', condition: (p) => p.totalTests >= 10 },
+    { id: 'scholar', icon: '📚', name: 'الباحث', desc: 'اختبر في جميع المواد', condition: (p) => p.subjectsTaken && p.subjectsTaken.length >= 4 },
+    { id: 'allgrades', icon: '🎓', name: 'الشامل', desc: 'اختبر في جميع الصفوف', condition: (p) => p.gradesTaken && p.gradesTaken.length >= 3 },
+    { id: 'certified', icon: '🏅', name: 'صاحب الشهادة', desc: 'احصل على شهادة واحدة', condition: (p) => p.certCount >= 1 },
+    { id: 'master', icon: '👑', name: 'سيد المعرفة', desc: 'احصل على 5 شهادات', condition: (p) => p.certCount >= 5 },
+    { id: 'streak3', icon: '🎖️', name: 'سلسلة الإنجاز', desc: '3 أيام تعلم متتالية', condition: (p) => p.streak >= 3 }
+];
+
+const LEVELS = [
+    { min: 0, name: 'المبتدئ', title: 'ابدأ رحلة التعلم!', next: 100 },
+    { min: 100, name: 'المتعلم', title: 'أحسنت، استمر بالتقدم', next: 300 },
+    { min: 300, name: 'المتفوق', title: 'تقدم رائع!', next: 600 },
+    { min: 600, name: 'المتميز', title: 'مستوى احترافي', next: 1000 },
+    { min: 1000, name: 'الخبير', title: 'إتقان بارز', next: 1500 },
+    { min: 1500, name: 'النابغة', title: 'قمة التميز!', next: 2500 },
+    { min: 2500, name: 'الأسطورة', title: 'لا مثيل لك! 👑', next: 999999 }
+];
+
+// ============================================================
+// 🎓 بنك الأسئلة الشامل المطابق لمناهج وزارة التعليم 1447هـ
+// (الفصل الدراسي الثاني)
+// ============================================================
+// ============================================================
+// 🔢 دوال مساعدة للأرقام والكسور العربية
+// ============================================================
+const toAR = (n) => {
+    const ar = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+    return String(n).replace(/[0-9]/g, d => ar[d]);
+};
+const frac = (n, d) => `<span class="frac"><span class="num">${toAR(n)}</span><span class="den">${toAR(d)}</span></span>`;
+
+
+// ============================================================
+// 🎓 بنك الأسئلة الشامل المطابق لمناهج وزارة التعليم
+// المملكة العربية السعودية - الفصل الدراسي الثاني 1447هـ
+// المرحلة: الابتدائية
+// ============================================================
+
+const logicTrees = {
+    math: {
+        g4: [
+            // الفصل الخامس: الضرب في عدد من رقم واحد
+            // درس: القواسم والمضاعفات
+            () => { let a = rnd(3, 6); return { t:'القواسم والمضاعفات', l:'فهم', vak:'👁️ بصري', q:`أي مما يأتي من مضاعفات العدد <span class="math-expr">${toAR(a)}</span>؟`, opts:[toAR(a*3), toAR(a+1), toAR(a-1), toAR(a*2+1)], exp:`مضاعفات العدد ${toAR(a)} هي: ${toAR(a)}، ${toAR(a*2)}، ${toAR(a*3)}، ${toAR(a*4)}، ...، فالعدد ${toAR(a*3)} من مضاعفات ${toAR(a)} لأنه يقبل القسمة عليه.` }; },
+            () => { let a = rnd(12, 24); let divs = []; for(let i=1; i<=a; i++) if(a%i===0) divs.push(i); let correct = divs[2] || divs[1]; let wrong = a + rnd(1,3); return { t:'القواسم والمضاعفات', l:'تحليل', vak:'✋ حركي', q:`أي الأعداد الآتية من قواسم العدد <span class="math-expr">${toAR(a)}</span>؟`, opts:[toAR(correct), toAR(wrong), toAR(a*2+1), toAR(a+5)], exp:`قواسم العدد ${toAR(a)} هي الأعداد التي تقسمه دون باقٍ. منها: ${divs.map(toAR).join('، ')}.` }; },
+            
+            // درس: الضرب في مضاعفات ١٠، ١٠٠، ١٠٠٠
+            () => { let a = rnd(2, 9), mult = pick([10, 100]); return { t:'الضرب في مضاعفات العشرة', l:'تطبيق', vak:'👁️ بصري', q:`ما ناتج <span class="math-expr">${toAR(a)} × ${toAR(mult)}</span>؟`, opts:[toAR(a*mult), toAR(a*mult/10), toAR(a*mult*10), toAR(a+mult)], exp:`عند الضرب في ${toAR(mult)} نضيف ${mult===10?'صفراً واحداً':'صفرين'} إلى يمين العدد: ${toAR(a)} × ${toAR(mult)} = ${toAR(a*mult)}.` }; },
+            () => { let a = rnd(3, 8), b = rnd(2, 5); let r = a*b*100; return { t:'الضرب في مضاعفات ١٠٠', l:'تطبيق', vak:'✋ حركي', q:`ناتج <span class="math-expr">${toAR(a)} × ${toAR(b*100)}</span> يساوي:`, opts:[toAR(r), toAR(a*b), toAR(a*b*10), toAR(a*b*1000)], exp:`نضرب ${toAR(a)} × ${toAR(b)} = ${toAR(a*b)}، ثم نضيف صفرين لأن ${toAR(b*100)} مضاعف لـ ${toAR(100)}. النتيجة = ${toAR(r)}.` }; },
+            
+            // درس: تقدير نواتج الضرب
+            () => { let a = rnd(28, 39), b = rnd(3, 9); let estimateA = Math.round(a/10)*10; return { t:'تقدير نواتج الضرب', l:'استدلال', vak:'👁️ بصري', q:`أفضل تقدير لناتج <span class="math-expr">${toAR(a)} × ${toAR(b)}</span> هو:`, opts:[toAR(estimateA*b), toAR(a*b), toAR((estimateA+10)*b), toAR((estimateA-10)*b)], exp:`نقرب ${toAR(a)} إلى أقرب عشرة فيصبح ${toAR(estimateA)}، ثم نضرب: ${toAR(estimateA)} × ${toAR(b)} = ${toAR(estimateA*b)}.` }; },
+            
+            // درس: ضرب عدد من رقمين في عدد من رقم واحد
+            () => { let a = rnd(13, 29), b = rnd(2, 6); return { t:'ضرب عدد من رقمين في عدد من رقم واحد', l:'تطبيق', vak:'✋ حركي', q:`ناتج <span class="math-expr">${toAR(a)} × ${toAR(b)}</span> يساوي:`, opts:[toAR(a*b), toAR(a*b+10), toAR(a*b-10), toAR(a+b)], exp:`نضرب الآحاد ثم العشرات مع إعادة التجميع: ${toAR(a)} × ${toAR(b)} = ${toAR(a*b)}.` }; },
+            () => { let a = rnd(15, 35), b = rnd(3, 7); return { t:'الضرب من واقع الحياة', l:'تطبيق', vak:'✋ حركي', q:`اشترت أم محمد <span class="math-expr">${toAR(b)}</span> علب لبن، في كل علبة <span class="math-expr">${toAR(a)}</span> ريالاً. ما مجموع ما دفعت؟`, opts:[`${toAR(a*b)} ريالاً`, `${toAR(a+b)} ريالاً`, `${toAR(a-b)} ريالاً`, `${toAR(a*b+10)} ريالاً`], exp:`المجموع = سعر العلبة × عدد العلب = ${toAR(a)} × ${toAR(b)} = ${toAR(a*b)} ريالاً.` }; },
+            
+            // الفصل السادس: الضرب في عدد من رقمين
+            // درس: الضرب في مضاعفات العشرة (لعددين)
+            () => { let a = rnd(2, 9), b = rnd(2, 7); let r = a*b*10; return { t:'الضرب في مضاعفات العشرة', l:'تطبيق', vak:'👁️ بصري', q:`ناتج <span class="math-expr">${toAR(a)} × ${toAR(b*10)}</span> يساوي:`, opts:[toAR(r), toAR(a*b), toAR(a*b*100), toAR(a+b*10)], exp:`${toAR(a)} × ${toAR(b*10)} = (${toAR(a)} × ${toAR(b)}) × ١٠ = ${toAR(a*b)} × ١٠ = ${toAR(r)}.` }; },
+            
+            // درس: ضرب عدد من رقمين في عدد من رقمين
+            () => { let a = rnd(12, 25), b = rnd(11, 20); return { t:'ضرب عدد من رقمين في عدد من رقمين', l:'تطبيق', vak:'✋ حركي', q:`ناتج <span class="math-expr">${toAR(a)} × ${toAR(b)}</span> يساوي:`, opts:[toAR(a*b), toAR(a*b+10), toAR(a*b-10), toAR(a+b)], exp:`نضرب الآحاد ثم العشرات لكلٍ، ثم نجمع النواتج: ${toAR(a)} × ${toAR(b)} = ${toAR(a*b)}.` }; },
+            
+            // الفصل السابع: القسمة على عدد من رقم واحد
+            // درس: القسمة مع باقي
+            () => { let div = rnd(3, 6), q = rnd(3, 8), r = rnd(1, div-1); let n = div*q + r; return { t:'القسمة مع باقي', l:'تطبيق', vak:'✋ حركي', q:`اقسم: <span class="math-expr">${toAR(n)} ÷ ${toAR(div)}</span>. الناتج والباقي:`, opts:[`الناتج ${toAR(q)} والباقي ${toAR(r)}`, `الناتج ${toAR(q+1)} والباقي ٠`, `الناتج ${toAR(q-1)} والباقي ${toAR(div-1)}`, `الناتج ${toAR(q)} والباقي ٠`], exp:`${toAR(n)} ÷ ${toAR(div)} = ${toAR(q)} والباقي ${toAR(r)}. التحقق: ${toAR(div)} × ${toAR(q)} + ${toAR(r)} = ${toAR(div*q)} + ${toAR(r)} = ${toAR(n)}.` }; },
+            
+            // درس: قسمة مضاعفات الـ ١٠
+            () => { let a = rnd(3, 8), b = rnd(2, 5); let dividend = a*b*10; return { t:'قسمة مضاعفات العشرة', l:'تطبيق', vak:'👁️ بصري', q:`ناتج <span class="math-expr">${toAR(dividend)} ÷ ${toAR(b)}</span>:`, opts:[toAR(a*10), toAR(a*b), toAR(a*100), toAR(a)], exp:`${toAR(dividend)} ÷ ${toAR(b)} = ${toAR(a*10)}. (نقسم الجزء الأساسي ${toAR(a*b)} ÷ ${toAR(b)} = ${toAR(a)}، ثم نضيف صفر).` }; },
+            
+            // درس: القسمة (الناتج من رقمين)
+            () => { let div = rnd(3, 7), q = rnd(12, 25); let n = div*q; return { t:'القسمة (الناتج من رقمين)', l:'تطبيق', vak:'✋ حركي', q:`ناتج <span class="math-expr">${toAR(n)} ÷ ${toAR(div)}</span>:`, opts:[toAR(q), toAR(q+1), toAR(q-1), toAR(q+10)], exp:`نطبق خوارزمية القسمة الطويلة: ${toAR(n)} ÷ ${toAR(div)} = ${toAR(q)} بدون باقٍ.` }; },
+            () => { let div = rnd(3, 6), q = rnd(20, 40); let n = div*q; return { t:'القسمة من واقع الحياة', l:'تطبيق', vak:'✋ حركي', q:`وُزِّعت <span class="math-expr">${toAR(n)}</span> قطعة حلوى بالتساوي على <span class="math-expr">${toAR(div)}</span> أطفال. كم نصيب كل طفل؟`, opts:[`${toAR(q)} قطعة`, `${toAR(q+5)} قطعة`, `${toAR(q-5)} قطعة`, `${toAR(div)} قطعة`], exp:`نصيب كل طفل = ${toAR(n)} ÷ ${toAR(div)} = ${toAR(q)} قطعة.` }; },
+            
+            // الفصل الثامن: الأشكال الهندسية والاستدلال المكاني
+            // درس: المضلعات
+            () => { return { t:'تصنيف المضلعات', l:'فهم', vak:'👁️ بصري', q:`المضلع الذي له <span class="math-expr">٥</span> أضلاع يسمى:`, opts:['خماسي', 'سداسي', 'رباعي', 'مثلث'], exp:`المضلع الخماسي له خمسة أضلاع وخمس زوايا.` }; },
+            () => { return { t:'تصنيف المضلعات', l:'فهم', vak:'👁️ بصري', q:`المضلع الذي له <span class="math-expr">٦</span> أضلاع يسمى:`, opts:['سداسي', 'خماسي', 'ثماني', 'سباعي'], exp:`المضلع السداسي له ستة أضلاع.` }; },
+            () => { return { t:'المضلع المنتظم', l:'تحليل', vak:'👁️ بصري', q:`المضلع الذي تتساوى أطوال أضلاعه وقياسات زواياه يسمى:`, opts:['مضلعاً منتظماً', 'مضلعاً غير منتظم', 'دائرة', 'منحنى'], exp:`المضلع المنتظم: جميع أضلاعه متطابقة، وجميع زواياه متطابقة (مثل المربع والمثلث المتطابق الأضلاع).` }; },
+            
+            // درس: المثلثات
+            () => { return { t:'تصنيف المثلثات حسب الزوايا', l:'فهم', vak:'👁️ بصري', q:`المثلث الذي إحدى زواياه قائمة (<span class="math-expr">٩٠°</span>) يسمى:`, opts:['مثلثاً قائم الزاوية', 'مثلثاً منفرج الزاوية', 'مثلثاً حاد الزوايا', 'مثلثاً متطابق الأضلاع'], exp:`المثلث القائم الزاوية: إحدى زواياه قياسها ${toAR(90)}°.` }; },
+            () => { let a = rnd(95, 170); return { t:'تصنيف الزوايا', l:'فهم', vak:'👁️ بصري', q:`الزاوية التي قياسها <span class="math-expr">${toAR(a)}°</span> تسمى زاوية:`, opts:['منفرجة', 'حادة', 'قائمة', 'مستقيمة'], exp:`الزاوية المنفرجة قياسها أكبر من ${toAR(90)}° وأقل من ${toAR(180)}°.` }; },
+            () => { let a = rnd(20, 80); return { t:'تصنيف الزوايا', l:'فهم', vak:'👁️ بصري', q:`الزاوية التي قياسها <span class="math-expr">${toAR(a)}°</span> تسمى زاوية:`, opts:['حادة', 'منفرجة', 'قائمة', 'مستقيمة'], exp:`الزاوية الحادة قياسها أكبر من ٠° وأقل من ${toAR(90)}°.` }; },
+            
+            // درس: الأشكال الرباعية
+            () => { return { t:'الأشكال الرباعية', l:'تحليل', vak:'👁️ بصري', q:`الشكل الرباعي الذي فيه كل ضلعين متقابلين متوازيين، وأضلاعه الأربعة متطابقة، وزواياه قائمة هو:`, opts:['المربع', 'المستطيل', 'متوازي الأضلاع', 'شبه المنحرف'], exp:`المربع: أضلاعه الأربعة متطابقة، وزواياه الأربع قوائم، وأضلاعه المتقابلة متوازية.` }; },
+            () => { return { t:'الأشكال الرباعية', l:'تحليل', vak:'👁️ بصري', q:`الشكل الرباعي الذي فيه ضلعان متقابلان متوازيان فقط (والآخران غير متوازيين) يسمى:`, opts:['شبه المنحرف', 'المربع', 'المعين', 'المستطيل'], exp:`شبه المنحرف: شكل رباعي له زوج واحد فقط من الأضلاع المتوازية.` }; },
+            
+            // درس: التماثل (محور التماثل)
+            () => { return { t:'محور التماثل', l:'فهم', vak:'👁️ بصري', q:`محور التماثل في المربع: المربع له:`, opts:['٤ محاور تماثل', '٢ محور تماثل', 'محور تماثل واحد', 'لا يوجد محور تماثل'], exp:`المربع له ٤ محاور تماثل: قطران ومستقيمان يمران بمنتصف الضلعين المتقابلين.` }; },
+            () => { return { t:'محور التماثل', l:'تحليل', vak:'👁️ بصري', q:`المثلث متطابق الأضلاع له:`, opts:['٣ محاور تماثل', 'محور واحد', '٢ محور', 'لا يوجد'], exp:`المثلث متطابق الأضلاع له ٣ محاور تماثل، يمر كل منها برأس ومنتصف الضلع المقابل له.` }; },
+            
+            // درس: الأشكال الثلاثية والثنائية الأبعاد
+            () => { return { t:'الأشكال الثلاثية الأبعاد', l:'فهم', vak:'👁️ بصري', q:`الشكل الثلاثي الأبعاد الذي جميع وجوهه مربعات هو:`, opts:['المكعب', 'متوازي المستطيلات', 'الكرة', 'الأسطوانة'], exp:`المكعب له ٦ وجوه، كلٌ منها مربع، و١٢ حرفاً، و٨ رؤوس.` }; },
+            () => { return { t:'الأشكال الثلاثية الأبعاد', l:'تحليل', vak:'👁️ بصري', q:`عدد أوجه متوازي المستطيلات (المكعب المستطيل):`, opts:['٦ وجوه', '٤ وجوه', '٨ وجوه', '٥ وجوه'], exp:`متوازي المستطيلات له ٦ وجوه (كل وجه مستطيل)، و١٢ حرفاً، و٨ رؤوس.` }; },
+            () => { return { t:'الأشكال الثلاثية الأبعاد', l:'فهم', vak:'👁️ بصري', q:`الشكل الذي قاعدته دائرة وله رأس واحد يسمى:`, opts:['المخروط', 'الأسطوانة', 'الكرة', 'الهرم'], exp:`المخروط: قاعدته دائرية وله سطح جانبي يلتقي في نقطة (رأس).` }; },
+            () => { return { t:'الأشكال الثلاثية الأبعاد', l:'فهم', vak:'👁️ بصري', q:`الشكل الذي له قاعدتان دائريتان متطابقتان هو:`, opts:['الأسطوانة', 'المخروط', 'الكرة', 'المكعب'], exp:`الأسطوانة لها قاعدتان دائريتان متطابقتان متوازيتان، وسطح جانبي منحنٍ.` }; },
+            
+            // درس: التماثل الدوراني
+            () => { return { t:'التماثل الدوراني', l:'تحليل', vak:'👁️ بصري', q:`المربع له تماثل دوراني من الرتبة:`, opts:['الرابعة', 'الثانية', 'الثالثة', 'الأولى'], exp:`المربع ينطبق على نفسه عند الدوران ٤ مرات في دورة كاملة (٩٠°، ١٨٠°، ٢٧٠°، ٣٦٠°)، فرتبته الرابعة.` }; }
+        ],
+        g5: [
+            // الفصل الخامس: العبارات الجبرية والمعادلات
+            // درس: عبارات الجمع والطرح الجبرية
+            () => { let x = rnd(3, 8), a = rnd(2, 7); return { t:'العبارات الجبرية', l:'تطبيق', vak:'👁️ بصري', q:`إذا كان <span class="math-expr">ن = ${toAR(x)}</span>، فما قيمة العبارة <span class="math-expr">ن + ${toAR(a)}</span>؟`, opts:[toAR(x+a), toAR(x-a), toAR(x*a), toAR(a-x)], exp:`نعوض قيمة ن: ${toAR(x)} + ${toAR(a)} = ${toAR(x+a)}.` }; },
+            () => { let x = rnd(5, 15), a = rnd(2, 4); return { t:'عبارات الطرح الجبرية', l:'تطبيق', vak:'✋ حركي', q:`إذا كان <span class="math-expr">س = ${toAR(x)}</span>، فقيمة <span class="math-expr">س − ${toAR(a)}</span> هي:`, opts:[toAR(x-a), toAR(x+a), toAR(a-x), toAR(x*a)], exp:`نعوض: ${toAR(x)} − ${toAR(a)} = ${toAR(x-a)}.` }; },
+            
+            // درس: عبارات الضرب والقسمة الجبرية
+            () => { let n = rnd(3, 7), a = rnd(2, 5); return { t:'عبارات الضرب الجبرية', l:'تطبيق', vak:'👁️ بصري', q:`إذا كان <span class="math-expr">ن = ${toAR(n)}</span>، فإن <span class="math-expr">${toAR(a)}ن</span> تساوي:`, opts:[toAR(a*n), toAR(a+n), toAR(n-a), toAR(a-n)], exp:`${toAR(a)}ن يعني ${toAR(a)} × ن = ${toAR(a)} × ${toAR(n)} = ${toAR(a*n)}.` }; },
+            () => { let n = rnd(2, 5), expr_val = n*6 + 2; return { t:'تقييم العبارات الجبرية', l:'تحليل', vak:'✋ حركي', q:`قيمة العبارة <span class="math-expr">٦ن + ٢</span> عندما <span class="math-expr">ن = ${toAR(n)}</span> هي:`, opts:[toAR(expr_val), toAR(n*6), toAR(n+2), toAR(n*8)], exp:`نعوض ن = ${toAR(n)}: ٦ × ${toAR(n)} + ٢ = ${toAR(n*6)} + ٢ = ${toAR(expr_val)}.` }; },
+            
+            // درس: ترتيب العمليات
+            () => { return { t:'ترتيب العمليات', l:'تحليل', vak:'👁️ بصري', q:`ما ناتج: <span class="math-expr">٣ + ٤ × ٢</span>؟`, opts:['١١', '١٤', '١٠', '٩'], exp:`ترتيب العمليات: الضرب قبل الجمع. ٤ × ٢ = ٨، ثم ٣ + ٨ = ١١.` }; },
+            () => { return { t:'ترتيب العمليات', l:'تحليل', vak:'✋ حركي', q:`ما ناتج: <span class="math-expr">(٢ + ٣) × ٤</span>؟`, opts:['٢٠', '١٤', '٢٤', '١٠'], exp:`الأقواس أولاً: (٢ + ٣) = ٥، ثم ٥ × ٤ = ٢٠.` }; },
+            
+            // درس: معادلات الجمع والطرح
+            () => { let a = rnd(3, 9), b = rnd(2, 8); let sum = a + b; return { t:'معادلات الجمع', l:'تطبيق', vak:'✋ حركي', q:`حل المعادلة: <span class="math-expr">ن + ${toAR(a)} = ${toAR(sum)}</span>`, opts:[`ن = ${toAR(b)}`, `ن = ${toAR(a)}`, `ن = ${toAR(sum)}`, `ن = ${toAR(a+sum)}`], exp:`نطرح ${toAR(a)} من الطرفين: ن = ${toAR(sum)} − ${toAR(a)} = ${toAR(b)}.` }; },
+            () => { let a = rnd(3, 8), b = rnd(2, 6); let diff = a + b; return { t:'معادلات الطرح', l:'تطبيق', vak:'✋ حركي', q:`حل المعادلة: <span class="math-expr">ص − ${toAR(a)} = ${toAR(b)}</span>`, opts:[`ص = ${toAR(diff)}`, `ص = ${toAR(b)}`, `ص = ${toAR(a-b)}`, `ص = ${toAR(a)}`], exp:`نضيف ${toAR(a)} للطرفين: ص = ${toAR(b)} + ${toAR(a)} = ${toAR(diff)}.` }; },
+            
+            // الفصل السادس: الكسور الاعتيادية
+            // درس: الكسور غير الفعلية والأعداد الكسرية
+            () => { return { t:'تعريف الكسر الفعلي وغير الفعلي', l:'فهم', vak:'👁️ بصري', q:`الكسر الفعلي هو الذي:`, opts:['بسطه أقل من مقامه', 'بسطه أكبر من مقامه', 'بسطه يساوي مقامه', 'لا يحتوي على مقام'], exp:`الكسر الفعلي: بسطه أصغر من مقامه، فقيمته أقل من ١ (مثل ${frac(3,4)}). الكسر غير الفعلي: بسطه أكبر من مقامه أو يساويه.` }; },
+            () => { let n = rnd(5, 11), d = rnd(2, 4); let w = Math.floor(n/d); let r = n - w*d; return { t:'تحويل الكسر غير الفعلي إلى عدد كسري', l:'تطبيق', vak:'✋ حركي', q:`اكتب الكسر <span class="frac"><span class="num">${toAR(n)}</span><span class="den">${toAR(d)}</span></span> على صورة عدد كسري:`, opts:[`${toAR(w)} ${frac(r,d)}`, `${toAR(w+1)} ${frac(r,d)}`, `${toAR(w-1)} ${frac(r,d)}`, `${toAR(n)} ${frac(r,d)}`], exp:`نقسم البسط على المقام: ${toAR(n)} ÷ ${toAR(d)} = ${toAR(w)} والباقي ${toAR(r)}، فالعدد الكسري = ${toAR(w)} ${frac(r,d)}.` }; },
+            
+            // درس: مقارنة الكسور
+            () => { let d = rnd(5, 9), n1 = rnd(1, Math.floor(d/2)), n2 = rnd(Math.floor(d/2)+1, d-1); return { t:'مقارنة الكسور المتشابهة', l:'تحليل', vak:'👁️ بصري', q:`أيُّ الكسرين أكبر: <span class="frac"><span class="num">${toAR(n1)}</span><span class="den">${toAR(d)}</span></span> أم <span class="frac"><span class="num">${toAR(n2)}</span><span class="den">${toAR(d)}</span></span>؟`, opts:[`${frac(n2,d)} أكبر`, `${frac(n1,d)} أكبر`, 'متساويان', 'لا يمكن المقارنة'], exp:`في الكسور المتشابهة (نفس المقام): الكسر الأكبر هو الذي بسطه أكبر. ${toAR(n2)} > ${toAR(n1)}، فالكسر ${frac(n2,d)} أكبر.` }; },
+            
+            // الفصل السابع: الإحصاء والاحتمال
+            // درس: المتوسط الحسابي والوسيط والمنوال
+            () => { let nums = [10, 15, 20, 25, 30]; let avg = 20; return { t:'المتوسط الحسابي', l:'تطبيق', vak:'✋ حركي', q:`احسب المتوسط الحسابي للأعداد: <span class="math-expr">${nums.map(toAR).join('، ')}</span>`, opts:[toAR(avg), toAR(avg+5), toAR(avg-5), toAR(nums[0])], exp:`المتوسط الحسابي = مجموع القيم ÷ عددها = (${nums.map(toAR).join('+')}) ÷ ${toAR(nums.length)} = ${toAR(nums.reduce((a,b)=>a+b))} ÷ ${toAR(nums.length)} = ${toAR(avg)}.` }; },
+            () => { let nums = [3, 5, 7, 9, 11]; return { t:'الوسيط', l:'تحليل', vak:'👁️ بصري', q:`أوجد الوسيط للأعداد المرتبة: <span class="math-expr">${nums.map(toAR).join('، ')}</span>`, opts:['٧', '٥', '١١', '٣'], exp:`الوسيط هو القيمة الوسطى بعد ترتيب الأعداد تصاعدياً. الأعداد ٥ أعداد، فالوسيط هو الثالث (٧).` }; },
+            () => { return { t:'المنوال', l:'فهم', vak:'👁️ بصري', q:`المنوال للقيم: <span class="math-expr">٤، ٧، ٧، ٩، ٧، ٥، ٧</span> هو:`, opts:['٧', '٤', '٩', '٥'], exp:`المنوال: القيمة الأكثر تكراراً. الرقم ٧ تكرر ٤ مرات.` }; },
+            
+            // درس: الاحتمال
+            () => { return { t:'الاحتمال', l:'تطبيق', vak:'✋ حركي', q:`عند رمي مكعب أرقام منتظم (نرد)، ما احتمال ظهور العدد ٣؟`, opts:[frac(1,6), frac(1,3), frac(1,2), frac(1,4)], exp:`النواتج الممكنة: ٦ (الأرقام ١-٦)، النواتج المرغوبة: ١ (الرقم ٣). الاحتمال = ${frac(1,6)}.` }; },
+            () => { return { t:'الاحتمال', l:'تحليل', vak:'👁️ بصري', q:`عند رمي مكعب أرقام منتظم، ما احتمال ظهور عدد زوجي؟`, opts:[frac(3,6)+' أو '+frac(1,2), frac(1,6), frac(2,6), frac(4,6)], exp:`الأعداد الزوجية على النرد: ٢، ٤، ٦ (ثلاثة أعداد). الاحتمال = ${frac(3,6)} = ${frac(1,2)}.` }; },
+            
+            // الفصل الثامن: القواسم والمضاعفات
+            // درس: الأعداد الأولية وغير الأولية
+            () => { let primes = [2, 3, 5, 7, 11, 13]; let p = pick(primes); return { t:'الأعداد الأولية', l:'فهم', vak:'👁️ بصري', q:`أي مما يأتي عدد أولي؟`, opts:[toAR(p), toAR(p*2), toAR(p*3), toAR(p+1)], exp:`العدد الأولي له قاسمان فقط: ١ ونفسه. العدد ${toAR(p)} عدد أولي.` }; },
+            () => { return { t:'الأعداد الأولية', l:'تحليل', vak:'👁️ بصري', q:`أي الأعداد التالية ليس عدداً أولياً؟`, opts:['٩', '٣', '٥', '٧'], exp:`٩ = ٣ × ٣ (له قواسم ١، ٣، ٩) فهو غير أولي. الأعداد ٣، ٥، ٧ أولية.` }; },
+            
+            // درس: تبسيط الكسور
+            () => { return { t:'تبسيط الكسور', l:'تطبيق', vak:'✋ حركي', q:`الكسر <span class="frac"><span class="num">٦</span><span class="den">٨</span></span> في أبسط صورة هو:`, opts:[frac(3,4), frac(2,4), frac(6,8), frac(3,8)], exp:`نقسم البسط والمقام على القاسم المشترك الأكبر (٢): ${frac(6,8)} = ${frac(3,4)}.` }; },
+            
+            // درس: الكسور المتكافئة
+            () => { return { t:'الكسور المتكافئة', l:'تحليل', vak:'👁️ بصري', q:`أي الكسور الآتية يكافئ الكسر <span class="frac"><span class="num">١</span><span class="den">٢</span></span>؟`, opts:[frac(3,6), frac(1,3), frac(2,3), frac(1,4)], exp:`الكسور المتكافئة تنتج عن ضرب البسط والمقام في نفس العدد. ${frac(1,2)} × ${frac(3,3)} = ${frac(3,6)}.` }; },
+            
+            // الفصل التاسع: جمع الكسور وطرحها
+            // درس: جمع الكسور المتشابهة
+            () => { let d = rnd(5, 9), n1 = rnd(1, Math.floor(d/3)), n2 = rnd(1, Math.floor(d/3)); return { t:'جمع الكسور المتشابهة', l:'تطبيق', vak:'✋ حركي', q:`ناتج: <span class="frac"><span class="num">${toAR(n1)}</span><span class="den">${toAR(d)}</span></span> + <span class="frac"><span class="num">${toAR(n2)}</span><span class="den">${toAR(d)}</span></span>`, opts:[frac(n1+n2,d), frac(n1+n2,d*2), frac(n1*n2,d), frac(n1,d+n2)], exp:`في الكسور المتشابهة (نفس المقام): نجمع البسوط ونبقي المقام. ${frac(n1,d)} + ${frac(n2,d)} = ${frac(n1+n2,d)}.` }; },
+            () => { let d = rnd(5, 8), n1 = rnd(3, d-1), n2 = rnd(1, n1-1); return { t:'طرح الكسور المتشابهة', l:'تطبيق', vak:'✋ حركي', q:`ناتج: <span class="frac"><span class="num">${toAR(n1)}</span><span class="den">${toAR(d)}</span></span> − <span class="frac"><span class="num">${toAR(n2)}</span><span class="den">${toAR(d)}</span></span>`, opts:[frac(n1-n2,d), frac(n1+n2,d), frac(n2-n1,d), frac(n1,d-n2)], exp:`نطرح البسوط ونبقي المقام: ${frac(n1,d)} − ${frac(n2,d)} = ${frac(n1-n2,d)}.` }; },
+            
+            // الفصل العاشر: وحدات القياس
+            // درس: الطول
+            () => { return { t:'وحدات الطول في النظام المتري', l:'فهم', vak:'✋ حركي', q:`الوحدة المناسبة لقياس طول الفصل المدرسي هي:`, opts:['المتر', 'السنتيمتر', 'الكيلومتر', 'الميليمتر'], exp:`المتر مناسب للأطوال المتوسطة كالفصل والغرفة. السنتيمتر للأشياء الصغيرة، الكيلومتر للمسافات الطويلة.` }; },
+            () => { let cm = rnd(2, 8) * 100; let m = cm/100; return { t:'التحويل بين وحدات الطول', l:'تطبيق', vak:'✋ حركي', q:`<span class="math-expr">${toAR(cm)} سم</span> = كم متراً؟`, opts:[`${toAR(m)} م`, `${toAR(m*10)} م`, `${toAR(m*100)} م`, `${toAR(cm*100)} م`], exp:`نقسم على ١٠٠ للتحويل من سم إلى م: ${toAR(cm)} ÷ ١٠٠ = ${toAR(m)} م.` }; },
+            
+            // درس: الكتلة والسعة
+            () => { return { t:'وحدات الكتلة', l:'فهم', vak:'✋ حركي', q:`الوحدة المناسبة لقياس كتلة حقيبة الطالب:`, opts:['الكيلوجرام', 'الجرام', 'الطن', 'الميليجرام'], exp:`الكيلوجرام مناسب للحقيبة المدرسية (الكتلة المتوسطة). الجرام للأشياء الخفيفة، الطن للأشياء الثقيلة جداً.` }; },
+            
+            // الفصل الثاني عشر: المحيط والمساحة والحجم
+            // درس: محيط المستطيل
+            () => { let l = rnd(5, 12), w = rnd(3, 8); let p = 2*(l+w); return { t:'محيط المستطيل', l:'تطبيق', vak:'✋ حركي', q:`محيط مستطيل طوله <span class="math-expr">${toAR(l)} م</span> وعرضه <span class="math-expr">${toAR(w)} م</span>:`, opts:[`${toAR(p)} م`, `${toAR(l+w)} م`, `${toAR(l*w)} م`, `${toAR(p+2)} م`], exp:`محيط المستطيل = ٢ × (الطول + العرض) = ٢ × (${toAR(l)} + ${toAR(w)}) = ${toAR(p)} م.` }; },
+            
+            // درس: مساحة المستطيل والمربع
+            () => { let l = rnd(4, 10), w = rnd(3, 7); let a = l*w; return { t:'مساحة المستطيل', l:'تطبيق', vak:'👁️ بصري', q:`مساحة مستطيل طوله <span class="math-expr">${toAR(l)} م</span> وعرضه <span class="math-expr">${toAR(w)} م</span>:`, opts:[`${toAR(a)} م²`, `${toAR(l+w)} م²`, `${toAR(2*(l+w))} م²`, `${toAR(l-w)} م²`], exp:`مساحة المستطيل = الطول × العرض = ${toAR(l)} × ${toAR(w)} = ${toAR(a)} م².` }; },
+            () => { let s = rnd(3, 9); let a = s*s; return { t:'مساحة المربع', l:'فهم', vak:'👁️ بصري', q:`مساحة مربع طول ضلعه <span class="math-expr">${toAR(s)} سم</span>:`, opts:[`${toAR(a)} سم²`, `${toAR(s*4)} سم²`, `${toAR(s+s)} سم²`, `${toAR(a+s)} سم²`], exp:`مساحة المربع = الضلع × الضلع = ${toAR(s)} × ${toAR(s)} = ${toAR(a)} سم².` }; },
+            
+            // درس: حجم المنشور
+            () => { let l = rnd(3, 6), w = rnd(2, 5), h = rnd(2, 5); let v = l*w*h; return { t:'حجم متوازي المستطيلات', l:'تطبيق', vak:'👁️ بصري', q:`حجم متوازي مستطيلات أبعاده <span class="math-expr">${toAR(l)} × ${toAR(w)} × ${toAR(h)} سم</span>:`, opts:[`${toAR(v)} سم³`, `${toAR(l+w+h)} سم³`, `${toAR(2*(l*w+w*h+l*h))} سم³`, `${toAR(l*w)} سم³`], exp:`حجم متوازي المستطيلات = الطول × العرض × الارتفاع = ${toAR(l)} × ${toAR(w)} × ${toAR(h)} = ${toAR(v)} سم³.` }; }
+        ],
+        g6: [
+            // الفصل الرابع: الكسور الاعتيادية والكسور العشرية
+            // درس: القاسم المشترك الأكبر
+            () => { return { t:'القاسم المشترك الأكبر (ق.م.أ)', l:'تطبيق', vak:'✋ حركي', q:`القاسم المشترك الأكبر للعددين <span class="math-expr">١٢</span> و <span class="math-expr">١٨</span> هو:`, opts:['٦', '٢', '٣', '٩'], exp:`قواسم ١٢: ١، ٢، ٣، ٤، ٦، ١٢. قواسم ١٨: ١، ٢، ٣، ٦، ٩، ١٨. القاسم المشترك الأكبر = ٦.` }; },
+            () => { return { t:'القاسم المشترك الأكبر', l:'تحليل', vak:'👁️ بصري', q:`ق.م.أ للعددين <span class="math-expr">١٥</span> و <span class="math-expr">٢٥</span> يساوي:`, opts:['٥', '٣', '١٥', '٢٥'], exp:`قواسم ١٥: ١، ٣، ٥، ١٥. قواسم ٢٥: ١، ٥، ٢٥. القاسم المشترك الأكبر = ٥.` }; },
+            
+            // درس: تبسيط الكسور
+            () => { return { t:'تبسيط الكسور الاعتيادية', l:'تطبيق', vak:'✋ حركي', q:`اكتب الكسر <span class="frac"><span class="num">١٢</span><span class="den">١٨</span></span> في أبسط صورة:`, opts:[frac(2,3), frac(6,9), frac(4,6), frac(3,4)], exp:`نقسم البسط والمقام على ق.م.أ (٦): ${frac(12,18)} = ${frac(2,3)}.` }; },
+            () => { return { t:'تبسيط الكسور', l:'تطبيق', vak:'👁️ بصري', q:`الكسر <span class="frac"><span class="num">٢٠</span><span class="den">٢٤</span></span> في أبسط صورة:`, opts:[frac(5,6), frac(4,5), frac(10,12), frac(2,3)], exp:`ق.م.أ للعددين ٢٠ و ٢٤ هو ٤. ${frac(20,24)} = ${frac(5,6)} (بقسمة البسط والمقام على ٤).` }; },
+            
+            // درس: الأعداد الكسرية والكسور غير الفعلية
+            () => { let w = rnd(2, 4), n = rnd(1, 3), d = rnd(3, 5); let imp = w*d + n; return { t:'تحويل العدد الكسري إلى كسر غير فعلي', l:'تطبيق', vak:'✋ حركي', q:`اكتب العدد الكسري <span class="math-expr">${toAR(w)} </span><span class="frac"><span class="num">${toAR(n)}</span><span class="den">${toAR(d)}</span></span> على صورة كسر غير فعلي:`, opts:[frac(imp,d), frac(w+n,d), frac(w*n,d), frac(imp+1,d)], exp:`نضرب الجزء الصحيح في المقام ونجمع البسط، ثم نبقي المقام: (${toAR(w)} × ${toAR(d)}) + ${toAR(n)} = ${toAR(imp)}، فالناتج ${frac(imp,d)}.` }; },
+            
+            // درس: المضاعف المشترك الأصغر
+            () => { return { t:'المضاعف المشترك الأصغر (م.م.أ)', l:'تطبيق', vak:'✋ حركي', q:`المضاعف المشترك الأصغر للعددين <span class="math-expr">٤</span> و <span class="math-expr">٦</span> هو:`, opts:['١٢', '٢٤', '٢', '٤٨'], exp:`مضاعفات ٤: ٤، ٨، ١٢، ١٦... مضاعفات ٦: ٦، ١٢، ١٨... الأصغر المشترك = ١٢.` }; },
+            
+            // درس: مقارنة الكسور وترتيبها
+            () => { return { t:'مقارنة الكسور غير المتشابهة', l:'تحليل', vak:'👁️ بصري', q:`أي الكسرين أكبر: <span class="frac"><span class="num">٢</span><span class="den">٣</span></span> أم <span class="frac"><span class="num">٣</span><span class="den">٥</span></span>؟`, opts:[`${frac(2,3)} أكبر`, `${frac(3,5)} أكبر`, 'متساويان', 'لا يمكن المقارنة'], exp:`نوحد المقامات (م.م.أ = ١٥): ${frac(2,3)} = ${frac(10,15)}، ${frac(3,5)} = ${frac(9,15)}. بما أن ١٠ > ٩، فإن ${frac(2,3)} أكبر.` }; },
+            
+            // الفصل الخامس: القياس (الطول والكتلة والسعة)
+            // درس: الطول في النظام المتري
+            () => { let km = rnd(2, 8); let m = km*1000; return { t:'التحويل بين وحدات الطول', l:'تطبيق', vak:'✋ حركي', q:`<span class="math-expr">${toAR(km)} كم</span> = كم متراً؟`, opts:[`${toAR(m)} م`, `${toAR(km*100)} م`, `${toAR(km*10)} م`, `${toAR(km/10)} م`], exp:`الكيلومتر = ١٠٠٠ متر. ${toAR(km)} كم × ١٠٠٠ = ${toAR(m)} م.` }; },
+            
+            // درس: الكتلة والسعة
+            () => { let kg = rnd(2, 6); let g = kg*1000; return { t:'التحويل بين وحدات الكتلة', l:'تطبيق', vak:'✋ حركي', q:`<span class="math-expr">${toAR(kg)} كجم</span> = كم جراماً؟`, opts:[`${toAR(g)} جم`, `${toAR(kg*100)} جم`, `${toAR(kg*10)} جم`, `${toAR(kg)} جم`], exp:`الكيلوجرام = ١٠٠٠ جرام. ${toAR(kg)} كجم × ١٠٠٠ = ${toAR(g)} جم.` }; },
+            () => { let L = rnd(2, 8); let ml = L*1000; return { t:'التحويل بين وحدات السعة', l:'تطبيق', vak:'✋ حركي', q:`<span class="math-expr">${toAR(L)} لتر</span> = كم ملليلتراً؟`, opts:[`${toAR(ml)} مل`, `${toAR(L*100)} مل`, `${toAR(L*10)} مل`, `${toAR(L)} مل`], exp:`اللتر = ١٠٠٠ ملليلتر. ${toAR(L)} لتر × ١٠٠٠ = ${toAR(ml)} مل.` }; },
+            
+            // الفصل السادس: العمليات على الكسور الاعتيادية
+            // درس: تقريب الكسور
+            () => { return { t:'تقريب الكسور', l:'تحليل', vak:'👁️ بصري', q:`أقرب عدد صحيح للكسر <span class="frac"><span class="num">٧</span><span class="den">٨</span></span> هو:`, opts:['١', '٠', '٢', '٧'], exp:`الكسر ${frac(7,8)} قيمته قريبة من ١ (أكبر من ${frac(1,2)})، فيقرب إلى ١.` }; },
+            
+            // درس: جمع الكسور المتشابهة وطرحها
+            () => { let d = rnd(5, 9), n1 = rnd(1, Math.floor(d/3)), n2 = rnd(1, Math.floor(d/3)); return { t:'جمع الكسور المتشابهة', l:'تطبيق', vak:'✋ حركي', q:`ناتج: <span class="frac"><span class="num">${toAR(n1)}</span><span class="den">${toAR(d)}</span></span> + <span class="frac"><span class="num">${toAR(n2)}</span><span class="den">${toAR(d)}</span></span>`, opts:[frac(n1+n2,d), frac(n1+n2,d*2), frac(n1*n2,d), frac(n1,d+n2)], exp:`في الكسور المتشابهة: نجمع البسوط ونبقي المقام. ${frac(n1,d)} + ${frac(n2,d)} = ${frac(n1+n2,d)}.` }; },
+            
+            // درس: جمع الكسور غير المتشابهة وطرحها
+            () => { return { t:'جمع الكسور غير المتشابهة', l:'تحليل', vak:'✋ حركي', q:`ناتج: <span class="frac"><span class="num">١</span><span class="den">٢</span></span> + <span class="frac"><span class="num">١</span><span class="den">٣</span></span>`, opts:[frac(5,6), frac(2,5), frac(1,5), frac(2,6)], exp:`نوحد المقامين (م.م.أ = ٦): ${frac(1,2)} = ${frac(3,6)}، ${frac(1,3)} = ${frac(2,6)}. ${frac(3,6)} + ${frac(2,6)} = ${frac(5,6)}.` }; },
+            () => { return { t:'طرح الكسور غير المتشابهة', l:'تحليل', vak:'✋ حركي', q:`ناتج: <span class="frac"><span class="num">٣</span><span class="den">٤</span></span> − <span class="frac"><span class="num">١</span><span class="den">٢</span></span>`, opts:[frac(1,4), frac(2,4), frac(2,6), frac(1,2)], exp:`نوحد المقامين (٤): ${frac(1,2)} = ${frac(2,4)}. ${frac(3,4)} − ${frac(2,4)} = ${frac(1,4)}.` }; },
+            
+            // درس: جمع الأعداد الكسرية وطرحها
+            () => { return { t:'جمع الأعداد الكسرية', l:'تطبيق', vak:'✋ حركي', q:`ناتج: <span class="math-expr">١ </span><span class="frac"><span class="num">١</span><span class="den">٤</span></span> + <span class="math-expr">٢ </span><span class="frac"><span class="num">٢</span><span class="den">٤</span></span>`, opts:[`٣ ${frac(3,4)}`, `٣ ${frac(3,8)}`, `٢ ${frac(3,4)}`, `٣ ${frac(1,2)}`], exp:`نجمع الأعداد الصحيحة (١+٢=٣)، ثم نجمع الكسور (${frac(1,4)} + ${frac(2,4)} = ${frac(3,4)}). الناتج = ٣ ${frac(3,4)}.` }; },
+            
+            // درس: الكسور والكسور العشرية
+            () => { return { t:'تحويل الكسر إلى كسر عشري', l:'تطبيق', vak:'👁️ بصري', q:`الكسر <span class="frac"><span class="num">١</span><span class="den">٢</span></span> يساوي بالصورة العشرية:`, opts:['٠٫٥', '٠٫٢', '١٫٥', '٢٫٠'], exp:`نقسم البسط على المقام: ١ ÷ ٢ = ٠٫٥.` }; },
+            () => { return { t:'تحويل الكسر إلى كسر عشري', l:'تطبيق', vak:'👁️ بصري', q:`الكسر <span class="frac"><span class="num">٣</span><span class="den">٤</span></span> يساوي بالصورة العشرية:`, opts:['٠٫٧٥', '٠٫٤٣', '٣٫٤', '٤٫٣'], exp:`نقسم: ٣ ÷ ٤ = ٠٫٧٥.` }; },
+            () => { return { t:'تحويل الكسر العشري إلى كسر اعتيادي', l:'تحليل', vak:'✋ حركي', q:`الكسر العشري <span class="math-expr">٠٫٢٥</span> يساوي بالصورة الكسرية:`, opts:[frac(1,4), frac(1,2), frac(25,10), frac(2,5)], exp:`٠٫٢٥ = ${frac(25,100)} = ${frac(1,4)} (بعد التبسيط بقسمة البسط والمقام على ٢٥).` }; },
+            
+            // درس: مقارنة الكسور والكسور العشرية
+            () => { return { t:'مقارنة الكسور بالكسور العشرية', l:'تحليل', vak:'👁️ بصري', q:`أي الأكبر: <span class="frac"><span class="num">٣</span><span class="den">٥</span></span> أم <span class="math-expr">٠٫٥</span>؟`, opts:[`${frac(3,5)} أكبر`, `٠٫٥ أكبر`, 'متساويان', 'لا يمكن المقارنة'], exp:`نحول الكسر إلى صورة عشرية: ${frac(3,5)} = ٠٫٦. بما أن ٠٫٦ > ٠٫٥، فإن ${frac(3,5)} أكبر.` }; }
+        ],
+    },
+    science: {
+        g4: [
+        // الوحدة الرابعة: الأرض ومواردها
+        // درس: المعادن والصخور
+        () => { return { t:'المعادن', l:'فهم', vak:'👁️ بصري', q:`المادة الصلبة الطبيعية غير الحية، التي لها تركيب كيميائي محدد، تسمى:`, opts:['المعدن', 'الصخر', 'التربة', 'الماء'], exp:`المعدن: مادة صلبة طبيعية غير حية، لها تركيب كيميائي محدد وترتيب منتظم لذراتها.` }; },
+        () => { return { t:'أنواع الصخور', l:'تحليل', vak:'👁️ بصري', q:`الصخور التي تتكون من تبريد الصهارة (الماجما) تسمى:`, opts:['الصخور النارية', 'الصخور الرسوبية', 'الصخور المتحولة', 'الصخور الجوفية فقط'], exp:`الصخور النارية تتكون عند تبريد الصهير الصخري (الماجما داخل الأرض، أو اللابة على سطحها) وتصلبه.` }; },
+        () => { return { t:'الصخور الرسوبية', l:'تحليل', vak:'👁️ بصري', q:`الصخور التي تتكون من تراكم الرواسب وتماسكها عبر الزمن تسمى:`, opts:['الصخور الرسوبية', 'الصخور النارية', 'الصخور المتحولة', 'الصخور الجوفية'], exp:`الصخور الرسوبية تتكون بتراكم الرواسب من فتات الصخور أو بقايا الكائنات الحية، ثم تماسكها.` }; },
+        () => { return { t:'الصخور المتحولة', l:'استدلال', vak:'👁️ بصري', q:`الصخور التي تتكون من تغير صخور أخرى بسبب الحرارة والضغط العاليين تسمى:`, opts:['الصخور المتحولة', 'الصخور النارية', 'الصخور الرسوبية', 'الصخور البركانية'], exp:`الصخور المتحولة تنتج من تأثير الحرارة والضغط الشديدين على الصخور النارية أو الرسوبية، فيتغير تركيبها.` }; },
+        
+        // درس: الماء
+        () => { return { t:'دورة الماء', l:'فهم', vak:'👁️ بصري', q:`عملية تحول الماء السائل إلى بخار ماء بفعل حرارة الشمس تسمى:`, opts:['التبخر', 'التكثف', 'التجمد', 'الترسيب'], exp:`التبخر: تحول السائل إلى غاز. أشعة الشمس تسبب تبخر مياه البحار والأنهار.` }; },
+        () => { return { t:'دورة الماء', l:'تحليل', vak:'👁️ بصري', q:`تجمع بخار الماء في الجو على هيئة قطرات سائلة (تكوّن الغيوم) يسمى:`, opts:['التكثف', 'التبخر', 'الترسيب', 'التجمد'], exp:`التكثف: تحول الغاز (بخار الماء) إلى سائل، فيتجمع على هيئة قطرات صغيرة مكوّناً الغيوم.` }; },
+        () => { return { t:'موارد الماء', l:'تطبيق', vak:'✋ حركي', q:`أكبر نسبة من الماء على سطح الأرض موجودة في:`, opts:['المحيطات', 'الأنهار', 'البحيرات', 'الجليديات'], exp:`المحيطات تغطي أكبر مساحة من سطح الأرض، وتحتوي على معظم مياه الكوكب (الماء المالح).` }; },
+        () => { return { t:'ترشيد استهلاك الماء', l:'تطبيق', vak:'✋ حركي', q:`أي مما يلي من ممارسات ترشيد الماء؟`, opts:['إغلاق الصنبور أثناء تنظيف الأسنان', 'ترك صنبور المياه مفتوحاً', 'غسل السيارة كل يوم بخرطوم', 'الاستحمام لفترات طويلة جداً'], exp:`ترشيد الماء يعني استخدامه باعتدال وتجنب الإسراف. إغلاق الصنبور عند عدم الحاجة يحافظ على هذا المورد المهم.` }; },
+        
+        // الوحدة الخامسة: الفضاء
+        // درس: الأرض والشمس والقمر
+        () => { return { t:'حركة الأرض', l:'فهم', vak:'✋ حركي', q:`تعاقب الليل والنهار ينتج عن:`, opts:['دوران الأرض حول نفسها', 'دوران الأرض حول الشمس', 'دوران القمر حول الأرض', 'دوران الشمس حول الأرض'], exp:`الأرض تدور حول محورها مرة كل ٢٤ ساعة، فينتج عن ذلك تعاقب الليل والنهار.` }; },
+        () => { return { t:'حركة الأرض حول الشمس', l:'تحليل', vak:'👁️ بصري', q:`تعاقب الفصول الأربعة ينتج عن:`, opts:['دوران الأرض حول الشمس مع ميل محورها', 'دوران الأرض حول نفسها', 'دوران القمر حول الأرض', 'حركة النجوم'], exp:`تكمل الأرض دورة كاملة حول الشمس في سنة (تقريباً ٣٦٥ يوماً)، وبسبب ميلان محورها تختلف الفصول.` }; },
+        () => { return { t:'أطوار القمر', l:'فهم', vak:'👁️ بصري', q:`الشكل الذي يظهر فيه القمر مضيئاً بشكل كامل من الأرض يسمى:`, opts:['البدر', 'الهلال', 'المحاق', 'التربيع الأول'], exp:`البدر: عندما يكون القمر مقابلاً للشمس تماماً (والأرض بينهما)، فيبدو وجهه المضاء كاملاً.` }; },
+        () => { return { t:'القمر', l:'تطبيق', vak:'👁️ بصري', q:`القمر يدور حول:`, opts:['الأرض', 'الشمس مباشرةً', 'كوكب المريخ', 'نفسه فقط دون شيء آخر'], exp:`القمر هو القمر الطبيعي للأرض، يدور حولها في حوالي ٢٧ يوماً.` }; },
+        
+        // درس: النظام الشمسي
+        () => { return { t:'النظام الشمسي', l:'فهم', vak:'👁️ بصري', q:`عدد كواكب نظامنا الشمسي:`, opts:['٨ كواكب', '٧ كواكب', '٩ كواكب', '١٠ كواكب'], exp:`كواكب النظام الشمسي ٨ كواكب، بترتيبها من الشمس: عطارد، الزهرة، الأرض، المريخ، المشتري، زحل، أورانوس، نبتون.` }; },
+        () => { return { t:'النظام الشمسي', l:'تطبيق', vak:'👁️ بصري', q:`أقرب كوكب إلى الشمس هو:`, opts:['عطارد', 'الزهرة', 'الأرض', 'المريخ'], exp:`عطارد: أصغر كواكب المجموعة الشمسية وأقربها إلى الشمس.` }; },
+        () => { return { t:'النظام الشمسي', l:'تحليل', vak:'👁️ بصري', q:`أكبر كوكب في النظام الشمسي:`, opts:['المشتري', 'زحل', 'الأرض', 'الشمس'], exp:`المشتري أكبر كواكب المجموعة الشمسية. الشمس ليست كوكباً بل نجم.` }; },
+        () => { return { t:'مركز النظام الشمسي', l:'فهم', vak:'👁️ بصري', q:`جسم سماوي مضيء بذاته يقع في مركز النظام الشمسي:`, opts:['الشمس', 'القمر', 'الأرض', 'المريخ'], exp:`الشمس نجم متوهج يقع في مركز نظامنا الشمسي، وتدور حوله الكواكب.` }; },
+        
+        // الوحدة السادسة: المادة
+        // درس: القياس
+        () => { return { t:'وحدات قياس الطول', l:'فهم', vak:'✋ حركي', q:`الوحدة الأساسية لقياس الطول في النظام المتري هي:`, opts:['المتر', 'الجرام', 'اللتر', 'الثانية'], exp:`المتر هو الوحدة الأساسية لقياس الطول. اللتر للسعة، الجرام للكتلة، الثانية للزمن.` }; },
+        () => { return { t:'الكتلة والوزن', l:'تحليل', vak:'✋ حركي', q:`كمية المادة في الجسم تسمى:`, opts:['الكتلة', 'الوزن', 'الحجم', 'الكثافة'], exp:`الكتلة: كمية المادة في الجسم، وتقاس بالميزان (وحدتها الكيلوجرام). أما الوزن فقوة جذب الأرض للجسم.` }; },
+        
+        // درس: كيف تتغير المادة؟
+        () => { return { t:'حالات المادة', l:'فهم', vak:'✋ حركي', q:`الحالة التي للمادة فيها شكل ثابت وحجم ثابت:`, opts:['الصلبة', 'السائلة', 'الغازية', 'البلازما'], exp:`الصلبة: شكل وحجم ثابتان. السائلة: حجم ثابت لكن تأخذ شكل الإناء. الغازية: لا شكل ولا حجم محدد.` }; },
+        () => { return { t:'تغيرات المادة', l:'تحليل', vak:'👁️ بصري', q:`عند تسخين الجليد فإنه يتحول إلى ماء سائل. هذه العملية تسمى:`, opts:['الانصهار (الإذابة)', 'التبخر', 'التجمد', 'التكثف'], exp:`الانصهار: تحول المادة من الحالة الصلبة إلى السائلة بفعل الحرارة.` }; },
+        () => { return { t:'تغيرات المادة', l:'تحليل', vak:'👁️ بصري', q:`تحول الماء السائل إلى ثلج عند انخفاض درجة الحرارة يسمى:`, opts:['التجمد', 'الانصهار', 'التبخر', 'التكثف'], exp:`التجمد: تحول السائل إلى صلب عند انخفاض درجة الحرارة.` }; },
+        
+        // درس: المخاليط
+        () => { return { t:'المخاليط', l:'فهم', vak:'✋ حركي', q:`عند إذابة ملعقة من السكر في كوب ماء نحصل على:`, opts:['محلول', 'مخلوط غير متجانس', 'مادة نقية', 'عنصر جديد'], exp:`السكر يذوب في الماء فيكوّن محلولاً (مخلوطاً متجانساً) لا نستطيع رؤية مكوناته بالعين.` }; },
+        () => { return { t:'فصل المخاليط', l:'تطبيق', vak:'✋ حركي', q:`أفضل طريقة لفصل الرمل من الماء:`, opts:['الترشيح', 'التبخير', 'التجميد', 'الإذابة'], exp:`الترشيح يفصل المواد الصلبة غير الذائبة (كالرمل) عن السائل (كالماء) باستخدام مرشح.` }; },
+        
+        // الوحدة السابعة: القوى والطاقة
+        // درس: القوى والحركة
+        () => { return { t:'القوى', l:'فهم', vak:'✋ حركي', q:`القوة التي تجذب الأجسام نحو مركز الأرض تسمى:`, opts:['الجاذبية', 'الاحتكاك', 'المغناطيسية', 'الدفع'], exp:`الجاذبية الأرضية: قوة تجذب جميع الأجسام نحو مركز الأرض. لهذا تسقط الأجسام إلى الأسفل.` }; },
+        () => { return { t:'الاحتكاك', l:'تطبيق', vak:'✋ حركي', q:`عند فرك يديك معاً تشعر بالحرارة بسبب:`, opts:['الاحتكاك', 'الجاذبية', 'المغناطيسية', 'الكهرباء'], exp:`الاحتكاك: قوة تنشأ بين سطحين متلامسين متحركين، وينتج عنها حرارة.` }; },
+        
+        // درس: تغير الحركة
+        () => { return { t:'تأثير القوى', l:'تحليل', vak:'✋ حركي', q:`القوة قد تؤدي إلى:`, opts:['تغيير سرعة الجسم أو اتجاهه', 'إنشاء جسم جديد', 'تحويل المادة إلى طاقة', 'إيقاف الزمن'], exp:`القوة تؤثر على الأجسام بـ: تحريك ساكن، إيقاف متحرك، تغيير اتجاه، أو تغيير شكل الجسم.` }; },
+        
+        // درس: الحرارة
+        () => { return { t:'مصادر الحرارة', l:'فهم', vak:'✋ حركي', q:`المصدر الرئيسي للحرارة على الأرض هو:`, opts:['الشمس', 'القمر', 'النار فقط', 'البطاريات'], exp:`الشمس المصدر الأكبر للطاقة الحرارية على الأرض، وعليها تعتمد الحياة.` }; },
+        () => { return { t:'انتقال الحرارة', l:'تحليل', vak:'👁️ بصري', q:`عند وضع ملعقة معدنية في كوب شاي ساخن، تنتقل الحرارة إليها بطريقة:`, opts:['التوصيل', 'الإشعاع', 'التبخر', 'التجمد'], exp:`التوصيل: انتقال الحرارة عبر المواد الصلبة بالتلامس المباشر (المعادن موصلات جيدة).` }; },
+        
+        // درس: الكهرباء
+        () => { return { t:'الدوائر الكهربائية', l:'تطبيق', vak:'✋ حركي', q:`لتضيء اللمبة في دائرة كهربائية، يجب أن تكون الدائرة:`, opts:['مغلقة', 'مفتوحة', 'متقطعة', 'فارغة'], exp:`الدائرة المغلقة (المكتملة) تسمح بمرور التيار الكهربائي، فتضيء اللمبة.` }; },
+        () => { return { t:'الموصلات والعوازل', l:'تحليل', vak:'✋ حركي', q:`أي مما يلي يعد موصلاً جيداً للكهرباء؟`, opts:['النحاس', 'الخشب', 'البلاستيك', 'الزجاج'], exp:`المعادن كالنحاس موصلات جيدة للكهرباء، أما الخشب والبلاستيك والزجاج فعوازل.` }; },
+        
+        // درس: المغناطيسية
+        () => { return { t:'المغناطيس', l:'فهم', vak:'👁️ بصري', q:`من المواد التالية، أيها ينجذب للمغناطيس؟`, opts:['الحديد', 'الخشب', 'الزجاج', 'البلاستيك'], exp:`الحديد من المواد المغناطيسية. الخشب والزجاج والبلاستيك مواد غير مغناطيسية لا تنجذب.` }; },
+        () => { return { t:'أقطاب المغناطيس', l:'تحليل', vak:'✋ حركي', q:`عند تقريب القطب الشمالي لمغناطيس من قطب شمالي لمغناطيس آخر، فإنهما:`, opts:['يتنافران', 'يتجاذبان', 'لا يتأثران', 'يلتصقان دائماً'], exp:`الأقطاب المتشابهة تتنافر، والمختلفة تتجاذب.` }; }
+    ],
+        g5: [
+        // الوحدة الرابعة: الطقس
+        // درس: الغلاف الجوي والطقس
+        () => { return { t:'الغلاف الجوي', l:'فهم', vak:'👁️ بصري', q:`طبقة الغازات المحيطة بكوكب الأرض تسمى:`, opts:['الغلاف الجوي', 'الغلاف المائي', 'الغلاف الصخري', 'الغلاف الحيوي'], exp:`الغلاف الجوي: طبقة الغازات التي تحيط بالأرض وتوفر الأكسجين للتنفس وتحمي من أشعة الشمس الضارة.` }; },
+        () => { return { t:'الطقس', l:'فهم', vak:'👁️ بصري', q:`حالة الغلاف الجوي من حرارة ورياح ورطوبة في مكان معين وزمان قصير تسمى:`, opts:['الطقس', 'المناخ', 'الفصول', 'البيئة'], exp:`الطقس: الحالة الجوية في زمن قصير. المناخ: متوسط الطقس على مدى طويل (٣٠ سنة).` }; },
+        () => { return { t:'قياس الطقس', l:'تطبيق', vak:'✋ حركي', q:`الجهاز المستخدم لقياس درجة حرارة الجو هو:`, opts:['الترمومتر', 'البارومتر', 'الأنيمومتر', 'مقياس المطر'], exp:`الترمومتر: مقياس الحرارة. البارومتر: مقياس الضغط الجوي. الأنيمومتر: مقياس سرعة الرياح.` }; },
+        () => { return { t:'الضغط الجوي', l:'تحليل', vak:'👁️ بصري', q:`الجهاز المستخدم لقياس الضغط الجوي هو:`, opts:['البارومتر', 'الترمومتر', 'الأنيمومتر', 'البوصلة'], exp:`البارومتر يقيس الضغط الجوي، وهو وزن الهواء فوق منطقة معينة.` }; },
+        
+        // درس: الغيوم والهطول
+        () => { return { t:'الغيوم والهطول', l:'تحليل', vak:'👁️ بصري', q:`الغيوم الرقيقة المرتفعة جداً في السماء، والتي تشبه خصلات الشعر، تسمى:`, opts:['السمحاقية (السحب الريشية)', 'الركامية', 'الطبقية', 'الركامية المزن'], exp:`الغيوم السمحاقية (Cirrus): رقيقة، عالية الارتفاع، مكونة من بلورات ثلجية.` }; },
+        () => { return { t:'دورة الماء', l:'تطبيق', vak:'👁️ بصري', q:`الماء الذي يسقط من السحب على شكل أمطار أو ثلج أو بَرَد يسمى:`, opts:['الهطول (التساقط)', 'التبخر', 'التكثف', 'الجريان السطحي'], exp:`الهطول: أي شكل من أشكال الماء الذي يسقط من السماء (مطر، ثلج، بَرَد، ضباب).` }; },
+        
+        // الفصل الثامن: العواصف والمناخ
+        () => { return { t:'العواصف', l:'فهم', vak:'👁️ بصري', q:`العاصفة الدوّامة الكبيرة جداً ذات الضغط المنخفض في مركزها، والتي تتكون فوق المحيطات الاستوائية، تسمى:`, opts:['الإعصار الحلزوني', 'العاصفة الرعدية', 'الزوبعة', 'النسيم'], exp:`الإعصار الحلزوني (Hurricane): عاصفة قوية تتشكل فوق المحيطات الدافئة، وتتميز بضغط منخفض جداً.` }; },
+        () => { return { t:'المناخ', l:'تحليل', vak:'👁️ بصري', q:`أي مما يلي يؤثر في مناخ منطقة معينة؟`, opts:['خط العرض والارتفاع وقربها من البحار', 'لون أرضها فقط', 'عدد سكانها', 'لغة سكانها'], exp:`المناخ يتأثر بـ: خط العرض (قربه أو بعده عن خط الاستواء)، الارتفاع، القرب من المسطحات المائية، والتيارات البحرية.` }; },
+        
+        // الوحدة الخامسة: المادة
+        // درس: العناصر
+        () => { return { t:'العناصر', l:'فهم', vak:'👁️ بصري', q:`أصغر جزء من العنصر يحتفظ بخصائصه يسمى:`, opts:['الذرة', 'الجزيء', 'الخلية', 'البلورة'], exp:`الذرة: الوحدة البنائية الأساسية للمادة. كل عنصر يتكون من نوع واحد من الذرات.` }; },
+        () => { return { t:'العناصر والجدول الدوري', l:'تطبيق', vak:'👁️ بصري', q:`أي مما يلي يعد عنصراً؟`, opts:['الأكسجين', 'الماء', 'ملح الطعام', 'السكر'], exp:`الأكسجين عنصر (مادة نقية واحدة). الماء مركب (H₂O). ملح الطعام مركب (NaCl). السكر مركب.` }; },
+        
+        // درس: الفلزات واللافلزات وأشباه الفلزات
+        () => { return { t:'الفلزات', l:'تحليل', vak:'👁️ بصري', q:`الفلزات تتميز بأنها:`, opts:['موصلة جيدة للكهرباء والحرارة، قابلة للسحب والطرق، ولها بريق', 'عوازل دائماً', 'سائلة دائماً', 'لا تتفاعل مع غيرها'], exp:`خصائص الفلزات: موصلة للكهرباء والحرارة، قابلة للسحب والطرق، ولها بريق معدني (مثل الحديد، النحاس، الذهب).` }; },
+        () => { return { t:'اللافلزات', l:'تحليل', vak:'👁️ بصري', q:`من خصائص اللافلزات:`, opts:['عوازل للكهرباء والحرارة، هشة، لا بريق لها', 'موصلة دائماً', 'لينة دائماً', 'فلزية دائماً'], exp:`اللافلزات: عوازل، هشة، لا بريق لها (مثل الأكسجين والكبريت والكربون).` }; },
+        
+        // الفصل العاشر: التغيرات الفيزيائية والكيميائية للمادة
+        // درس: تغيرات حالة المادة
+        () => { return { t:'تغيرات حالة المادة', l:'تحليل', vak:'✋ حركي', q:`تحول السائل إلى غاز بفعل الحرارة يسمى:`, opts:['التبخر', 'الانصهار', 'التكثف', 'التجمد'], exp:`التبخر: تحول من سائل إلى غاز. الانصهار: من صلب إلى سائل. التكثف: من غاز إلى سائل. التجمد: من سائل إلى صلب.` }; },
+        () => { return { t:'التغيرات الفيزيائية', l:'تطبيق', vak:'👁️ بصري', q:`أي مما يلي يعد تغيراً فيزيائياً؟`, opts:['ذوبان الجليد', 'احتراق الورق', 'صدأ الحديد', 'تخمر العجين'], exp:`التغير الفيزيائي: لا تتكون مادة جديدة (مثل ذوبان الجليد - يبقى ماءً). أما احتراق الورق والصدأ والتخمر فتغيرات كيميائية.` }; },
+        
+        // درس: المركبات والتغيرات الكيميائية
+        () => { return { t:'المركبات', l:'فهم', vak:'👁️ بصري', q:`الماء (H₂O) يعتبر:`, opts:['مركباً (عنصران مرتبطان كيميائياً)', 'عنصراً', 'مخلوطاً', 'محلولاً'], exp:`الماء مركب يتكون من ذرتي هيدروجين وذرة أكسجين، مرتبطين كيميائياً.` }; },
+        () => { return { t:'التغيرات الكيميائية', l:'تحليل', vak:'👁️ بصري', q:`أي مما يلي تغير كيميائي؟`, opts:['احتراق الخشب', 'تكسير الزجاج', 'إذابة السكر في الماء', 'تقطيع الورق'], exp:`الاحتراق تغير كيميائي ينتج عنه مواد جديدة (رماد + غازات). تكسير الزجاج وإذابة السكر تغيرات فيزيائية.` }; },
+        
+        // الوحدة السادسة: القوى والطاقة
+        // الفصل الحادي عشر: الطاقة والآلات البسيطة
+        // درس: الشغل والطاقة
+        () => { return { t:'الشغل', l:'فهم', vak:'✋ حركي', q:`في علم الفيزياء، الشغل يحدث عندما:`, opts:['تؤثر قوة على جسم فتحركه مسافة معينة', 'يفكر الإنسان', 'يجلس الجسم بدون حركة', 'تكون القوة دون حركة'], exp:`الشغل = القوة × المسافة. لا شغل بدون حركة، حتى لو كانت القوة موجودة (كالوقوف ممسكاً بحقيبة دون تحريكها).` }; },
+        
+        // درس: الآلات البسيطة
+        () => { return { t:'الآلات البسيطة', l:'تطبيق', vak:'✋ حركي', q:`أي مما يلي من الآلات البسيطة؟`, opts:['الرافعة', 'الحاسوب', 'التلفاز', 'الثلاجة'], exp:`الآلات البسيطة ٦: الرافعة، البكرة، العجلة والمحور، المستوى المائل، الإسفين، اللولب. تسهل عمل الشغل.` }; },
+        () => { return { t:'الآلات البسيطة', l:'تحليل', vak:'👁️ بصري', q:`المستوى المائل (السطح المائل) يُستخدم لـ:`, opts:['تسهيل رفع الأجسام الثقيلة', 'تسريع الزمن', 'تجميد الأشياء', 'إضاءة المنازل'], exp:`المستوى المائل (مثل المنحدر) يقلل من القوة اللازمة لرفع الجسم، لكنه يطيل المسافة.` }; },
+        
+        // الفصل الثاني عشر: الصوت والضوء
+        // درس: الصوت
+        () => { return { t:'الصوت', l:'فهم', vak:'👂 سمعي', q:`الصوت ينتقل بأعلى سرعة في:`, opts:['المواد الصلبة', 'السوائل', 'الغازات (الهواء)', 'الفراغ'], exp:`سرعة الصوت في الصلبة أكبر من السوائل أكبر من الغازات. ولا ينتقل في الفراغ لعدم وجود جزيئات.` }; },
+        () => { return { t:'خصائص الصوت', l:'تحليل', vak:'👂 سمعي', q:`الصوت ينتج عن:`, opts:['اهتزاز الأجسام', 'سكون الأجسام', 'الضوء', 'الحرارة'], exp:`كل صوت سببه اهتزاز جسم ما (الأوتار الصوتية للإنسان، الأوتار للكمنجة، إلخ).` }; },
+        
+        // درس: الضوء
+        () => { return { t:'الضوء', l:'فهم', vak:'👁️ بصري', q:`المصدر الطبيعي الرئيسي للضوء على الأرض هو:`, opts:['الشمس', 'المصابيح الكهربائية', 'القمر', 'النجوم'], exp:`الشمس مصدر طبيعي للضوء. القمر لا يضيء بنفسه بل يعكس ضوء الشمس.` }; },
+        () => { return { t:'انعكاس الضوء', l:'تحليل', vak:'👁️ بصري', q:`عند سقوط الضوء على سطح مرآة وارتداده، تسمى هذه الظاهرة:`, opts:['انعكاس الضوء', 'انكسار الضوء', 'امتصاص الضوء', 'تشتت الضوء'], exp:`انعكاس الضوء: ارتداده عن السطح. الانكسار: تغير اتجاهه عند انتقاله بين وسطين.` }; }
+    ],
+        g6: [
+        // الوحدة الرابعة: الفضاء
+        // درس: نظام الأرض والشمس
+        () => { return { t:'دوران الأرض حول الشمس', l:'فهم', vak:'👁️ بصري', q:`تكمل الأرض دورة كاملة حول الشمس في:`, opts:['سنة (٣٦٥٫٢٥ يوماً)', 'يوم واحد', 'شهر', 'أسبوع'], exp:`الأرض تكمل دورتها حول الشمس في حوالي ٣٦٥ يوماً وربع، وهذه هي السنة الشمسية.` }; },
+        () => { return { t:'الفصول الأربعة', l:'تحليل', vak:'👁️ بصري', q:`السبب الرئيسي لتعاقب الفصول الأربعة هو:`, opts:['ميل محور الأرض ودورانها حول الشمس', 'بُعد الأرض عن الشمس فقط', 'دوران الأرض حول نفسها', 'حركة القمر'], exp:`بسبب ميلان محور الأرض (٢٣٫٥°)، تختلف زاوية سقوط أشعة الشمس على نصفي الأرض، فتتعاقب الفصول.` }; },
+        
+        // درس: نظام الأرض والشمس والقمر
+        () => { return { t:'كسوف الشمس', l:'تحليل', vak:'👁️ بصري', q:`كسوف الشمس يحدث عندما:`, opts:['يكون القمر بين الأرض والشمس فيحجب ضوءها', 'تكون الأرض بين الشمس والقمر', 'تختفي الشمس فجأة', 'يحدث ليل دائم'], exp:`كسوف الشمس: عندما يقع القمر بين الأرض والشمس، فيلقي ظله على الأرض ويحجب ضوء الشمس جزئياً أو كلياً.` }; },
+        () => { return { t:'خسوف القمر', l:'تحليل', vak:'👁️ بصري', q:`خسوف القمر يحدث عندما:`, opts:['تكون الأرض بين الشمس والقمر فيقع القمر في ظل الأرض', 'يكون القمر بين الأرض والشمس', 'يختفي القمر', 'يبدأ الشروق'], exp:`خسوف القمر: عندما تقع الأرض بين الشمس والقمر، فيدخل القمر في ظل الأرض.` }; },
+        
+        // الفصل الثامن: النظام الشمسي والنجوم والمجرات
+        // درس: النظام الشمسي
+        () => { return { t:'النظام الشمسي', l:'فهم', vak:'👁️ بصري', q:`الكواكب الداخلية (الصخرية) في النظام الشمسي هي:`, opts:['عطارد، الزهرة، الأرض، المريخ', 'المشتري وزحل', 'أورانوس ونبتون فقط', 'الشمس والقمر'], exp:`الكواكب الداخلية: عطارد، الزهرة، الأرض، المريخ (صخرية، صغيرة). الخارجية: المشتري، زحل، أورانوس، نبتون (غازية، كبيرة).` }; },
+        () => { return { t:'النظام الشمسي', l:'تحليل', vak:'👁️ بصري', q:`الكوكب المعروف بـ "الكوكب الأحمر" هو:`, opts:['المريخ', 'الزهرة', 'المشتري', 'زحل'], exp:`المريخ يبدو أحمر اللون من سطح الأرض، بسبب أكسيد الحديد (الصدأ) المنتشر على سطحه.` }; },
+        () => { return { t:'النظام الشمسي', l:'تطبيق', vak:'👁️ بصري', q:`الكوكب الذي يشتهر بحلقاته البديعة:`, opts:['زحل', 'الأرض', 'عطارد', 'المريخ'], exp:`زحل (Saturn) يتميز بحلقاته الكبيرة الواضحة المكونة من جليد وغبار.` }; },
+        
+        // درس: النجوم والمجرات
+        () => { return { t:'النجوم', l:'فهم', vak:'👁️ بصري', q:`النجم هو:`, opts:['جسم متوهج يصدر ضوءه وحرارته بنفسه', 'كوكب يدور حول نجم', 'قمر يدور حول كوكب', 'صخرة فضائية'], exp:`النجم: جسم سماوي ضخم متوهج، يولد طاقة من تفاعلات نووية في باطنه. الشمس مثال للنجوم.` }; },
+        () => { return { t:'المجرات', l:'تحليل', vak:'👁️ بصري', q:`المجرة التي يقع فيها نظامنا الشمسي تسمى:`, opts:['مجرة درب التبانة', 'مجرة المرأة المسلسلة', 'سحابة ماجلان', 'الكون كله'], exp:`نظامنا الشمسي جزء من مجرة درب التبانة، التي تحتوي على مليارات النجوم.` }; },
+        
+        // الوحدة الخامسة: المادة
+        // درس: الخصائص الفيزيائية للمادة
+        () => { return { t:'الخصائص الفيزيائية', l:'فهم', vak:'✋ حركي', q:`أي مما يلي يُعد خاصية فيزيائية للمادة؟`, opts:['الكثافة واللون والحالة', 'القابلية للاحتراق', 'التفاعل مع الأحماض', 'الصدأ'], exp:`الخصائص الفيزيائية يمكن ملاحظتها دون تغيير في تركيب المادة (اللون، الكثافة، نقطة الانصهار). الكيميائية تظهر بالتفاعل.` }; },
+        () => { return { t:'الكثافة', l:'تطبيق', vak:'✋ حركي', q:`الكثافة هي:`, opts:['الكتلة مقسومة على الحجم', 'الكتلة مضروبة في الحجم', 'الكتلة فقط', 'الحجم فقط'], exp:`الكثافة = الكتلة ÷ الحجم. وحدتها (جم/سم³) أو (كجم/م³).` }; },
+        
+        // درس: الماء والمخاليط
+        () => { return { t:'المخاليط', l:'تحليل', vak:'👁️ بصري', q:`المخلوط المتجانس (المحلول) خصائصه:`, opts:['متماثلة في جميع أجزائه ولا تُرى مكوناته', 'مختلفة من جزء لآخر', 'دائماً صلبة', 'لا تذوب فيه أي مادة'], exp:`المحلول (المخلوط المتجانس): مكوناته منتشرة بانتظام ولا يمكن تمييزها بالعين (مثل ماء + ملح).` }; },
+        () => { return { t:'فصل المخاليط', l:'تطبيق', vak:'✋ حركي', q:`أنسب طريقة لفصل الملح من الماء هي:`, opts:['التبخر', 'الترشيح', 'المغناطيس', 'التجميد'], exp:`بتبخير الماء يبقى الملح. الترشيح يفصل المواد غير الذائبة، والمغناطيس للمواد المغناطيسية.` }; },
+        
+        // الفصل العاشر: التغيرات والخصائص الكيميائية
+        // درس: التغيرات الكيميائية
+        () => { return { t:'التغيرات الكيميائية', l:'تحليل', vak:'👁️ بصري', q:`من علامات حدوث التغير الكيميائي:`, opts:['تكوّن مادة جديدة، أو تصاعد غاز، أو تغير اللون', 'تغير الشكل فقط', 'تغير الحجم فقط', 'ذوبان المادة'], exp:`علامات التغير الكيميائي: تصاعد غاز، تغير لون، تكوّن راسب، انبعاث حرارة أو ضوء، تكون مادة جديدة.` }; },
+        () => { return { t:'الاحتراق', l:'تحليل', vak:'👁️ بصري', q:`عند احتراق الخشب، فإن:`, opts:['تتكون مواد جديدة (رماد + غازات)', 'لا يتغير شيء', 'يصبح الخشب ماءً', 'يتجمد الخشب'], exp:`الاحتراق تغير كيميائي ينتج عنه مواد جديدة (رماد، ثاني أكسيد الكربون، بخار ماء) مع طاقة حرارية وضوئية.` }; },
+        
+        // درس: الخصائص الكيميائية
+        () => { return { t:'الأحماض والقواعد', l:'فهم', vak:'👁️ بصري', q:`أي مما يلي يعد حمضاً؟`, opts:['عصير الليمون', 'الصابون', 'مسحوق الغسيل', 'صودا الخبز'], exp:`عصير الليمون حمضي (يحتوي حمض الستريك). الصابون والمساحيق والصودا قاعدية.` }; },
+        
+        // الوحدة السادسة: القوى والطاقة
+        // الفصل الحادي عشر: القوى
+        () => { return { t:'الجاذبية', l:'فهم', vak:'✋ حركي', q:`أي العبارات صحيحة حول الجاذبية؟`, opts:['كل الأجسام تتجاذب، وقوة الجاذبية تزداد بزيادة الكتلة', 'الجاذبية موجودة على الأرض فقط', 'الجاذبية تجذب الأشياء للأعلى', 'الجاذبية تختفي في الليل'], exp:`الجاذبية قوة كونية بين كل الأجسام ذات الكتلة، وكلما زادت الكتل أو قلّت المسافة زادت الجاذبية.` }; },
+        () => { return { t:'قوانين نيوتن', l:'تحليل', vak:'✋ حركي', q:`القانون الأول لنيوتن (قانون القصور الذاتي) ينص على:`, opts:['الجسم الساكن يبقى ساكناً والمتحرك يبقى متحركاً ما لم تؤثر عليه قوة', 'القوة = الكتلة × التسارع', 'لكل فعل رد فعل', 'الكتلة تزداد بالسرعة'], exp:`القصور الذاتي: الأجسام تقاوم تغير حالة حركتها. ساكن يبقى ساكناً، ومتحرك يستمر متحركاً ما لم تؤثر عليه قوة.` }; },
+        
+        // الفصل الثاني عشر: الكهرباء والمغناطيس
+        // درس: الكهرباء
+        () => { return { t:'التيار الكهربائي', l:'فهم', vak:'✋ حركي', q:`التيار الكهربائي ينتج عن حركة:`, opts:['الإلكترونات', 'البروتونات', 'النيوترونات', 'الذرات الكاملة'], exp:`الإلكترونات (سالبة الشحنة) تتحرك في الموصلات مكوّنة التيار الكهربائي.` }; },
+        () => { return { t:'الموصلات والعوازل', l:'تحليل', vak:'✋ حركي', q:`أي المواد التالية موصل جيد للكهرباء؟`, opts:['النحاس', 'الخشب', 'الزجاج', 'البلاستيك'], exp:`المعادن (النحاس، الألمنيوم، الحديد) موصلات جيدة. الخشب والزجاج والبلاستيك عوازل.` }; },
+        () => { return { t:'الدوائر الكهربائية', l:'تحليل', vak:'👁️ بصري', q:`أي مكون يقاطع التيار الكهربائي عند إغلاقه:`, opts:['المفتاح (القاطع)', 'البطارية', 'الأسلاك', 'اللمبة'], exp:`المفتاح: يفتح أو يغلق الدائرة، فيسمح أو يمنع مرور التيار.` }; },
+        
+        // درس: المغناطيس
+        () => { return { t:'المغناطيسات', l:'فهم', vak:'✋ حركي', q:`الجزء الأقوى جذباً في المغناطيس هو:`, opts:['القطبان (الشمالي والجنوبي)', 'منتصف المغناطيس', 'الجوانب', 'لا يوجد فرق'], exp:`القطبان طرفا المغناطيس، وهما الأقوى جذباً للمواد المغناطيسية.` }; },
+        () => { return { t:'الكهرومغناطيسية', l:'استدلال', vak:'✋ حركي', q:`عند مرور تيار كهربائي في سلك ملفوف حول قطعة حديد، يتكون:`, opts:['مغناطيس كهربائي', 'مولد كهربائي', 'بطارية', 'موصل عازل'], exp:`المغناطيس الكهربائي: ينشأ عند مرور تيار في ملف حول قلب حديدي. يفقد مغناطيسيته عند انقطاع التيار.` }; }
+    ],
+    },
+    arabic: {
+        g4: [
+        // الوظيفة النحوية - الفاعل والمفعول به
+        () => { return { t:'الفاعل', l:'تطبيق', vak:'👂 سمعي', q:`في الجملة: "<span class="font-bold text-moe">شَرَحَ المعلمُ الدرسَ</span>"، الفاعلُ هو:`, opts:['المعلمُ', 'الدرسَ', 'شَرَحَ', 'لا يوجد فاعل'], exp:`الفاعل: اسم مرفوع يدل على من فعل الفعل. وعلامة رفعه الضمة. هنا: المعلمُ.` }; },
+        () => { return { t:'المفعول به', l:'تطبيق', vak:'👂 سمعي', q:`في الجملة: "<span class="font-bold text-moe">كَتَبَ الطالبُ الواجبَ</span>"، المفعول به هو:`, opts:['الواجبَ', 'الطالبُ', 'كَتَبَ', 'لا يوجد'], exp:`المفعول به: اسم منصوب يدل على ما وقع عليه فعل الفاعل. علامة نصبه الفتحة. هنا: الواجبَ.` }; },
+        () => { return { t:'علامة نصب المفعول به', l:'فهم', vak:'👁️ بصري', q:`علامة نصب المفعول به (المفرد) الأصلية هي:`, opts:['الفتحة', 'الضمة', 'الكسرة', 'السكون'], exp:`المفعول به منصوب، وعلامته الأصلية الفتحة. المفرد: فتحة ظاهرة (الكتابَ).` }; },
+        
+        // الأسلوب اللغوي
+        () => { return { t:'أسلوب الاستفهام', l:'فهم', vak:'👂 سمعي', q:`أيُّ مما يأتي أداة استفهام؟`, opts:['متى', 'لن', 'إنَّ', 'قد'], exp:`أدوات الاستفهام: من، ما، متى، أين، كيف، لماذا، كم، هل، الهمزة. وهي تستخدم للسؤال والاستفسار.` }; },
+        () => { return { t:'أسلوب التعجب', l:'تحليل', vak:'👂 سمعي', q:`الأسلوب المستخدم في عبارة "<span class="font-bold text-moe">ما أجمل الحديقةَ!</span>" هو:`, opts:['أسلوب التعجب', 'أسلوب الاستفهام', 'أسلوب النفي', 'أسلوب النداء'], exp:`أسلوب التعجب: يستخدم للتعبير عن الانفعال (الإعجاب أو الاندهاش)، من صيغه: ما أفعَلَ! أفعِل به!` }; },
+        () => { return { t:'أسلوب النداء', l:'تحليل', vak:'👂 سمعي', q:`في عبارة "<span class="font-bold text-moe">يا أحمدُ، اجتهد!</span>"، حرف النداء هو:`, opts:['يا', 'أحمدُ', 'اجتهد', 'لا يوجد'], exp:`أدوات النداء: يا، أيا، هيا، الهمزة، أيُّ. وأكثرها استعمالاً "يا".` }; },
+        
+        // الإملاء
+        () => { return { t:'التاء المربوطة والمفتوحة', l:'تحليل', vak:'👁️ بصري', q:`نوع التاء في كلمة "<span class="font-bold text-moe">مدرسة</span>":`, opts:['تاء مربوطة', 'تاء مفتوحة', 'تاء ساكنة', 'هاء'], exp:`التاء المربوطة (ة) تُلفظ هاءً عند الوقف عليها، وتاءً عند الوصل. مثل: مدرسة، فاطمة.` }; },
+        () => { return { t:'التاء المربوطة والمفتوحة', l:'تحليل', vak:'👁️ بصري', q:`نوع التاء في كلمة "<span class="font-bold text-moe">كَتَبَتْ</span>":`, opts:['تاء مفتوحة', 'تاء مربوطة', 'هاء', 'لا تاء'], exp:`التاء المفتوحة (ت) تُلفظ تاءً دائماً وصلاً ووقفاً. مثل: كتبت، بيت.` }; },
+        () => { return { t:'اللام الشمسية والقمرية', l:'تحليل', vak:'👂 سمعي', q:`اللام في كلمة "<span class="font-bold text-moe">الشمس</span>" نوعها:`, opts:['شمسية (لا تُلفظ وتُدغم)', 'قمرية (تُلفظ بوضوح)', 'لام جر', 'لام تعريف عادية'], exp:`اللام الشمسية تُكتب ولا تُلفظ، ويُشدد الحرف بعدها. حروف "الشمس" هي ت ث د ذ ر ز س ش ص ض ط ظ ل ن.` }; },
+        () => { return { t:'اللام الشمسية والقمرية', l:'تحليل', vak:'👂 سمعي', q:`اللام في كلمة "<span class="font-bold text-moe">القمر</span>" نوعها:`, opts:['قمرية (تُلفظ بوضوح)', 'شمسية (لا تُلفظ)', 'لام جر', 'ليست لام تعريف'], exp:`اللام القمرية تُلفظ بوضوح. حروف "القمر" هي: ا ب ج ح خ ع غ ف ق ك م ه و ي.` }; },
+        
+        // أنواع الجموع
+        () => { return { t:'أنواع الجموع', l:'فهم', vak:'👁️ بصري', q:`كلمة "<span class="font-bold text-moe">معلمون</span>" جمع:`, opts:['جمع مذكر سالم', 'جمع مؤنث سالم', 'جمع تكسير', 'مفرد'], exp:`جمع المذكر السالم: ينتهي بـ (ون) في الرفع أو (ين) في النصب والجر، ولم تتغير صيغة المفرد.` }; },
+        () => { return { t:'أنواع الجموع', l:'فهم', vak:'👁️ بصري', q:`كلمة "<span class="font-bold text-moe">طالبات</span>" جمع:`, opts:['جمع مؤنث سالم', 'جمع مذكر سالم', 'جمع تكسير', 'مفرد'], exp:`جمع المؤنث السالم: يُجمع بزيادة (ات) في آخر المفرد.` }; },
+        () => { return { t:'أنواع الجموع', l:'تحليل', vak:'👁️ بصري', q:`كلمة "<span class="font-bold text-moe">أقلام</span>" جمع:`, opts:['جمع تكسير', 'جمع مذكر سالم', 'جمع مؤنث سالم', 'مفرد'], exp:`جمع التكسير: يتغير فيه بناء المفرد (لا تكون نهايته ون/ين أو ات). مفرد أقلام: قلم.` }; },
+        
+        // المفعول المطلق (يُدرس في رابع ابتدائي)
+        () => { return { t:'المفعول المطلق', l:'تحليل', vak:'👂 سمعي', q:`في الجملة: "<span class="font-bold text-moe">جلستُ جلوسَ المؤدبين</span>"، كلمة "جلوسَ" تُعرب:`, opts:['مفعولاً مطلقاً', 'مفعولاً به', 'فاعلاً', 'مبتدأ'], exp:`المفعول المطلق: مصدر من لفظ الفعل، يأتي لتأكيده أو بيان نوعه أو عدده. منصوب.` }; },
+        
+        // الأفعال الزمنية
+        () => { return { t:'أزمنة الفعل', l:'فهم', vak:'👂 سمعي', q:`الفعل "<span class="font-bold text-moe">كَتَبَ</span>" فعل:`, opts:['ماضٍ', 'مضارع', 'أمر', 'اسم'], exp:`الفعل الماضي: يدل على حدث وقع وانتهى قبل زمن التكلم.` }; },
+        () => { return { t:'أزمنة الفعل', l:'فهم', vak:'👂 سمعي', q:`الفعل "<span class="font-bold text-moe">يكتبُ</span>" فعل:`, opts:['مضارع', 'ماضٍ', 'أمر', 'اسم'], exp:`الفعل المضارع: يدل على حدث يحدث الآن أو في المستقبل، يبدأ بحرف من حروف (أنيت).` }; },
+        () => { return { t:'أزمنة الفعل', l:'فهم', vak:'👂 سمعي', q:`الفعل "<span class="font-bold text-moe">اكتبْ</span>" فعل:`, opts:['أمر', 'ماضٍ', 'مضارع', 'اسم'], exp:`فعل الأمر: يدل على طلب فعل في المستقبل.` }; }
+    ],
+        g5: [
+        // الصنف اللغوي: الاسم المقصور والمنقوص والممدود
+        () => { return { t:'الاسم المقصور', l:'فهم', vak:'👁️ بصري', q:`الاسم المعرب الذي آخره ألف لازمة (مفتوح ما قبلها) يسمى:`, opts:['الاسم المقصور', 'الاسم المنقوص', 'الاسم الممدود', 'الاسم الصحيح'], exp:`المقصور: ينتهي بألف لازمة (ـى أو ـا) ما قبلها مفتوح. مثل: مستشفى، عصا، فتى.` }; },
+        () => { return { t:'الاسم المنقوص', l:'تحليل', vak:'👁️ بصري', q:`الاسم المعرب الذي آخره ياء لازمة (مكسور ما قبلها) يسمى:`, opts:['الاسم المنقوص', 'الاسم المقصور', 'الاسم الممدود', 'الاسم الصحيح'], exp:`المنقوص: ينتهي بياء لازمة ما قبلها مكسور. مثل: القاضي، الراعي، الساعي.` }; },
+        () => { return { t:'الاسم الممدود', l:'تحليل', vak:'👁️ بصري', q:`الاسم المعرب الذي آخره همزة قبلها ألف مد زائدة يسمى:`, opts:['الاسم الممدود', 'الاسم المقصور', 'الاسم المنقوص', 'الاسم الصحيح'], exp:`الممدود: ينتهي بهمزة قبلها ألف زائدة. مثل: سماء، علماء، صحراء.` }; },
+        
+        // الإملاء: الهمزة الممدودة في أول الكلمة ووسطها
+        () => { return { t:'الهمزة الممدودة', l:'تطبيق', vak:'👁️ بصري', q:`الهمزة في كلمة "<span class="font-bold text-moe">آمَن</span>" تكتب على هذه الصورة لأنها:`, opts:['همزة مفتوحة بعدها ألف', 'همزة على الواو', 'همزة على الياء', 'همزة وصل'], exp:`الهمزة الممدودة (آ): همزة مفتوحة في أول الكلمة تليها ألف ساكنة، فتُكتب على ألف بمد (آ).` }; },
+        
+        // الإملاء: الهمزة المتوسطة على الواو
+        () => { return { t:'الهمزة المتوسطة على الواو', l:'استدلال', vak:'👁️ بصري', q:`الهمزة في كلمة "<span class="font-bold text-moe">مُؤْمِن</span>" كُتبت على الواو لأن:`, opts:['أقوى الحركتين الضمة', 'الفتحة قبلها', 'الكسرة قبلها', 'السكون'], exp:`الهمزة المتوسطة تُكتب على حرف يناسب أقوى الحركتين (حركتها وحركة ما قبلها). ترتيب القوة: الكسرة > الضمة > الفتحة > السكون. هنا: الضمة قبلها (السكون عليها أضعف)، فتكتب على واو.` }; },
+        () => { return { t:'الهمزة المتوسطة على الياء', l:'استدلال', vak:'👁️ بصري', q:`الهمزة في كلمة "<span class="font-bold text-moe">بِئْر</span>" كُتبت على نبرة (ياء) لأن:`, opts:['الكسرة قبلها (أقوى الحركات)', 'الفتحة قبلها', 'الضمة قبلها', 'لا حركة'], exp:`الكسرة أقوى الحركات في الهمزة المتوسطة، فتُكتب على نبرة (ـئـ).` }; },
+        () => { return { t:'الهمزة المتوسطة على السطر', l:'تحليل', vak:'👁️ بصري', q:`الهمزة في كلمة "<span class="font-bold text-moe">قراءَة</span>" كُتبت مفردة على السطر لأن:`, opts:['مفتوحة بعد ألف ساكنة', 'مكسورة', 'مضمومة', 'بعد كسرة'], exp:`الهمزة المتوسطة المفتوحة بعد ألف ساكنة تُكتب مفردة على السطر.` }; },
+        
+        // الوظيفة النحوية: نصب المفعول به بالعلامات الفرعية
+        () => { return { t:'نصب المفعول به', l:'تحليل', vak:'👂 سمعي', q:`في جملة "<span class="font-bold text-moe">يحبُّ الطلابُ معلميهم</span>"، كلمة "معلميهم" تُعرب:`, opts:['مفعولاً به منصوباً وعلامة نصبه الياء (لأنه جمع مذكر سالم)', 'مفعولاً به منصوباً بالفتحة', 'فاعلاً مرفوعاً', 'مضافاً إليه'], exp:`جمع المذكر السالم يُنصب بالياء بدلاً من الفتحة (هذه إحدى العلامات الفرعية).` }; },
+        
+        // الوظيفة النحوية: المعطوف
+        () => { return { t:'العطف', l:'فهم', vak:'👁️ بصري', q:`أي مما يلي من حروف العطف؟`, opts:['الواو', 'في', 'إلى', 'على'], exp:`حروف العطف: الواو، الفاء، ثم، أو، أم، لا، بل، لكن، حتى. تُشرّك المعطوف مع المعطوف عليه في الإعراب.` }; },
+        () => { return { t:'العطف', l:'تحليل', vak:'✋ حركي', q:`في جملة "<span class="font-bold text-moe">جاء أحمدُ وخالدٌ</span>"، كلمة "خالدٌ" تُعرب:`, opts:['اسم معطوف مرفوع', 'مفعولاً به منصوباً', 'مبتدأً', 'مضافاً إليه'], exp:`المعطوف يأخذ نفس إعراب المعطوف عليه. هنا "أحمد" فاعل مرفوع، فـ "خالد" معطوف عليه مرفوع.` }; },
+        
+        // الوظيفة النحوية: الصفة (النعت)
+        () => { return { t:'الصفة (النعت)', l:'تطبيق', vak:'👂 سمعي', q:`في جملة "<span class="font-bold text-moe">قرأتُ كتاباً مفيداً</span>"، كلمة "مفيداً" تُعرب:`, opts:['صفة (نعتاً) منصوبة', 'مفعولاً به', 'حالاً', 'فاعلاً'], exp:`الصفة (النعت) تتبع الموصوف في الإعراب والعدد والنوع. هنا "كتاباً" منصوب، فالصفة "مفيداً" منصوبة أيضاً.` }; },
+        
+        // الجملة الاسمية والفعلية
+        () => { return { t:'الجملة الاسمية', l:'فهم', vak:'👁️ بصري', q:`الجملة "<span class="font-bold text-moe">الوطنُ غالٍ</span>" هي جملة:`, opts:['اسمية', 'فعلية', 'استفهامية', 'تعجبية'], exp:`الجملة الاسمية تبدأ باسم، وتتكون من مبتدأ وخبر (المبتدأ: الوطن، الخبر: غالٍ).` }; },
+        () => { return { t:'الجملة الفعلية', l:'فهم', vak:'👁️ بصري', q:`الجملة "<span class="font-bold text-moe">يحبُّ المواطنُ وطنَه</span>" هي جملة:`, opts:['فعلية', 'اسمية', 'استفهامية', 'تعجبية'], exp:`الجملة الفعلية تبدأ بفعل، وتتكون من فعل وفاعل وقد تحتاج مفعولاً به.` }; }
+    ],
+        g6: [
+        // كان وأخواتها
+        () => { return { t:'كان وأخواتها', l:'تطبيق', vak:'✋ حركي', q:`عند إدخال (كان) على الجملة "<span class="font-bold text-moe">الجوُّ معتدلٌ</span>"، تصبح:`, opts:['كان الجوُّ معتدلاً', 'كان الجوَّ معتدلٌ', 'كان الجوُّ معتدلٌ', 'كان الجوَّ معتدلاً'], exp:`كان من النواسخ: ترفع المبتدأ (يسمى اسمها)، وتنصب الخبر (يسمى خبرها). الجوُّ: اسم كان مرفوع. معتدلاً: خبر كان منصوب.` }; },
+        () => { return { t:'كان وأخواتها', l:'فهم', vak:'👂 سمعي', q:`أي مما يلي من أخوات كان (الأفعال الناسخة)؟`, opts:['أصبح', 'إنَّ', 'لعل', 'ليت'], exp:`أخوات كان: كان، أصبح، أمسى، أضحى، ظل، بات، صار، ليس، مازال، مادام.` }; },
+        
+        // إنَّ وأخواتها
+        () => { return { t:'إنَّ وأخواتها', l:'تطبيق', vak:'✋ حركي', q:`عند إدخال (إنَّ) على "<span class="font-bold text-moe">الصدقُ منجاةٌ</span>"، تصبح:`, opts:['إنَّ الصدقَ منجاةٌ', 'إنَّ الصدقُ منجاةَ', 'إنَّ الصدقَ منجاةَ', 'إنَّ الصدقُ منجاةٌ'], exp:`إنَّ من الحروف الناسخة: تنصب المبتدأ (يسمى اسمها)، وترفع الخبر (يسمى خبرها). الصدقَ: اسم إنَّ منصوب. منجاةٌ: خبر إنَّ مرفوع.` }; },
+        () => { return { t:'إنَّ وأخواتها', l:'فهم', vak:'👂 سمعي', q:`أي مما يلي من أخوات إنَّ؟`, opts:['ليت', 'كان', 'صار', 'ليس'], exp:`أخوات إنَّ: إنَّ، أنَّ، كأنَّ، لكنَّ، ليت، لعل. وكلها حروف ناسخة.` }; },
+        
+        // المصادر
+        () => { return { t:'المصدر', l:'تحليل', vak:'👂 سمعي', q:`المصدر من الفعل "<span class="font-bold text-moe">كَتَبَ</span>" هو:`, opts:['كتابة', 'كاتب', 'مكتوب', 'يكتب'], exp:`المصدر اسم يدل على الحدث مجرداً من الزمن، وهو أصل الكلمة. مصدر "كتب" هو "كتابة".` }; },
+        () => { return { t:'المصدر', l:'تحليل', vak:'👂 سمعي', q:`المصدر من الفعل "<span class="font-bold text-moe">قَرَأَ</span>" هو:`, opts:['قراءة', 'قارئ', 'مقروء', 'يقرأ'], exp:`مصدر "قرأ" هو "قراءة".` }; },
+        
+        // الأفعال الخمسة
+        () => { return { t:'الأفعال الخمسة', l:'فهم', vak:'👁️ بصري', q:`الفعل "<span class="font-bold text-moe">يكتبون</span>" من الأفعال الخمسة لاتصاله بـ:`, opts:['واو الجماعة', 'ألف الاثنين', 'ياء المخاطبة', 'نون النسوة'], exp:`الأفعال الخمسة: كل فعل مضارع اتصلت به ألف الاثنين، أو واو الجماعة، أو ياء المخاطبة (يكتبان، تكتبان، يكتبون، تكتبون، تكتبين).` }; },
+        () => { return { t:'إعراب الأفعال الخمسة', l:'تحليل', vak:'👁️ بصري', q:`في جملة: "<span class="font-bold text-moe">الطلابُ يكتبونَ الواجبَ</span>"، الفعل "يكتبونَ" مرفوع وعلامة رفعه:`, opts:['ثبوت النون', 'الضمة', 'الفتحة', 'السكون'], exp:`الأفعال الخمسة تُرفع بثبوت النون، وتُنصب وتُجزم بحذف النون.` }; },
+        
+        // الهمزة المتطرفة
+        () => { return { t:'الهمزة المتطرفة', l:'استدلال', vak:'👁️ بصري', q:`الهمزة في كلمة "<span class="font-bold text-moe">شاطئ</span>" كُتبت على ياء (نبرة) لأن ما قبلها:`, opts:['مكسور', 'مفتوح', 'مضموم', 'ساكن'], exp:`الهمزة المتطرفة تُكتب على حرف يناسب حركة ما قبلها: كسرة ⟵ ياء (ـئ)، ضمة ⟵ واو (ـؤ)، فتحة ⟵ ألف (ـأ)، سكون ⟵ مفردة على السطر (ء).` }; },
+        () => { return { t:'الهمزة المتطرفة', l:'استدلال', vak:'👁️ بصري', q:`الهمزة في كلمة "<span class="font-bold text-moe">لؤلؤ</span>" كُتبت على واو لأن ما قبلها:`, opts:['مضموم', 'مكسور', 'مفتوح', 'ساكن'], exp:`الضمة قبل الهمزة المتطرفة تجعلها تُكتب على واو.` }; },
+        
+        // التشبيه (البلاغة)
+        () => { return { t:'التشبيه', l:'تحليل', vak:'👁️ بصري', q:`في "<span class="font-bold text-moe">الطفلُ كالبدرِ في الجمال</span>"، أداة التشبيه هي:`, opts:['الكاف', 'في', 'الجمال', 'البدر'], exp:`أركان التشبيه: المشبه (الطفل)، المشبه به (البدر)، أداة التشبيه (الكاف)، وجه الشبه (الجمال).` }; }
+    ],
+    },
+    english: {
+        g4: [
+        () => { return { t:'Daily Routine', l:'تطبيق', vak:'👁️ بصري', q:`Choose the correct sentence: "I ____ up at 7 o'clock every day."`, opts:['get', 'gets', 'getting', 'got'], exp:`Present Simple with "I": use the base form of the verb. "I get up..."` }; },
+        () => { let h = rnd(1, 12); return { t:'Telling Time', l:'تطبيق', vak:'👁️ بصري', q:`It's <span class="math-expr">${toAR(h)}:00</span>. We say:`, opts:[`It's ${h} o'clock.`, `It's ${h} thirty.`, `It's half past ${h}.`, `It's quarter to ${h}.`], exp:`At :00 we say "o'clock". So ${h}:00 = ${h} o'clock.` }; },
+        () => { return { t:'Family Members', l:'فهم', vak:'👁️ بصري', q:`Your mother's brother is your:`, opts:['uncle', 'aunt', 'cousin', 'father'], exp:`Mother's brother = uncle. Mother's sister = aunt. Their children = cousins.` }; },
+        () => { return { t:'Colors', l:'فهم', vak:'👁️ بصري', q:`What color do you get when you mix red and yellow?`, opts:['orange', 'green', 'purple', 'pink'], exp:`Red + yellow = orange. Blue + yellow = green. Red + blue = purple.` }; },
+        () => { return { t:'Numbers', l:'تطبيق', vak:'👂 سمعي', q:`How do we write "twenty-five" in numbers?`, opts:[toAR(25), toAR(52), toAR(15), toAR(5)], exp:`Twenty (20) + five (5) = 25.` }; },
+        () => { return { t:'Animals', l:'فهم', vak:'👁️ بصري', q:`Which animal has a long trunk?`, opts:['elephant', 'tiger', 'rabbit', 'snake'], exp:`Elephants have a long trunk which they use for drinking, eating, and lifting things.` }; },
+        () => { return { t:'School Subjects', l:'فهم', vak:'👁️ بصري', q:`The subject we learn numbers and counting in is:`, opts:['Math', 'English', 'Art', 'Music'], exp:`Math (Mathematics) is the subject of numbers, shapes, and calculations.` }; },
+        () => { return { t:'Action Verbs', l:'تطبيق', vak:'✋ حركي', q:`"She ____ a beautiful song." Choose the correct verb:`, opts:['sings', 'sing', 'singing', 'sang'], exp:`Present Simple with "She" (3rd person singular): add -s to the verb. "She sings."` }; }
+    ],
+        g5: [
+        () => { return { t:'Present Continuous', l:'تطبيق', vak:'👂 سمعي', q:`"Look! The children ____ in the playground."`, opts:['are playing', 'play', 'plays', 'played'], exp:`Present Continuous: am/is/are + verb-ing. Used for actions happening now.` }; },
+        () => { return { t:'Health & Body', l:'فهم', vak:'✋ حركي', q:`If your tooth hurts, you have a:`, opts:['toothache', 'headache', 'stomachache', 'cold'], exp:`Body part + "-ache" = pain. Tooth + ache = toothache.` }; },
+        () => { return { t:'Prepositions', l:'تحليل', vak:'👁️ بصري', q:`"The cat is ____ the table." (the cat is on top of the table)`, opts:['on', 'in', 'under', 'next to'], exp:`"on" = on the surface. "in" = inside. "under" = below. "next to" = beside.` }; },
+        () => { return { t:'Plural Nouns', l:'تحليل', vak:'👁️ بصري', q:`What is the plural of "child"?`, opts:['children', 'childs', 'childes', 'childies'], exp:`"Child" has an irregular plural: children (NOT childs).` }; },
+        () => { return { t:'Question Words', l:'تحليل', vak:'👂 سمعي', q:`Which question word do we use to ask about time?`, opts:['When', 'Where', 'Who', 'What'], exp:`"When" = time. "Where" = place. "Who" = person. "What" = thing.` }; },
+        () => { return { t:'Jobs', l:'فهم', vak:'👁️ بصري', q:`A person who teaches at school is called:`, opts:['a teacher', 'a doctor', 'a student', 'a farmer'], exp:`Teacher: teaches in school. Student: learns. Doctor: helps sick people. Farmer: grows food.` }; }
+    ],
+        g6: [
+        () => { return { t:'Past Simple (Irregular)', l:'تحليل', vak:'👂 سمعي', q:`Yesterday, I ____ to the park. (past of "go")`, opts:['went', 'goed', 'going', 'gone'], exp:`"Go" has an irregular past: went (NOT "goed").` }; },
+        () => { return { t:'Comparatives', l:'تحليل', vak:'👁️ بصري', q:`"An elephant is ____ than a cat."`, opts:['bigger', 'big', 'biggest', 'more big'], exp:`Short adjectives + "-er" for comparison. big → bigger.` }; },
+        () => { return { t:'Superlatives', l:'تحليل', vak:'👁️ بصري', q:`"Mount Everest is the ____ mountain in the world."`, opts:['highest', 'higher', 'high', 'more high'], exp:`Superlative for "the most...": short adjectives add "-est". the highest.` }; },
+        () => { return { t:'Future (will)', l:'تطبيق', vak:'👂 سمعي', q:`"Tomorrow, I ____ visit my grandmother."`, opts:['will', 'was', 'am', 'did'], exp:`"Will" + base verb for future plans, promises, or predictions.` }; },
+        () => { return { t:'Modal Verbs', l:'فهم', vak:'👁️ بصري', q:`Which modal verb shows ability?`, opts:['can', 'must', 'should', 'might'], exp:`"Can" = ability (I can swim). "Must" = obligation. "Should" = advice. "Might" = possibility.` }; },
+        () => { return { t:'Reading Comprehension', l:'استدلال', vak:'👁️ بصري', q:`A short text titled "Benefits of Reading" is mostly about:`, opts:['How reading helps us', 'A famous book', 'A library', 'A school'], exp:`The title tells the main idea. "Benefits of Reading" = the advantages/uses of reading.` }; }
+    ],
+    },
+};
+
+
+// ===== حساب عدد القوالب وتحديث الواجهة =====
+function countTemplates() {
+    let total = 0;
+    Object.keys(logicTrees).forEach(s => {
+        Object.keys(logicTrees[s]).forEach(g => {
+            total += logicTrees[s][g].length;
+        });
+    });
+    return total;
+}
+
+// ===== الوضع الليلي =====
+function toggleDark() {
+    document.documentElement.classList.toggle('dark');
+    let isDark = document.documentElement.classList.contains('dark');
+    localStorage.setItem('primaryDarkMode', isDark ? '1' : '0');
+    document.getElementById('darkBtn').innerHTML = isDark ? '☀️' : '🌙';
+}
+
+// ===== تكبير الخط =====
+let fontSizeLevel = 0;
+function changeFontSize() {
+    fontSizeLevel = (fontSizeLevel + 1) % 3;
+    document.body.classList.remove('font-large', 'font-xlarge');
+    if (fontSizeLevel === 1) document.body.classList.add('font-large');
+    if (fontSizeLevel === 2) document.body.classList.add('font-xlarge');
+    localStorage.setItem('primaryFontSize', fontSizeLevel);
+    showToast(`✅ تم تغيير حجم الخط (${['عادي','كبير','أكبر'][fontSizeLevel]})`, true);
+}
+
+// ===== العداد الزمني =====
+function formatTime(secs) {
+    let m = Math.floor(secs / 60);
+    let s = secs % 60;
+    return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+}
+
+function startTimer(resume = false) {
+    if (!resume) timeElapsed = 0;
+    document.getElementById('timerDisplay').classList.remove('hidden');
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+        timeElapsed++;
+        document.getElementById('timerDisplay').innerText = `⏱️ ${formatTime(timeElapsed)}`;
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
+    clearInterval(questionTimerInterval);
+    document.getElementById('questionTimer').classList.add('hidden');
+}
+
+function startQuestionTimer() {
+    if (!document.getElementById('optTimer').checked) return;
+    questionTimeLeft = 60;
+    let qt = document.getElementById('questionTimer');
+    qt.classList.remove('hidden');
+    qt.innerText = `⏱️ ${questionTimeLeft}`;
+    qt.className = qt.className.replace(/bg-\w+-\d+/g, '') + ' bg-blue-500';
+    clearInterval(questionTimerInterval);
+    questionTimerInterval = setInterval(() => {
+        questionTimeLeft--;
+        qt.innerText = `⏱️ ${questionTimeLeft}`;
+        if (questionTimeLeft <= 10) qt.className = qt.className.replace('bg-blue-500', 'bg-red-500');
+        else if (questionTimeLeft <= 20) qt.className = qt.className.replace('bg-blue-500', 'bg-orange-500').replace('bg-red-500', 'bg-orange-500');
+        if (questionTimeLeft <= 0) {
+            clearInterval(questionTimerInterval);
+            autoSubmitQuestion();
+        }
+    }, 1000);
+}
+
+function autoSubmitQuestion() {
+    let x = quiz[idx];
+    let btns = document.querySelectorAll('.opt-btn');
+    btns.forEach(b => {
+        b.disabled = true;
+        if (b.textContent.trim() === x.correct.replace(/<[^>]+>/g, '').trim()) b.classList.add('correct');
+    });
+    let fb = document.getElementById('fb');
+    fb.classList.remove('hidden');
+    fb.classList.add('bg-orange-50', 'border-orange-300', 'text-orange-800');
+    fb.innerHTML = `⏰ <b>انتهى الوقت!</b> الإجابة الصحيحة: (${x.correct})<br><div class="mt-2 text-sm">${x.exp}</div>`;
+    answers.push({ ...x, user: 'انتهى الوقت', ok: false, timeOut: true });
+    setTimeout(() => { idx++; if (idx < quiz.length) renderQ(); else finish(); }, 3500);
+}
+
+// ===== الإشعارات =====
+function showToast(msg, isSuccess = false) {
+    const t = document.getElementById('toast');
+    t.innerHTML = msg;
+    t.className = `fixed top-5 left-1/2 transform -translate-x-1/2 z-[100] px-6 py-3 rounded-full shadow-2xl transition-all duration-300 ${isSuccess ? 'bg-gradient-to-r from-green-600 to-emerald-600' : 'bg-gradient-to-r from-gray-700 to-gray-800'} text-white font-bold text-sm sm:text-base text-center w-max max-w-[90%]`;
+    t.style.opacity = '1'; t.style.transform = 'translate(-50%, 0)';
+    setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translate(-50%, -20px)'; }, 3000);
+}
+
+// ===== الكونفيتي للاحتفال =====
+function launchConfetti() {
+    let colors = ['#d4af37', '#007a64', '#10b981', '#3b82f6', '#ef4444', '#f59e0b'];
+    let container = document.getElementById('confettiContainer');
+    container.innerHTML = '';
+    for (let i = 0; i < 60; i++) {
+        let p = document.createElement('div');
+        p.className = 'confetti-particle';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.top = '-20px';
+        p.style.background = colors[Math.floor(Math.random() * colors.length)];
+        p.style.animationDelay = Math.random() * 0.5 + 's';
+        p.style.animationDuration = (2 + Math.random() * 2) + 's';
+        if (Math.random() > 0.5) p.style.borderRadius = '50%';
+        container.appendChild(p);
+    }
+    setTimeout(() => { container.innerHTML = ''; }, 5000);
+}
+
+// ===== توليد الأسئلة الفريدة =====
+function generateUniqueQuestions(s, g, count) {
+    let generated = [];
+    let uniqueTexts = new Set();
+    let templates = logicTrees[s][g];
+    let attempts = 0;
+    let maxAttempts = count * 200;
+
+    let contexts = ['أيها المبدع: ', 'استخدم خيالك: ', 'فكر واستنتج: ', 'تذكر ما تعلمته: ', 'ركز جيداً: '];
+
+    while (generated.length < count && attempts < maxAttempts) {
+        let tFunc = pick(templates);
+        let qObj = tFunc();
+        
+        if (attempts > count * 3) {
+            qObj.q = pick(contexts) + qObj.q;
+        }
+
+        // إزالة HTML للمقارنة فقط
+        let plainQ = qObj.q.replace(/<[^>]+>/g, '');
+        if (!uniqueTexts.has(plainQ)) {
+            uniqueTexts.add(plainQ);
+            let stringifiedOpts = qObj.opts.map(String);
+            qObj.correct = stringifiedOpts[0];
+            qObj.opts = shuffle([...stringifiedOpts]);
+            generated.push(qObj);
+        }
+        attempts++;
+    }
+    
+    let invisibleSpaces = 1;
+    while (generated.length < count) {
+        let tFunc = pick(templates);
+        let qObj = tFunc();
+        qObj.q = qObj.q + "\u200B".repeat(invisibleSpaces++);
+        let stringifiedOpts = qObj.opts.map(String);
+        qObj.correct = stringifiedOpts[0];
+        qObj.opts = shuffle([...stringifiedOpts]);
+        generated.push(qObj);
+    }
+
+    return generated;
+}
+
+// ===== بدء الاختبار =====
+function startQuiz(isResume = false) {
+    let studentName = document.getElementById('student').value.trim();
+    if (!studentName) {
+        showToast('⚠️ يرجى كتابة اسم الطالب أولاً للبدء.');
+        document.getElementById('student').focus();
+        return;
+    }
+
+    if (!isResume) {
+        let s = document.getElementById('subject').value;
+        let g = document.getElementById('grade').value;
+        let c = +document.getElementById('count').value;
+        
+        quiz = generateUniqueQuestions(s, g, c);
+        idx = 0;
+        answers = [];
+        timeElapsed = 0;
+        document.getElementById('meta').textContent = `${subjectNames[s]} | ${gradeNames[g]} | ${quiz.length} سؤال`;
+        showToast(`✅ تم بناء اختبار مطابق لـ ${gradeNames[g]} - ${subjectNames[s]}`, true);
+    }
+    
+    document.getElementById('results').classList.add('hidden');
+    document.getElementById('certificate').classList.add('hidden');
+    document.getElementById('quizTitle').textContent = 'التقييم قيد التنفيذ ✍️';
+    document.getElementById('quizBox').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    
+    startTimer(isResume);
+    renderQ();
+}
+
+// ===== الحفظ المؤقت =====
+function pauseQuiz() {
+    if (quiz.length === 0 || idx >= quiz.length) {
+        showToast('⚠️ لا يوجد اختبار قيد التنفيذ لحفظه.');
+        return;
+    }
+    stopTimer();
+    let state = {
+        quiz, idx, answers, timeElapsed,
+        student: document.getElementById('student').value,
+        subject: document.getElementById('subject').value,
+        grade: document.getElementById('grade').value,
+        count: document.getElementById('count').value
+    };
+    try {
+        localStorage.setItem('primaryPausedQuiz', JSON.stringify(state));
+        document.getElementById('resumeBtn').classList.remove('hidden');
+        document.getElementById('resumeBtn').classList.add('flex');
+        showToast('✅ تم حفظ تقدمك مؤقتاً. يمكنك العودة لاحقاً.', true);
+        document.getElementById('qArea').innerHTML = `
+            <div class="text-center py-12">
+                <span class="text-6xl block mb-4">⏸️</span>
+                <h3 class="text-2xl font-bold text-gray-700 dark:text-gray-200">تم حفظ تقدمك مؤقتاً</h3>
+                <p class="text-lg text-gray-500 dark:text-gray-400 mt-2">انقر "استكمال" من الإعدادات للعودة.</p>
+            </div>`;
+    } catch (e) {
+        showToast('⚠️ تعذر الحفظ. مساحة التخزين ممتلئة.');
+    }
+}
+
+function resumeQuiz() {
+    let saved = localStorage.getItem('primaryPausedQuiz');
+    if (!saved) { showToast('⚠️ لا يوجد اختبار محفوظ.'); return; }
+    try {
+        let state = JSON.parse(saved);
+        quiz = state.quiz; idx = state.idx; answers = state.answers; timeElapsed = state.timeElapsed;
+        document.getElementById('student').value = state.student || '';
+        document.getElementById('subject').value = state.subject;
+        document.getElementById('grade').value = state.grade;
+        document.getElementById('count').value = state.count;
+        document.getElementById('meta').textContent = `${subjectNames[state.subject]} | ${gradeNames[state.grade]} | مستكمل`;
+        showToast('✅ تم استرجاع الاختبار.', true);
+        startQuiz(true);
+    } catch(e) {
+        showToast('⚠️ تعذر استرجاع الاختبار المحفوظ.');
+        localStorage.removeItem('primaryPausedQuiz');
+    }
+}
+
+// ===== التحقق من النتائج والشهادة =====
+function checkAnalysis() {
+    let res = document.getElementById('results');
+    if (quiz.length > 0 && idx >= quiz.length && !res.classList.contains('hidden')) {
+        res.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        showToast('⚠️ يرجى إنهاء الاختبار بالكامل أولاً لعرض التحليل.');
+    }
+}
+
+function checkCert() {
+    if (answers.length === 0 || idx < quiz.length) {
+        showToast('⚠️ يرجى إنهاء الاختبار بالكامل أولاً لإصدار الشهادة.');
+        return;
+    }
+    let score = answers.filter(a => a.ok).length;
+    let pct = Math.round(score / answers.length * 100);
+    if (pct >= 80) {
+        document.getElementById('certificate').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+        showToast(`⚠️ نسبتك الحالية ${pct}%. تحتاج 80% فأكثر للشهادة.`);
+    }
+}
+
+// ===== عرض السؤال =====
+function renderQ() {
+    let x = quiz[idx];
+    document.getElementById('bar').style.width = ((idx) / quiz.length * 100) + '%';
+    
+    let levelColor = 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-200 border-gray-200 dark:border-slate-600';
+    if (x.l === 'فهم') levelColor = 'bg-blue-50 dark:bg-slate-700 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-slate-600';
+    if (x.l === 'تطبيق') levelColor = 'bg-green-50 dark:bg-slate-700 text-green-700 dark:text-green-300 border-green-200 dark:border-slate-600';
+    if (x.l === 'تحليل') levelColor = 'bg-purple-50 dark:bg-slate-700 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-slate-600';
+    if (x.l === 'استدلال' || x.l === 'استنتاج') levelColor = 'bg-orange-50 dark:bg-slate-700 text-orange-700 dark:text-orange-300 border-orange-200 dark:border-slate-600';
+
+    let vakColor = 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-200 border-gray-200 dark:border-slate-600';
+    if (x.vak && x.vak.includes('بصري')) vakColor = 'bg-indigo-50 dark:bg-slate-700 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-slate-600';
+    if (x.vak && x.vak.includes('سمعي')) vakColor = 'bg-pink-50 dark:bg-slate-700 text-pink-700 dark:text-pink-300 border-pink-200 dark:border-slate-600';
+    if (x.vak && x.vak.includes('حركي')) vakColor = 'bg-teal-50 dark:bg-slate-700 text-teal-700 dark:text-teal-300 border-teal-200 dark:border-slate-600';
+
+    let hintBtn = document.getElementById('optHints') && document.getElementById('optHints').checked
+        ? `<button onclick="showHint()" class="bg-yellow-50 dark:bg-slate-700 hover:bg-yellow-100 text-yellow-700 dark:text-yellow-300 border border-yellow-200 dark:border-slate-600 px-3 py-1 rounded-full text-sm font-bold transition flex items-center gap-1 mr-auto">💡 تلميح</button>` : '';
+
+    let html = `
+        <div class="flex flex-wrap gap-3 mb-6 animate-slide-up">
+            <span class="bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-200 px-4 py-1.5 rounded-full text-sm font-black border border-gray-200 dark:border-slate-600 shadow-sm">السؤال ${idx + 1} من ${quiz.length}</span>
+            <span class="bg-moe/10 text-moe-dark dark:text-moe-light px-4 py-1.5 rounded-full text-sm font-bold border border-moe/20 shadow-sm">الدرس: ${x.t}</span>
+            <span class="${levelColor} px-4 py-1.5 rounded-full text-sm font-bold border shadow-sm flex items-center gap-1">🧠 ${x.l}</span>
+            ${x.vak ? `<span class="${vakColor} px-4 py-1.5 rounded-full text-sm font-bold border shadow-sm flex items-center gap-1">${x.vak}</span>` : ''}
+            ${hintBtn}
+        </div>
+        
+        <div class="text-xl md:text-2xl font-bold leading-relaxed text-gray-800 dark:text-gray-100 mb-8 bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-gray-100 dark:border-slate-700 shadow-[0_4px_20px_-5px_rgba(0,0,0,0.05)] relative overflow-hidden animate-slide-up">
+            <div class="absolute top-0 right-0 w-2 h-full bg-moe rounded-r-3xl"></div>
+            ${x.q}
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            ${x.opts.map((o, i) => `<button class="opt-btn block w-full text-right p-5 border-2 border-gray-200 dark:border-slate-600 rounded-2xl font-bold text-gray-700 dark:text-gray-200 text-lg bg-white dark:bg-slate-800 animate-slide-up" style="animation-delay: ${i*0.05}s" onclick="choose(this, ${i})"><span class="inline-block w-7 h-7 leading-7 text-center bg-moe/10 text-moe-dark dark:text-moe-light rounded-full text-sm font-black ml-2">${['أ','ب','ج','د'][i]}</span>${o}</button>`).join('')}
+        </div>
+        
+        <div class="hidden p-5 rounded-2xl text-lg font-bold border-2 transition-all duration-300 animate-fade-in" id="fb"></div>
+    `;
+    document.getElementById('qArea').innerHTML = html;
+    startQuestionTimer();
+}
+
+// ===== التلميح =====
+function showHint() {
+    let x = quiz[idx];
+    let hint = x.exp ? x.exp.substring(0, Math.min(60, x.exp.length)) + '...' : 'فكر جيداً في القاعدة العامة!';
+    showToast(`💡 ${hint}`, true);
+}
+
+// ===== اختيار الإجابة =====
+function choose(btn, optIndex) {
+    clearInterval(questionTimerInterval);
+    document.getElementById('questionTimer').classList.add('hidden');
+    
+    let x = quiz[idx];
+    let val = x.opts[optIndex];
+    
+    // المقارنة بإزالة HTML
+    let cleanVal = String(val).replace(/<[^>]+>/g, '').trim();
+    let cleanCorrect = String(x.correct).replace(/<[^>]+>/g, '').trim();
+    let ok = cleanVal === cleanCorrect;
+    
+    let fb = document.getElementById('fb');
+    let btns = document.querySelectorAll('.opt-btn');
+    btns.forEach(b => {
+        b.disabled = true;
+        let bText = b.textContent.replace(/^[أبجد]/, '').trim();
+        if (bText === cleanCorrect || b.innerHTML.replace(/<[^>]+>/g, '').replace(/^[أبجد]/, '').trim() === cleanCorrect) {
+            b.classList.add('correct');
+        }
+    });
+    
+    if (!ok) btn.classList.add('wrong');
+    
+    fb.classList.remove('hidden');
+    if (ok) {
+        fb.classList.add('bg-green-50', 'dark:bg-slate-700', 'border-green-300', 'dark:border-green-700', 'text-green-800', 'dark:text-green-300');
+        fb.innerHTML = `✅ <span class="font-black">${motiv[idx % motiv.length]}</span>`;
+        playSound('correct');
+    } else {
+        fb.classList.add('bg-red-50', 'dark:bg-slate-700', 'border-red-300', 'dark:border-red-700', 'text-red-800', 'dark:text-red-300');
+        fb.innerHTML = `⚠️ <b class="text-red-900 dark:text-red-300">تحتاج لمراجعة!</b> الصواب: ( ${x.correct} )<br><div class="mt-3 bg-white dark:bg-slate-800 p-3 rounded-xl border border-red-100 dark:border-slate-600 text-sm font-semibold leading-relaxed text-gray-700 dark:text-gray-200"><span class="text-moe dark:text-moe-light font-bold">💡 التبرير:</span> ${x.exp}</div>`;
+        playSound('wrong');
+    }
+    
+    answers.push({ ...x, user: val, ok });
+    
+    setTimeout(() => {
+        idx++;
+        if (idx < quiz.length) renderQ();
+        else finish();
+    }, ok ? 1500 : 4500);
+}
+
+// ===== الصوت =====
+function playSound(type) {
+    if (!document.getElementById('optSound') || !document.getElementById('optSound').checked) return;
+    try {
+        let ctx = new (window.AudioContext || window.webkitAudioContext)();
+        let o = ctx.createOscillator(), g = ctx.createGain();
+        o.connect(g); g.connect(ctx.destination);
+        if (type === 'correct') {
+            o.frequency.value = 660; g.gain.value = 0.1;
+            o.start(); o.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15);
+            setTimeout(() => o.stop(), 200);
+        } else {
+            o.frequency.value = 200; g.gain.value = 0.1; o.start();
+            setTimeout(() => o.stop(), 300);
+        }
+    } catch(e) {}
+}
+
+
+// ===== إنهاء الاختبار =====
+function finish() {
+    stopTimer();
+    localStorage.removeItem('primaryPausedQuiz');
+    document.getElementById('resumeBtn').classList.add('hidden');
+    document.getElementById('resumeBtn').classList.remove('flex');
+
+    document.getElementById('bar').style.width = '100%';
+    document.getElementById('quizTitle').textContent = 'اكتملت المراجعة 🎉';
+    
+    let score = answers.filter(a => a.ok).length;
+    let pct = Math.round(score / answers.length * 100);
+    let colorClass = pct >= 80 ? 'text-green-600' : (pct >= 60 ? 'text-orange-500' : 'text-red-500');
+    let icon = pct >= 80 ? '🏆' : (pct >= 60 ? '👍' : '💪');
+    let msg = pct >= 80 ? 'أداء استثنائي ومتميز!' : (pct >= 60 ? 'أداء جيد، يمكنك الأفضل.' : 'تحتاج مراجعة وتعزيز.');
+
+    // حساب XP
+    let earnedXp = score * 10 + (pct >= 90 ? 50 : pct >= 80 ? 30 : 0);
+    
+    let html = `
+        <div class="text-center py-10 animate-fade-in">
+            <div class="text-8xl mb-6 drop-shadow-lg animate-bounce-in">${icon}</div>
+            <h3 class="text-3xl font-black text-gray-800 dark:text-gray-100 mb-3">${msg}</h3>
+            <p class="text-xl font-bold text-gray-600 dark:text-gray-300 mb-6">أجبت بشكل صحيح على <span class="${colorClass} text-4xl mx-2 font-black">${score}</span> من ${answers.length} سؤال.</p>
+            
+            <div class="flex flex-wrap justify-center gap-3 mb-6">
+                <span class="bg-gray-100 dark:bg-slate-700 border border-dashed border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-200 px-4 py-2 rounded-xl font-bold">⏱️ ${formatTime(timeElapsed)}</span>
+                <span class="bg-yellow-50 dark:bg-slate-700 border border-yellow-200 dark:border-slate-600 text-yellow-700 dark:text-yellow-300 px-4 py-2 rounded-xl font-bold">⚡ ${earnedXp} XP مكتسبة</span>
+            </div>
+            
+            <div class="inline-flex items-center justify-center w-40 h-40 rounded-full border-[10px] ${pct >= 80 ? 'border-green-400 bg-green-50 dark:bg-slate-700' : (pct >= 60 ? 'border-orange-400 bg-orange-50 dark:bg-slate-700' : 'border-red-400 bg-red-50 dark:bg-slate-700')} mb-10 shadow-inner">
+                <span class="text-5xl font-black ${colorClass}">${pct}%</span>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="renderResults()" class="bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-900 hover:to-black text-white font-black py-4 px-8 rounded-xl shadow-xl transition-all transform hover:-translate-y-1 text-lg flex items-center justify-center gap-2">📊 التقرير التشخيصي</button>
+                ${pct >= 80 ? `<button onclick="document.getElementById('certificate').scrollIntoView({behavior:'smooth'})" class="bg-gradient-to-r from-gold to-yellow-500 hover:from-yellow-500 hover:to-gold text-white font-black py-4 px-8 rounded-xl shadow-xl transition-all transform hover:-translate-y-1 text-lg flex items-center justify-center gap-2">🏅 استلام الشهادة</button>` : `<button onclick="checkCert()" class="bg-gray-300 dark:bg-slate-600 text-gray-600 dark:text-gray-400 cursor-not-allowed font-black py-4 px-8 rounded-xl text-lg flex items-center justify-center gap-2">🔒 الشهادة مقفلة (تحتاج 80%)</button>`}
+            </div>
+        </div>
+    `;
+    document.getElementById('qArea').innerHTML = html;
+    
+    saveResult(score, pct, earnedXp);
+    updateProfile(score, pct, earnedXp);
+    renderResults(false);
+    if (pct >= 80) {
+        renderCert(pct);
+        launchConfetti();
+    }
+}
+
+// ===== حفظ النتيجة =====
+function saveResult(score, pct, xp) {
+    let stuName = document.getElementById('student').value || 'طالب متميز';
+    let schName = 'ابتدائية ومتوسطة الجبيلة';
+    let g = document.getElementById('grade').value;
+    let s = document.getElementById('subject').value;
+    let rec = {
+        date: new Date().toLocaleDateString('ar-SA') + ' ' + new Date().toLocaleTimeString('ar-SA'),
+        timestamp: Date.now(),
+        student: stuName, school: schName,
+        subject: subjectNames[s], grade: gradeNames[g],
+        subjectKey: s, gradeKey: g,
+        score, total: answers.length, pct, xp,
+        time: formatTime(timeElapsed)
+    };
+    try {
+        let list = JSON.parse(localStorage.getItem('primaryStrictResultsVak') || '[]');
+        list.unshift(rec);
+        localStorage.setItem('primaryStrictResultsVak', JSON.stringify(list.slice(0, 50)));
+    } catch(e) {}
+}
+
+// ===== تحديث الملف الشخصي =====
+function updateProfile(score, pct, xp) {
+    let p = JSON.parse(localStorage.getItem('primaryUserProfile') || '{}');
+    p.totalTests = (p.totalTests || 0) + 1;
+    p.totalXp = (p.totalXp || 0) + xp;
+    p.bestScore = Math.max(p.bestScore || 0, pct);
+    p.certCount = (p.certCount || 0) + (pct >= 80 ? 1 : 0);
+    p.subjectsTaken = p.subjectsTaken || [];
+    p.gradesTaken = p.gradesTaken || [];
+    let s = document.getElementById('subject').value;
+    let g = document.getElementById('grade').value;
+    if (!p.subjectsTaken.includes(s)) p.subjectsTaken.push(s);
+    if (!p.gradesTaken.includes(g)) p.gradesTaken.push(g);
+    
+    // حساب السلسلة (الأيام المتتالية)
+    let today = new Date().toDateString();
+    if (p.lastDate !== today) {
+        let yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
+        if (p.lastDate === yesterday.toDateString()) p.streak = (p.streak || 0) + 1;
+        else if (!p.lastDate) p.streak = 1;
+        else p.streak = 1;
+        p.lastDate = today;
+    } else {
+        p.streak = p.streak || 1;
+    }
+    
+    // اختبار سريع؟
+    if (answers.length >= 30 && timeElapsed < 900) p.fastTest = true;
+    
+    try {
+        localStorage.setItem('primaryUserProfile', JSON.stringify(p));
+    } catch(e) {}
+    
+    userProfile = p;
+    refreshProfileUI();
+    checkNewBadges(p);
+}
+
+// ===== تحديث واجهة الملف الشخصي =====
+function refreshProfileUI() {
+    let p = JSON.parse(localStorage.getItem('primaryUserProfile') || '{}');
+    userProfile = p;
+    
+    document.getElementById('statTests').textContent = p.totalTests || 0;
+    document.getElementById('statCerts').textContent = p.certCount || 0;
+    document.getElementById('statStreak').textContent = p.streak || 0;
+    
+    let list = JSON.parse(localStorage.getItem('primaryStrictResultsVak') || '[]');
+    if (list.length > 0) {
+        let avg = Math.round(list.reduce((a,b) => a + b.pct, 0) / list.length);
+        document.getElementById('statAvg').textContent = avg + '%';
+    }
+    
+    let totalXp = p.totalXp || 0;
+    let lvl = LEVELS[0];
+    for (let i = LEVELS.length - 1; i >= 0; i--) if (totalXp >= LEVELS[i].min) { lvl = LEVELS[i]; break; }
+    let nextLvl = LEVELS.find(l => l.min > totalXp) || lvl;
+    document.getElementById('userLevel').textContent = lvl.name;
+    document.getElementById('userTitle').textContent = lvl.title;
+    let progress = nextLvl.min > lvl.min ? ((totalXp - lvl.min) / (nextLvl.min - lvl.min) * 100) : 100;
+    document.getElementById('xpBar').style.width = Math.min(100, progress) + '%';
+    document.getElementById('currentXp').textContent = totalXp;
+    document.getElementById('nextXp').textContent = nextLvl.min;
+    
+    renderBadgesPreview();
+}
+
+// ===== شارات =====
+function renderBadgesPreview() {
+    let p = userProfile;
+    let preview = document.getElementById('badgesPreview');
+    if (!preview) return;
+    preview.innerHTML = BADGES.slice(0, 5).map(b => {
+        let unlocked = b.condition(p);
+        return `<div title="${b.name}: ${b.desc}" class="badge ${unlocked ? 'unlocked bg-gradient-to-br from-yellow-300 to-yellow-500' : 'locked bg-gray-200 dark:bg-slate-700'}">${unlocked ? b.icon : '🔒'}</div>`;
+    }).join('');
+}
+
+function checkNewBadges(p) {
+    let oldBadges = p.unlockedBadges || [];
+    let newOnes = [];
+    BADGES.forEach(b => {
+        if (b.condition(p) && !oldBadges.includes(b.id)) {
+            newOnes.push(b);
+            oldBadges.push(b.id);
+        }
+    });
+    p.unlockedBadges = oldBadges;
+    try { localStorage.setItem('primaryUserProfile', JSON.stringify(p)); } catch(e){}
+    
+    newOnes.forEach((b, i) => {
+        setTimeout(() => {
+            showToast(`🎉 شارة جديدة: ${b.icon} ${b.name}!`, true);
+        }, i * 1500);
+    });
+}
+
+function openBadges() {
+    let p = userProfile;
+    let modal = document.getElementById('badgesModal');
+    let full = document.getElementById('badgesFull');
+    full.innerHTML = BADGES.map(b => {
+        let unlocked = b.condition(p);
+        return `<div class="text-center p-4 rounded-2xl ${unlocked ? 'bg-gradient-to-br from-yellow-50 to-amber-100 dark:from-slate-700 dark:to-slate-700 border-2 border-yellow-300 dark:border-yellow-700' : 'bg-gray-100 dark:bg-slate-700 border-2 border-gray-200 dark:border-slate-600'} transition">
+            <div class="text-5xl mb-2 ${unlocked ? '' : 'grayscale opacity-40'}">${b.icon}</div>
+            <h4 class="font-black text-sm mb-1 ${unlocked ? 'text-gray-800 dark:text-gray-100' : 'text-gray-500 dark:text-gray-400'}">${b.name}</h4>
+            <p class="text-xs ${unlocked ? 'text-gray-600 dark:text-gray-300' : 'text-gray-400 dark:text-gray-500'}">${b.desc}</p>
+            ${unlocked ? '<span class="inline-block mt-2 text-xs font-black text-green-600 dark:text-green-400">✓ مفتوحة</span>' : '<span class="inline-block mt-2 text-xs font-black text-gray-400">🔒 مغلقة</span>'}
+        </div>`;
+    }).join('');
+    modal.classList.remove('hidden');
+}
+
+function closeBadges() { document.getElementById('badgesModal').classList.add('hidden'); }
+function openHelp() { document.getElementById('helpModal').classList.remove('hidden'); }
+function closeHelp() { document.getElementById('helpModal').classList.add('hidden'); }
+
+// ===== التقرير التشخيصي =====
+function renderResults(scroll = true) {
+    let resultsDiv = document.getElementById('results');
+    resultsDiv.classList.remove('hidden');
+    
+    let score = answers.filter(a => a.ok).length;
+    let pct = Math.round(score / answers.length * 100);
+    let byTopic = {};
+    let byVak = {};
+    let byLevel = {};
+    
+    answers.forEach(a => {
+        byTopic[a.t] = byTopic[a.t] || { ok: 0, n: 0 };
+        byTopic[a.t].n++;
+        if (a.ok) byTopic[a.t].ok++;
+        if (a.vak) {
+            let vk = a.vak.includes('بصري')?'بصري':a.vak.includes('سمعي')?'سمعي':'حركي';
+            byVak[vk] = byVak[vk] || { ok: 0, n: 0 };
+            byVak[vk].n++;
+            if (a.ok) byVak[vk].ok++;
+        }
+        if (a.l) {
+            byLevel[a.l] = byLevel[a.l] || { ok: 0, n: 0 };
+            byLevel[a.l].n++;
+            if (a.ok) byLevel[a.l].ok++;
+        }
+    });
+    
+    let weak = Object.entries(byTopic).filter(([k, v]) => v.ok / v.n < .7).map(([k]) => k);
+    let strong = Object.entries(byTopic).filter(([k, v]) => v.ok / v.n >= .8).map(([k]) => k);
+    
+    let html = `
+        <div class="flex flex-wrap justify-between items-center mb-8 pb-4 border-b border-gray-200 dark:border-slate-600">
+            <h2 class="text-3xl font-extrabold text-gray-800 dark:text-gray-100">📊 التقرير التشخيصي</h2>
+            <div class="flex gap-3 mt-2 sm:mt-0 flex-wrap">
+                <span class="bg-gray-100 dark:bg-slate-700 px-4 py-2 rounded-xl font-bold text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-slate-600">⏱️ ${formatTime(timeElapsed)}</span>
+                <button onclick="window.print()" class="no-print bg-white dark:bg-slate-800 hover:bg-gray-50 text-gray-800 dark:text-gray-100 font-bold py-2 px-6 rounded-xl transition border-2 border-gray-200 dark:border-slate-600 shadow-sm flex items-center gap-2">🖨️ طباعة</button>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+            <div class="bg-green-50 dark:bg-slate-700 border-2 border-green-200 dark:border-slate-600 rounded-3xl p-6 shadow-sm">
+                <h3 class="text-green-800 dark:text-green-300 font-black mb-4 flex items-center gap-2 text-xl">🌟 مواطن القوة</h3>
+                <div class="flex flex-wrap gap-2">
+                    ${strong.length ? strong.map(s => `<span class="bg-green-100 dark:bg-slate-600 text-green-800 dark:text-green-300 px-3 py-1 rounded-lg font-bold text-sm border border-green-300 dark:border-slate-500">${s}</span>`).join('') : '<span class="text-green-900 dark:text-green-300 font-semibold">ركز أكثر في المحاولات القادمة.</span>'}
+                </div>
+            </div>
+            <div class="bg-red-50 dark:bg-slate-700 border-2 border-red-200 dark:border-slate-600 rounded-3xl p-6 shadow-sm">
+                <h3 class="text-red-800 dark:text-red-300 font-black mb-4 flex items-center gap-2 text-xl">🎯 يحتاج تحسين</h3>
+                <div class="flex flex-wrap gap-2">
+                    ${weak.length ? weak.map(w => `<span class="bg-red-100 dark:bg-slate-600 text-red-800 dark:text-red-300 px-3 py-1 rounded-lg font-bold text-sm border border-red-300 dark:border-slate-500">${w}</span>`).join('') : '<span class="text-red-900 dark:text-red-300 font-semibold">ممتاز! لا توجد مواطن ضعف بارزة.</span>'}
+                </div>
+            </div>
+            <div class="bg-moe/5 dark:bg-slate-700 border-2 border-moe/20 dark:border-slate-600 rounded-3xl p-6 shadow-sm">
+                <h3 class="text-moe-dark dark:text-moe-light font-black mb-4 flex items-center gap-2 text-xl">📝 خطة العمل</h3>
+                <p class="text-gray-800 dark:text-gray-200 leading-relaxed font-bold">${plan(pct, weak)}</p>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 no-print">
+            <div class="bg-white dark:bg-slate-800 border-2 border-gray-100 dark:border-slate-700 rounded-3xl p-6 text-center shadow-sm">
+                <h4 class="font-black text-gray-700 dark:text-gray-200 mb-4 text-lg">نسبة الإنجاز</h4>
+                <canvas id="pie" class="mx-auto" width="220" height="220"></canvas>
+            </div>
+            <div class="bg-white dark:bg-slate-800 border-2 border-gray-100 dark:border-slate-700 rounded-3xl p-6 text-center shadow-sm">
+                <h4 class="font-black text-gray-700 dark:text-gray-200 mb-4 text-lg">المهارات حسب الموضوع</h4>
+                <canvas id="bars" class="mx-auto" width="280" height="220"></canvas>
+            </div>
+            <div class="bg-white dark:bg-slate-800 border-2 border-gray-100 dark:border-slate-700 rounded-3xl p-6 text-center shadow-sm">
+                <h4 class="font-black text-gray-700 dark:text-gray-200 mb-4 text-lg">أنماط التعلم (VAK)</h4>
+                <canvas id="vakChart" class="mx-auto" width="220" height="220"></canvas>
+            </div>
+        </div>
+
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-700 dark:to-slate-700 rounded-3xl p-6 mb-8 border border-blue-200 dark:border-slate-600 no-print">
+            <h3 class="text-xl font-black text-blue-900 dark:text-blue-200 mb-4 flex items-center gap-2">🧠 مهارات التفكير وفق تصنيف بلوم</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                ${Object.entries(byLevel).map(([k,v]) => {
+                    let ratio = Math.round((v.ok/v.n)*100);
+                    let color = ratio >= 80 ? 'from-green-500 to-emerald-500' : ratio >= 60 ? 'from-orange-500 to-yellow-500' : 'from-red-500 to-pink-500';
+                    return `<div class="bg-white dark:bg-slate-800 rounded-2xl p-3 border border-blue-100 dark:border-slate-600">
+                        <div class="text-sm font-bold text-gray-600 dark:text-gray-300 mb-1">${k}</div>
+                        <div class="h-2 bg-gray-200 dark:bg-slate-600 rounded-full overflow-hidden mb-1">
+                            <div class="h-full bg-gradient-to-r ${color}" style="width:${ratio}%"></div>
+                        </div>
+                        <div class="text-xs font-black text-gray-700 dark:text-gray-200">${v.ok}/${v.n} (${ratio}%)</div>
+                    </div>`;
+                }).join('')}
+            </div>
+        </div>
+        
+        <div class="flex items-center gap-3 mb-6">
+            <h3 class="text-2xl font-black text-gray-800 dark:text-gray-100">مراجعة الإجابات</h3>
+            <span class="bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-full text-sm font-bold">${answers.length} سؤال</span>
+        </div>
+        <div class="space-y-5 max-h-[700px] overflow-y-auto pr-2 no-print custom-scrollbar">
+            ${answers.map((a, i) => `
+                <div class="bg-white dark:bg-slate-800 border-2 ${a.ok ? 'border-green-200 dark:border-green-800' : 'border-red-200 dark:border-red-800'} rounded-3xl p-6 relative shadow-sm hover:shadow-md transition">
+                    <div class="absolute top-6 left-6 text-3xl">${a.ok ? '✅' : '❌'}</div>
+                    <h4 class="font-bold text-gray-800 dark:text-gray-100 text-lg mb-4 ml-12 leading-relaxed"><span class="text-moe dark:text-moe-light font-black text-xl">${i + 1}.</span> ${a.q}</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-gray-50 dark:bg-slate-700 p-4 rounded-2xl border border-gray-100 dark:border-slate-600 flex items-center justify-between">
+                            <span class="font-bold text-gray-500 dark:text-gray-300 text-sm">إجابتك:</span>
+                            <span class="font-black text-base ${a.ok ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}">${a.user}</span>
+                        </div>
+                        <div class="bg-green-50 dark:bg-slate-700 p-4 rounded-2xl border border-green-100 dark:border-slate-600 flex items-center justify-between">
+                            <span class="font-bold text-green-700 dark:text-green-400 text-sm">الصحيحة:</span>
+                            <span class="font-black text-base text-green-700 dark:text-green-400">${a.correct}</span>
+                        </div>
+                    </div>
+                    ${!a.ok ? `
+                    <div class="bg-orange-50 dark:bg-slate-700 border border-orange-200 dark:border-slate-600 p-4 rounded-2xl mt-2 flex gap-3">
+                        <span class="text-xl">💡</span>
+                        <div>
+                            <b class="block text-orange-900 dark:text-orange-300 mb-1 text-sm">القاعدة:</b> 
+                            <span class="text-orange-800 dark:text-orange-200 font-semibold text-sm leading-relaxed">${a.exp}</span>
+                        </div>
+                    </div>` : ''}
+                </div>
+            `).join('')}
+        </div>
+    `;
+    resultsDiv.innerHTML = html;
+    
+    setTimeout(() => drawCharts(score, answers.length - score, byTopic, byVak), 150);
+    
+    if (scroll) resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function plan(pct, weak) {
+    let grd = gradeNames[document.getElementById('grade').value];
+    if (pct >= 90) return `🌟 خطة إثرائية: أداء استثنائي! حافظ على مستواك بحل أسئلة التفكير العليا في كتاب ${grd}، وساعد زملاءك.`;
+    if (pct >= 70) return `📚 خطة تحسين: مستوى جيد جداً! راجع: ${weak.join('، ') || 'بعض المهارات'} من الكتاب المدرسي، ثم أعد التقييم.`;
+    return `💪 خطة علاجية: عُد لمنصة "مدرستي" وكتاب ${grd} لفهم: ${weak.join('، ') || 'الأساسيات'}. اطلب مساعدة المعلم. لا تستسلم!`;
+}
+
+// ===== الرسوم البيانية =====
+function drawCharts(ok, bad, byTopic, byVak) {
+    let pie = document.getElementById('pie');
+    if (!pie) return;
+    let pCtx = pie.getContext('2d');
+    pCtx.clearRect(0, 0, 220, 220);
+    let total = ok + bad;
+    if (total === 0) return;
+    let ang = (ok / total) * Math.PI * 2;
+    let cx = 110, cy = 110, r = 80;
+    
+    pCtx.beginPath(); pCtx.moveTo(cx, cy); pCtx.arc(cx, cy, r, -Math.PI/2, -Math.PI/2 + ang); pCtx.fillStyle = '#10b981'; pCtx.fill();
+    pCtx.beginPath(); pCtx.moveTo(cx, cy); pCtx.arc(cx, cy, r, -Math.PI/2 + ang, -Math.PI/2 + Math.PI*2); pCtx.fillStyle = '#ef4444'; pCtx.fill();
+    pCtx.beginPath(); pCtx.arc(cx, cy, r*0.5, 0, Math.PI*2); pCtx.fillStyle = document.documentElement.classList.contains('dark') ? '#1e293b' : '#ffffff'; pCtx.fill();
+    pCtx.fillStyle = document.documentElement.classList.contains('dark') ? '#f1f5f9' : '#1f2937';
+    pCtx.font = 'bold 22px Cairo'; pCtx.textAlign = 'center';
+    pCtx.fillText(Math.round((ok/total)*100) + '%', cx, cy + 8);
+
+    let b = document.getElementById('bars');
+    if (b) {
+        let bCtx = b.getContext('2d');
+        bCtx.clearRect(0, 0, 280, 220);
+        let entries = Object.entries(byTopic).slice(0, 5);
+        let barWidth = 35; let spacing = 50; let startX = 20;
+        entries.forEach(([k, v], i) => {
+            let ratio = v.ok / v.n;
+            let h = ratio * 140;
+            let x = startX + i * spacing;
+            bCtx.fillStyle = document.documentElement.classList.contains('dark') ? '#334155' : '#f3f4f6';
+            bCtx.fillRect(x, 180 - 140, barWidth, 140);
+            bCtx.fillStyle = ratio >= 0.8 ? '#10b981' : (ratio >= 0.6 ? '#f59e0b' : '#ef4444');
+            bCtx.fillRect(x, 180 - h, barWidth, h);
+            bCtx.fillStyle = document.documentElement.classList.contains('dark') ? '#f1f5f9' : '#1f2937';
+            bCtx.font = 'bold 11px Cairo'; bCtx.textAlign = 'center';
+            bCtx.fillText(Math.round(ratio * 100) + '%', x + barWidth/2, 175 - h);
+            bCtx.save();
+            bCtx.translate(x + barWidth/2, 195); bCtx.rotate(-Math.PI / 7); bCtx.textAlign = 'right';
+            bCtx.fillStyle = document.documentElement.classList.contains('dark') ? '#cbd5e1' : '#4b5563';
+            bCtx.fillText(k.slice(0, 10) + (k.length > 10 ? '..' : ''), 0, 0);
+            bCtx.restore();
+        });
+    }
+
+    let vakC = document.getElementById('vakChart');
+    if (vakC && Object.keys(byVak).length > 0) {
+        let vCtx = vakC.getContext('2d');
+        vCtx.clearRect(0, 0, 220, 220);
+        let cx2 = 110, cy2 = 110, r2 = 80;
+        let totalVak = Object.values(byVak).reduce((a,b) => a + b.n, 0);
+        let startAng = -Math.PI/2;
+        let colors = { 'بصري': '#6366f1', 'سمعي': '#ec4899', 'حركي': '#14b8a6' };
+        Object.entries(byVak).forEach(([k, v]) => {
+            let sliceAng = (v.n / totalVak) * Math.PI * 2;
+            vCtx.beginPath(); vCtx.moveTo(cx2, cy2); vCtx.arc(cx2, cy2, r2, startAng, startAng + sliceAng);
+            vCtx.fillStyle = colors[k] || '#94a3b8'; vCtx.fill();
+            // إضافة label
+            let midAng = startAng + sliceAng/2;
+            let lx = cx2 + Math.cos(midAng) * r2 * 0.65;
+            let ly = cy2 + Math.sin(midAng) * r2 * 0.65;
+            vCtx.fillStyle = 'white'; vCtx.font = 'bold 11px Cairo'; vCtx.textAlign = 'center';
+            vCtx.fillText(Math.round((v.ok/v.n)*100) + '%', lx, ly);
+            startAng += sliceAng;
+        });
+    }
+}
+
+
+// ===== الشهادة =====
+function renderCert(pct) {
+    let certDiv = document.getElementById('certificate');
+    certDiv.classList.remove('hidden');
+    
+    let stuName = document.getElementById('student').value || 'طالب متميز';
+    let schName = 'ابتدائية ومتوسطة الجبيلة';
+    let subName = subjectNames[document.getElementById('subject').value];
+    let grdName = gradeNames[document.getElementById('grade').value];
+    let dateNow = new Date().toLocaleDateString('ar-SA');
+    let certId = 'CERT-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
+    
+    let html = `
+        <div class="relative bg-white border-[16px] border-double border-gold p-4 sm:p-12 rounded-[2rem] shadow-2xl overflow-hidden mt-12 page-break">
+            <div class="absolute inset-3 border-2 border-gold/40 pointer-events-none rounded-2xl"></div>
+            <div class="absolute inset-4 border border-gold/20 pointer-events-none rounded-[14px]"></div>
+            
+            <!-- زخارف خلفية -->
+            <div class="absolute inset-0 opacity-[0.03] pointer-events-none flex items-center justify-center">
+                <img src="https://upload.wikimedia.org/wikipedia/ar/1/17/Saudi_Ministry_of_Education_Logo_2025.png" class="w-[85%]" onerror="this.style.display='none'">
+            </div>
+            
+            <div class="relative z-10">
+                <!-- ترويسة -->
+                <div class="flex justify-between items-start mb-10 border-b-2 border-gray-100 pb-6">
+                    <div class="text-right w-1/3">
+                        <p class="font-bold text-sm text-gray-800">المملكة العربية السعودية</p>
+                        <p class="font-bold text-sm text-gray-800">وزارة التعليم</p>
+                        <p class="font-bold text-sm text-gray-800">الإدارة العامة للتعليم بمنطقة الرياض</p>
+                        <p class="font-extrabold text-sm mt-1" style="color:#005f4e;">${schName}</p>
+                    </div>
+                    <div class="w-1/3 flex justify-center">
+                        <img src="https://upload.wikimedia.org/wikipedia/ar/1/17/Saudi_Ministry_of_Education_Logo_2025.png" alt="شعار الوزارة" class="h-20 sm:h-28 object-contain drop-shadow-md" onerror="this.style.display='none'">
+                    </div>
+                    <div class="w-1/3 flex justify-end">
+                        <img src="https://upload.wikimedia.org/wikipedia/ar/f/f5/Saudi_Vision_2030_logo.svg" alt="رؤية 2030" class="h-16 sm:h-24 object-contain drop-shadow-md" onerror="this.style.display='none'">
+                    </div>
+                </div>
+
+                <!-- محتوى الشهادة -->
+                <div class="text-center px-4 sm:px-12 py-6 relative">
+                    <h1 class="text-5xl sm:text-6xl font-black mb-8 tracking-widest drop-shadow-sm" style="color:#b58500;">شـهـادة إنجـاز وتفـوق</h1>
+                    
+                    <div class="inline-block bg-gradient-to-r from-gold/10 to-yellow-100 px-6 py-2 rounded-full border-2 border-gold/30 mb-6">
+                        <span class="text-sm font-bold text-gray-700">رقم الشهادة: </span>
+                        <span class="font-mono font-black text-gold-dark" dir="ltr">${certId}</span>
+                    </div>
+                    
+                    <p class="text-xl sm:text-2xl text-gray-700 leading-loose mb-6 font-semibold">
+                        بكل فخر واعتزاز، تشهد إدارة مدرسة <span class="font-black border-b-2 border-dashed border-gray-400 px-2" style="color:#005f4e;">${schName}</span><br>
+                        بأن الطالب النجم / <br>
+                        <span class="text-4xl sm:text-5xl font-black block mt-6 mb-8 drop-shadow-md" style="color:#005f4e;">${stuName}</span>
+                    </p>
+                    
+                    <p class="text-lg sm:text-2xl text-gray-700 leading-loose mb-10 font-medium">
+                        قد اجتاز بنجاح مبهر برنامج التقييم الشامل لمقرر <b style="color:#005f4e;" class="bg-green-50 px-4 py-1.5 rounded-lg border border-green-100 shadow-sm">${subName}</b><br>
+                        لـ <b class="text-black">${grdName}</b> - الفصل الدراسي الثاني لعام 1447 هـ<br>
+                        محققاً نسبة إتقان بلغت <span class="inline-block bg-gradient-to-r from-gold to-yellow-500 text-white px-6 py-2 rounded-xl font-black text-3xl mx-2 shadow-inner border border-yellow-600">${pct}%</span>
+                    </p>
+                    
+                    <p class="text-xl font-bold mb-10 italic opacity-90" style="color:#a68424;">
+                        "نسأل الله له دوام التوفيق والنجاح، وأن ينفع بعلمه دينه ووطنه"
+                    </p>
+                </div>
+
+                <!-- التواقيع والـ QR -->
+                <div class="flex justify-between items-end mt-4 px-4 sm:px-16 pb-8 relative">
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-[0.05] pointer-events-none">
+                        <span class="text-[160px]">🌟</span>
+                    </div>
+
+                    <div class="text-center w-1/3 relative z-10">
+                        <p class="font-bold text-gray-500 mb-10 text-sm sm:text-base">إعداد وتنفيذ المعلم</p>
+                        <p class="font-black text-xl sm:text-2xl border-t-2 border-gray-300 pt-4 inline-block min-w-[180px]" style="color:#005f4e;">أ. نايف المطيري</p>
+                    </div>
+                    
+                    <div class="text-center w-1/3 flex flex-col items-center relative z-10">
+                        <div class="w-28 h-28 bg-gradient-to-br from-gold to-yellow-400 rounded-full flex items-center justify-center text-white text-5xl shadow-2xl border-4 border-white mb-4 transform -rotate-12 ring-4 ring-gold/30">
+                            🏅
+                        </div>
+                        <p class="text-sm text-gray-600 font-bold bg-gray-50 px-4 py-1.5 rounded-full border border-gray-200 shadow-sm">صدرت بتاريخ: ${dateNow}</p>
+                        <div id="qrCode" class="mt-3 bg-white p-1 border border-gray-200 rounded-lg"></div>
+                        <p class="text-[10px] text-gray-500 mt-1 font-bold">رمز التحقق</p>
+                    </div>
+
+                    <div class="text-center w-1/3 relative z-10">
+                        <p class="font-bold text-gray-500 mb-10 text-sm sm:text-base">اعتماد مدير المدرسة</p>
+                        <p class="font-black text-xl sm:text-2xl border-t-2 border-gray-300 pt-4 inline-block min-w-[180px]" style="color:#005f4e;">أ. مفلح الشهراني</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-10 no-print pb-8 flex flex-wrap gap-3 justify-center">
+            <button onclick="window.print()" class="bg-gradient-to-r from-gold to-yellow-600 hover:from-yellow-600 hover:to-gold text-white font-black py-4 px-12 rounded-2xl shadow-xl transition-all transform hover:-translate-y-1 text-xl inline-flex items-center gap-3">
+                🖨️ طباعة الشهادة
+            </button>
+            <button onclick="shareCert('${stuName}', '${pct}', '${subName}')" class="bg-gradient-to-r from-moe to-moe-dark hover:from-moe-dark hover:to-moe-darker text-white font-black py-4 px-12 rounded-2xl shadow-xl transition-all transform hover:-translate-y-1 text-xl inline-flex items-center gap-3">
+                📤 مشاركة الإنجاز
+            </button>
+        </div>
+    `;
+    certDiv.innerHTML = html;
+    
+    // توليد QR
+    setTimeout(() => {
+        try {
+            let qrData = `شهادة إنجاز - ${stuName}\nالمدرسة: ${schName}\nالمادة: ${subName}\nالصف: ${grdName}\nالنسبة: ${pct}%\nرقم الشهادة: ${certId}\nالتاريخ: ${dateNow}`;
+            let qrDiv = document.getElementById('qrCode');
+            if (qrDiv && typeof QRCode !== 'undefined') {
+                new QRCode(qrDiv, { text: qrData, width: 70, height: 70, colorDark: '#005f4e', colorLight: '#ffffff' });
+            }
+        } catch(e){}
+    }, 100);
+}
+
+// ===== مشاركة الشهادة =====
+function shareCert(name, pct, subject) {
+    let text = `🎉 حقق ${name} نسبة ${pct}% في مادة ${subject} على منصة التقييم الذكية - ابتدائية ومتوسطة الجبيلة! 🏅`;
+    if (navigator.share) {
+        navigator.share({ title: 'شهادة إنجاز', text: text }).catch(()=>{});
+    } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => showToast('✅ تم نسخ نص الإنجاز - يمكنك لصقه في أي منصة', true));
+    } else {
+        showToast('📋 ' + text, true);
+    }
+}
+
+// ===== السجل المحفوظ =====
+function showSaved() {
+    let list = JSON.parse(localStorage.getItem('primaryStrictResultsVak') || '[]');
+    let resultsDiv = document.getElementById('results');
+    
+    document.getElementById('quizBox').classList.add('hidden');
+    document.getElementById('certificate').classList.add('hidden');
+    resultsDiv.classList.remove('hidden');
+    
+    let html = `
+        <div class="flex justify-between items-center mb-8 border-b border-gray-200 dark:border-slate-600 pb-4">
+            <h2 class="text-2xl font-extrabold text-gray-800 dark:text-gray-100">📁 السجل المحفوظ</h2>
+            <div class="flex gap-2">
+                ${list.length > 0 ? `<button onclick="clearSaved()" class="bg-red-50 dark:bg-slate-700 hover:bg-red-100 text-red-700 dark:text-red-300 px-4 py-2 rounded-xl font-bold border border-red-200 dark:border-slate-600 transition text-sm">🗑️ مسح السجل</button>` : ''}
+                <button onclick="document.getElementById('quizBox').classList.remove('hidden'); document.getElementById('results').classList.add('hidden');" class="bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 px-4 py-2 rounded-xl font-bold transition">❌ إغلاق</button>
+            </div>
+        </div>
+        
+        <div class="space-y-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+            ${list.length ? list.map((r, i) => `
+                <div class="bg-white dark:bg-slate-800 border-2 ${r.pct >= 80 ? 'border-green-200 dark:border-green-800 border-r-8 border-r-green-500' : (r.pct >= 60 ? 'border-orange-200 dark:border-orange-800 border-r-8 border-r-orange-400' : 'border-red-200 dark:border-red-800 border-r-8 border-r-red-500')} rounded-2xl p-6 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:shadow-md transition">
+                    <div>
+                        <h3 class="font-black text-xl text-gray-800 dark:text-gray-100 mb-2">${i + 1}. ${r.student}</h3>
+                        <div class="flex flex-wrap gap-2 text-sm font-bold">
+                            <span class="bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded">${r.school}</span>
+                            <span class="bg-moe/10 text-moe-dark dark:text-moe-light px-2 py-1 rounded">${r.subject}</span>
+                            <span class="bg-purple-50 dark:bg-slate-700 text-purple-700 dark:text-purple-300 px-2 py-1 rounded">${r.grade}</span>
+                            <span class="bg-blue-50 dark:bg-slate-700 text-blue-700 dark:text-blue-300 px-2 py-1 rounded">⏱️ ${r.time || '--:--'}</span>
+                            ${r.xp ? `<span class="bg-yellow-50 dark:bg-slate-700 text-yellow-700 dark:text-yellow-300 px-2 py-1 rounded">⚡ ${r.xp} XP</span>` : ''}
+                        </div>
+                        <p class="text-xs text-gray-400 mt-3 font-semibold">📅 ${r.date}</p>
+                    </div>
+                    <div class="text-center bg-gray-50 dark:bg-slate-700 rounded-2xl px-8 py-4 border border-gray-100 dark:border-slate-600 min-w-[140px] shadow-inner">
+                        <span class="block text-3xl font-black mb-1 ${r.pct >= 80 ? 'text-green-600 dark:text-green-400' : (r.pct >= 60 ? 'text-orange-500' : 'text-red-500')}">${r.pct}%</span>
+                        <span class="text-sm font-bold text-gray-500 dark:text-gray-300">${r.score} / ${r.total}</span>
+                    </div>
+                </div>
+            `).join('') : `
+            <div class="text-center py-16 text-gray-500 bg-gray-50 dark:bg-slate-700 rounded-3xl border-2 border-dashed border-gray-200 dark:border-slate-600">
+                <span class="text-6xl mb-4 block opacity-50">📂</span>
+                <p class="font-bold text-xl text-gray-600 dark:text-gray-300">لا توجد نتائج محفوظة بعد.</p>
+                <p class="text-sm mt-2 dark:text-gray-400">قم بإجراء التقييم أولاً لحفظ السجلات.</p>
+            </div>`}
+        </div>
+    `;
+    resultsDiv.innerHTML = html;
+    resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function clearSaved() {
+    if(confirm('هل أنت متأكد من مسح جميع السجلات؟ لا يمكن التراجع.')){
+        localStorage.removeItem('primaryStrictResultsVak');
+        showSaved();
+        showToast('✅ تم مسح جميع السجلات.', true);
+    }
+}
+
+// ===== المتصدرون =====
+function showLeaderboard() {
+    let list = JSON.parse(localStorage.getItem('primaryStrictResultsVak') || '[]');
+    let resultsDiv = document.getElementById('results');
+    
+    // تجميع أعلى نتيجة لكل طالب
+    let topByStudent = {};
+    list.forEach(r => {
+        let k = r.student;
+        if (!topByStudent[k] || topByStudent[k].pct < r.pct) topByStudent[k] = r;
+    });
+    let sorted = Object.values(topByStudent).sort((a, b) => b.pct - a.pct || b.score - a.score).slice(0, 10);
+    
+    document.getElementById('quizBox').classList.add('hidden');
+    document.getElementById('certificate').classList.add('hidden');
+    resultsDiv.classList.remove('hidden');
+    
+    let medals = ['🥇', '🥈', '🥉'];
+    
+    let html = `
+        <div class="flex justify-between items-center mb-8 border-b border-gray-200 dark:border-slate-600 pb-4">
+            <h2 class="text-2xl font-extrabold text-gray-800 dark:text-gray-100">🥇 لوحة المتصدرين - أفضل 10</h2>
+            <button onclick="document.getElementById('quizBox').classList.remove('hidden'); document.getElementById('results').classList.add('hidden');" class="bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 px-4 py-2 rounded-xl font-bold transition">❌ إغلاق</button>
+        </div>
+        
+        ${sorted.length ? `
+            <!-- المنصة الثلاثية -->
+            ${sorted.length >= 3 ? `
+            <div class="flex justify-center items-end gap-2 mb-10 px-4">
+                <div class="text-center flex-1 max-w-[150px]">
+                    <div class="text-4xl mb-2">🥈</div>
+                    <div class="bg-gradient-to-b from-gray-300 to-gray-400 dark:from-slate-600 dark:to-slate-700 rounded-t-2xl pt-4 pb-8 text-white shadow-xl">
+                        <div class="font-black text-sm mb-1 truncate px-2">${sorted[1].student}</div>
+                        <div class="text-2xl font-black">${sorted[1].pct}%</div>
+                    </div>
+                </div>
+                <div class="text-center flex-1 max-w-[170px]">
+                    <div class="text-5xl mb-2 animate-pulse-glow">🥇</div>
+                    <div class="bg-gradient-to-b from-yellow-400 to-yellow-600 rounded-t-2xl pt-4 pb-12 text-white shadow-2xl border-2 border-yellow-300">
+                        <div class="font-black mb-1 truncate px-2">${sorted[0].student}</div>
+                        <div class="text-3xl font-black">${sorted[0].pct}%</div>
+                    </div>
+                </div>
+                <div class="text-center flex-1 max-w-[150px]">
+                    <div class="text-4xl mb-2">🥉</div>
+                    <div class="bg-gradient-to-b from-orange-400 to-orange-600 rounded-t-2xl pt-4 pb-6 text-white shadow-xl">
+                        <div class="font-black text-sm mb-1 truncate px-2">${sorted[2].student}</div>
+                        <div class="text-2xl font-black">${sorted[2].pct}%</div>
+                    </div>
+                </div>
+            </div>` : ''}
+            
+            <!-- باقي القائمة -->
+            <div class="space-y-3 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+                ${sorted.map((r, i) => `
+                    <div class="bg-white dark:bg-slate-800 border-2 ${i < 3 ? 'border-gold/30' : 'border-gray-200 dark:border-slate-600'} rounded-2xl p-4 shadow-sm flex justify-between items-center gap-4 hover:shadow-md transition ${i === 0 ? 'bg-gradient-to-l from-yellow-50 to-transparent dark:from-slate-700 dark:to-slate-800' : ''}">
+                        <div class="flex items-center gap-4 flex-1">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center font-black text-xl ${i < 3 ? 'bg-gradient-to-br from-yellow-400 to-yellow-600 text-white shadow' : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-200'}">
+                                ${i < 3 ? medals[i] : (i + 1)}
+                            </div>
+                            <div>
+                                <h3 class="font-black text-lg text-gray-800 dark:text-gray-100">${r.student}</h3>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 font-semibold">${r.subject} - ${r.grade}</p>
+                            </div>
+                        </div>
+                        <div class="text-center bg-gray-50 dark:bg-slate-700 rounded-xl px-4 py-2 border border-gray-200 dark:border-slate-600">
+                            <span class="block text-xl font-black ${r.pct >= 80 ? 'text-green-600 dark:text-green-400' : 'text-orange-500'}">${r.pct}%</span>
+                            <span class="text-xs font-bold text-gray-500 dark:text-gray-300">${r.score}/${r.total}</span>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        ` : `
+            <div class="text-center py-16 text-gray-500 bg-gray-50 dark:bg-slate-700 rounded-3xl border-2 border-dashed border-gray-200 dark:border-slate-600">
+                <span class="text-6xl mb-4 block opacity-50">🏆</span>
+                <p class="font-bold text-xl text-gray-600 dark:text-gray-300">لا يوجد متصدرون بعد.</p>
+                <p class="text-sm mt-2 dark:text-gray-400">كن أول من يتصدر القائمة!</p>
+            </div>
+        `}
+    `;
+    resultsDiv.innerHTML = html;
+    resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ===== التهيئة عند تحميل الصفحة =====
+window.onload = function() {
+    // الوضع الليلي
+    if (localStorage.getItem('primaryDarkMode') === '1') {
+        document.documentElement.classList.add('dark');
+        document.getElementById('darkBtn').innerHTML = '☀️';
+    }
+    
+    // حجم الخط
+    let fs = parseInt(localStorage.getItem('primaryFontSize') || '0');
+    fontSizeLevel = fs;
+    if (fs === 1) document.body.classList.add('font-large');
+    if (fs === 2) document.body.classList.add('font-xlarge');
+    
+    // عدد القوالب
+    let tc = countTemplates();
+    document.getElementById('bankCount').textContent = '+' + tc;
+    
+    // التحقق من الاختبار المحفوظ
+    if (localStorage.getItem('primaryPausedQuiz')) {
+        document.getElementById('resumeBtn').classList.remove('hidden');
+        document.getElementById('resumeBtn').classList.add('flex');
+    }
+    
+    // تحديث الملف الشخصي
+    refreshProfileUI();
+};
+
+</script>
+</body>
+</html>
