@@ -1,0 +1,4489 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الإسعافات الأولية | دليل تدريبي تفاعلي لمنسوبي المدارس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============ CORE TOKENS ============ */
+:root{
+  --cream: #FAF6EF;
+  --cream-2: #F2EBDD;
+  --ink: #1A1614;
+  --ink-2: #3D332C;
+  --crimson: #B6202A;
+  --crimson-deep: #7E141B;
+  --crimson-glow: rgba(182, 32, 42, 0.15);
+  --gold: #B07B2C;
+  --gold-soft: #E5C68A;
+  --teal: #1F5F5B;
+  --paper-line: rgba(26, 22, 20, 0.08);
+  --shadow-sm: 0 1px 2px rgba(26,22,20,.06);
+  --shadow-md: 0 8px 30px rgba(26,22,20,.08), 0 2px 6px rgba(26,22,20,.04);
+  --shadow-lg: 0 20px 60px rgba(126, 20, 27, .12), 0 8px 24px rgba(26,22,20,.06);
+  --display: 'Tajawal', system-ui, sans-serif;
+  --body: 'Tajawal', system-ui, sans-serif;
+  --serif: 'Amiri', serif;
+}
+
+/* ============ INSTITUTIONAL RIBBON ============ */
+.ribbon{
+  background:linear-gradient(135deg, var(--ink) 0%, #2a201d 100%);
+  color:var(--cream);
+  border-bottom:3px solid var(--gold);
+  position:relative;
+  z-index:5;
+}
+.ribbon-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 0;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.ribbon-block{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  text-align:center;
+  flex:1;
+  min-width:160px;
+}
+.ribbon-label{
+  font-size:.72rem;
+  letter-spacing:.12em;
+  color:var(--gold-soft);
+  font-weight:500;
+  opacity:.85;
+}
+.ribbon-value{
+  font-family:var(--display);
+  font-size:1rem;
+  font-weight:700;
+  color:var(--cream);
+}
+.ribbon-divider{
+  width:1px;
+  height:36px;
+  background:linear-gradient(180deg, transparent, var(--gold-soft), transparent);
+  flex-shrink:0;
+}
+@media (max-width:700px){
+  .ribbon-divider{display:none}
+  .ribbon-inner{padding:14px 0;gap:14px}
+  .ribbon-value{font-size:.92rem}
+}
+
+/* ============ PREPARED-BY CARD ============ */
+.prep-card{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  margin-top:30px;
+  background:var(--cream);
+  border:1px solid var(--gold-soft);
+  border-radius:6px;
+  overflow:hidden;
+  max-width:560px;
+  position:relative;
+}
+.prep-card::before{
+  content:"";
+  position:absolute;
+  top:0;right:0;bottom:0;
+  width:4px;
+  background:linear-gradient(180deg, var(--crimson), var(--gold));
+}
+.prep-side{
+  padding:18px 22px;
+}
+.prep-side + .prep-side{border-right:1px dashed var(--paper-line)}
+.prep-side .role{
+  font-size:.7rem;
+  letter-spacing:.18em;
+  color:var(--crimson);
+  font-weight:700;
+  margin-bottom:4px;
+  display:block;
+}
+.prep-side .name{
+  font-family:var(--display);
+  font-size:1.15rem;
+  font-weight:700;
+  color:var(--ink);
+}
+@media (max-width:600px){.prep-card{grid-template-columns:1fr}}
+
+/* ============ DRSABCD PRIMARY SURVEY ============ */
+.drsabcd-section{
+  background:linear-gradient(180deg, var(--cream) 0%, var(--cream-2) 100%);
+}
+.drsabcd-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+  gap:14px;
+  margin-top:30px;
+}
+.drs-letter{
+  background:var(--cream);
+  border:1px solid var(--paper-line);
+  border-radius:8px;
+  padding:24px 20px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  transition:all .3s;
+  cursor:pointer;
+}
+.drs-letter::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;
+  height:4px;
+  background:var(--crimson);
+  transform:scaleX(0);
+  transform-origin:right;
+  transition:transform .35s ease;
+}
+.drs-letter:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.drs-letter:hover::before{transform:scaleX(1)}
+.drs-letter .big-letter{
+  font-family:var(--serif);
+  font-size:3.5rem;
+  font-weight:700;
+  color:var(--crimson);
+  line-height:1;
+  margin-bottom:10px;
+  font-style:italic;
+}
+.drs-letter .word{
+  font-family:var(--display);
+  font-size:1.05rem;
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:6px;
+}
+.drs-letter .desc{
+  font-size:.82rem;
+  color:var(--ink-2);
+  line-height:1.6;
+}
+
+/* ============ ASTHMA INHALER ANIMATION ============ */
+.inhaler-demo{
+  background:var(--cream-2);
+  padding:30px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:30px;
+  flex-wrap:wrap;
+  margin:20px 0;
+}
+.inhaler-svg{width:140px;height:auto}
+.inhaler-counter{
+  font-family:var(--serif);
+  font-size:3rem;
+  color:var(--crimson);
+  font-weight:700;
+  min-width:80px;
+  text-align:center;
+}
+.inhaler-instruction{
+  font-size:.95rem;
+  color:var(--ink-2);
+  max-width:300px;
+  line-height:1.7;
+}
+
+/* ============ FIRST AID KIT ============ */
+.kit-section{background:var(--ink);color:var(--cream)}
+.kit-section h2{color:var(--cream)}
+.kit-section .section-head .num{color:var(--gold-soft)}
+.kit-section .section-head p{color:rgba(250,246,239,.75)}
+.kit-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:16px;
+  margin-top:30px;
+}
+.kit-item{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(229,198,138,.18);
+  border-radius:8px;
+  padding:20px;
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  transition:all .25s;
+}
+.kit-item:hover{
+  background:rgba(255,255,255,.08);
+  border-color:var(--gold);
+  transform:translateX(-4px);
+}
+.kit-icon{
+  width:42px;height:42px;
+  background:var(--crimson);
+  border-radius:8px;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--cream);
+  font-weight:900;
+  font-size:1.1rem;
+  font-family:var(--display);
+}
+.kit-text strong{
+  display:block;
+  font-family:var(--display);
+  color:var(--cream);
+  font-size:1rem;
+  margin-bottom:4px;
+}
+.kit-text p{
+  font-size:.85rem;
+  color:rgba(250,246,239,.7);
+  line-height:1.6;
+}
+
+/* ============ BLOOD GLUCOSE METER ============ */
+.glucose-display{
+  background:var(--ink);
+  color:var(--cream);
+  padding:30px;
+  border-radius:8px;
+  text-align:center;
+  margin:20px 0;
+  position:relative;
+  border:2px solid var(--gold);
+}
+.glucose-screen{
+  background:#0a4d4a;
+  color:#7fffd4;
+  padding:20px;
+  border-radius:6px;
+  font-family:'Courier New', monospace;
+  font-size:2.6rem;
+  font-weight:700;
+  letter-spacing:.05em;
+  box-shadow:inset 0 0 30px rgba(0,0,0,.5);
+  margin-bottom:14px;
+}
+.glucose-zones{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:16px;
+  font-size:.85rem;
+}
+.glucose-zone{
+  padding:10px;
+  border-radius:6px;
+  font-weight:600;
+}
+.zone-low{background:rgba(239,68,68,.2);color:#fca5a5;border:1px solid #ef4444}
+.zone-normal{background:rgba(34,197,94,.2);color:#86efac;border:1px solid #22c55e}
+.zone-high{background:rgba(234,179,8,.2);color:#fde047;border:1px solid #eab308}
+
+/* ============ EYE INJURY VISUAL ============ */
+.eye-stage{
+  background:var(--cream-2);
+  padding:30px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:30px;
+  flex-wrap:wrap;
+  margin:20px 0;
+}
+.eye-svg{width:200px;height:auto}
+
+/* ============ PSYCHOLOGICAL FIRST AID ============ */
+.psy-card{
+  background:linear-gradient(135deg, #0a4d4a 0%, #1F5F5B 100%);
+  color:var(--cream);
+  padding:30px;
+  border-radius:8px;
+  margin:20px 0;
+}
+.psy-card h4{color:var(--gold-soft);margin-bottom:14px}
+.psy-card .breathing-circle{
+  width:140px;height:140px;
+  margin:20px auto;
+  border-radius:50%;
+  background:radial-gradient(circle, var(--gold-soft), transparent 70%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  animation:breathe 8s ease-in-out infinite;
+  font-family:var(--display);
+  color:var(--cream);
+  font-weight:700;
+}
+@keyframes breathe{
+  0%,100%{transform:scale(.7);box-shadow:0 0 30px rgba(229,198,138,.4)}
+  50%{transform:scale(1);box-shadow:0 0 60px rgba(229,198,138,.7)}
+}
+
+/* ============ ADVANCED SIMULATORS ============ */
+.advanced-section{
+  background:linear-gradient(180deg, var(--cream) 0%, var(--cream-2) 100%);
+}
+.sim-tabs{
+  display:flex;
+  gap:8px;
+  margin-bottom:30px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.sim-tab{
+  padding:14px 22px;
+  background:var(--cream);
+  border:1px solid var(--paper-line);
+  border-radius:8px;
+  font-family:var(--display);
+  font-weight:600;
+  cursor:pointer;
+  font-size:.92rem;
+  color:var(--ink-2);
+  transition:all .25s;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.sim-tab:hover{border-color:var(--crimson);color:var(--crimson)}
+.sim-tab.active{
+  background:var(--crimson);
+  color:var(--cream);
+  border-color:var(--crimson);
+  box-shadow:var(--shadow-md);
+}
+.sim-tab .tab-num{
+  width:22px;height:22px;
+  border-radius:50%;
+  background:rgba(0,0,0,.1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:.75rem;
+  font-weight:700;
+}
+.sim-tab.active .tab-num{background:rgba(255,255,255,.25)}
+
+.sim-panel{display:none}
+.sim-panel.active{display:block;animation:fadeIn .4s}
+
+/* PHONE CALL SIMULATOR */
+.phone-frame{
+  background:#1A1614;
+  border-radius:30px;
+  padding:8px;
+  max-width:420px;
+  margin:0 auto;
+  box-shadow:0 30px 80px rgba(0,0,0,.3), 0 0 0 6px rgba(255,255,255,.05);
+  position:relative;
+}
+.phone-frame::before{
+  content:"";
+  position:absolute;
+  top:18px;left:50%;
+  transform:translateX(-50%);
+  width:80px;height:6px;
+  background:#000;
+  border-radius:10px;
+  z-index:2;
+}
+.phone-screen{
+  background:#0a0a0a;
+  border-radius:24px;
+  overflow:hidden;
+  min-height:600px;
+  display:flex;
+  flex-direction:column;
+}
+.phone-status{
+  background:linear-gradient(135deg, #0d4d4a, #1F5F5B);
+  color:var(--cream);
+  padding:32px 20px 16px;
+  text-align:center;
+  position:relative;
+}
+.call-status{font-size:.74rem;color:rgba(250,246,239,.7);margin-bottom:4px;letter-spacing:.05em}
+.call-name{font-family:var(--display);font-weight:700;font-size:1.05rem}
+.call-timer{
+  position:absolute;
+  bottom:12px;left:20px;
+  font-family:'Courier New',monospace;
+  color:#7fffd4;
+  font-size:.8rem;
+}
+.chat-area{
+  flex:1;
+  background:#1a1a1a;
+  padding:18px;
+  overflow-y:auto;
+  max-height:340px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.chat-area::-webkit-scrollbar{width:4px}
+.chat-area::-webkit-scrollbar-thumb{background:#444;border-radius:2px}
+.msg-bubble{
+  max-width:88%;
+  padding:10px 14px;
+  border-radius:14px;
+  font-size:.9rem;
+  line-height:1.55;
+  animation:msgIn .35s;
+}
+.msg-dispatcher{
+  background:#262626;
+  color:var(--cream);
+  align-self:flex-start;
+  border-bottom-right-radius:4px;
+}
+.msg-user{
+  background:#005c4b;
+  color:#e9edef;
+  align-self:flex-end;
+  border-bottom-left-radius:4px;
+}
+.msg-feedback{
+  background:rgba(239,68,68,.15);
+  color:#fca5a5;
+  align-self:center;
+  font-size:.78rem;
+  padding:7px 12px;
+  border:1px solid rgba(239,68,68,.4);
+  border-radius:10px;
+  text-align:center;
+  font-style:italic;
+  max-width:95%;
+}
+.msg-feedback.good{
+  background:rgba(34,197,94,.12);
+  color:#86efac;
+  border-color:rgba(34,197,94,.4);
+}
+@keyframes msgIn{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.choice-area{
+  background:#262626;
+  padding:14px;
+  border-top:1px solid #333;
+}
+.choice-prompt{
+  color:#888;
+  font-size:.74rem;
+  text-align:center;
+  margin-bottom:10px;
+  letter-spacing:.05em;
+}
+.choice-btn{
+  display:block;
+  width:100%;
+  padding:10px 14px;
+  margin-bottom:7px;
+  background:#333;
+  border:1px solid #444;
+  color:var(--cream);
+  border-radius:10px;
+  cursor:pointer;
+  font-family:var(--body);
+  font-size:.85rem;
+  text-align:right;
+  line-height:1.55;
+  transition:all .2s;
+}
+.choice-btn:hover:not(:disabled){background:#3d3d3d;border-color:var(--crimson);transform:translateX(-2px)}
+.choice-btn:disabled{opacity:.4;cursor:default}
+.call-result-icon{
+  width:54px;height:54px;
+  border-radius:50%;
+  margin:0 auto 10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.7rem;
+  font-weight:900;
+}
+.result-success{background:rgba(34,197,94,.2);color:#22c55e;border:2px solid #22c55e}
+.result-fail{background:rgba(239,68,68,.2);color:#ef4444;border:2px solid #ef4444}
+
+/* AED SIMULATOR */
+.aed-stage{
+  background:linear-gradient(180deg, var(--cream-2), var(--cream));
+  padding:30px;
+  border-radius:10px;
+  border:1px solid var(--paper-line);
+}
+.aed-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+  align-items:start;
+}
+@media (max-width:800px){.aed-grid{grid-template-columns:1fr}}
+.aed-device{
+  background:linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  padding:20px;
+  border-radius:12px;
+  position:relative;
+  box-shadow:0 20px 50px rgba(217,119,6,.3);
+}
+.aed-screen{
+  background:#1a1a1a;
+  color:#7fffd4;
+  font-family:var(--body);
+  padding:18px;
+  border-radius:6px;
+  font-size:1rem;
+  text-align:center;
+  margin-bottom:14px;
+  min-height:80px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:inset 0 0 30px rgba(0,0,0,.6);
+  border:2px solid #7e141b;
+  font-weight:700;
+  line-height:1.5;
+}
+.aed-led{
+  display:flex;
+  justify-content:space-around;
+  margin-bottom:14px;
+  background:rgba(0,0,0,.2);
+  padding:8px;
+  border-radius:6px;
+}
+.aed-led-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:5px;
+  font-size:.7rem;
+  color:rgba(255,255,255,.85);
+  font-weight:600;
+}
+.led{
+  width:14px;height:14px;
+  border-radius:50%;
+  background:rgba(255,255,255,.2);
+  transition:all .3s;
+}
+.led.on-power{background:#22c55e;box-shadow:0 0 12px #22c55e}
+.led.on-pads{background:#3b82f6;box-shadow:0 0 12px #3b82f6}
+.led.on-shock{background:#ef4444;box-shadow:0 0 14px #ef4444;animation:ledBlink .5s infinite}
+@keyframes ledBlink{0%,100%{opacity:1}50%{opacity:.3}}
+.aed-buttons{display:flex;flex-direction:column;gap:10px}
+.aed-btn{
+  padding:14px;
+  border:none;
+  border-radius:8px;
+  font-family:var(--display);
+  font-weight:700;
+  cursor:pointer;
+  font-size:1rem;
+  transition:all .2s;
+  color:var(--cream);
+}
+.aed-btn-power{background:#16a34a}
+.aed-btn-power:hover{background:#15803d;transform:translateY(-1px)}
+.aed-btn-shock{
+  background:#ef4444;
+  font-size:1.15rem;
+  padding:18px;
+  animation:shockReady 1s ease-in-out infinite;
+  box-shadow:0 0 30px rgba(239,68,68,.5);
+}
+@keyframes shockReady{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.aed-btn:disabled{opacity:.35;cursor:not-allowed;animation:none;box-shadow:none}
+.aed-body{
+  background:var(--cream);
+  border:1px solid var(--paper-line);
+  border-radius:10px;
+  padding:18px;
+}
+.aed-body-svg{width:100%;height:auto;max-height:340px}
+.aed-pad-zone{
+  cursor:pointer;
+  fill:rgba(59,130,246,0.08);
+  stroke:#3b82f6;
+  stroke-width:2;
+  stroke-dasharray:4 3;
+  animation:padPulse 1.5s ease-in-out infinite;
+}
+.aed-pad-zone[data-placed="true"]{
+  fill:#3b82f6;
+  stroke:#3b82f6;
+  stroke-dasharray:none;
+  animation:none;
+  filter:drop-shadow(0 0 8px rgba(59,130,246,.5));
+  cursor:default;
+}
+@keyframes padPulse{0%,100%{opacity:.5}50%{opacity:1}}
+.aed-instruction{
+  background:rgba(176,123,44,.1);
+  padding:14px 18px;
+  border-radius:8px;
+  border-right:3px solid var(--gold);
+  margin-top:14px;
+  font-size:.92rem;
+  color:var(--ink-2);
+  line-height:1.65;
+}
+
+/* BRANCHING SCENARIOS */
+.scenario-sim{
+  background:var(--cream);
+  border-radius:10px;
+  padding:30px;
+  border:1px solid var(--paper-line);
+  max-width:780px;
+  margin:0 auto;
+}
+.scenario-selector{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:14px;
+}
+.scenario-pick{
+  padding:22px 20px;
+  background:var(--cream-2);
+  border:1px solid var(--paper-line);
+  border-radius:8px;
+  cursor:pointer;
+  text-align:right;
+  transition:all .25s;
+}
+.scenario-pick:hover{
+  border-color:var(--crimson);
+  background:var(--cream);
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-md);
+}
+.scenario-pick h4{color:var(--crimson);margin-bottom:8px;font-size:1.05rem}
+.scenario-pick p{font-size:.86rem;color:var(--ink-2);line-height:1.65}
+.scenario-stage{
+  background:var(--cream-2);
+  border-radius:10px;
+  padding:24px;
+  position:relative;
+}
+.scenario-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:16px;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--paper-line);
+  gap:14px;
+  flex-wrap:wrap;
+}
+.scenario-meta .step{
+  font-size:.85rem;
+  color:var(--crimson);
+  font-weight:700;
+  letter-spacing:.02em;
+}
+.scenario-situation{
+  background:var(--cream);
+  padding:18px 22px;
+  border-radius:8px;
+  border-right:4px solid var(--crimson);
+  margin-bottom:18px;
+  font-size:1.02rem;
+  color:var(--ink);
+  line-height:1.75;
+}
+.scenario-choices{display:flex;flex-direction:column;gap:10px}
+.scenario-choice{
+  padding:14px 18px;
+  background:var(--cream);
+  border:2px solid var(--paper-line);
+  border-radius:8px;
+  cursor:pointer;
+  text-align:right;
+  font-family:var(--body);
+  font-size:.95rem;
+  color:var(--ink);
+  transition:all .2s;
+  font-weight:500;
+  line-height:1.6;
+}
+.scenario-choice:hover{
+  border-color:var(--crimson);
+  background:var(--crimson-glow);
+  transform:translateX(-3px);
+}
+.scenario-outcome{
+  text-align:center;
+  padding:30px 20px;
+}
+.outcome-icon{
+  width:84px;height:84px;
+  border-radius:50%;
+  margin:0 auto 18px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.5rem;
+  font-weight:900;
+}
+.outcome-success{background:rgba(34,197,94,.15);color:#16a34a;border:3px solid #22c55e}
+.outcome-fail{background:var(--crimson-glow);color:var(--crimson-deep);border:3px solid var(--crimson)}
+.outcome-partial{background:rgba(234,179,8,.15);color:#854d0e;border:3px solid #eab308}
+.scenario-outcome h4{margin-bottom:14px;font-size:1.5rem}
+.scenario-outcome p{color:var(--ink-2);max-width:580px;margin:0 auto 24px;line-height:1.85}
+
+/* TIMERS */
+.timer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+  gap:18px;
+}
+.timer-card{
+  background:var(--cream);
+  border:2px solid var(--paper-line);
+  border-radius:10px;
+  padding:22px 18px;
+  text-align:center;
+  position:relative;
+  transition:all .3s;
+}
+.timer-card.running{
+  border-color:var(--crimson);
+  box-shadow:0 0 30px rgba(182,32,42,.15);
+}
+.timer-name{
+  font-family:var(--display);
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:6px;
+  font-size:1.05rem;
+}
+.timer-purpose{
+  font-size:.78rem;
+  color:var(--ink-2);
+  margin-bottom:16px;
+  min-height:42px;
+  line-height:1.55;
+}
+.timer-circle{
+  position:relative;
+  width:140px;
+  height:140px;
+  margin:0 auto 16px;
+}
+.timer-circle svg{
+  width:100%;height:100%;
+  transform:rotate(-90deg);
+}
+.timer-circle-bg{
+  fill:none;
+  stroke:var(--cream-2);
+  stroke-width:8;
+}
+.timer-circle-progress{
+  fill:none;
+  stroke:var(--crimson);
+  stroke-width:8;
+  stroke-linecap:round;
+  transition:stroke-dashoffset .5s linear;
+}
+.timer-display{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+.timer-time{
+  font-family:var(--display);
+  font-size:1.55rem;
+  font-weight:900;
+  color:var(--ink);
+  font-variant-numeric:tabular-nums;
+  line-height:1;
+}
+.timer-label{
+  font-size:.68rem;
+  color:var(--ink-2);
+  letter-spacing:.05em;
+  margin-top:3px;
+}
+.timer-actions{display:flex;gap:8px;justify-content:center}
+.timer-btn{
+  padding:8px 16px;
+  border:1px solid var(--paper-line);
+  background:var(--cream);
+  border-radius:6px;
+  font-family:var(--body);
+  font-weight:600;
+  cursor:pointer;
+  font-size:.85rem;
+  transition:all .2s;
+  color:var(--ink-2);
+}
+.timer-btn:hover{border-color:var(--crimson);color:var(--crimson)}
+.timer-btn-primary{
+  background:var(--crimson);
+  color:var(--cream);
+  border-color:var(--crimson);
+}
+.timer-btn-primary:hover{background:var(--crimson-deep);color:var(--cream)}
+.timer-card.done{
+  border-color:#16a34a;
+  background:rgba(34,197,94,.05);
+}
+.timer-card.done .timer-circle-progress{stroke:#16a34a}
+.timer-card.done .timer-time{color:#16a34a}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{
+  font-family:var(--body);
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.7;
+  font-size:17px;
+  font-weight:400;
+  overflow-x:hidden;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(182,32,42,.04) 0%, transparent 50%),
+    radial-gradient(circle at 85% 80%, rgba(176,123,44,.05) 0%, transparent 50%);
+}
+
+/* paper grain */
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  pointer-events:none;
+  z-index:1;
+  opacity:.4;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.06 0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* ============ TYPOGRAPHY ============ */
+h1,h2,h3,h4{font-family:var(--display);font-weight:800;line-height:1.25;letter-spacing:-.01em}
+h1{font-size:clamp(2.4rem, 6vw, 4.5rem);font-weight:900}
+h2{font-size:clamp(1.8rem, 3.8vw, 2.8rem)}
+h3{font-size:clamp(1.3rem, 2.4vw, 1.6rem)}
+
+/* ============ LAYOUT ============ */
+.container{max-width:1200px;margin:0 auto;padding:0 clamp(20px, 4vw, 48px);position:relative;z-index:2}
+section{padding:clamp(60px, 9vw, 120px) 0;position:relative;scroll-margin-top:30px}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  position:relative;
+  background:
+    linear-gradient(180deg, transparent 0%, var(--cream) 100%),
+    radial-gradient(ellipse at center, rgba(182,32,42,.08) 0%, transparent 60%);
+  overflow:hidden;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:clamp(30px, 5vw, 80px);
+  align-items:center;
+  width:100%;
+}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 18px;
+  background:var(--crimson);
+  color:var(--cream);
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.15em;
+  margin-bottom:24px;
+  border-radius:100px;
+  box-shadow:var(--shadow-md);
+}
+.eyebrow-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--cream);
+  animation:pulseDot 1.4s ease-in-out infinite;
+}
+@keyframes pulseDot{
+  0%,100%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.5);opacity:.5}
+}
+
+.hero h1{
+  margin-bottom:20px;
+  background:linear-gradient(180deg, var(--ink) 60%, var(--crimson-deep));
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero h1 .accent{color:var(--crimson);-webkit-text-fill-color:var(--crimson);position:relative;display:inline-block}
+.hero h1 .accent::after{
+  content:"";
+  position:absolute;
+  bottom:6%;left:0;right:0;
+  height:18%;
+  background:var(--crimson-glow);
+  z-index:-1;
+}
+
+.hero-lead{
+  font-size:clamp(1.05rem, 1.6vw, 1.2rem);
+  color:var(--ink-2);
+  max-width:560px;
+  margin-bottom:36px;
+  line-height:1.85;
+}
+
+.hero-stats{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:20px;
+  padding:24px 0;
+  border-top:1px solid var(--paper-line);
+  border-bottom:1px solid var(--paper-line);
+  max-width:520px;
+}
+.stat-num{font-family:var(--display);font-size:2.2rem;font-weight:900;color:var(--crimson);line-height:1;display:block;margin-bottom:6px}
+.stat-label{font-size:.82rem;color:var(--ink-2);font-weight:500}
+
+/* HEART VISUAL */
+.heart-stage{
+  position:relative;
+  aspect-ratio:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.heart-rings{position:absolute;inset:0}
+.heart-rings circle{
+  fill:none;
+  stroke:var(--crimson);
+  stroke-width:1.5;
+  opacity:0;
+  transform-box:fill-box;
+  transform-origin:center;
+  animation:ringPulse 1.2s cubic-bezier(.4,0,.2,1) infinite;
+}
+.heart-rings circle:nth-child(2){animation-delay:.3s}
+.heart-rings circle:nth-child(3){animation-delay:.6s}
+@keyframes ringPulse{
+  0%{transform:scale(.5);opacity:.6}
+  100%{transform:scale(1.3);opacity:0}
+}
+
+.heart-svg{
+  width:55%;
+  filter:drop-shadow(0 20px 50px rgba(182,32,42,.4));
+  animation:heartbeat 1s cubic-bezier(.4,0,.2,1) infinite;
+  position:relative;
+  z-index:2;
+}
+@keyframes heartbeat{
+  0%,100%{transform:scale(1)}
+  15%{transform:scale(1.12)}
+  30%{transform:scale(1)}
+  45%{transform:scale(1.07)}
+  60%{transform:scale(1)}
+}
+
+.ecg-line{
+  position:absolute;
+  bottom:8%;left:0;right:0;
+  height:60px;
+  z-index:1;
+}
+.ecg-path{
+  stroke:var(--crimson);
+  stroke-width:2;
+  fill:none;
+  stroke-dasharray:1000;
+  stroke-dashoffset:1000;
+  animation:ecgDraw 3s linear infinite;
+}
+@keyframes ecgDraw{
+  0%{stroke-dashoffset:1000}
+  100%{stroke-dashoffset:-1000}
+}
+
+/* ============ NAV TOPICS ============ */
+.topics{background:var(--cream-2);border-top:1px solid var(--paper-line);border-bottom:1px solid var(--paper-line)}
+.section-head{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  margin-bottom:60px;
+}
+.section-head .num{
+  font-family:var(--serif);
+  color:var(--crimson);
+  font-size:1rem;
+  letter-spacing:.3em;
+  margin-bottom:14px;
+}
+.section-head p{max-width:640px;margin-top:14px;color:var(--ink-2)}
+
+.topics-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:18px;
+}
+.topic-card{
+  background:var(--cream);
+  padding:28px 24px;
+  border-radius:6px;
+  cursor:pointer;
+  transition:all .35s cubic-bezier(.4,0,.2,1);
+  border:1px solid var(--paper-line);
+  position:relative;
+  overflow:hidden;
+  text-align:right;
+  text-decoration:none;
+  color:inherit;
+  display:block;
+}
+.topic-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, var(--crimson) 0%, var(--crimson-deep) 100%);
+  opacity:0;
+  transition:opacity .35s;
+  z-index:0;
+}
+.topic-card:hover,
+.topic-card:focus-visible{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-lg);
+  outline:none;
+}
+.topic-card:hover::before,
+.topic-card:focus-visible::before{opacity:1}
+.topic-card:hover .topic-title,
+.topic-card:hover .topic-desc,
+.topic-card:focus-visible .topic-title,
+.topic-card:focus-visible .topic-desc{color:var(--cream) !important}
+.topic-card:hover .topic-icon-svg path,
+.topic-card:hover .topic-icon-svg circle,
+.topic-card:hover .topic-icon-svg line,
+.topic-card:hover .topic-icon-svg rect,
+.topic-card:focus-visible .topic-icon-svg path,
+.topic-card:focus-visible .topic-icon-svg circle,
+.topic-card:focus-visible .topic-icon-svg line,
+.topic-card:focus-visible .topic-icon-svg rect{stroke:var(--cream) !important}
+.topic-card > *{position:relative;z-index:2}
+
+.topic-icon{
+  width:56px;height:56px;
+  border-radius:14px;
+  background:var(--cream-2);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:18px;
+  transition:background .35s;
+}
+.topic-card:hover .topic-icon,
+.topic-card:focus-visible .topic-icon{background:rgba(255,255,255,.15)}
+.topic-icon-svg{width:30px;height:30px}
+.topic-icon-svg path,.topic-icon-svg circle,.topic-icon-svg line,.topic-icon-svg rect{
+  stroke:var(--crimson);
+  fill:none;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  transition:stroke .35s;
+}
+
+.topic-title{font-size:1.15rem;font-weight:700;margin-bottom:6px;color:var(--ink)}
+.topic-desc{font-size:.88rem;color:var(--ink-2);line-height:1.6}
+
+/* ============ CPR TRAINER ============ */
+.cpr-section{
+  background:linear-gradient(135deg, var(--ink) 0%, #2a201d 100%);
+  color:var(--cream);
+  position:relative;
+  overflow:hidden;
+}
+.cpr-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><circle cx='20' cy='20' r='1' fill='%23B6202A' opacity='0.15'/></svg>");
+  opacity:.5;
+}
+.cpr-section .section-head .num{color:var(--gold-soft)}
+.cpr-section h2{color:var(--cream)}
+.cpr-section .section-head p{color:rgba(250,246,239,.7)}
+
+.cpr-trainer{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center;
+  background:rgba(0,0,0,.25);
+  padding:clamp(30px, 5vw, 60px);
+  border-radius:10px;
+  border:1px solid rgba(229, 198, 138, 0.15);
+  backdrop-filter:blur(10px);
+}
+@media (max-width:900px){.cpr-trainer{grid-template-columns:1fr;gap:40px}}
+
+.cpr-visual{
+  position:relative;
+  aspect-ratio:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.chest-outline{
+  width:100%;
+  height:100%;
+  position:relative;
+}
+
+.compression-zone{
+  position:absolute;
+  top:50%;left:50%;
+  width:130px;height:130px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:radial-gradient(circle, var(--crimson) 0%, var(--crimson-deep) 70%, transparent 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 0 60px rgba(182,32,42,.4);
+  transition:transform .12s ease-out;
+}
+.compression-zone.pressing{
+  transform:translate(-50%,-50%) scale(.85);
+  box-shadow:0 0 80px rgba(182,32,42,.7);
+}
+
+.hands-icon{
+  width:70px;height:70px;
+  fill:var(--cream);
+  opacity:.95;
+}
+
+.beat-rings{position:absolute;inset:20%;pointer-events:none}
+.beat-rings circle{
+  fill:none;
+  stroke:var(--gold-soft);
+  stroke-width:1;
+  opacity:0;
+  transform-box:fill-box;
+  transform-origin:center;
+}
+.beat-rings.beating circle{
+  animation:beatRing 1s ease-out forwards;
+}
+.beat-rings.beating circle:nth-child(2){animation-delay:.15s}
+@keyframes beatRing{
+  0%{transform:scale(.6);opacity:.7}
+  100%{transform:scale(1.4);opacity:0}
+}
+
+.cpr-controls{
+  background:rgba(255,255,255,.04);
+  padding:30px;
+  border-radius:8px;
+  border:1px solid rgba(229,198,138,.2);
+}
+.cpr-stat{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  margin-bottom:18px;
+  padding-bottom:18px;
+  border-bottom:1px solid rgba(229,198,138,.15);
+}
+.cpr-stat:last-of-type{border-bottom:none}
+.cpr-stat-label{color:rgba(250,246,239,.7);font-size:.95rem}
+.cpr-stat-value{
+  font-family:var(--display);
+  font-size:2.2rem;
+  font-weight:800;
+  color:var(--gold-soft);
+  font-variant-numeric:tabular-nums;
+}
+.cpr-stat-value .unit{font-size:.9rem;color:rgba(250,246,239,.5);font-weight:400;margin-right:6px}
+
+.bpm-target{
+  background:rgba(176,123,44,.15);
+  padding:14px 18px;
+  border-radius:6px;
+  margin-bottom:24px;
+  font-size:.9rem;
+  border-right:3px solid var(--gold);
+}
+.bpm-target strong{color:var(--gold-soft)}
+
+.cpr-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+.btn{
+  font-family:var(--display);
+  font-weight:700;
+  padding:14px 28px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:1rem;
+  transition:all .25s;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  flex:1;
+  justify-content:center;
+  min-width:140px;
+}
+.btn-primary{
+  background:var(--crimson);
+  color:var(--cream);
+  box-shadow:0 6px 20px rgba(182,32,42,.4);
+}
+.btn-primary:hover{background:var(--crimson-deep);transform:translateY(-2px)}
+.btn-secondary{
+  background:transparent;
+  color:var(--gold-soft);
+  border:1.5px solid var(--gold);
+}
+.btn-secondary:hover{background:var(--gold);color:var(--ink)}
+
+.feedback-msg{
+  margin-top:20px;
+  padding:14px 18px;
+  border-radius:6px;
+  font-size:.95rem;
+  font-weight:500;
+  text-align:center;
+  min-height:52px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.03);
+  border:1px dashed rgba(229,198,138,.25);
+  color:rgba(250,246,239,.7);
+  transition:all .3s;
+}
+.feedback-msg.good{background:rgba(34,197,94,.12);border-color:#22c55e;color:#86efac}
+.feedback-msg.warn{background:rgba(234,179,8,.12);border-color:#eab308;color:#fde047}
+.feedback-msg.bad{background:rgba(239,68,68,.12);border-color:#ef4444;color:#fca5a5}
+
+/* ============ STEPS LAYOUT ============ */
+.scenario-section{padding-top:0}
+.scenario{
+  margin-bottom:80px;
+  scroll-margin-top:40px;
+  padding-top:20px;
+}
+.scenario-header{
+  display:flex;
+  gap:24px;
+  align-items:flex-start;
+  margin-bottom:36px;
+  padding-bottom:30px;
+  border-bottom:2px solid var(--paper-line);
+}
+.scenario-num{
+  font-family:var(--serif);
+  font-size:4rem;
+  font-weight:700;
+  color:var(--crimson);
+  line-height:1;
+  font-style:italic;
+  flex-shrink:0;
+}
+.scenario-titles h3{font-size:clamp(1.8rem, 3vw, 2.4rem);margin-bottom:8px}
+.scenario-titles p{color:var(--ink-2);max-width:700px}
+
+.steps-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+  gap:20px;
+  margin-bottom:30px;
+}
+
+.step-card{
+  background:var(--cream);
+  border:1px solid var(--paper-line);
+  border-radius:8px;
+  padding:28px 24px;
+  position:relative;
+  transition:all .3s;
+  cursor:pointer;
+}
+.step-card:hover{
+  border-color:var(--crimson);
+  box-shadow:var(--shadow-md);
+  transform:translateY(-3px);
+}
+.step-num{
+  position:absolute;
+  top:-14px;right:24px;
+  width:32px;height:32px;
+  background:var(--crimson);
+  color:var(--cream);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:.95rem;
+  box-shadow:0 4px 12px rgba(182,32,42,.35);
+}
+.step-card h4{font-size:1.1rem;margin-bottom:10px;margin-top:8px}
+.step-card p{font-size:.92rem;color:var(--ink-2);line-height:1.7}
+
+.alert-box{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-top:20px;
+}
+@media (max-width:700px){.alert-box{grid-template-columns:1fr}}
+
+.alert{
+  padding:20px 22px;
+  border-radius:6px;
+  border-right:4px solid;
+  background:var(--cream);
+}
+.alert-do{border-color:#16a34a;background:rgba(22,163,74,.05)}
+.alert-dont{border-color:var(--crimson);background:var(--crimson-glow)}
+.alert h5{
+  font-size:.9rem;
+  letter-spacing:.05em;
+  font-weight:800;
+  margin-bottom:10px;
+}
+.alert-do h5{color:#15803d}
+.alert-dont h5{color:var(--crimson-deep)}
+.alert ul{list-style:none;padding:0}
+.alert li{
+  padding:6px 0;
+  padding-right:22px;
+  position:relative;
+  font-size:.93rem;
+  color:var(--ink-2);
+}
+.alert-do li::before{
+  content:"✓";
+  position:absolute;
+  right:0;top:6px;
+  color:#16a34a;
+  font-weight:900;
+}
+.alert-dont li::before{
+  content:"✕";
+  position:absolute;
+  right:0;top:6px;
+  color:var(--crimson);
+  font-weight:900;
+}
+
+/* ============ CHOKING SIMULATOR ============ */
+.choking-sim{
+  background:var(--cream-2);
+  padding:clamp(30px, 5vw, 50px);
+  border-radius:10px;
+  margin-top:30px;
+}
+.sim-stages{
+  display:flex;
+  gap:8px;
+  margin-bottom:30px;
+  flex-wrap:wrap;
+}
+.sim-stage{
+  flex:1;
+  min-width:140px;
+  padding:14px;
+  background:var(--cream);
+  border:1px solid var(--paper-line);
+  border-radius:6px;
+  text-align:center;
+  font-size:.88rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:all .25s;
+  color:var(--ink-2);
+  position:relative;
+}
+.sim-stage.active{
+  background:var(--crimson);
+  color:var(--cream);
+  border-color:var(--crimson);
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-md);
+}
+.sim-stage.completed{
+  background:rgba(22,163,74,.1);
+  border-color:#16a34a;
+  color:#15803d;
+}
+.sim-stage.completed::after{content:" ✓"}
+
+.sim-content{
+  background:var(--cream);
+  padding:30px;
+  border-radius:6px;
+  min-height:280px;
+  position:relative;
+}
+.sim-step{display:none;animation:fadeIn .4s}
+.sim-step.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.sim-step h4{color:var(--crimson);margin-bottom:14px;font-size:1.3rem}
+.sim-step p{margin-bottom:16px;color:var(--ink-2)}
+.sim-illustration{
+  background:var(--cream-2);
+  padding:30px;
+  border-radius:6px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:20px 0;
+  min-height:180px;
+}
+.sim-actions{display:flex;gap:12px;margin-top:24px}
+
+/* ============ QUIZ ============ */
+.quiz-section{
+  background:linear-gradient(135deg, var(--crimson-deep) 0%, var(--crimson) 100%);
+  color:var(--cream);
+}
+.quiz-section .section-head .num{color:var(--gold-soft)}
+.quiz-section h2{color:var(--cream)}
+.quiz-section .section-head p{color:rgba(250,246,239,.85)}
+
+.quiz-card{
+  background:var(--cream);
+  color:var(--ink);
+  padding:clamp(30px, 5vw, 50px);
+  border-radius:10px;
+  box-shadow:var(--shadow-lg);
+  max-width:800px;
+  margin:0 auto;
+}
+.quiz-progress{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:24px;
+  font-size:.88rem;
+  color:var(--ink-2);
+}
+.progress-bar{
+  height:6px;
+  background:var(--cream-2);
+  border-radius:100px;
+  margin-bottom:30px;
+  overflow:hidden;
+}
+.progress-fill{
+  height:100%;
+  background:linear-gradient(90deg, var(--crimson), var(--gold));
+  width:0;
+  border-radius:100px;
+  transition:width .4s ease;
+}
+.quiz-q{font-size:1.3rem;font-weight:700;margin-bottom:24px;line-height:1.6;font-family:var(--display)}
+.quiz-options{display:flex;flex-direction:column;gap:12px}
+.quiz-opt{
+  padding:18px 22px;
+  background:var(--cream-2);
+  border:2px solid transparent;
+  border-radius:6px;
+  cursor:pointer;
+  text-align:right;
+  font-family:var(--body);
+  font-size:1rem;
+  transition:all .2s;
+  color:var(--ink);
+  font-weight:500;
+}
+.quiz-opt:hover:not(:disabled){border-color:var(--crimson);background:var(--cream)}
+.quiz-opt.correct{background:rgba(22,163,74,.15);border-color:#16a34a;color:#15803d}
+.quiz-opt.wrong{background:var(--crimson-glow);border-color:var(--crimson);color:var(--crimson-deep)}
+.quiz-opt:disabled{cursor:default;opacity:.85}
+
+.quiz-feedback{
+  margin-top:20px;
+  padding:18px;
+  border-radius:6px;
+  font-size:.95rem;
+  display:none;
+  line-height:1.7;
+}
+.quiz-feedback.show{display:block;animation:fadeIn .3s}
+.quiz-feedback.correct{background:rgba(22,163,74,.1);border-right:4px solid #16a34a;color:#15803d}
+.quiz-feedback.wrong{background:var(--crimson-glow);border-right:4px solid var(--crimson);color:var(--crimson-deep)}
+
+.quiz-result{
+  text-align:center;
+  display:none;
+}
+.quiz-result.show{display:block;animation:fadeIn .5s}
+.score-circle{
+  width:160px;height:160px;
+  margin:0 auto 24px;
+  border-radius:50%;
+  background:linear-gradient(135deg, var(--crimson), var(--crimson-deep));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--cream);
+  font-family:var(--display);
+  font-size:3rem;
+  font-weight:900;
+  box-shadow:0 12px 40px rgba(182,32,42,.35);
+}
+
+/* ============ EMERGENCY FOOTER ============ */
+.emergency{
+  background:var(--ink);
+  color:var(--cream);
+  padding:60px 0;
+  text-align:center;
+}
+.emergency-numbers{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+  gap:24px;
+  margin-top:30px;
+  max-width:800px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.em-num{
+  background:rgba(255,255,255,.05);
+  padding:24px;
+  border-radius:8px;
+  border:1px solid rgba(229,198,138,.2);
+}
+.em-num .label{font-size:.88rem;color:rgba(250,246,239,.7);margin-bottom:8px}
+.em-num .number{
+  font-family:var(--display);
+  font-size:2.4rem;
+  font-weight:900;
+  color:var(--gold-soft);
+  letter-spacing:.05em;
+}
+.em-num .name{font-size:.95rem;margin-top:6px;color:var(--cream)}
+
+.footer-credit{
+  margin-top:50px;
+  padding-top:30px;
+  border-top:1px solid rgba(229,198,138,.15);
+  font-size:.85rem;
+  color:rgba(250,246,239,.5);
+}
+
+/* ============ RECOVERY POSITION DEMO ============ */
+.recovery-demo{
+  background:var(--cream-2);
+  border-radius:10px;
+  padding:clamp(30px, 5vw, 50px);
+  margin-top:30px;
+}
+.recovery-controls{
+  display:flex;
+  gap:8px;
+  margin-bottom:24px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.recovery-controls button{
+  padding:10px 18px;
+  border:1px solid var(--paper-line);
+  background:var(--cream);
+  border-radius:6px;
+  font-family:var(--body);
+  font-weight:600;
+  cursor:pointer;
+  transition:all .2s;
+  font-size:.9rem;
+  color:var(--ink-2);
+}
+.recovery-controls button.active{background:var(--crimson);color:var(--cream);border-color:var(--crimson)}
+
+.recovery-stage{
+  background:var(--cream);
+  border-radius:8px;
+  padding:30px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:20px;
+}
+.recovery-svg{width:100%;max-width:500px;height:auto}
+.recovery-text{text-align:center;color:var(--ink-2);max-width:600px}
+.recovery-text strong{color:var(--crimson);font-weight:700;display:block;margin-bottom:6px;font-size:1.1rem}
+
+/* ============ UTILITIES ============ */
+.divider-ornament{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:40px 0;
+  gap:16px;
+}
+.divider-ornament .line{flex:1;height:1px;background:var(--paper-line);max-width:200px}
+.divider-ornament .star{color:var(--crimson);font-size:1.4rem}
+
+@media (max-width:600px){
+  .stat-num{font-size:1.8rem}
+  .scenario-num{font-size:3rem}
+  .cpr-trainer{padding:20px}
+  .compression-zone{width:100px;height:100px}
+}
+
+/* button feedback */
+button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* loading reveal */
+.reveal{opacity:0;transform:translateY(30px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- ===== INSTITUTIONAL RIBBON ===== -->
+<div class="ribbon">
+  <div class="container ribbon-inner">
+    <div class="ribbon-block">
+      <span class="ribbon-label">المملكة العربية السعودية</span>
+      <span class="ribbon-value">وزارة التعليم</span>
+    </div>
+    <div class="ribbon-divider"></div>
+    <div class="ribbon-block">
+      <span class="ribbon-label">الإدارة العامة للتعليم</span>
+      <span class="ribbon-value">منطقة الرياض</span>
+    </div>
+    <div class="ribbon-divider"></div>
+    <div class="ribbon-block">
+      <span class="ribbon-label">مدرسة</span>
+      <span class="ribbon-value">ابتدائية ومتوسطة الجبيلة</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span>دليل تدريبي تفاعلي للمدارس</span>
+        </div>
+        <h1>الإسعافات الأولية<br><span class="accent">دقائق تنقذ حياة</span></h1>
+        <p class="hero-lead">
+          منهج تدريبي تفاعلي مصمم خصيصاً لمنسوبي مدارس التعليم العام، يحاكي المواقف الحقيقية ويُكسبك المهارات العملية للتدخل السريع قبل وصول الإسعاف. لا حاجة لأدوات مختبر — التطبيق نفسه هو معملك.
+        </p>
+        <div class="hero-stats">
+          <div>
+            <span class="stat-num">٤</span>
+            <span class="stat-label">دقائق هي نافذة الذهب لإنقاذ مصاب توقف قلبه</span>
+          </div>
+          <div>
+            <span class="stat-num">١٧</span>
+            <span class="stat-label">سيناريو طارئ شائع في البيئة المدرسية</span>
+          </div>
+          <div>
+            <span class="stat-num">١٠٠+</span>
+            <span class="stat-label">ضغطة في الدقيقة هي الإيقاع الصحيح للإنعاش</span>
+          </div>
+        </div>
+
+        <div class="prep-card">
+          <div class="prep-side">
+            <span class="role">إعداد المعلم</span>
+            <span class="name">نايف المطيري</span>
+          </div>
+          <div class="prep-side">
+            <span class="role">مدير المدرسة</span>
+            <span class="name">مفلح الشهراني</span>
+          </div>
+        </div>
+      </div>
+      <div class="heart-stage">
+        <svg class="heart-rings" viewBox="0 0 400 400">
+          <circle cx="200" cy="200" r="100"/>
+          <circle cx="200" cy="200" r="100"/>
+          <circle cx="200" cy="200" r="100"/>
+        </svg>
+        <svg class="heart-svg" viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 85 C 20 65, 5 45, 5 28 C 5 14, 16 5, 28 5 C 38 5, 45 11, 50 19 C 55 11, 62 5, 72 5 C 84 5, 95 14, 95 28 C 95 45, 80 65, 50 85 Z" fill="#B6202A"/>
+        </svg>
+        <svg class="ecg-line" viewBox="0 0 800 60" preserveAspectRatio="none">
+          <path class="ecg-path" d="M0,30 L150,30 L170,30 L180,15 L195,45 L210,5 L225,55 L240,30 L400,30 L420,30 L430,15 L445,45 L460,5 L475,55 L490,30 L800,30"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TOPICS NAV ===== -->
+<section class="topics" id="topics">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="num">— القسم الأول —</span>
+      <h2>محاور التدريب</h2>
+      <p>اضغط على أي محور للانتقال مباشرةً إلى الشرح التفاعلي والمحاكاة العملية</p>
+    </div>
+    <div class="topics-grid">
+      <a class="topic-card reveal" href="#cpr">
+        <div class="topic-icon"><svg class="topic-icon-svg" viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-11a4 4 0 0 1 7-2.65A4 4 0 0 1 19 10c0 6.5-7 11-7 11z"/></svg></div>
+        <div class="topic-title">الإنعاش القلبي الرئوي</div>
+        <div class="topic-desc">مدرّب إيقاع تفاعلي بالصوت والصورة</div>
+      </a>
+      <a class="topic-card reveal" href="#choking">
+        <div class="topic-icon"><svg class="topic-icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 12v6M9 16l3 3 3-3"/></svg></div>
+        <div class="topic-title">الاختناق</div>
+        <div class="topic-desc">مناورة هايمليك خطوة بخطوة</div>
+      </a>
+      <a class="topic-card reveal" href="#bleeding">
+        <div class="topic-icon"><svg class="topic-icon-svg" viewBox="0 0 24 24"><path d="M12 3l5 8a5 5 0 1 1-10 0z"/></svg></div>
+        <div class="topic-title">النزيف الحاد</div>
+        <div class="topic-desc">إيقاف النزيف بطريقة الضغط</div>
+      </a>
+      <a class="topic-card reveal" href="#burns">
+        <div class="topic-icon"><svg class="topic-icon-svg" viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 1-7-7c0-3 2-5 3-8 1 2 2 3 4 3s3-2 3-5c2 3 4 5 4 10a7 7 0 0 1-7 7z"/></svg></div>
+        <div class="topic-title">الحروق</div>
+        <div class="topic-desc">التعامل الصحيح ودرجات الحروق</div>
+      </a>
+      <a class="topic-card reveal" href="#fainting">
+        <div class="topic-icon"><svg class="topic-icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="6" r="3"/><path d="M5 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/></svg></div>
+        <div class="topic-title">الإغماء ووضعية الإفاقة</div>
+        <div class="topic-desc">محاكاة بصرية للوضعية الجانبية</div>
+      </a>
+      <a class="topic-card reveal" href="#seizure">
+        <div class="topic-icon"><svg class="topic-icon-svg" viewBox="0 0 24 24"><path d="M3 12h3l3-9 4 18 3-9h5"/></svg></div>
+        <div class="topic-title">التشنجات والصرع</div>
+        <div class="topic-desc">حماية المصاب أثناء النوبة</div>
+      </a>
+      <a class="topic-card reveal" href="#heatstroke">
+        <div class="topic-icon"><svg class="topic-icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg></div>
+        <div class="topic-title">ضربة الشمس</div>
+        <div class="topic-desc">مهم جداً في بيئتنا المدرسية</div>
+      </a>
+      <a class="topic-card reveal" href="#allergy">
+        <div class="topic-icon"><svg class="topic-icon-svg" viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/><circle cx="12" cy="12" r="4"/></svg></div>
+        <div class="topic-title">الحساسية المفرطة</div>
+        <div class="topic-desc">علامات الإنذار والتعامل العاجل</div>
+      </a>
+      <a class="topic-card reveal" href="#quiz">
+        <div class="topic-icon"><svg class="topic-icon-svg" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <div class="topic-title">الاختبار التفاعلي</div>
+        <div class="topic-desc">قِس فهم الحضور بعد الجلسة</div>
+      </a>
+      <a class="topic-card reveal" href="#drsabcd">
+        <div class="topic-icon"><svg class="topic-icon-svg" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M3 12a9 9 0 1 0 9-9"/></svg></div>
+        <div class="topic-title">التقييم الأولي DRSABCD</div>
+        <div class="topic-desc">المنهجية الأساسية لكل تدخل إسعافي</div>
+      </a>
+      <a class="topic-card reveal" href="#asthma">
+        <div class="topic-icon"><svg class="topic-icon-svg" viewBox="0 0 24 24"><path d="M6 19c0-3 2-6 6-6s6 3 6 6"/><path d="M12 13V3M9 6l3-3 3 3"/></svg></div>
+        <div class="topic-title">نوبة الربو</div>
+        <div class="topic-desc">طريقة استخدام البخاخ بشكل صحيح</div>
+      </a>
+      <a class="topic-card reveal" href="#diabetes">
+        <div class="topic-icon"><svg class="topic-icon-svg" viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4 12H2M22 12h-2"/><circle cx="12" cy="12" r="6"/></svg></div>
+        <div class="topic-title">الطوارئ السكرية</div>
+        <div class="topic-desc">هبوط وارتفاع السكر — تمييز سريع</div>
+      </a>
+      <a class="topic-card reveal" href="#head">
+        <div class="topic-icon"><svg class="topic-icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M9 15v4M15 15v4"/></svg></div>
+        <div class="topic-title">إصابات الرأس</div>
+        <div class="topic-desc">علامات الارتجاج ومتى نتصل بالإسعاف</div>
+      </a>
+      <a class="topic-card reveal" href="#nosebleed">
+        <div class="topic-icon"><svg class="topic-icon-svg" viewBox="0 0 24 24"><path d="M12 4v8M8 8l4-4 4 4"/><circle cx="12" cy="16" r="4"/></svg></div>
+        <div class="topic-title">الرعاف (نزيف الأنف)</div>
+        <div class="topic-desc">الوضعية الصحيحة وأخطاء شائعة</div>
+      </a>
+      <a class="topic-card reveal" href="#fracture">
+        <div class="topic-icon"><svg class="topic-icon-svg" viewBox="0 0 24 24"><path d="M9 4l-3 6 4 2-2 8 7-9-4-2 3-5z"/></svg></div>
+        <div class="topic-title">الكسور والالتواءات</div>
+        <div class="topic-desc">منهج RICE والتجبير المؤقت</div>
+      </a>
+      <a class="topic-card reveal" href="#eye">
+        <div class="topic-icon"><svg class="topic-icon-svg" viewBox="0 0 24 24"><path d="M2 12s4-8 10-8 10 8 10 8-4 8-10 8S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <div class="topic-title">إصابات العين</div>
+        <div class="topic-desc">إنقاذ البصر في دقائق حرجة</div>
+      </a>
+      <a class="topic-card reveal" href="#psy">
+        <div class="topic-icon"><svg class="topic-icon-svg" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div class="topic-title">الإسعاف النفسي</div>
+        <div class="topic-desc">للطلاب في حالة هلع أو صدمة</div>
+      </a>
+      <a class="topic-card reveal" href="#kit">
+        <div class="topic-icon"><svg class="topic-icon-svg" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M12 12v6M9 15h6"/></svg></div>
+        <div class="topic-title">حقيبة الإسعافات</div>
+        <div class="topic-desc">قائمة المحتويات الأساسية للمدرسة</div>
+      </a>
+      <a class="topic-card reveal" href="#advanced" style="background:linear-gradient(135deg, var(--crimson) 0%, var(--crimson-deep) 100%);border-color:var(--crimson)">
+        <div class="topic-icon" style="background:rgba(255,255,255,.2)"><svg class="topic-icon-svg" viewBox="0 0 24 24" style="width:30px;height:30px"><path stroke="#FAF6EF" d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <div class="topic-title" style="color:var(--cream)">⚡ المحاكيات المتقدمة</div>
+        <div class="topic-desc" style="color:rgba(250,246,239,.85)">٤ تجارب تفاعلية لتدريب القرار تحت الضغط</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DRSABCD PRIMARY SURVEY ===== -->
+<section class="drsabcd-section" id="drsabcd">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="num">— الأساس قبل أي تدخل —</span>
+      <h2>التقييم الأولي DRSABCD</h2>
+      <p>قبل أن تلمس المصاب، اتبع هذه الخطوات بهذا الترتيب الحرفي. منهجية معتمدة عالمياً تمنع الأخطاء القاتلة وتحدد ما يحتاجه المصاب فعلاً.</p>
+    </div>
+
+    <div class="drsabcd-grid">
+      <div class="drs-letter reveal">
+        <div class="big-letter">D</div>
+        <div class="word">Danger — الخطر</div>
+        <div class="desc">قبل أي شيء: هل المكان آمن لك أنت؟ تيار كهربائي، حريق، زجاج مكسور، طريق سيارات. أنت لن تنفع أحداً إن أُصبت بنفسك.</div>
+      </div>
+      <div class="drs-letter reveal">
+        <div class="big-letter">R</div>
+        <div class="word">Response — الاستجابة</div>
+        <div class="desc">اقترب وناده باسمه. اضغط على كتفه. هل يستجيب بالكلام أو الحركة أو فتح العين؟ سجل في ذهنك مستوى الوعي.</div>
+      </div>
+      <div class="drs-letter reveal">
+        <div class="big-letter">S</div>
+        <div class="word">Send — الاستنجاد</div>
+        <div class="desc">اطلب المساعدة من حولك واتصل بـ٩٩٧ فوراً. لا تكن البطل الوحيد. كل ثانية تأخير في طلب الإسعاف مهمة.</div>
+      </div>
+      <div class="drs-letter reveal">
+        <div class="big-letter">A</div>
+        <div class="word">Airway — المجرى الهوائي</div>
+        <div class="desc">افتح فمه وانظر. هل يوجد جسم غريب؟ طعام؟ لعاب؟ أملل رأسه قليلاً للخلف وارفع الذقن لفتح المجرى.</div>
+      </div>
+      <div class="drs-letter reveal">
+        <div class="big-letter">B</div>
+        <div class="word">Breathing — التنفس</div>
+        <div class="desc">انظر إلى الصدر، استمع، اشعر النفس على خدك لمدة ١٠ ثوانٍ. هل يتنفس بشكل طبيعي؟ إن لا → CPR فوراً.</div>
+      </div>
+      <div class="drs-letter reveal">
+        <div class="big-letter">C</div>
+        <div class="word">CPR — الإنعاش</div>
+        <div class="desc">إن لم يتنفس، ابدأ ضغطات الصدر فوراً. ٣٠ ضغطة ثم نفسين (إن دُرّبت)، أو ضغطات متواصلة فقط. لا تتوقف.</div>
+      </div>
+      <div class="drs-letter reveal">
+        <div class="big-letter">D</div>
+        <div class="word">Defibrillation — الصدمة</div>
+        <div class="desc">إن توفر جهاز AED في المدرسة، اطلب من شخص آخر إحضاره فوراً. اتبع تعليماته الصوتية ولا توقف الإنعاش.</div>
+      </div>
+    </div>
+
+    <div class="alert-box" style="margin-top:40px">
+      <div class="alert alert-do reveal">
+        <h5>اذكر بصوت عالٍ ✓</h5>
+        <ul>
+          <li>"أنا أرى مكاناً آمناً" — ثم اقترب</li>
+          <li>"هل تسمعني؟ افتح عينيك!" — ثلاث مرات</li>
+          <li>"اتصلوا بـ٩٩٧" — مع تكليف شخص بالاسم</li>
+          <li>"أرى صدراً يرتفع" أو "لا أرى تنفساً" — قرارك يعتمد عليها</li>
+        </ul>
+      </div>
+      <div class="alert alert-dont reveal">
+        <h5>أخطاء قاتلة ✕</h5>
+        <ul>
+          <li>الاندفاع للمصاب دون تأمين المكان أولاً</li>
+          <li>افتراض أنه فاقد وعي دون اختبار الاستجابة</li>
+          <li>البدء بالإنعاش وأنت تتنفس بشكل طبيعي (هدر طاقة)</li>
+          <li>ترك المصاب لتذهب أنت لإحضار الإسعاف بنفسك</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CPR INTERACTIVE TRAINER ===== -->
+<section class="cpr-section" id="cpr">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="num">— المحور الأهم —</span>
+      <h2>مدرّب الإنعاش القلبي الرئوي</h2>
+      <p>اضغط الزر "ابدأ المحاكاة" واضغط على شعار اليدين بالتوقيت مع نبضات الضوء. هدفك ١٠٠–١٢٠ ضغطة/دقيقة. التطبيق سيقيس إيقاعك ويعطيك تغذية فورية.</p>
+    </div>
+
+    <div class="cpr-trainer reveal">
+      <div class="cpr-visual">
+        <svg class="beat-rings" id="beatRings" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="40"/>
+          <circle cx="100" cy="100" r="40"/>
+        </svg>
+        <button class="compression-zone" id="compressBtn" aria-label="ضغط">
+          <svg class="hands-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 11.5V8a1 1 0 0 1 2 0v3.5h.5V7a1 1 0 0 1 2 0v4.5h.5V8.5a1 1 0 0 1 2 0V13c0 3.3-2.7 6-6 6s-6-2.7-6-6v-2.5a1 1 0 0 1 2 0V13a4 4 0 0 0 8 0v-1.5z"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="cpr-controls">
+        <div class="bpm-target">
+          <strong>الإيقاع المستهدف:</strong> ١٠٠ إلى ١٢٠ ضغطة في الدقيقة (إيقاع أغنية "Stayin' Alive" تقريباً)
+        </div>
+
+        <div class="cpr-stat">
+          <span class="cpr-stat-label">إيقاعك الحالي</span>
+          <span class="cpr-stat-value" id="bpmDisplay">٠ <span class="unit">ض/د</span></span>
+        </div>
+        <div class="cpr-stat">
+          <span class="cpr-stat-label">عدد الضغطات</span>
+          <span class="cpr-stat-value" id="countDisplay">٠</span>
+        </div>
+        <div class="cpr-stat">
+          <span class="cpr-stat-label">مدة الجلسة</span>
+          <span class="cpr-stat-value" id="timerDisplay">٠٠:٠٠</span>
+        </div>
+
+        <div class="cpr-actions">
+          <button class="btn btn-primary" id="metronomeBtn">▶ تشغيل المؤقت الإيقاعي</button>
+          <button class="btn btn-secondary" id="resetBtn">إعادة</button>
+        </div>
+
+        <div class="feedback-msg" id="feedback">اضغط على الدائرة الحمراء بإيقاع منتظم</div>
+      </div>
+    </div>
+
+    <div class="alert-box" style="margin-top:40px">
+      <div class="alert alert-do reveal">
+        <h5>افعل ✓</h5>
+        <ul>
+          <li>تأكد أن المكان آمن ثم تحقق من الوعي والتنفس</li>
+          <li>اطلب الإسعاف فوراً (٩٩٧) قبل البدء</li>
+          <li>ضع كعب اليد في منتصف الصدر بين الحلمتين</li>
+          <li>اضغط بعمق ٥–٦ سم للبالغين</li>
+          <li>اسمح للصدر بالعودة الكاملة بين كل ضغطتين</li>
+          <li>استمر بدون توقف حتى وصول الإسعاف</li>
+        </ul>
+      </div>
+      <div class="alert alert-dont reveal">
+        <h5>لا تفعل ✕</h5>
+        <ul>
+          <li>لا تتأخر في طلب الإسعاف لتفحص أكثر من ١٠ ثوانٍ</li>
+          <li>لا تثني مرفقيك أثناء الضغط (يجب أن تكون مستقيمة)</li>
+          <li>لا تتوقف عن الضغطات إلا عند ظهور علامات حياة واضحة</li>
+          <li>لا تحرك المصاب إذا اشتبهت بإصابة في العنق</li>
+          <li>لا تعطي ماء أو طعام للمصاب فاقد الوعي</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SCENARIOS ===== -->
+<section class="scenario-section">
+  <div class="container">
+
+    <!-- CHOKING -->
+    <div class="scenario reveal" id="choking">
+      <div class="scenario-header">
+        <div class="scenario-num">٠٢</div>
+        <div class="scenario-titles">
+          <h3>الاختناق ومناورة هايمليك</h3>
+          <p>الاختناق من أكثر الحوادث شيوعاً في الفسحة المدرسية، خاصةً مع الأطعمة الجافة. استخدم المحاكي أدناه للتدرب على التسلسل الصحيح.</p>
+        </div>
+      </div>
+
+      <div class="choking-sim">
+        <div class="sim-stages" id="chokingStages">
+          <div class="sim-stage active" data-stage="0">١. التحقق</div>
+          <div class="sim-stage" data-stage="1">٢. السؤال</div>
+          <div class="sim-stage" data-stage="2">٣. الضربات الظهرية</div>
+          <div class="sim-stage" data-stage="3">٤. مناورة هايمليك</div>
+          <div class="sim-stage" data-stage="4">٥. التكرار</div>
+        </div>
+
+        <div class="sim-content">
+          <div class="sim-step active" data-step="0">
+            <h4>١. تأكد أنه اختناق فعلي</h4>
+            <p>المصاب يضع يده على رقبته (العلامة العالمية للاختناق)، لا يستطيع الكلام أو السعال أو التنفس، وقد تتغير لون شفتيه إلى الأزرق.</p>
+            <div class="sim-illustration">
+              <svg width="200" height="180" viewBox="0 0 200 180">
+                <circle cx="100" cy="60" r="35" fill="none" stroke="#B6202A" stroke-width="2.5"/>
+                <path d="M85 95 L85 130 L115 130 L115 95" fill="none" stroke="#B6202A" stroke-width="2.5"/>
+                <path d="M75 100 Q70 90 80 80" stroke="#B6202A" stroke-width="2.5" fill="none"/>
+                <path d="M125 100 Q130 90 120 80" stroke="#B6202A" stroke-width="2.5" fill="none"/>
+                <circle cx="92" cy="55" r="2" fill="#B6202A"/>
+                <circle cx="108" cy="55" r="2" fill="#B6202A"/>
+                <path d="M93 70 Q100 76 107 70" stroke="#B6202A" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+            <div class="sim-actions">
+              <button class="btn btn-primary" onclick="nextChokingStep()">العلامة موجودة، التالي ←</button>
+            </div>
+          </div>
+
+          <div class="sim-step" data-step="1">
+            <h4>٢. اسأله: "هل أنت مختنق؟"</h4>
+            <p>إن أومأ برأسه ولم يستطع الكلام، فهذا اختناق كامل ويستدعي التدخل الفوري. أخبره أنك ستساعده وقف خلفه.</p>
+            <div class="sim-illustration">
+              <div style="text-align:center;font-family:var(--display);font-size:1.4rem;color:var(--crimson);font-weight:700">
+                "هل تختنق؟ سأساعدك."
+              </div>
+            </div>
+            <div class="sim-actions">
+              <button class="btn btn-primary" onclick="nextChokingStep()">أوماء بنعم، التالي ←</button>
+            </div>
+          </div>
+
+          <div class="sim-step" data-step="2">
+            <h4>٣. ٥ ضربات ظهرية</h4>
+            <p>قف بجانبه قليلاً للخلف. اجعله ينحني للأمام. باستخدام كعب يدك، اضرب ٥ ضربات حازمة بين لوحي الكتف.</p>
+            <div class="sim-illustration">
+              <svg width="220" height="160" viewBox="0 0 220 160">
+                <path d="M60 30 Q80 20 100 30 L100 100 Q90 110 80 110 L70 110 Q60 100 60 90 Z" fill="none" stroke="#B6202A" stroke-width="2.5"/>
+                <circle cx="80" cy="35" r="15" fill="none" stroke="#B6202A" stroke-width="2.5"/>
+                <path d="M140 80 L160 70" stroke="#B07B2C" stroke-width="3" stroke-linecap="round"/>
+                <path d="M160 70 L155 60 M160 70 L165 65" stroke="#B07B2C" stroke-width="2.5" stroke-linecap="round"/>
+                <text x="170" y="100" font-family="Tajawal" font-size="14" fill="#1F5F5B" font-weight="700">٥ ضربات</text>
+              </svg>
+            </div>
+            <div class="sim-actions">
+              <button class="btn btn-primary" onclick="nextChokingStep()">تمت الضربات، التالي ←</button>
+            </div>
+          </div>
+
+          <div class="sim-step" data-step="3">
+            <h4>٤. ٥ ضغطات بطنية (مناورة هايمليك)</h4>
+            <p>قف خلف المصاب، أحط خصره بذراعيك. ضع قبضة يدك (الإبهام للداخل) فوق السرة وتحت القفص الصدري. أمسكها باليد الأخرى واضغط بقوة للداخل وللأعلى ٥ مرات.</p>
+            <div class="sim-illustration">
+              <svg width="200" height="180" viewBox="0 0 200 180">
+                <circle cx="100" cy="50" r="22" fill="none" stroke="#B6202A" stroke-width="2.5"/>
+                <path d="M75 85 L75 140 L125 140 L125 85" fill="none" stroke="#B6202A" stroke-width="2.5"/>
+                <circle cx="100" cy="105" r="8" fill="#B07B2C" opacity="0.6"/>
+                <path d="M88 105 L70 95 M112 105 L130 95" stroke="#B07B2C" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M100 100 L100 80" stroke="#1F5F5B" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M95 85 L100 80 L105 85" stroke="#1F5F5B" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              </svg>
+            </div>
+            <div class="sim-actions">
+              <button class="btn btn-primary" onclick="nextChokingStep()">تمت الضغطات، التالي ←</button>
+            </div>
+          </div>
+
+          <div class="sim-step" data-step="4">
+            <h4>٥. كرر حتى يخرج الجسم أو يفقد الوعي</h4>
+            <p>تبادل بين ٥ ضربات ظهرية و٥ ضغطات بطنية. <strong>إذا فقد الوعي</strong>، أنزله بأمان على الأرض وابدأ الإنعاش القلبي الرئوي مباشرة، واتصل بالإسعاف ٩٩٧.</p>
+            <div class="sim-illustration" style="background:rgba(22,163,74,.08);border:2px solid #16a34a">
+              <div style="text-align:center;color:#15803d;font-weight:700;font-size:1.1rem">
+                ✓ أتقنت تسلسل التعامل مع الاختناق
+              </div>
+            </div>
+            <div class="sim-actions">
+              <button class="btn btn-secondary" onclick="resetChoking()">↻ إعادة المحاكاة</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert-box" style="margin-top:24px">
+        <div class="alert alert-do">
+          <h5>للأطفال أقل من سنة</h5>
+          <ul>
+            <li>اقلب الرضيع على بطنك ووجهه للأسفل</li>
+            <li>٥ ضربات ظهرية خفيفة بين الكتفين</li>
+            <li>اقلبه ووجه ٥ ضغطات صدرية بإصبعين</li>
+            <li>لا تستخدم مناورة هايمليك للرضع</li>
+          </ul>
+        </div>
+        <div class="alert alert-dont">
+          <h5>تحذيرات حرجة</h5>
+          <ul>
+            <li>لا تضرب على الظهر والمصاب واقف ومعتدل</li>
+            <li>لا تحاول إخراج الشيء بإصبعك إلا إذا كان مرئياً</li>
+            <li>لا تترك المصاب ولو لحظة لإحضار شيء</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-ornament"><span class="line"></span><span class="star">✦</span><span class="line"></span></div>
+
+    <!-- BLEEDING -->
+    <div class="scenario reveal" id="bleeding">
+      <div class="scenario-header">
+        <div class="scenario-num">٠٣</div>
+        <div class="scenario-titles">
+          <h3>النزيف الحاد</h3>
+          <p>قاعدة "اضغط، ارفع، غطِّ" تنقذ الحياة في دقائق. الفقد السريع للدم قد يؤدي للصدمة خلال ٥ دقائق فقط.</p>
+        </div>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">١</div>
+          <h4>احمِ نفسك</h4>
+          <p>ارتدِ قفازات إن وُجدت، أو استخدم كيساً بلاستيكياً نظيفاً. الدم قد ينقل عدوى.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٢</div>
+          <h4>اضغط مباشرة</h4>
+          <p>ضع شاشاً نظيفاً أو قطعة قماش على الجرح واضغط بقوة وبشكل متواصل. لا ترفع الضمادة لتفحص.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٣</div>
+          <h4>ارفع الطرف المصاب</h4>
+          <p>إن لم يكن هناك كسر، ارفع المنطقة المصابة فوق مستوى القلب لتقليل تدفق الدم.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٤</div>
+          <h4>أضف طبقات إذا تشبعت</h4>
+          <p>لا تنزع الضمادة الأولى. ضع شاشاً جديداً فوقها واستمر بالضغط.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٥</div>
+          <h4>ثبّت بضمادة ضاغطة</h4>
+          <p>لفّ الضمادة بإحكام لكن دون قطع الدورة الدموية (يجب أن تتحقق من نبض ما بعد الضمادة).</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٦</div>
+          <h4>راقب علامات الصدمة</h4>
+          <p>شحوب، عرق بارد، تنفس سريع، دوخة. اطلب الإسعاف فوراً واجعل المصاب يستلقي.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-ornament"><span class="line"></span><span class="star">✦</span><span class="line"></span></div>
+
+    <!-- BURNS -->
+    <div class="scenario reveal" id="burns">
+      <div class="scenario-header">
+        <div class="scenario-num">٠٤</div>
+        <div class="scenario-titles">
+          <h3>الحروق</h3>
+          <p>القاعدة الذهبية: ماء جارٍ بدرجة حرارة الغرفة لمدة ٢٠ دقيقة. لا ثلج. لا معجون أسنان. لا زيت.</p>
+        </div>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">١</div>
+          <h4>أبعد مصدر الحرارة</h4>
+          <p>أوقف الطفل عن الجري، أزل الملابس المحترقة (ما لم تكن ملتصقة بالجلد).</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٢</div>
+          <h4>برّد بالماء الجاري ٢٠ دقيقة</h4>
+          <p>ماء فاتر إلى بارد، ليس مثلجاً. هذه الـ٢٠ دقيقة تقلل عمق الحرق بشكل مذهل.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٣</div>
+          <h4>أزل الحلي والملابس</h4>
+          <p>أي شيء قد ينضغط مع الانتفاخ (خواتم، ساعات، أحزمة) قبل أن يتورم الجزء.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٤</div>
+          <h4>غطِّ بشاش لاصق غير</h4>
+          <p>استخدم بلاستيك نظيف (كيس طعام شفاف) أو شاش غير لاصق لمنع التلوث.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٥</div>
+          <h4>قيّم درجة الحرق</h4>
+          <p>أولى: احمرار. ثانية: فقاعات وألم شديد. ثالثة: تفحم أو لون أبيض. الثانية والثالثة → الإسعاف.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٦</div>
+          <h4>راقب أعراض الجفاف</h4>
+          <p>الحروق الكبيرة تسبب فقد سوائل. أعطه ماءً فاتراً إن كان واعياً ولم يكن هناك قيء.</p>
+        </div>
+      </div>
+
+      <div class="alert-box">
+        <div class="alert alert-do">
+          <h5>افعل ✓</h5>
+          <ul>
+            <li>الماء الجاري الفاتر هو الأفضل دائماً</li>
+            <li>غطِّ بقماش نظيف فضفاض</li>
+            <li>اطلب الإسعاف للحروق بحجم كف اليد أو أكبر</li>
+            <li>اطلب الإسعاف لحروق الوجه والمفاصل والأعضاء التناسلية</li>
+          </ul>
+        </div>
+        <div class="alert alert-dont">
+          <h5>لا تفعل ✕</h5>
+          <ul>
+            <li>لا تضع ثلجاً (يسبب أذى إضافياً للأنسجة)</li>
+            <li>لا تضع معجون أسنان أو زبدة أو زيت</li>
+            <li>لا تفقع الفقاعات نهائياً</li>
+            <li>لا تنزع الملابس الملتصقة بالحرق</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-ornament"><span class="line"></span><span class="star">✦</span><span class="line"></span></div>
+
+    <!-- FAINTING + RECOVERY -->
+    <div class="scenario reveal" id="fainting">
+      <div class="scenario-header">
+        <div class="scenario-num">٠٥</div>
+        <div class="scenario-titles">
+          <h3>الإغماء ووضعية الإفاقة</h3>
+          <p>وضعية الإفاقة (Recovery Position) تمنع الاختناق بالقيء أو اللسان وهي خط الدفاع الأول لأي مصاب فاقد الوعي ويتنفس.</p>
+        </div>
+      </div>
+
+      <div class="recovery-demo">
+        <div class="recovery-controls">
+          <button class="active" data-recovery="0">١. التحقق من التنفس</button>
+          <button data-recovery="1">٢. ثني الذراع</button>
+          <button data-recovery="2">٣. ثني الركبة</button>
+          <button data-recovery="3">٤. الإمالة الجانبية</button>
+          <button data-recovery="4">٥. فتح المجرى الهوائي</button>
+        </div>
+
+        <div class="recovery-stage" id="recoveryStage">
+          <svg class="recovery-svg" id="recoverySvg" viewBox="0 0 500 220">
+            <!-- ground line -->
+            <line x1="20" y1="200" x2="480" y2="200" stroke="#B07B2C" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+            <!-- body container - will be replaced by JS -->
+            <g id="bodyGroup">
+              <!-- initial: lying flat -->
+              <ellipse cx="100" cy="170" rx="30" ry="22" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5"/>
+              <rect x="130" y="155" width="200" height="40" rx="20" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5"/>
+              <rect x="330" y="160" width="120" height="32" rx="14" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5"/>
+              <line x1="200" y1="155" x2="180" y2="120" stroke="#B6202A" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="260" y1="155" x2="280" y2="120" stroke="#B6202A" stroke-width="2.5" stroke-linecap="round"/>
+            </g>
+          </svg>
+          <div class="recovery-text" id="recoveryText">
+            <strong>الخطوة ١: تحقق من التنفس</strong>
+            انظر إلى الصدر، استمع، اشعر النفس على خدك لمدة ١٠ ثوانٍ. إن كان يتنفس بشكل طبيعي، انتقل للخطوة التالية.
+          </div>
+        </div>
+      </div>
+
+      <div class="alert-box" style="margin-top:24px">
+        <div class="alert alert-do">
+          <h5>قبل وضعية الإفاقة</h5>
+          <ul>
+            <li>تأكد أنه فاقد الوعي ويتنفس بشكل طبيعي</li>
+            <li>أزل النظارة والأشياء الحادة من جيوبه</li>
+            <li>إذا اشتبهت بإصابة عمود فقري، حركه بحرص شديد</li>
+            <li>راقب تنفسه كل دقيقة حتى وصول الإسعاف</li>
+          </ul>
+        </div>
+        <div class="alert alert-dont">
+          <h5>متى لا تستخدمها؟</h5>
+          <ul>
+            <li>إذا توقف عن التنفس → ابدأ الإنعاش فوراً</li>
+            <li>إذا كان مستيقظاً → لا حاجة لها</li>
+            <li>لا تتركه على ظهره إن كان فاقد الوعي (خطر اختناق باللسان)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-ornament"><span class="line"></span><span class="star">✦</span><span class="line"></span></div>
+
+    <!-- SEIZURE -->
+    <div class="scenario reveal" id="seizure">
+      <div class="scenario-header">
+        <div class="scenario-num">٠٦</div>
+        <div class="scenario-titles">
+          <h3>التشنجات والصرع</h3>
+          <p>دورك ليس إيقاف النوبة بل حماية الطالب منها. معظم النوبات تنتهي خلال دقيقتين دون تدخل.</p>
+        </div>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">١</div>
+          <h4>احفظ الوقت</h4>
+          <p>انظر إلى ساعتك فوراً. النوبة التي تتجاوز ٥ دقائق طارئة طبية حقيقية.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٢</div>
+          <h4>أبعد الأشياء الخطرة</h4>
+          <p>كراسي، طاولات، أقلام مدببة. لا تحرّك المصاب نفسه إلا إذا كان في موضع خطر.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٣</div>
+          <h4>وسادة تحت الرأس</h4>
+          <p>سترة مطوية أو حقيبة لينة لحماية الرأس من الارتطام بالأرض.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٤</div>
+          <h4>فك الملابس الضيقة</h4>
+          <p>ربطة العنق، الياقة، الحزام — أي شيء يضغط على الرقبة أو الصدر.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٥</div>
+          <h4>بعد النوبة: وضعية الإفاقة</h4>
+          <p>ضعه على جنبه فور توقف الحركات لتسهيل التنفس وتفريغ اللعاب.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٦</div>
+          <h4>طمأنه عند استعادة الوعي</h4>
+          <p>سيكون مرتبكاً ومتعباً. ابقَ معه واشرح بهدوء ما حدث.</p>
+        </div>
+      </div>
+
+      <div class="alert-box">
+        <div class="alert alert-do">
+          <h5>اتصل بالإسعاف ٩٩٧ إذا</h5>
+          <ul>
+            <li>استمرت النوبة أكثر من ٥ دقائق</li>
+            <li>تكررت نوبة ثانية مباشرة دون استعادة وعي</li>
+            <li>كانت أول نوبة في حياته</li>
+            <li>أصيب الطالب بجرح أثناء النوبة</li>
+            <li>صعوبة في التنفس بعد النوبة</li>
+          </ul>
+        </div>
+        <div class="alert alert-dont">
+          <h5>الأخطاء الشائعة</h5>
+          <ul>
+            <li>لا تضع شيئاً في فمه (لن يبتلع لسانه)</li>
+            <li>لا تحاول تثبيته أو إيقاف حركاته</li>
+            <li>لا تعطه ماء أو دواء حتى يستعيد وعيه كاملاً</li>
+            <li>لا تتركه وحيداً</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-ornament"><span class="line"></span><span class="star">✦</span><span class="line"></span></div>
+
+    <!-- HEAT STROKE -->
+    <div class="scenario reveal" id="heatstroke">
+      <div class="scenario-header">
+        <div class="scenario-num">٠٧</div>
+        <div class="scenario-titles">
+          <h3>ضربة الشمس والإجهاد الحراري</h3>
+          <p>في بيئتنا الحارة، الطابور الصباحي وحصص الرياضة قد تسبب ضربة شمس قاتلة. الفرق بين الإجهاد الحراري وضربة الشمس هو فرق بين الحياة والموت.</p>
+        </div>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card" style="background:linear-gradient(135deg, #FFF7ED 0%, var(--cream) 100%);border-color:#F59E0B">
+          <div class="step-num" style="background:#F59E0B">⚠</div>
+          <h4>الإجهاد الحراري (الأقل خطورة)</h4>
+          <p>تعرق غزير، شحوب، ضعف، صداع، غثيان، تشنج عضلي، نبض سريع، الجلد رطب وبارد. درجة الحرارة طبيعية أو مرتفعة قليلاً.</p>
+        </div>
+        <div class="step-card" style="background:linear-gradient(135deg, #FEF2F2 0%, var(--cream) 100%);border-color:var(--crimson)">
+          <div class="step-num" style="background:var(--crimson)">!</div>
+          <h4>ضربة الشمس (طارئ خطير)</h4>
+          <p>توقف التعرق، جلد جاف وحار، احمرار شديد، تشوش ذهني، إغماء، تشنجات، حرارة فوق ٤٠°. هذا الموت إن لم يُسعف فوراً.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">١</div>
+          <h4>انقله لمكان بارد</h4>
+          <p>غرفة مكيفة، أو ظل مع تيار هواء. اخلع الطبقات الثقيلة من ملابسه.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٢</div>
+          <h4>برّده بسرعة</h4>
+          <p>ماء بارد على الجلد، كمادات مبللة على الرقبة والإبطين والفخذ، مروحة لتسريع التبخير.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٣</div>
+          <h4>اسقه إن كان واعياً</h4>
+          <p>ماء بارد، رشفات صغيرة. لا تعطه إن كان يتقيأ أو فاقداً للوعي.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٤</div>
+          <h4>اتصل بالإسعاف ٩٩٧</h4>
+          <p>كل ضربة شمس حقيقية تستدعي الإسعاف، حتى لو بدا الطالب أفضل بعد التبريد.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-ornament"><span class="line"></span><span class="star">✦</span><span class="line"></span></div>
+
+    <!-- ALLERGY -->
+    <div class="scenario reveal" id="allergy">
+      <div class="scenario-header">
+        <div class="scenario-num">٠٨</div>
+        <div class="scenario-titles">
+          <h3>الحساسية المفرطة (Anaphylaxis)</h3>
+          <p>قد يأكل الطالب فستقاً أو تلسعه نحلة فيدخل في صدمة قاتلة خلال دقائق. تعلّم العلامات يعني تعلّم الإنقاذ.</p>
+        </div>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">⚠</div>
+          <h4>علامات الإنذار</h4>
+          <p>طفح جلدي مفاجئ، تورم في الشفاه/اللسان/الحلق، صفير في التنفس، صعوبة بلع، دوخة، قيء، إحساس بـ"شيء سيء يحدث".</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">١</div>
+          <h4>اتصل بالإسعاف فوراً</h4>
+          <p>قبل أي شيء آخر. ٩٩٧. أخبرهم أنه اشتباه حساسية مفرطة (Anaphylaxis).</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٢</div>
+          <h4>اسأل عن قلم الإبينفرين</h4>
+          <p>EpiPen في حقيبته. إن وُجد، استخدمه فوراً في الفخذ الخارجي (حتى من فوق الملابس).</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٣</div>
+          <h4>اجعله مستلقياً</h4>
+          <p>ساقاه مرفوعتان قليلاً. إن كان يتقيأ أو يصعب عليه التنفس، ضعه على جنبه.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٤</div>
+          <h4>أبعد المسبب</h4>
+          <p>الطعام من فمه (إن أمكن دون تجريح)، إبرة النحلة بالكشط الجانبي بحافة بطاقة.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٥</div>
+          <h4>راقب وأبلغ ولي الأمر</h4>
+          <p>راقب التنفس باستمرار، كن مستعداً للإنعاش القلبي الرئوي إن توقف التنفس.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-ornament"><span class="line"></span><span class="star">✦</span><span class="line"></span></div>
+
+    <!-- ASTHMA -->
+    <div class="scenario reveal" id="asthma">
+      <div class="scenario-header">
+        <div class="scenario-num">٠٩</div>
+        <div class="scenario-titles">
+          <h3>نوبة الربو الحادة</h3>
+          <p>الربو ثاني أكثر الأمراض المزمنة شيوعاً بين طلاب المدارس. النوبة الشديدة قد تُفقد الطالب وعيه خلال دقائق إن لم تُعالج فوراً.</p>
+        </div>
+      </div>
+
+      <div class="inhaler-demo">
+        <svg class="inhaler-svg" viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg">
+          <!-- canister -->
+          <rect x="35" y="20" width="50" height="80" rx="6" fill="#B6202A" stroke="#7E141B" stroke-width="2"/>
+          <rect x="40" y="30" width="40" height="20" rx="2" fill="#FAF6EF" opacity="0.3"/>
+          <!-- mouthpiece -->
+          <path d="M30 100 L90 100 L85 165 Q85 180 60 180 Q35 180 35 165 Z" fill="#3D332C" stroke="#1A1614" stroke-width="2"/>
+          <ellipse cx="60" cy="170" rx="20" ry="6" fill="#1A1614"/>
+          <!-- spacer indicator -->
+          <text x="60" y="65" text-anchor="middle" font-family="Tajawal" font-size="11" fill="#FAF6EF" font-weight="700">بخاخ</text>
+          <!-- spray -->
+          <path d="M60 105 Q55 115 50 125 M60 105 Q60 117 60 130 M60 105 Q65 115 70 125" stroke="#1F5F5B" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
+        </svg>
+        <div>
+          <div class="inhaler-counter" id="puffCounter">٤</div>
+          <div class="inhaler-instruction">
+            <strong style="color:var(--crimson)">قاعدة ٤×٤×٤:</strong><br>
+            ٤ بخات، انتظار ٤ دقائق، تكرار حتى ٤ مرات إن لم تتحسن. كل بخة منفصلة مع نفَس عميق بطيء.
+          </div>
+        </div>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">١</div>
+          <h4>اجلسه معتدلاً</h4>
+          <p>لا تستلقيه أبداً. الجلوس يفتح الرئتين ويسهل التنفس. استند ظهره إلى مسند مستقيم.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٢</div>
+          <h4>طمئنه واطلب البخاخ</h4>
+          <p>الذعر يضيق الشعب أكثر. تكلم بهدوء: "أنا معك، خذ نفساً معي". اسأله عن البخاخ في حقيبته (المعلمون عادةً يعرفون مرضى الربو).</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٣</div>
+          <h4>رجّ البخاخ ٥ مرات</h4>
+          <p>قبل كل استخدام. للتأكد من خلط الدواء. ثم اطلب منه الزفير الكامل.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٤</div>
+          <h4>بخّة + شهيق عميق + ١٠ ثوان</h4>
+          <p>يضع فمه على البخاخ، يضغط هو (أو أنت) ويشهق ببطء وعمق. يحبس النفس ١٠ ثوانٍ قبل الزفير.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٥</div>
+          <h4>كرر ٤ بخات بفاصل دقيقة</h4>
+          <p>ليس دفعة واحدة. كل بخة تحتاج وقتاً لتعمل. ٤ بخات = جرعة كاملة.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٦</div>
+          <h4>إن لم يتحسن خلال ٤ دقائق</h4>
+          <p>أعد الجرعة (٤ بخات أخرى). لا تنتظر التحسن أكثر من ١٥ دقيقة قبل الاتصال بالإسعاف.</p>
+        </div>
+      </div>
+
+      <div class="alert-box">
+        <div class="alert alert-do">
+          <h5>اتصل بـ٩٩٧ فوراً إذا</h5>
+          <ul>
+            <li>شفتاه أو أصابعه تتحول للأزرق</li>
+            <li>لا يستطيع إكمال جملة من نفس واحد</li>
+            <li>البخاخ لا يعطي مفعولاً بعد ٤ بخات</li>
+            <li>يستخدم عضلات الرقبة والكتف للتنفس</li>
+            <li>هذه أول نوبة ربو في حياته</li>
+          </ul>
+        </div>
+        <div class="alert alert-dont">
+          <h5>أخطاء شائعة</h5>
+          <ul>
+            <li>إعطاء ماء "ليبرد الصدر" — لا يساعد بل قد يخنق</li>
+            <li>التربيت على الظهر بقوة — يزيد التشنج</li>
+            <li>إعطاء ٤ بخات دفعة واحدة — أغلب الدواء يضيع</li>
+            <li>إجباره على الاستلقاء — يسوّئ التنفس</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-ornament"><span class="line"></span><span class="star">✦</span><span class="line"></span></div>
+
+    <!-- DIABETES -->
+    <div class="scenario reveal" id="diabetes">
+      <div class="scenario-header">
+        <div class="scenario-num">١٠</div>
+        <div class="scenario-titles">
+          <h3>الطوارئ السكرية في المدرسة</h3>
+          <p>طالب يبدو متعباً، عصبياً، أو "كسولاً" قد يكون في هبوط سكر حقيقي يوشك أن يفقد وعيه. التمييز السريع بين هبوط وارتفاع السكر ينقذ حياته.</p>
+        </div>
+      </div>
+
+      <div class="glucose-display">
+        <div class="glucose-screen" id="glucoseReading">٤٥ <span style="font-size:1rem">ملغ/دل</span></div>
+        <div style="color:var(--gold-soft);font-size:.95rem">قراءة افتراضية لجهاز قياس السكر</div>
+        <div class="glucose-zones">
+          <div class="glucose-zone zone-low">أقل من ٧٠<br><strong>هبوط — خطر</strong></div>
+          <div class="glucose-zone zone-normal">٧٠ - ١٤٠<br><strong>طبيعي</strong></div>
+          <div class="glucose-zone zone-high">فوق ٢٥٠<br><strong>ارتفاع</strong></div>
+        </div>
+      </div>
+
+      <div class="alert-box">
+        <div class="alert alert-do" style="background:rgba(239,68,68,.05);border-color:var(--crimson)">
+          <h5 style="color:var(--crimson-deep)">هبوط السكر (الأخطر) ⬇</h5>
+          <ul style="list-style:none">
+            <li style="padding:6px 0">• تعرق بارد ورجفة</li>
+            <li style="padding:6px 0">• شحوب وضعف مفاجئ</li>
+            <li style="padding:6px 0">• تشوش، عدوانية غير معتادة</li>
+            <li style="padding:6px 0">• كلام متلعثم أو مشي مترنح</li>
+            <li style="padding:6px 0">• جوع شديد أو رعشة باليدين</li>
+          </ul>
+        </div>
+        <div class="alert alert-do" style="background:rgba(234,179,8,.05);border-color:#eab308">
+          <h5 style="color:#854d0e">ارتفاع السكر ⬆</h5>
+          <ul style="list-style:none">
+            <li style="padding:6px 0">• عطش شديد وجفاف فم</li>
+            <li style="padding:6px 0">• تبوّل متكرر</li>
+            <li style="padding:6px 0">• تعب وخمول تدريجي</li>
+            <li style="padding:6px 0">• رائحة فم كرائحة الفاكهة</li>
+            <li style="padding:6px 0">• تنفس عميق وسريع</li>
+          </ul>
+        </div>
+      </div>
+
+      <h4 style="margin-top:30px;margin-bottom:14px;color:var(--crimson)">قاعدة ١٥ × ١٥ لعلاج هبوط السكر:</h4>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">١</div>
+          <h4>أعطه ١٥ غرام سكر سريع</h4>
+          <p>نصف كوب عصير، ٣ ملاعق سكر في ماء، ٤ قطع حلوى صلبة، أو حبة تمر. <strong>ليس شوكولاتة</strong> (الدهن يبطئ الامتصاص).</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٢</div>
+          <h4>انتظر ١٥ دقيقة</h4>
+          <p>اجلس معه. راقب الأعراض. لا تعطه دفعة ثانية مباشرةً.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٣</div>
+          <h4>أعد القياس إن أمكن</h4>
+          <p>إن كان لديه جهاز قياس، اقرأ القراءة. إن لم يصل ٧٠+ → كرر الـ١٥ غرام.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٤</div>
+          <h4>وجبة طعام كاملة بعد التحسن</h4>
+          <p>السكر السريع يُحدث ارتفاعاً مؤقتاً ثم هبوطاً ثانياً. يحتاج كربوهيدرات معقدة (سندويتش، رز).</p>
+        </div>
+        <div class="step-card" style="background:var(--crimson-glow);border-color:var(--crimson)">
+          <div class="step-num">!</div>
+          <h4>إن فقد الوعي</h4>
+          <p><strong>لا تضع شيئاً في فمه.</strong> ضعه في وضعية الإفاقة، اتصل بـ٩٩٧ فوراً. هبوط السكر مع فقدان الوعي طارئ قاتل.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">⚠</div>
+          <h4>للارتفاع</h4>
+          <p>اشربه ماء كثير، اتصل بولي الأمر، اتصل بالإسعاف إن ظهر تنفس عميق سريع أو تشوش (حماض كيتوني).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-ornament"><span class="line"></span><span class="star">✦</span><span class="line"></span></div>
+
+    <!-- HEAD INJURY -->
+    <div class="scenario reveal" id="head">
+      <div class="scenario-header">
+        <div class="scenario-num">١١</div>
+        <div class="scenario-titles">
+          <h3>إصابات الرأس والارتجاج</h3>
+          <p>طفل سقط في الفسحة وارتطم رأسه. متى نقول "بسيط"، ومتى نتصل بالإسعاف؟ خطأ تقدير ساعة قد يكلف نزيفاً دماغياً.</p>
+        </div>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">١</div>
+          <h4>لا تحركه إن أمكن</h4>
+          <p>إصابة الرأس قد تصاحبها إصابة عمود فقري. اتركه في وضعه واتصل بالإسعاف إن كانت الإصابة قوية.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٢</div>
+          <h4>افحص مستوى الوعي</h4>
+          <p>هل يتذكر اسمه؟ المدرسة؟ ماذا حدث؟ إن كان مشوشاً أو نام مباشرة → طارئ.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٣</div>
+          <h4>افحص الحدقات</h4>
+          <p>هل حدقتا العينين متساويتان؟ تتفاعلان مع الضوء؟ اختلاف الحجم = نزيف داخل الجمجمة.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٤</div>
+          <h4>افحص الأنف والأذن</h4>
+          <p>سائل شفاف من الأنف أو الأذن (ليس دم) قد يكون سائلاً دماغياً شوكياً. <strong>طارئ خطير</strong>.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٥</div>
+          <h4>كمادة باردة</h4>
+          <p>على مكان الارتطام لتقليل التورم. ليس ثلجاً مباشراً — قطعة قماش بداخلها ثلج.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٦</div>
+          <h4>راقبه ٢٤ ساعة</h4>
+          <p>حتى لو بدا بخير. الأعراض قد تظهر متأخرة. أبلغ الأهل بالعلامات التحذيرية.</p>
+        </div>
+      </div>
+
+      <div class="alert-box">
+        <div class="alert alert-dont">
+          <h5>اتصل بـ٩٩٧ فوراً إذا</h5>
+          <ul>
+            <li>فقد الوعي ولو لثوانٍ</li>
+            <li>تقيأ مرتين أو أكثر</li>
+            <li>صداع شديد ومستمر</li>
+            <li>حدقتان غير متساويتين</li>
+            <li>سائل من الأنف أو الأذن</li>
+            <li>اختلاف في قوة الذراعين أو الساقين</li>
+            <li>تشنج أو نوبة صرع</li>
+            <li>سقوط من ارتفاع أكبر من قامته</li>
+          </ul>
+        </div>
+        <div class="alert alert-do">
+          <h5>علامات الارتجاج (Concussion)</h5>
+          <ul>
+            <li>صداع، دوخة، غثيان</li>
+            <li>تشوش بصري أو رؤية مزدوجة</li>
+            <li>صعوبة في التركيز أو التذكر</li>
+            <li>حساسية للضوء أو الصوت</li>
+            <li>تغير في المزاج (عصبية، حزن)</li>
+            <li>كلها تحتاج تقييم طبي حتى لو "بدا بخير"</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-ornament"><span class="line"></span><span class="star">✦</span><span class="line"></span></div>
+
+    <!-- NOSEBLEED -->
+    <div class="scenario reveal" id="nosebleed">
+      <div class="scenario-header">
+        <div class="scenario-num">١٢</div>
+        <div class="scenario-titles">
+          <h3>الرعاف (نزيف الأنف)</h3>
+          <p>شائع جداً في مناخنا الجاف. للأسف ٩٠٪ من الناس يعالجونه خطأً (إمالة الرأس للخلف). هذه هي الطريقة الصحيحة.</p>
+        </div>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">١</div>
+          <h4>اجلسه ومل رأسه للأمام</h4>
+          <p><strong>للأمام، ليس للخلف!</strong> إمالة الرأس للخلف تجعل الدم يبلع للمعدة فيسبب القيء.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٢</div>
+          <h4>اضغط الجزء اللين من الأنف</h4>
+          <p>أسفل العظمة مباشرة (الجزء اللحمي قبل الفتحات). بإبهام وسبابة واضغط بقوة.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٣</div>
+          <h4>اضغط ١٠ دقائق متواصلة</h4>
+          <p>بدون أن ترفع لتفحص. الرفع يكسر الجلطة المتكونة. عدّ ١٠ دقائق على ساعتك بدقة.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٤</div>
+          <h4>اجعله يتنفس من فمه</h4>
+          <p>بهدوء. لا يتكلم كثيراً. لا يبصق. لا يُمخّط. كلها تحرك الجلطة.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٥</div>
+          <h4>كمادة باردة على جسر الأنف</h4>
+          <p>تساعد على انقباض الأوعية. ضعها بالتزامن مع الضغط.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٦</div>
+          <h4>بعد التوقف بساعتين</h4>
+          <p>لا يحني رأسه، لا يحمل أشياء ثقيلة، لا يتمخّط. كلها تعيد فتح النزيف.</p>
+        </div>
+      </div>
+
+      <div class="alert-box">
+        <div class="alert alert-dont">
+          <h5>اتصل بالإسعاف إذا</h5>
+          <ul>
+            <li>لم يتوقف النزيف بعد ٢٠ دقيقة ضغط متواصل</li>
+            <li>كان النزيف غزيراً (تقطر بدل ما تنزل)</li>
+            <li>كان بعد إصابة قوية في الرأس أو الوجه</li>
+            <li>صاحبه دوار شديد أو شحوب أو إغماء</li>
+            <li>الطفل يأخذ مميعات دم</li>
+          </ul>
+        </div>
+        <div class="alert alert-do">
+          <h5>للوقاية في المدرسة</h5>
+          <ul>
+            <li>مرطب جو في الفصول (المناخ جاف)</li>
+            <li>شرب ماء كثير على مدار اليوم</li>
+            <li>عدم نكش الأنف (سبب رئيسي عند الأطفال)</li>
+            <li>تقليم الأظافر للأطفال الصغار</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-ornament"><span class="line"></span><span class="star">✦</span><span class="line"></span></div>
+
+    <!-- FRACTURES -->
+    <div class="scenario reveal" id="fracture">
+      <div class="scenario-header">
+        <div class="scenario-num">١٣</div>
+        <div class="scenario-titles">
+          <h3>الكسور والالتواءات والكدمات</h3>
+          <p>سقطة على المعصم في حصة الرياضة، التواء كاحل من الدرج. منهج RICE قاعدة عالمية لكل إصابات المفاصل والعظام.</p>
+        </div>
+      </div>
+
+      <div class="drsabcd-grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+        <div class="drs-letter">
+          <div class="big-letter" style="color:var(--teal)">R</div>
+          <div class="word">Rest — الراحة</div>
+          <div class="desc">لا حركة على الطرف المصاب. لا يمشي عليه، لا يحمل به.</div>
+        </div>
+        <div class="drs-letter">
+          <div class="big-letter" style="color:var(--teal)">I</div>
+          <div class="word">Ice — الثلج</div>
+          <div class="desc">٢٠ دقيقة ثلج، ٢٠ دقيقة راحة. ملفوف بقماش، ليس مباشراً على الجلد.</div>
+        </div>
+        <div class="drs-letter">
+          <div class="big-letter" style="color:var(--teal)">C</div>
+          <div class="word">Compression — الضغط</div>
+          <div class="desc">رباط ضاغط (إن توفر) لتقليل التورم. ليس بإحكام يقطع الدورة الدموية.</div>
+        </div>
+        <div class="drs-letter">
+          <div class="big-letter" style="color:var(--teal)">E</div>
+          <div class="word">Elevation — الرفع</div>
+          <div class="desc">ارفع الطرف المصاب فوق مستوى القلب. مع الراحة على وسادة.</div>
+        </div>
+      </div>
+
+      <h4 style="margin-top:36px;margin-bottom:14px;color:var(--crimson)">كيف تميّز بين كسر والتواء؟</h4>
+      <div class="steps-grid">
+        <div class="step-card" style="border-color:var(--crimson)">
+          <div class="step-num" style="background:var(--crimson)">!</div>
+          <h4>علامات الكسر</h4>
+          <p>تشوه واضح في الطرف، صوت طقطقة وقت الإصابة، ألم شديد جداً، خروج عظم من الجلد، عدم القدرة نهائياً على تحريك الطرف، تنميل أو شحوب الجلد بعد المكان.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">⚠</div>
+          <h4>علامات الالتواء</h4>
+          <p>ألم وتورم حول المفصل، كدمة زرقاء بعد ساعات، صعوبة في الحركة لكن ممكنة، عدم وجود تشوه واضح. الالتواء قد يكون شديداً ويحتاج أشعة لتأكيد عدم وجود كسر مصاحب.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">١</div>
+          <h4>للكسر: ثبّت كما هو</h4>
+          <p><strong>لا تحاول إعادته لمكانه.</strong> ثبّته بقطعة كرتون أو خشبة من جانبيه ولفّ برباط. للذراع: حمالة كتف من قطعة قماش.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٢</div>
+          <h4>للكسر المفتوح</h4>
+          <p>اضغط فوق الجرح بشاش معقم لإيقاف النزيف. <strong>لا تحاول إعادة العظم تحت الجلد</strong>. غطّ بقماش نظيف.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٣</div>
+          <h4>للالتواء: RICE فوراً</h4>
+          <p>طبّق المنهج الكامل أعلاه. أول ٤٨ ساعة هي الذهبية لتقليل التورم.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٤</div>
+          <h4>اتصل بالإسعاف إذا</h4>
+          <p>كسر مفتوح، تشوه واضح، إصابة في العمود الفقري أو الرقبة أو الحوض، خدر أو شحوب الطرف، عدم القدرة على الحركة، ألم لا يحتمل.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-ornament"><span class="line"></span><span class="star">✦</span><span class="line"></span></div>
+
+    <!-- EYE INJURIES -->
+    <div class="scenario reveal" id="eye">
+      <div class="scenario-header">
+        <div class="scenario-num">١٤</div>
+        <div class="scenario-titles">
+          <h3>إصابات العين</h3>
+          <p>العين عضو دقيق جداً وخسارة البصر قد تحدث في دقائق. الخطوات الأولى التي يقوم بها المعلم قد تنقذ بصر الطالب.</p>
+        </div>
+      </div>
+
+      <div class="eye-stage">
+        <svg class="eye-svg" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="100" cy="60" rx="80" ry="35" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5"/>
+          <circle cx="100" cy="60" r="22" fill="#1F5F5B"/>
+          <circle cx="100" cy="60" r="10" fill="#1A1614"/>
+          <circle cx="95" cy="55" r="3" fill="#FAF6EF"/>
+          <!-- water drops -->
+          <path d="M40 30 Q35 20 40 10" stroke="#1F5F5B" stroke-width="2" fill="none"/>
+          <circle cx="40" cy="8" r="3" fill="#1F5F5B"/>
+          <path d="M30 50 Q25 40 30 30" stroke="#1F5F5B" stroke-width="2" fill="none"/>
+          <circle cx="30" cy="28" r="2.5" fill="#1F5F5B"/>
+          <text x="100" y="115" text-anchor="middle" font-family="Tajawal" font-size="11" fill="#1F5F5B" font-weight="700">اغسل من الداخل للخارج</text>
+        </svg>
+      </div>
+
+      <h4 style="margin-bottom:14px;color:var(--crimson)">حسب نوع الإصابة:</h4>
+      <div class="steps-grid">
+        <div class="step-card" style="border-color:var(--crimson);background:rgba(239,68,68,.03)">
+          <div class="step-num" style="background:var(--crimson)">!</div>
+          <h4>مادة كيميائية في العين</h4>
+          <p>منظفات، أحماض، قواعد. <strong>غسل فوري بماء فاتر لـ٢٠ دقيقة متواصلة</strong> دون توقف. من جسر الأنف باتجاه الأذن (لا تلوث العين الأخرى).</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">١</div>
+          <h4>جسم غريب صغير (ذرة، رمل)</h4>
+          <p>لا تفركها. ارفرف العين تحت ماء، أو اقلب الجفن العلوي للخارج برفق وأخرج بطرف منديل نظيف.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٢</div>
+          <h4>جسم غريب مغروز</h4>
+          <p><strong>لا تنزعه إطلاقاً!</strong> ثبّت الشيء بكوب من البلاستيك حول العين دون لمسه واتصل بالإسعاف.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٣</div>
+          <h4>ضربة في العين</h4>
+          <p>كرة، مكعب، يد. كمادة باردة ١٥ دقيقة (ليس ثلج مباشر). إن استمر الألم، تشوش الرؤية، رؤية ومضات → الإسعاف.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٤</div>
+          <h4>غطّ كلتا العينين</h4>
+          <p>عند الإصابات الخطيرة، تغطية كلتا العينين تمنع حركة العين المصابة. العين السليمة تتحرك تلقائياً مع الأخرى.</p>
+        </div>
+        <div class="step-card" style="border-color:var(--crimson)">
+          <div class="step-num" style="background:var(--crimson)">⚡</div>
+          <h4>الإسعاف فوراً إذا</h4>
+          <p>تشوش الرؤية، رؤية ومضات أو نقاط، نزيف داخل العين، خروج سائل، جسم مغروز، تعرض لمادة كيميائية، فقدان جزئي للرؤية.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-ornament"><span class="line"></span><span class="star">✦</span><span class="line"></span></div>
+
+    <!-- PSYCHOLOGICAL FIRST AID -->
+    <div class="scenario reveal" id="psy">
+      <div class="scenario-header">
+        <div class="scenario-num">١٥</div>
+        <div class="scenario-titles">
+          <h3>الإسعاف النفسي الأولي</h3>
+          <p>طالب شهد حادثاً، تعرض لتنمر شديد، أو في نوبة هلع. الأذى النفسي حقيقي ويحتاج تدخل معلم مدرّب بنفس أهمية الإصابة الجسدية.</p>
+        </div>
+      </div>
+
+      <div class="psy-card">
+        <h4>تمرين التنفس ٤-٧-٨ (للهلع الحاد)</h4>
+        <p style="color:rgba(250,246,239,.85);margin-bottom:0">دائرة تتسع وتضيق بإيقاع التنفس الصحيح. اطلب من الطالب أن يتنفس معها:</p>
+        <div class="breathing-circle">تنفس</div>
+        <p style="text-align:center;color:rgba(250,246,239,.85);font-size:.95rem">
+          <strong style="color:var(--gold-soft)">شهيق ٤ ثوانٍ</strong> · حبس ٧ ثوانٍ · <strong style="color:var(--gold-soft)">زفير ٨ ثوانٍ</strong><br>
+          كرر ٤ دورات. هذا الإيقاع ينشّط العصب المبهم ويهدئ الجهاز العصبي خلال دقائق.
+        </p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">١</div>
+          <h4>اخلق مساحة آمنة</h4>
+          <p>أبعده عن مصدر الأزمة. غرفة هادئة، مقعد مريح، إضاءة هادئة. لا حشد من الزملاء يحدقون.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٢</div>
+          <h4>اجلس بمستواه</h4>
+          <p>لا تقف فوقه. اجلس على ركبتيك أو على كرسي قريب. تواصل بصري بهدوء، صوت منخفض.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٣</div>
+          <h4>تقنية ٥-٤-٣-٢-١</h4>
+          <p>اطلب منه أن يذكر: ٥ أشياء يراها، ٤ أشياء يلمسها، ٣ أشياء يسمعها، ٢ يشمها، ١ يتذوقها. تعيد عقله للحاضر.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٤</div>
+          <h4>أكّد له أنه آمن</h4>
+          <p>"أنت في أمان الآن، أنا معك". لا تحاول حل المشكلة، فقط طمأنه. مشاعره صحيحة حتى لو السبب يبدو بسيطاً.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٥</div>
+          <h4>تنفس ٤-٧-٨ معه</h4>
+          <p>تنفس أنت أولاً ليقلدك. الجهاز العصبي البشري يتزامن مع الآخرين تلقائياً (تنظيم مشترك).</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">٦</div>
+          <h4>أبلغ الإرشاد الطلابي</h4>
+          <p>وثّق الحادثة، أبلغ ولي الأمر، حوّله للمرشد المدرسي. ما يبدو "مرّ" قد يترك أثراً يحتاج متابعة.</p>
+        </div>
+      </div>
+
+      <div class="alert-box">
+        <div class="alert alert-do">
+          <h5>قل ✓</h5>
+          <ul>
+            <li>"أنا هنا. أنت في أمان."</li>
+            <li>"ما تشعر به طبيعي بعد ما حصل."</li>
+            <li>"خذ وقتك. لا تستعجل."</li>
+            <li>"تنفس معي ببطء."</li>
+            <li>"هل تريد ماء؟ أن أتصل بأحد؟"</li>
+          </ul>
+        </div>
+        <div class="alert alert-dont">
+          <h5>لا تقل ✕</h5>
+          <ul>
+            <li>"لا تبكي" — يكبت المشاعر</li>
+            <li>"كن قوياً" — يخجله</li>
+            <li>"غيرك أسوأ منك" — يصغّر تجربته</li>
+            <li>"كل شيء بخير" — كذبة واضحة</li>
+            <li>"اهدأ!" — يزيد الهلع</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== ADVANCED SIMULATORS ===== -->
+<section class="advanced-section" id="advanced">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="num">— محاكيات متقدمة —</span>
+      <h2>تجربة الميدان دون مغادرة القاعة</h2>
+      <p>أربع محاكيات تفاعلية تعوّض غياب الأدوات الفعلية وتُدرّبك على القرار تحت الضغط — وهو ما لا تُعلّمه المحاضرات النظرية.</p>
+    </div>
+
+    <div class="sim-tabs reveal">
+      <button class="sim-tab active" data-sim="call"><span class="tab-num">١</span> الاتصال بـ٩٩٧</button>
+      <button class="sim-tab" data-sim="aed"><span class="tab-num">٢</span> جهاز AED</button>
+      <button class="sim-tab" data-sim="scenario"><span class="tab-num">٣</span> سيناريوهات متفرعة</button>
+      <button class="sim-tab" data-sim="timers"><span class="tab-num">٤</span> مؤقتات حرجة</button>
+    </div>
+
+    <!-- ===== 997 CALL SIMULATOR ===== -->
+    <div class="sim-panel active" id="panel-call">
+      <p style="text-align:center;color:var(--ink-2);margin-bottom:24px;max-width:720px;margin-right:auto;margin-left:auto;font-size:.95rem">
+        <strong style="color:var(--crimson)">أهم مهارة لا يتدرب عليها أحد.</strong> اضغط "ابدأ المكالمة" وتعامل مع المسعف الافتراضي. اختر ردك في كل خطوة. الأخطاء تُصحَّح فوراً وتتعلم من كل واحدة منها.
+      </p>
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <div class="phone-status">
+            <div class="call-timer" id="callTimer">٠٠:٠٠</div>
+            <div class="call-status">📞 مكالمة طوارئ</div>
+            <div class="call-name">الهلال الأحمر السعودي · ٩٩٧</div>
+          </div>
+          <div class="chat-area" id="chatArea">
+            <div class="msg-feedback good">📞 المكالمة جارية... اضغط "ابدأ المكالمة" لبدء التدريب</div>
+          </div>
+          <div class="choice-area" id="choiceArea">
+            <button class="choice-btn" id="startCallBtn" style="background:var(--crimson);border-color:var(--crimson);font-weight:700;text-align:center">▶ ابدأ المكالمة</button>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:20px">
+        <button class="btn btn-secondary" id="restartCall" style="flex:0;min-width:180px">↻ إعادة المكالمة من البداية</button>
+      </div>
+    </div>
+
+    <!-- ===== AED SIMULATOR ===== -->
+    <div class="sim-panel" id="panel-aed">
+      <p style="text-align:center;color:var(--ink-2);margin-bottom:24px;max-width:720px;margin-right:auto;margin-left:auto;font-size:.95rem">
+        <strong style="color:var(--crimson)">جهاز إنقاذ الحياة الأهم.</strong> AED مزيل رجفان آلي - يحلل القلب ويعطي صدمة تعيده للنبض. التدريب الافتراضي يُكسب الثقة قبل لحظة الحاجة.
+      </p>
+      <div class="aed-stage">
+        <div class="aed-grid">
+          <div>
+            <div class="aed-device">
+              <div class="aed-led">
+                <div class="aed-led-item">
+                  <div class="led" id="led-power"></div>
+                  <span>تشغيل</span>
+                </div>
+                <div class="aed-led-item">
+                  <div class="led" id="led-pads"></div>
+                  <span>اللاصقات</span>
+                </div>
+                <div class="aed-led-item">
+                  <div class="led" id="led-shock"></div>
+                  <span>صدمة</span>
+                </div>
+              </div>
+              <div class="aed-screen" id="aedScreen">اضغط زر التشغيل للبدء</div>
+              <div class="aed-buttons">
+                <button class="aed-btn aed-btn-power" id="btnPower">⚡ تشغيل الجهاز</button>
+                <button class="aed-btn aed-btn-shock" id="btnShock" disabled>⚠ ضغط الصدمة</button>
+              </div>
+            </div>
+            <div class="aed-instruction" id="aedInstruction">
+              <strong>كيف يعمل:</strong> اضغط "تشغيل" أولاً، ثم انقر على المربعين المتقطعين الزرقاوين على جسم المصاب لوضع اللاصقات. الجهاز سيحلل ثم يطلب الصدمة إن لزم.
+            </div>
+          </div>
+          <div>
+            <div class="aed-body">
+              <svg class="aed-body-svg" viewBox="0 0 200 290" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="100" cy="40" rx="28" ry="32" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5"/>
+                <rect x="88" y="68" width="24" height="14" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5"/>
+                <path d="M55 90 Q60 82 100 82 Q140 82 145 90 L150 210 Q150 225 135 230 L65 230 Q50 225 50 210 Z" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5"/>
+                <path d="M55 95 Q35 110 30 145 L40 210" stroke="#B6202A" stroke-width="2.5" fill="none"/>
+                <path d="M145 95 Q165 110 170 145 L160 210" stroke="#B6202A" stroke-width="2.5" fill="none"/>
+                <circle cx="92" cy="35" r="2" fill="#B6202A"/>
+                <circle cx="108" cy="35" r="2" fill="#B6202A"/>
+                <path d="M93 50 Q100 56 107 50" stroke="#B6202A" stroke-width="2" fill="none"/>
+                
+                <rect class="aed-pad-zone" id="pad-zone-1" data-placed="false"
+                  x="68" y="100" width="32" height="42" rx="3" style="display:none"/>
+                <rect class="aed-pad-zone" id="pad-zone-2" data-placed="false"
+                  x="115" y="160" width="32" height="42" rx="3" style="display:none"/>
+                
+                <text x="100" y="275" text-anchor="middle" font-family="Tajawal" font-size="11" fill="#1F5F5B" font-weight="700">المصاب</text>
+              </svg>
+              <p style="text-align:center;margin-top:8px;font-size:.82rem;color:var(--ink-2)" id="bodyHelp">
+                لوحة افتراضية للمصاب — ستظهر مواضع اللاصقات بعد التشغيل
+              </p>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:24px">
+          <button class="btn btn-secondary" id="resetAed" style="flex:0;min-width:180px">↻ إعادة العملية</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== BRANCHING SCENARIOS ===== -->
+    <div class="sim-panel" id="panel-scenario">
+      <p style="text-align:center;color:var(--ink-2);margin-bottom:24px;max-width:720px;margin-right:auto;margin-left:auto;font-size:.95rem">
+        <strong style="color:var(--crimson)">القرار تحت الضغط.</strong> كل خيار يقود إلى عواقب مختلفة. ستعيش الموقف وتشعر بثقل القرار قبل أن تواجهه فعلياً.
+      </p>
+      <div class="scenario-sim">
+        <div id="scenarioPicker">
+          <h4 style="text-align:center;margin-bottom:24px;color:var(--crimson);font-size:1.15rem">اختر السيناريو لتبدأ:</h4>
+          <div class="scenario-selector">
+            <div class="scenario-pick" data-scenario="0">
+              <h4>🏃 السيناريو ١: انهيار في المقصف</h4>
+              <p>الساعة ١١ صباحاً. سمعت صراخاً في المقصف. طالب سقط على الأرض، شاحب، لا يتحرك. ماذا تفعل في الـ٤ دقائق التالية؟</p>
+            </div>
+            <div class="scenario-pick" data-scenario="1">
+              <h4>🫁 السيناريو ٢: اختناق في الفسحة</h4>
+              <p>طفل يضع يديه على رقبته، وجهه يتحول للأزرق، لا يستطيع الكلام أو السعال. كل ثانية تحدد الفرق بين الحياة والتلف الدماغي.</p>
+            </div>
+          </div>
+        </div>
+        <div id="scenarioStage" style="display:none">
+          <div class="scenario-stage">
+            <div class="scenario-meta">
+              <span class="step" id="scenarioTitle"></span>
+              <button class="btn btn-secondary" onclick="exitScenario()" style="flex:0;min-width:0;padding:8px 16px;font-size:.85rem">← رجوع للاختيار</button>
+            </div>
+            <div class="scenario-situation" id="scenarioSituation"></div>
+            <div class="scenario-choices" id="scenarioChoices"></div>
+          </div>
+        </div>
+        <div id="scenarioResult" style="display:none">
+          <div class="scenario-stage scenario-outcome">
+            <div class="outcome-icon" id="outcomeIcon"></div>
+            <h4 id="outcomeTitle"></h4>
+            <p id="outcomeDesc"></p>
+            <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+              <button class="btn btn-primary" onclick="restartCurrentScenario()" style="flex:0;min-width:180px">↻ إعادة هذا السيناريو</button>
+              <button class="btn btn-secondary" onclick="exitScenario()" style="flex:0;min-width:180px">← اختيار سيناريو آخر</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CRITICAL TIMERS ===== -->
+    <div class="sim-panel" id="panel-timers">
+      <p style="text-align:center;color:var(--ink-2);margin-bottom:24px;max-width:720px;margin-right:auto;margin-left:auto;font-size:.95rem">
+        <strong style="color:var(--crimson)">الزمن أداة العلاج.</strong> لا تعتمد على إحساسك — استخدم هذه المؤقتات الفعلية أثناء التدخل. صوت تنبيه عند انتهاء كل مدة طبية موصى بها.
+      </p>
+      <div class="timer-grid" id="timerGrid"></div>
+      <div style="margin-top:24px;text-align:center;color:var(--ink-2);font-size:.88rem;background:var(--cream-2);padding:16px;border-radius:8px;max-width:680px;margin-right:auto;margin-left:auto">
+        <strong style="color:var(--crimson)">طريقة الاستخدام:</strong> اضغط "ابدأ" لحظة بدء الإجراء الفعلي (مثلاً حين تضع المصاب تحت الماء). الجهاز سينبهك صوتياً عند انتهاء المدة الموصى بها.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FIRST AID KIT ===== -->
+<section class="kit-section" id="kit">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="num">— الجاهزية —</span>
+      <h2>محتويات حقيبة الإسعافات المدرسية</h2>
+      <p>قائمة مرجعية للحد الأدنى الذي يجب أن يتوفر في غرفة الصحة المدرسية وموزعاً في عربة الإسعاف المتنقلة. راجعها مرة شهرياً.</p>
+    </div>
+
+    <div class="kit-grid">
+      <div class="kit-item reveal">
+        <div class="kit-icon">١</div>
+        <div class="kit-text"><strong>قفازات طبية (٥٠ زوج)</strong><p>غير لاتكس لتجنب الحساسية. صندوقان على الأقل.</p></div>
+      </div>
+      <div class="kit-item reveal">
+        <div class="kit-icon">٢</div>
+        <div class="kit-text"><strong>شاش معقم بأحجام</strong><p>٥×٥ سم، ١٠×١٠ سم. أكياس معقمة فردية.</p></div>
+      </div>
+      <div class="kit-item reveal">
+        <div class="kit-icon">٣</div>
+        <div class="kit-text"><strong>ضمادات لاصقة</strong><p>أحجام مختلفة، ضد الماء، مناسبة لبشرة الأطفال.</p></div>
+      </div>
+      <div class="kit-item reveal">
+        <div class="kit-icon">٤</div>
+        <div class="kit-text"><strong>رباط ضاغط مرن</strong><p>عرض ٥ سم و١٠ سم. للالتواءات والتثبيت.</p></div>
+      </div>
+      <div class="kit-item reveal">
+        <div class="kit-icon">٥</div>
+        <div class="kit-text"><strong>محلول ملحي معقم</strong><p>لغسل الجروح والعينين. عبوات ٥٠٠ مل.</p></div>
+      </div>
+      <div class="kit-item reveal">
+        <div class="kit-icon">٦</div>
+        <div class="kit-text"><strong>مطهر (بوفيدون)</strong><p>للجروح السطحية. ليس على الجروح العميقة.</p></div>
+      </div>
+      <div class="kit-item reveal">
+        <div class="kit-icon">٧</div>
+        <div class="kit-text"><strong>مقص طبي ذو طرف منحني</strong><p>لقص الملابس حول الإصابات بأمان.</p></div>
+      </div>
+      <div class="kit-item reveal">
+        <div class="kit-icon">٨</div>
+        <div class="kit-text"><strong>ميزان حرارة رقمي</strong><p>للجبهة أو الأذن. سريع وغير غازي.</p></div>
+      </div>
+      <div class="kit-item reveal">
+        <div class="kit-icon">٩</div>
+        <div class="kit-text"><strong>كمادات باردة فورية</strong><p>تنشيط بالضغط دون ثلاجة. للكدمات والكسور.</p></div>
+      </div>
+      <div class="kit-item reveal">
+        <div class="kit-icon">١٠</div>
+        <div class="kit-text"><strong>بطانية حرارية فضية</strong><p>للصدمة وضربة الشمس. خفيفة وفعّالة.</p></div>
+      </div>
+      <div class="kit-item reveal">
+        <div class="kit-icon">١١</div>
+        <div class="kit-text"><strong>قناع تنفس صناعي</strong><p>للإنعاش — صمام أحادي الاتجاه يحمي المسعف.</p></div>
+      </div>
+      <div class="kit-item reveal">
+        <div class="kit-icon">١٢</div>
+        <div class="kit-text"><strong>سكر سريع (عصير، تمر)</strong><p>لطلاب السكري. متجدد كل شهر.</p></div>
+      </div>
+      <div class="kit-item reveal">
+        <div class="kit-icon">١٣</div>
+        <div class="kit-text"><strong>جهاز قياس سكر مع شرائط</strong><p>إن أمكن. يحسم تشخيص الهبوط بدقة.</p></div>
+      </div>
+      <div class="kit-item reveal">
+        <div class="kit-icon">١٤</div>
+        <div class="kit-text"><strong>سجل حوادث ورقي وقلم</strong><p>كل تدخل يُوثّق: الوقت، الأعراض، ما فُعِل.</p></div>
+      </div>
+      <div class="kit-item reveal">
+        <div class="kit-icon">١٥</div>
+        <div class="kit-text"><strong>قائمة أرقام ولي الأمر</strong><p>محدّثة كل فصل دراسي. مع الحساسية لكل طالب.</p></div>
+      </div>
+      <div class="kit-item reveal">
+        <div class="kit-icon">+</div>
+        <div class="kit-text"><strong>إن أمكن: جهاز AED</strong><p>مزيل رجفان آلي. ينقذ توقف القلب المفاجئ في دقائق.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUIZ ===== -->
+<section class="quiz-section" id="quiz">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="num">— تحقق من فهمك —</span>
+      <h2>الاختبار التفاعلي</h2>
+      <p>١٤ سؤالاً مبنية على سيناريوهات مدرسية حقيقية تغطي كل المحاور والمحاكيات. اختبر معلوماتك بعد الجلسة.</p>
+    </div>
+
+    <div class="quiz-card reveal">
+      <div class="quiz-progress">
+        <span id="qProgress">السؤال ١ من ١٤</span>
+        <span id="qScore">النقاط: ٠</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+      <div id="quizArea">
+        <div class="quiz-q" id="quizQuestion"></div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="quiz-feedback" id="quizFeedback"></div>
+        <div style="margin-top:20px;text-align:left">
+          <button class="btn btn-primary" id="nextQ" style="display:none;flex:0;min-width:160px">السؤال التالي ←</button>
+        </div>
+      </div>
+
+      <div class="quiz-result" id="quizResult">
+        <div class="score-circle" id="finalScore">٠/١٤</div>
+        <h3 id="resultTitle" style="margin-bottom:14px"></h3>
+        <p id="resultMsg" style="color:var(--ink-2);margin-bottom:24px;max-width:500px;margin-right:auto;margin-left:auto"></p>
+        <button class="btn btn-primary" onclick="restartQuiz()" style="flex:0;min-width:180px">↻ إعادة الاختبار</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EMERGENCY ===== -->
+<section class="emergency">
+  <div class="container">
+    <h2 style="color:var(--cream);margin-bottom:10px">أرقام الطوارئ في المملكة</h2>
+    <p style="color:rgba(250,246,239,.7)">احفظها في هاتفك وفي لوحة الإعلانات بكل غرفة معلمين</p>
+    <div class="emergency-numbers">
+      <div class="em-num">
+        <div class="label">الرقم الموحّد</div>
+        <div class="number">٩١١</div>
+        <div class="name">للإسعاف والشرطة والدفاع المدني معاً</div>
+      </div>
+      <div class="em-num">
+        <div class="label">الهلال الأحمر</div>
+        <div class="number">٩٩٧</div>
+        <div class="name">الإسعاف المباشر</div>
+      </div>
+      <div class="em-num">
+        <div class="label">الدفاع المدني</div>
+        <div class="number">٩٩٨</div>
+        <div class="name">حرائق وحوادث</div>
+      </div>
+      <div class="em-num">
+        <div class="label">مركز السموم</div>
+        <div class="number">٩٣٧</div>
+        <div class="name">للاستشارات السريعة</div>
+      </div>
+    </div>
+    <div class="footer-credit">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-bottom:30px;text-align:center;padding:24px 0;border-bottom:1px solid rgba(229,198,138,.15)">
+        <div>
+          <div style="font-size:.72rem;letter-spacing:.18em;color:var(--gold-soft);margin-bottom:6px;font-weight:700">إعداد المعلم</div>
+          <div style="font-family:var(--display);font-size:1.2rem;font-weight:700;color:var(--cream)">نايف المطيري</div>
+        </div>
+        <div>
+          <div style="font-size:.72rem;letter-spacing:.18em;color:var(--gold-soft);margin-bottom:6px;font-weight:700">اعتماد مدير المدرسة</div>
+          <div style="font-family:var(--display);font-size:1.2rem;font-weight:700;color:var(--cream)">مفلح الشهراني</div>
+        </div>
+        <div>
+          <div style="font-size:.72rem;letter-spacing:.18em;color:var(--gold-soft);margin-bottom:6px;font-weight:700">المدرسة</div>
+          <div style="font-family:var(--display);font-size:1.05rem;font-weight:700;color:var(--cream);line-height:1.5">ابتدائية ومتوسطة الجبيلة<br><span style="font-size:.85rem;font-weight:500;color:rgba(250,246,239,.7)">الإدارة العامة للتعليم بمنطقة الرياض</span></div>
+        </div>
+      </div>
+      دليل تدريبي تفاعلي · مُعَدّ لجلسات تدريب منسوبي مدارس التعليم العام · يُستخدم كأداة بصرية مساعدة ولا يغني عن التدريب الميداني المعتمد من الهيئة السعودية للتخصصات الصحية
+    </div>
+  </div>
+</section>
+
+<script>
+// ============ ARABIC NUMERAL HELPER ============
+const arNum = (n) => String(n).replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
+
+// ============ SMOOTH SCROLL (programmatic helper if needed) ============
+function goToSection(id){
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+// ============ REVEAL ON SCROLL ============
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+    }
+  });
+}, {threshold: 0.12});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ============ CPR TRAINER ============
+const compressBtn = document.getElementById('compressBtn');
+const beatRings = document.getElementById('beatRings');
+const bpmDisplay = document.getElementById('bpmDisplay');
+const countDisplay = document.getElementById('countDisplay');
+const timerDisplay = document.getElementById('timerDisplay');
+const feedback = document.getElementById('feedback');
+const metronomeBtn = document.getElementById('metronomeBtn');
+const resetBtn = document.getElementById('resetBtn');
+
+let pressTimes = [];
+let pressCount = 0;
+let timerStart = null;
+let timerInterval = null;
+let metronomeOn = false;
+let metronomeInterval = null;
+let audioCtx = null;
+
+// initialize audio context on first user interaction
+function initAudio(){
+  if(!audioCtx){
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  // Modern browsers start AudioContext suspended until user gesture
+  if(audioCtx.state === 'suspended'){
+    audioCtx.resume();
+  }
+}
+
+function playClick(freq=800, dur=0.05, vol=0.15){
+  if(!audioCtx) return;
+  const o = audioCtx.createOscillator();
+  const g = audioCtx.createGain();
+  o.frequency.value = freq;
+  o.type = 'sine';
+  g.gain.setValueAtTime(vol, audioCtx.currentTime);
+  g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+  o.connect(g);
+  g.connect(audioCtx.destination);
+  o.start();
+  o.stop(audioCtx.currentTime + dur);
+}
+
+function triggerBeat(){
+  beatRings.classList.remove('beating');
+  void beatRings.offsetWidth;
+  beatRings.classList.add('beating');
+}
+
+function doCompress(){
+  initAudio();
+  const now = Date.now();
+  pressTimes.push(now);
+  // keep only last 6 presses
+  if(pressTimes.length > 6) pressTimes.shift();
+  
+  pressCount++;
+  countDisplay.textContent = arNum(pressCount);
+  
+  if(timerStart === null){
+    timerStart = now;
+    startTimer();
+  }
+  
+  // visual feedback
+  compressBtn.classList.add('pressing');
+  setTimeout(() => compressBtn.classList.remove('pressing'), 100);
+  triggerBeat();
+  playClick(600, 0.05, 0.1);
+  
+  // calculate BPM
+  if(pressTimes.length >= 3){
+    const diffs = [];
+    for(let i = 1; i < pressTimes.length; i++){
+      diffs.push(pressTimes[i] - pressTimes[i-1]);
+    }
+    const avgInterval = diffs.reduce((a,b)=>a+b, 0) / diffs.length;
+    const bpm = Math.round(60000 / avgInterval);
+    bpmDisplay.innerHTML = arNum(bpm) + ' <span class="unit">ض/د</span>';
+    
+    // give feedback
+    if(bpm >= 100 && bpm <= 120){
+      feedback.textContent = '✓ ممتاز! إيقاع مثالي. حافظ عليه.';
+      feedback.className = 'feedback-msg good';
+    } else if(bpm < 100){
+      feedback.textContent = '⚡ أسرع قليلاً! الإيقاع المستهدف ١٠٠ على الأقل.';
+      feedback.className = 'feedback-msg warn';
+    } else {
+      feedback.textContent = '⚠ أبطأ قليلاً، الإيقاع مرتفع جداً (فوق ١٢٠).';
+      feedback.className = 'feedback-msg warn';
+    }
+  } else {
+    feedback.textContent = 'استمر، أحتاج بضع ضغطات لقياس الإيقاع...';
+    feedback.className = 'feedback-msg';
+  }
+}
+
+compressBtn.addEventListener('click', doCompress);
+// keyboard support - press SPACE for compression while CPR section is visible
+document.addEventListener('keydown', (e) => {
+  const tag = (document.activeElement && document.activeElement.tagName) || '';
+  const isTyping = ['INPUT','TEXTAREA','SELECT','BUTTON'].includes(tag);
+  if(e.code === 'Space' && !isTyping){
+    const cprSection = document.getElementById('cpr');
+    const rect = cprSection.getBoundingClientRect();
+    if(rect.top < window.innerHeight && rect.bottom > 0){
+      e.preventDefault();
+      doCompress();
+    }
+  }
+});
+
+function startTimer(){
+  if(timerInterval) clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    const elapsed = Math.floor((Date.now() - timerStart) / 1000);
+    const m = Math.floor(elapsed / 60);
+    const s = elapsed % 60;
+    timerDisplay.textContent = arNum(String(m).padStart(2, '0')) + ':' + arNum(String(s).padStart(2, '0'));
+  }, 200);
+}
+
+resetBtn.addEventListener('click', () => {
+  pressTimes = [];
+  pressCount = 0;
+  timerStart = null;
+  if(timerInterval){ clearInterval(timerInterval); timerInterval = null; }
+  // also stop metronome if running
+  if(metronomeOn){
+    metronomeOn = false;
+    metronomeBtn.textContent = '▶ تشغيل المؤقت الإيقاعي';
+    if(metronomeInterval){ clearInterval(metronomeInterval); metronomeInterval = null; }
+  }
+  bpmDisplay.innerHTML = '٠ <span class="unit">ض/د</span>';
+  countDisplay.textContent = '٠';
+  timerDisplay.textContent = '٠٠:٠٠';
+  feedback.textContent = 'اضغط على الدائرة الحمراء بإيقاع منتظم';
+  feedback.className = 'feedback-msg';
+});
+
+metronomeBtn.addEventListener('click', () => {
+  initAudio();
+  metronomeOn = !metronomeOn;
+  if(metronomeOn){
+    metronomeBtn.textContent = '⏸ إيقاف المؤقت';
+    // 110 BPM = ~545ms
+    const interval = 60000 / 110;
+    let count = 0;
+    metronomeInterval = setInterval(() => {
+      playClick(900, 0.04, 0.08);
+      triggerBeat();
+      count++;
+    }, interval);
+  } else {
+    metronomeBtn.textContent = '▶ تشغيل المؤقت الإيقاعي';
+    if(metronomeInterval){ clearInterval(metronomeInterval); metronomeInterval = null; }
+  }
+});
+
+// ============ CHOKING SIMULATOR ============
+let chokingStep = 0;
+function nextChokingStep(){
+  if(chokingStep < 4){
+    document.querySelector(`.sim-step[data-step="${chokingStep}"]`).classList.remove('active');
+    document.querySelector(`.sim-stage[data-stage="${chokingStep}"]`).classList.remove('active');
+    document.querySelector(`.sim-stage[data-stage="${chokingStep}"]`).classList.add('completed');
+    chokingStep++;
+    document.querySelector(`.sim-step[data-step="${chokingStep}"]`).classList.add('active');
+    document.querySelector(`.sim-stage[data-stage="${chokingStep}"]`).classList.add('active');
+  }
+}
+function resetChoking(){
+  document.querySelectorAll('.sim-step').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.sim-stage').forEach(s => { s.classList.remove('active'); s.classList.remove('completed'); });
+  chokingStep = 0;
+  document.querySelector('.sim-step[data-step="0"]').classList.add('active');
+  document.querySelector('.sim-stage[data-stage="0"]').classList.add('active');
+}
+
+// ============ RECOVERY POSITION ============
+const recoveryStages = [
+  {
+    text: '<strong>الخطوة ١: تحقق من التنفس</strong>انظر إلى الصدر، استمع، اشعر النفس على خدك لمدة ١٠ ثوانٍ. إن كان يتنفس بشكل طبيعي، انتقل للخطوة التالية.',
+    svg: `<line x1="20" y1="200" x2="480" y2="200" stroke="#B07B2C" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+          <ellipse cx="100" cy="170" rx="30" ry="22" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5"/>
+          <rect x="130" y="155" width="200" height="40" rx="20" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5"/>
+          <rect x="330" y="160" width="120" height="32" rx="14" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5"/>
+          <line x1="200" y1="155" x2="180" y2="120" stroke="#B6202A" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="260" y1="155" x2="280" y2="120" stroke="#B6202A" stroke-width="2.5" stroke-linecap="round"/>
+          <text x="100" y="120" text-anchor="middle" font-family="Tajawal" font-size="13" fill="#1F5F5B" font-weight="700">ينظر &amp; يستمع</text>`
+  },
+  {
+    text: '<strong>الخطوة ٢: ثني الذراع القريبة منك</strong>ضع ذراعه القريبة منك بزاوية قائمة، الكف لأعلى. هذه الذراع ستكون "وسادة" رأسه.',
+    svg: `<line x1="20" y1="200" x2="480" y2="200" stroke="#B07B2C" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+          <ellipse cx="100" cy="170" rx="30" ry="22" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5"/>
+          <rect x="130" y="155" width="200" height="40" rx="20" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5"/>
+          <rect x="330" y="160" width="120" height="32" rx="14" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5"/>
+          <line x1="200" y1="155" x2="200" y2="120" stroke="#B07B2C" stroke-width="3" stroke-linecap="round"/>
+          <line x1="200" y1="120" x2="170" y2="120" stroke="#B07B2C" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="170" cy="120" r="5" fill="#B07B2C"/>
+          <line x1="260" y1="155" x2="280" y2="120" stroke="#B6202A" stroke-width="2.5" stroke-linecap="round"/>`
+  },
+  {
+    text: '<strong>الخطوة ٣: ثني الركبة البعيدة</strong>اثنِ الركبة البعيدة عنك حتى تكون القدم على الأرض، وضع يده الأخرى تحت خده القريب منك (راحة اليد ملاصقة للخد).',
+    svg: `<line x1="20" y1="200" x2="480" y2="200" stroke="#B07B2C" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+          <ellipse cx="100" cy="170" rx="30" ry="22" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5"/>
+          <rect x="130" y="155" width="200" height="40" rx="20" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5"/>
+          <line x1="200" y1="155" x2="200" y2="125" stroke="#B07B2C" stroke-width="3" stroke-linecap="round"/>
+          <line x1="200" y1="125" x2="170" y2="125" stroke="#B07B2C" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="170" cy="125" r="5" fill="#B07B2C"/>
+          <line x1="260" y1="160" x2="130" y2="155" stroke="#1F5F5B" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="130" cy="155" r="5" fill="#1F5F5B"/>
+          <rect x="330" y="160" width="80" height="32" rx="14" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5"/>
+          <path d="M410 192 L420 150 L440 145 L445 165" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5" stroke-linejoin="round"/>`
+  },
+  {
+    text: '<strong>الخطوة ٤: قلبه إلى جنبه</strong>اسحب الركبة المثنية برفق نحوك حتى يستدير الجسم على الجنب. ادعم رأسه طوال الحركة.',
+    svg: `<line x1="20" y1="200" x2="480" y2="200" stroke="#B07B2C" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+          <ellipse cx="100" cy="160" rx="28" ry="24" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5"/>
+          <ellipse cx="200" cy="155" rx="35" ry="40" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5"/>
+          <line x1="180" y1="125" x2="160" y2="135" stroke="#B07B2C" stroke-width="3" stroke-linecap="round"/>
+          <ellipse cx="155" cy="140" rx="10" ry="6" fill="#B07B2C" opacity="0.5"/>
+          <path d="M225 180 L300 175 L310 195 L260 200 L240 195 Z" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M310 195 L380 175 L375 145 L365 145 L355 165 L320 180 Z" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5" stroke-linejoin="round"/>`
+  },
+  {
+    text: '<strong>الخطوة ٥: افتح المجرى الهوائي</strong>اطرح رأسه قليلاً للخلف لفتح مجرى الهواء. تأكد أن فمه يميل لأسفل ليخرج أي قيء أو لعاب. راقب التنفس حتى وصول الإسعاف.',
+    svg: `<line x1="20" y1="200" x2="480" y2="200" stroke="#B07B2C" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+          <ellipse cx="100" cy="160" rx="28" ry="24" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5"/>
+          <line x1="80" y1="148" x2="60" y2="135" stroke="#1F5F5B" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="60,135 65,128 70,135" fill="#1F5F5B"/>
+          <text x="40" y="125" font-family="Tajawal" font-size="11" fill="#1F5F5B" font-weight="700">إمالة</text>
+          <ellipse cx="200" cy="155" rx="35" ry="40" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5"/>
+          <line x1="180" y1="125" x2="160" y2="135" stroke="#B07B2C" stroke-width="3" stroke-linecap="round"/>
+          <ellipse cx="155" cy="140" rx="10" ry="6" fill="#B07B2C" opacity="0.5"/>
+          <path d="M225 180 L300 175 L310 195 L260 200 L240 195 Z" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M310 195 L380 175 L375 145 L365 145 L355 165 L320 180 Z" fill="#FAF6EF" stroke="#B6202A" stroke-width="2.5" stroke-linejoin="round"/>
+          <text x="430" y="100" text-anchor="middle" font-family="Tajawal" font-size="14" fill="#16a34a" font-weight="700">✓ آمن</text>`
+  }
+];
+
+document.querySelectorAll('.recovery-controls button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const idx = parseInt(btn.dataset.recovery);
+    document.querySelectorAll('.recovery-controls button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('recoverySvg').innerHTML = recoveryStages[idx].svg;
+    document.getElementById('recoveryText').innerHTML = recoveryStages[idx].text;
+  });
+});
+
+// ============ QUIZ ============
+const quizData = [
+  {
+    q: "طالب في الفسحة فجأة وضع يده على رقبته ولم يستطع الكلام. ما أول إجراء؟",
+    options: [
+      "اعطه ماء ليساعده على البلع",
+      "اضربه على ظهره وهو واقف منحنٍ للأمام",
+      "اضغط على بطنه فوراً دون اختبار",
+      "اتركه وحده ليسعل"
+    ],
+    correct: 1,
+    explain: "إذا كان واعياً ولا يستطيع الكلام، اجعله ينحني للأمام و٥ ضربات بكعب اليد بين الكتفين. الماء قد يدفع الجسم لأسفل ويسد المجرى تماماً."
+  },
+  {
+    q: "ما هو معدل ضغطات الإنعاش القلبي الرئوي الصحيح للبالغ؟",
+    options: [
+      "٦٠ إلى ٨٠ ضغطة في الدقيقة",
+      "٨٠ إلى ١٠٠ ضغطة في الدقيقة",
+      "١٠٠ إلى ١٢٠ ضغطة في الدقيقة",
+      "كلما زاد العدد كان أفضل بدون حد"
+    ],
+    correct: 2,
+    explain: "المعدل المعتمد عالمياً هو ١٠٠–١٢٠ ضغطة/دقيقة. أقل من ذلك غير فعّال، وأكثر منه يمنع امتلاء القلب بين الضغطات."
+  },
+  {
+    q: "طفل انسكب عليه ماء مغلي على ذراعه. ما الخطوة الأولى الصحيحة؟",
+    options: [
+      "ضع ثلجاً على الحرق فوراً",
+      "ادهنه بمعجون أسنان أو زيت",
+      "ضعه تحت ماء جارٍ فاتر لـ٢٠ دقيقة",
+      "اكسر أي فقاعات تظهر"
+    ],
+    correct: 2,
+    explain: "الماء الجاري الفاتر لـ٢٠ دقيقة يقلل عمق الحرق بشكل ملحوظ. الثلج يضر الأنسجة، ومعجون الأسنان يلوث الجرح، وفقع الفقاعات يفتح باباً للعدوى."
+  },
+  {
+    q: "طالب يتشنج على الأرض في الفصل. ماذا تفعل؟",
+    options: [
+      "ضع ملعقة في فمه ليلاً يبتلع لسانه",
+      "ثبت جسمه بقوة لإيقاف الحركة",
+      "أبعد الأشياء الخطرة، ضع وسادة تحت رأسه، واحفظ الوقت",
+      "صب عليه ماء بارد ليفيق"
+    ],
+    correct: 2,
+    explain: "لن يبتلع لسانه، ووضع شيء في فمه قد يكسر أسنانه. التثبيت قد يسبب كسوراً. الصحيح هو حماية المصاب من البيئة وتوقيت النوبة لأن أكثر من ٥ دقائق طارئ خطير."
+  },
+  {
+    q: "في الطابور الصباحي، طالب جلده جاف وحار، توقف عن التعرق، ومرتبك. ما هذه؟",
+    options: [
+      "إجهاد حراري بسيط، اتركه يرتاح",
+      "ضربة شمس — طارئ خطير يستدعي الإسعاف فوراً",
+      "جوع، أعطه شيئاً يأكله",
+      "كسل، أرجعه للطابور"
+    ],
+    correct: 1,
+    explain: "توقف التعرق + جلد جاف وحار + تشوش ذهني = ضربة شمس. هذه حالة قاتلة. انقله للظل، برّده فوراً بالماء البارد والكمادات، واتصل بـ٩٩٧."
+  },
+  {
+    q: "طالب فاقد للوعي لكنه يتنفس بشكل طبيعي. ما الوضعية الصحيحة؟",
+    options: [
+      "على ظهره مع فك ربطة العنق",
+      "جالساً مسنداً للحائط",
+      "وضعية الإفاقة (على الجنب مع إمالة الرأس)",
+      "على بطنه لتفريغ المعدة"
+    ],
+    correct: 2,
+    explain: "وضعية الإفاقة تمنع اختناقه بلسانه أو قيئه إن حدث. على الظهر = خطر. على البطن = صعوبة تنفس. الجلوس = خطر سقوط الرأس وإغلاق المجرى."
+  },
+  {
+    q: "طالبة أكلت في الفسحة وبدأت شفتاها تتورم وصعب عليها التنفس. ما الأولوية؟",
+    options: [
+      "أعطها كأس ماء وانتظر ربع ساعة",
+      "اتصل بالإسعاف فوراً واسأل عن قلم إبينفرين في حقيبتها",
+      "اتصل بولي الأمر فقط",
+      "اجعلها تتقيأ لتخرج الطعام"
+    ],
+    correct: 1,
+    explain: "هذه حساسية مفرطة (Anaphylaxis) — قاتلة خلال دقائق. الإسعاف أولاً، ثم EpiPen إن وُجد. تأخير دقيقة قد يكون قاتلاً."
+  },
+  {
+    q: "طالب يعاني من ربو وبدأت نوبة شديدة. كيف تستخدم البخاخ بشكل صحيح؟",
+    options: [
+      "٤ بخات دفعة واحدة لتأثير أقوى",
+      "بخة واحدة وانتظر ساعة قبل التكرار",
+      "٤ بخات منفصلة، كل بخة مع شهيق عميق وحبس النفس ١٠ ثوان",
+      "بخة كل ٥ ثوان حتى تنتهي العبوة"
+    ],
+    correct: 2,
+    explain: "قاعدة ٤×٤×٤: ٤ بخات منفصلة، كل واحدة مع شهيق عميق وحبس ١٠ ثوان، ثم انتظار ٤ دقائق قبل التكرار. الجرعة كاملة دفعة واحدة لا تعمل لأن أغلب الدواء يضيع."
+  },
+  {
+    q: "طالب يبدو شاحباً، يرتجف، ويتصرف بعدوانية غير معتادة. وأنت تعرف أنه مريض سكر. ما الإجراء؟",
+    options: [
+      "أبلغ الإدارة بسوء سلوكه",
+      "أعطه ١٥ غرام سكر سريع (عصير أو تمر) وانتظر ١٥ دقيقة",
+      "اجعله يجري قليلاً ليتنشط",
+      "أعطه قطعة شوكولاتة كبيرة"
+    ],
+    correct: 1,
+    explain: "الأعراض كلها هبوط سكر. قاعدة ١٥×١٥: ١٥ غرام سكر سريع وانتظار ١٥ دقيقة. الشوكولاتة لا تصلح لأن الدهن يبطئ الامتصاص. الجري يفاقم الهبوط."
+  },
+  {
+    q: "طفل ينزف من أنفه. ما الوضعية الصحيحة؟",
+    options: [
+      "اجعله يميل رأسه للخلف ليمنع نزول الدم",
+      "اجعله يستلقي على ظهره",
+      "اجعله جالساً ويميل رأسه للأمام مع الضغط على الجزء اللين",
+      "اجعله يتمخّط بقوة لإخراج الدم"
+    ],
+    correct: 2,
+    explain: "إمالة الرأس للخلف خطأ شائع وخطير — الدم ينزل للمعدة فيسبب القيء. الصحيح: جالساً، الرأس للأمام، ضغط مستمر على الجزء اللين من الأنف لـ١٠ دقائق دون رفع."
+  },
+  {
+    q: "طالب سقط في الفسحة وارتطم رأسه. ما العلامة التي تستدعي الاتصال بالإسعاف فوراً؟",
+    options: [
+      "بكاؤه لمدة دقيقتين بعد السقوط",
+      "كدمة صغيرة واحمرار في موقع الارتطام",
+      "حدقتا العينين غير متساويتين أو فقد الوعي ولو لثوان",
+      "شعوره بألم خفيف عند لمس مكان الارتطام"
+    ],
+    correct: 2,
+    explain: "اختلاف حجم الحدقات أو فقدان الوعي ولو لحظياً قد يدل على نزيف داخل الجمجمة. أيضاً: تقيؤ متكرر، صداع شديد، سائل من الأنف أو الأذن، تشنج. كلها طوارئ خطيرة."
+  },
+  {
+    q: "في حصة الكيمياء، تطاير سائل منظف إلى عين طالبة. ما أول إجراء؟",
+    options: [
+      "ضمادة على العين واتصال بالإسعاف",
+      "غسل العين بماء فاتر لـ٢٠ دقيقة متواصلة من الداخل للخارج",
+      "وضع قطرات عين مهدئة",
+      "إغماض العين والانتظار حتى يهدأ الألم"
+    ],
+    correct: 1,
+    explain: "الكيميائيات في العين طارئ يقاس بالثواني. الغسل الفوري لـ٢٠ دقيقة متواصلة بماء فاتر من جسر الأنف باتجاه الأذن (لتجنب تلويث العين الأخرى) قد ينقذ البصر. لا قطرات، لا ضمادة قبل الغسل."
+  },
+  {
+    q: "أثناء اتصالك بـ٩٩٧ لإسعاف طالب فاقد الوعي، طلب منك المسعف البقاء على الخط. ماذا تفعل؟",
+    options: [
+      "أقفل لأركّز على الإنعاش",
+      "أبقى على الخط، أستمع لتعليمات المسعف وأنفذها أثناء استمرار الإنعاش",
+      "أعطي الهاتف لطالب ليتحدث معهم",
+      "أذهب لإحضار حقيبة الإسعاف"
+    ],
+    correct: 1,
+    explain: "البقاء على الخط جزء من البروتوكول. المسعف مدرّب على توجيه المنعش لحظة بلحظة، وقد يلاحظ أخطاء في الإيقاع أو يطلب تغيير الإجراء حسب تطور الحالة. لا تقفل أبداً قبل أن يطلبوا منك ذلك."
+  },
+  {
+    q: "وصل جهاز AED إلى موقع طالب لا يتنفس. ما الترتيب الصحيح؟",
+    options: [
+      "تشغيل الجهاز ثم اضغط الصدمة فوراً للسرعة",
+      "تشغيل، كشف الصدر، لصق الباتش (تحت الترقوة اليمنى وعلى الضلوع اليسرى)، الابتعاد للتحليل، ثم تنفيذ توجيه الجهاز",
+      "استمر بالإنعاش فقط ولا تستخدم الجهاز خوفاً من إيذاء المصاب",
+      "ضع الباتش على الظهر للحصول على تحليل أدق"
+    ],
+    correct: 1,
+    explain: "AED ذكي ولا يطلق صدمة عبثية - يحلل الإيقاع أولاً ولا ينصح بالصدمة إلا إذا كان مفيداً. واجبك: تشغيل، كشف الصدر، لصق الباتش في موضعه الصحيح، الابتعاد أثناء التحليل (٤-٨ ثوانٍ)، ثم تنفيذ ما يطلبه. الجهاز مصمم ليُستخدم من غير المختص."
+  }
+];
+
+let currentQ = 0;
+let score = 0;
+const qTextEl = document.getElementById('quizQuestion');
+const qOptsEl = document.getElementById('quizOptions');
+const qFeedEl = document.getElementById('quizFeedback');
+const nextQBtn = document.getElementById('nextQ');
+
+function loadQuestion(){
+  const q = quizData[currentQ];
+  qTextEl.textContent = q.q;
+  qOptsEl.innerHTML = '';
+  qFeedEl.classList.remove('show');
+  nextQBtn.style.display = 'none';
+  
+  document.getElementById('qProgress').textContent = `السؤال ${arNum(currentQ+1)} من ${arNum(quizData.length)}`;
+  document.getElementById('qScore').textContent = `النقاط: ${arNum(score)}`;
+  document.getElementById('progressFill').style.width = `${(currentQ / quizData.length) * 100}%`;
+  
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.textContent = opt;
+    btn.onclick = () => answer(i);
+    qOptsEl.appendChild(btn);
+  });
+}
+
+function answer(idx){
+  const q = quizData[currentQ];
+  const buttons = qOptsEl.querySelectorAll('.quiz-opt');
+  buttons.forEach(b => b.disabled = true);
+  
+  if(idx === q.correct){
+    buttons[idx].classList.add('correct');
+    qFeedEl.className = 'quiz-feedback correct show';
+    qFeedEl.innerHTML = `<strong>✓ إجابة صحيحة!</strong><br>${q.explain}`;
+    score++;
+  } else {
+    buttons[idx].classList.add('wrong');
+    buttons[q.correct].classList.add('correct');
+    qFeedEl.className = 'quiz-feedback wrong show';
+    qFeedEl.innerHTML = `<strong>✕ الإجابة الصحيحة هي: ${q.options[q.correct]}</strong><br>${q.explain}`;
+  }
+  
+  document.getElementById('qScore').textContent = `النقاط: ${arNum(score)}`;
+  
+  if(currentQ < quizData.length - 1){
+    nextQBtn.style.display = 'inline-flex';
+    nextQBtn.textContent = 'السؤال التالي ←';
+  } else {
+    nextQBtn.style.display = 'inline-flex';
+    nextQBtn.textContent = 'عرض النتيجة ←';
+  }
+}
+
+nextQBtn.addEventListener('click', () => {
+  currentQ++;
+  if(currentQ < quizData.length){
+    loadQuestion();
+  } else {
+    showResult();
+  }
+});
+
+function showResult(){
+  document.getElementById('quizArea').style.display = 'none';
+  document.getElementById('quizResult').classList.add('show');
+  document.getElementById('finalScore').textContent = `${arNum(score)}/${arNum(quizData.length)}`;
+  document.getElementById('progressFill').style.width = '100%';
+  
+  let title, msg;
+  const pct = score / quizData.length;
+  if(pct === 1){
+    title = "🏆 أداء استثنائي";
+    msg = "إجابات كاملة! أنت جاهز لتكون خط الدفاع الأول في مدرستك. شارك معرفتك مع زملائك.";
+  } else if(pct >= 0.7){
+    title = "✓ مستوى ممتاز";
+    msg = "أساسياتك قوية جداً. راجع النقاط التي أخطأت فيها واستمر في التدريب.";
+  } else if(pct >= 0.5){
+    title = "⚡ بحاجة لمراجعة";
+    msg = "هناك ثغرات مهمة في معرفتك. أعد قراءة المحاور أعلاه قبل أي تدخل ميداني.";
+  } else {
+    title = "📚 ابدأ من جديد";
+    msg = "الإسعافات الأولية تتطلب إتقاناً تاماً قبل التطبيق. ارجع للمحاور وكرر الاختبار.";
+  }
+  document.getElementById('resultTitle').textContent = title;
+  document.getElementById('resultMsg').textContent = msg;
+}
+
+function restartQuiz(){
+  currentQ = 0;
+  score = 0;
+  document.getElementById('quizArea').style.display = 'block';
+  document.getElementById('quizResult').classList.remove('show');
+  loadQuestion();
+}
+
+// initialize quiz
+loadQuestion();
+
+// ============================================================
+// ============ ADVANCED SIMULATORS JAVASCRIPT ============
+// ============================================================
+
+// ============ TAB SWITCHING ============
+document.querySelectorAll('.sim-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const sim = tab.dataset.sim;
+    document.querySelectorAll('.sim-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.sim-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + sim).classList.add('active');
+  });
+});
+
+// ============ 997 CALL SIMULATOR ============
+const callScript = [
+  {
+    dispatcher: "الهلال الأحمر السعودي. تفضل بحالتك الطارئة.",
+    options: [
+      { text: "أرجوكم تعالوا بسرعة، نحتاج إسعاف!", correct: false, feedback: "ابدأ بوصف محدد للحالة. الذعر يضيع وقتاً." },
+      { text: "طالب في المدرسة فاقد الوعي ولا يتنفس.", correct: true, feedback: "وصف محدد ودقيق - ممتاز." },
+      { text: "في حالة طوارئ، أحضروا الإسعاف.", correct: false, feedback: "غير محدد. ما طبيعة الطوارئ؟" }
+    ]
+  },
+  {
+    dispatcher: "حسناً. ما هو موقعكم بالضبط؟",
+    options: [
+      { text: "في الرياض", correct: false, feedback: "الرياض كبيرة جداً. اذكر المنطقة والشارع." },
+      { text: "ابتدائية ومتوسطة الجبيلة، حي الجبيلة، الباب الرئيسي مفتوح والحارس بانتظاركم.", correct: true, feedback: "عنوان دقيق + معلومة الوصول - مثالي." },
+      { text: "في مدرسة ابتدائية", correct: false, feedback: "غير محدد. الرياض فيها مئات المدارس الابتدائية." }
+    ]
+  },
+  {
+    dispatcher: "كم عدد المصابين؟ ما العمر التقريبي؟",
+    options: [
+      { text: "مصاب واحد، ذكر، عمره تقريباً ١٤ سنة.", correct: true, feedback: "عدد + جنس + عمر - معلومات كاملة." },
+      { text: "كثير", correct: false, feedback: "العدد الدقيق ضروري لتحديد الموارد." },
+      { text: "لا أعرف، انتم احكموا", correct: false, feedback: "انظر حولك واحسب. هذه معلومة حرجة." }
+    ]
+  },
+  {
+    dispatcher: "ما حالته الآن؟ هل يتنفس؟",
+    options: [
+      { text: "أعتقد أنه فاقد للوعي", correct: false, feedback: "لا تخمن - تحقق فعلياً. الإجابة تحدد البروتوكول الذي ستتلقاه." },
+      { text: "فاقد الوعي تماماً، لا يتنفس، وبدأنا الإنعاش القلبي قبل دقيقة.", correct: true, feedback: "حالة + ما اتُّخذ + التوقيت - معلومات سريرية ممتازة." },
+      { text: "نائم بس", correct: false, feedback: "النوم والإغماء مختلفان جذرياً. تحقق من الاستجابة بصوت عالٍ ولمسة على الكتف." }
+    ]
+  },
+  {
+    dispatcher: "اسمك ورقم اتصالك للتواصل؟",
+    options: [
+      { text: "أنا معلم في المدرسة", correct: false, feedback: "نحتاج اسماً ورقماً محددين للاتصال إن انقطعت المكالمة." },
+      { text: "نايف المطيري، رقمي ٠٥xxxxxxxx، أنا معلم وحالياً مع المصاب.", correct: true, feedback: "اسم + رقم + علاقتك - مثالي." },
+      { text: "ليس مهماً، فقط أرسلوا الإسعاف.", correct: false, feedback: "بل مهم جداً. قد ينقطع الاتصال ويحتاجون التواصل." }
+    ]
+  },
+  {
+    dispatcher: "ابقَ على الخط. سأرشدك حتى وصول الإسعاف.",
+    options: [
+      { text: "حسناً، أنا أستمع. سأنفذ تعليماتك.", correct: true, feedback: "البقاء على الخط ينقذ حياة - المسعف يستطيع توجيهك في الإنعاش." },
+      { text: "لا، يجب أن أساعد المصاب الآن. سأقفل.", correct: false, feedback: "خطر! لا تقفل أبداً. المسعف يوجهك بالضبط أثناء الإنعاش." },
+      { text: "أرسلوا الإسعاف وأنا بخير، شكراً.", correct: false, feedback: "البقاء على الخط جزء من البروتوكول. لا تقفل قبل وصول المسعفين." }
+    ]
+  }
+];
+
+let callStep = 0;
+let callTimerStart = null;
+let callTimerInt = null;
+let callMistakes = 0;
+let callStarted = false;
+
+function startCallTimer(){
+  if(callTimerInt) return;
+  callTimerStart = Date.now();
+  callTimerInt = setInterval(() => {
+    const elapsed = Math.floor((Date.now() - callTimerStart)/1000);
+    const m = Math.floor(elapsed/60);
+    const s = elapsed%60;
+    document.getElementById('callTimer').textContent = arNum(String(m).padStart(2,'0')) + ':' + arNum(String(s).padStart(2,'0'));
+  }, 500);
+}
+
+function addMessage(text, type){
+  const chat = document.getElementById('chatArea');
+  const msg = document.createElement('div');
+  msg.className = 'msg-bubble msg-' + type;
+  msg.textContent = text;
+  chat.appendChild(msg);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function showCallStep(){
+  if(callStep >= callScript.length){
+    showCallEnd();
+    return;
+  }
+  const step = callScript[callStep];
+  const choiceArea = document.getElementById('choiceArea');
+  choiceArea.innerHTML = '<div class="choice-prompt">المسعف يتحدث...</div>';
+  
+  setTimeout(() => {
+    addMessage(step.dispatcher, 'dispatcher');
+    choiceArea.innerHTML = '<div class="choice-prompt">اختر ردك:</div>';
+    step.options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'choice-btn';
+      btn.textContent = opt.text;
+      btn.onclick = () => handleCallChoice(opt);
+      choiceArea.appendChild(btn);
+    });
+  }, 800);
+}
+
+function handleCallChoice(opt){
+  addMessage(opt.text, 'user');
+  document.getElementById('choiceArea').innerHTML = '<div class="choice-prompt">...</div>';
+  
+  setTimeout(() => {
+    if(opt.correct){
+      const fb = document.createElement('div');
+      fb.className = 'msg-feedback good';
+      fb.textContent = '✓ ' + opt.feedback;
+      document.getElementById('chatArea').appendChild(fb);
+      document.getElementById('chatArea').scrollTop = 99999;
+      callStep++;
+      setTimeout(showCallStep, 1100);
+    } else {
+      const fb = document.createElement('div');
+      fb.className = 'msg-feedback';
+      fb.textContent = '✕ ' + opt.feedback;
+      document.getElementById('chatArea').appendChild(fb);
+      document.getElementById('chatArea').scrollTop = 99999;
+      callMistakes++;
+      setTimeout(() => {
+        const choiceArea = document.getElementById('choiceArea');
+        const step = callScript[callStep];
+        choiceArea.innerHTML = '<div class="choice-prompt">حاول مرة أخرى:</div>';
+        step.options.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.className = 'choice-btn';
+          btn.textContent = opt.text;
+          btn.onclick = () => handleCallChoice(opt);
+          choiceArea.appendChild(btn);
+        });
+      }, 1700);
+    }
+  }, 600);
+}
+
+function showCallEnd(){
+  if(callTimerInt){clearInterval(callTimerInt); callTimerInt = null;}
+  setTimeout(() => {
+    addMessage('🚑 تم إرسال سيارة الإسعاف. الوقت المتوقع للوصول: ٧ دقائق. استمر بالإنعاش.', 'dispatcher');
+  }, 800);
+  setTimeout(() => {
+    const isGood = callMistakes <= 1;
+    const isOk = callMistakes <= 3;
+    document.getElementById('choiceArea').innerHTML = `
+      <div style="text-align:center;padding:14px">
+        <div class="call-result-icon ${isGood ? 'result-success' : 'result-fail'}">${isGood ? '✓' : '⚠'}</div>
+        <div style="color:var(--cream);font-weight:700;margin-bottom:6px;font-size:1.05rem">${isGood ? 'مكالمة مثالية!' : isOk ? 'مكالمة جيدة' : 'تحتاج تمريناً أكثر'}</div>
+        <div style="color:#aaa;font-size:.82rem">عدد الأخطاء: ${arNum(callMistakes)}</div>
+      </div>
+    `;
+  }, 1900);
+}
+
+document.getElementById('startCallBtn').addEventListener('click', () => {
+  callStarted = true;
+  document.getElementById('chatArea').innerHTML = '';
+  startCallTimer();
+  showCallStep();
+});
+
+document.getElementById('restartCall').addEventListener('click', () => {
+  callStep = 0;
+  callMistakes = 0;
+  callStarted = false;
+  document.getElementById('chatArea').innerHTML = '<div class="msg-feedback good">📞 المكالمة جارية... اضغط "ابدأ المكالمة" لبدء التدريب</div>';
+  if(callTimerInt){clearInterval(callTimerInt); callTimerInt = null;}
+  document.getElementById('callTimer').textContent = '٠٠:٠٠';
+  document.getElementById('choiceArea').innerHTML = '<button class="choice-btn" id="startCallBtn" style="background:var(--crimson);border-color:var(--crimson);font-weight:700;text-align:center">▶ ابدأ المكالمة</button>';
+  document.getElementById('startCallBtn').addEventListener('click', () => {
+    callStarted = true;
+    document.getElementById('chatArea').innerHTML = '';
+    startCallTimer();
+    showCallStep();
+  });
+});
+
+// ============ AED SIMULATOR ============
+const aedSequence = [
+  { screen: "اضغط زر التشغيل للبدء", action: 'initial' },
+  { screen: "اكشف صدر المصاب — انقر اللاصقتين الزرقاوين على جسده", action: 'place_pads' },
+  { screen: "تحليل إيقاع القلب... ابتعدوا عن المصاب!", action: 'analyzing' },
+  { screen: "صدمة موصى بها — اضغط الزر البرتقالي", action: 'wait_shock' },
+  { screen: "تمت الصدمة. استأنف الإنعاش لمدة دقيقتين.", action: 'cpr_resume' }
+];
+let aedStep = 0;
+let padsPlaced = 0;
+
+function aedSpeak(text){
+  if('speechSynthesis' in window){
+    try {
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'ar-SA';
+      u.rate = 0.92;
+      u.pitch = 0.95;
+      window.speechSynthesis.speak(u);
+    } catch(e){}
+  }
+}
+
+function setAedScreen(text){ document.getElementById('aedScreen').textContent = text; }
+function setLed(name, on){
+  const el = document.getElementById('led-' + name);
+  if(!el) return;
+  el.className = 'led' + (on ? ' on-' + name : '');
+}
+
+function aedAdvance(){
+  aedStep++;
+  if(aedStep >= aedSequence.length){
+    setAedScreen("✓ اكتمل البروتوكول. كرر التحليل كل دقيقتين أثناء الإنعاش.");
+    aedSpeak("اكتمل البروتوكول. كرر التحليل كل دقيقتين.");
+    return;
+  }
+  const step = aedSequence[aedStep];
+  setAedScreen(step.screen);
+  aedSpeak(step.screen);
+  
+  if(step.action === 'place_pads'){
+    document.getElementById('pad-zone-1').style.display = '';
+    document.getElementById('pad-zone-2').style.display = '';
+    setLed('pads', true);
+    document.getElementById('aedInstruction').innerHTML = '<strong style="color:#3b82f6">دورك الآن:</strong> انقر على المربعين الزرقاوين المتقطعين على جسم المصاب لوضع اللاصقات. الأول تحت الترقوة اليمنى، الثاني على الضلوع اليسرى.';
+  } else if(step.action === 'analyzing'){
+    document.getElementById('aedInstruction').innerHTML = '<strong style="color:#f59e0b">⚠ ابتعدوا عن المصاب!</strong> الجهاز يحلل إيقاع القلب. لا تلمسه.';
+    setTimeout(() => aedAdvance(), 4500);
+  } else if(step.action === 'wait_shock'){
+    document.getElementById('btnShock').disabled = false;
+    setLed('shock', true);
+    document.getElementById('aedInstruction').innerHTML = '<strong style="color:#ef4444">⚡ صدمة موصى بها</strong> — تأكد ألا أحد يلمس المصاب، ثم اضغط الزر البرتقالي.';
+  } else if(step.action === 'cpr_resume'){
+    document.getElementById('btnShock').disabled = true;
+    setLed('shock', false);
+    document.getElementById('aedInstruction').innerHTML = '<strong style="color:#16a34a">✓ تمت الصدمة بنجاح</strong> — استأنف الإنعاش القلبي الرئوي فوراً لمدة ٢ دقيقة، ثم سيقوم الجهاز بتحليل الإيقاع مجدداً.';
+  }
+}
+
+document.getElementById('btnPower').addEventListener('click', () => {
+  if(aedStep === 0){
+    setLed('power', true);
+    aedAdvance();
+  }
+});
+
+document.getElementById('btnShock').addEventListener('click', () => {
+  if(!document.getElementById('btnShock').disabled){
+    aedAdvance();
+  }
+});
+
+document.querySelectorAll('.aed-pad-zone').forEach(zone => {
+  zone.addEventListener('click', () => {
+    if(aedSequence[aedStep] && aedSequence[aedStep].action === 'place_pads' && zone.dataset.placed === 'false'){
+      zone.dataset.placed = 'true';
+      padsPlaced++;
+      if(padsPlaced === 2){
+        setTimeout(() => aedAdvance(), 900);
+      }
+    }
+  });
+});
+
+document.getElementById('resetAed').addEventListener('click', () => {
+  if('speechSynthesis' in window) window.speechSynthesis.cancel();
+  aedStep = 0;
+  padsPlaced = 0;
+  setAedScreen("اضغط زر التشغيل للبدء");
+  setLed('power', false);
+  setLed('pads', false);
+  setLed('shock', false);
+  document.getElementById('btnShock').disabled = true;
+  document.querySelectorAll('.aed-pad-zone').forEach(z => {
+    z.dataset.placed = 'false';
+    z.style.display = 'none';
+  });
+  document.getElementById('aedInstruction').innerHTML = '<strong>كيف يعمل:</strong> اضغط "تشغيل" أولاً، ثم انقر على المربعين المتقطعين الزرقاوين على جسم المصاب لوضع اللاصقات. الجهاز سيحلل ثم يطلب الصدمة إن لزم.';
+});
+
+// ============ BRANCHING SCENARIOS ============
+const scenariosData = [
+  {
+    id: 0,
+    title: "السيناريو ١: انهيار طالب في المقصف",
+    nodes: {
+      start: {
+        situation: "تصل بسرعة إلى الطالب وتراه ممدداً على الأرض. الطلاب حوله يصرخون. وجهه شاحب ولا يتحرك. ماذا تفعل أولاً؟",
+        choices: [
+          { text: "أتصل بـ٩٩٧ مباشرة قبل أي شيء آخر", next: "skipped_assessment" },
+          { text: "أتأكد أن المكان آمن من الزجاج المكسور والطعام", next: "safe_check" },
+          { text: "أحاول هزّه ليستيقظ", next: "shake" }
+        ]
+      },
+      shake: {
+        situation: "هززته بقوة. لو كانت لديه إصابة في الرقبة لتفاقمت. لحسن الحظ ليست لديه، لكنك تجاوزت تأكيد الاستجابة بطريقة آمنة. الآن لا تعرف ما حالته بدقة.",
+        choices: [
+          { text: "أعود وأبدأ من جديد بمنهجية DRSABCD", next: "safe_check" }
+        ]
+      },
+      skipped_assessment: {
+        outcome: "fail",
+        result: "خطأ بروتوكولي قاتل. اتصلت بالإسعاف دون فحص. الإسعاف سيحضر بعد ٧ دقائق على الأقل، لكن الطالب يحتاج إنعاشاً فورياً. كل دقيقة بدون إنعاش = ١٠٪ نقص في فرصة النجاة. الصواب: تأمين المكان، تأكيد الاستجابة، ثم تكليف غيرك بالاتصال أثناء بقائك مع المصاب."
+      },
+      safe_check: {
+        situation: "المكان آمن. تنحني للطالب الآن. كيف تتأكد من حالة وعيه؟",
+        choices: [
+          { text: "أنادي اسمه بصوت عالٍ وأضغط كتفه لاختبار استجابته", next: "check_response" },
+          { text: "أبدأ الإنعاش فوراً دون فحص", next: "premature_cpr" },
+          { text: "أرفع رأسه لأعطيه ماء بارد لإيقاظه", next: "wrong_water" }
+        ]
+      },
+      premature_cpr: {
+        outcome: "fail",
+        result: "خطأ. بدأت الإنعاش دون التأكد من فقدان الوعي وتوقف التنفس. ربما كان مغمى عليه فقط ويتنفس - الإنعاش على شخص يتنفس قد يكسر ضلوعاً ويسبب أذى دون فائدة. التحقق ١٠ ثوانٍ يحسم القرار."
+      },
+      wrong_water: {
+        outcome: "fail",
+        result: "خطأ قاتل. إعطاء ماء لشخص فاقد الوعي يجعل الماء يدخل الرئتين ويسبب اختناقاً مباشرة. القاعدة الذهبية: لا شيء عن طريق الفم لفاقد الوعي - لا ماء، لا دواء، لا طعام، لا حتى لمعرفة إن كان واعياً."
+      },
+      check_response: {
+        situation: "ناديته ثلاث مرات وضغطت كتفه. لا يستجيب أبداً. الآن ماذا؟",
+        choices: [
+          { text: "أكلف زميلاً بالاتصال بـ٩٩٧ بالاسم وأبقى مع المصاب", next: "delegate_call" },
+          { text: "أترك المصاب وأذهب للاتصال بنفسي", next: "abandon" },
+          { text: "أنتظر دقيقة لعله يستفيق", next: "wait" }
+        ]
+      },
+      abandon: {
+        outcome: "fail",
+        result: "خطأ خطير. تركت المصاب لتتصل بنفسك. في الدقيقتين اللتين غبت فيهما، الطالب لم يحصل على إنعاش وفقد ٢٠٪ من فرصة النجاة. تكليف شخص محدد بالاسم (\"أنت بالقميص الأزرق، اتصل بـ٩٩٧ الآن\") يبقيك مع المصاب."
+      },
+      wait: {
+        outcome: "fail",
+        result: "خطأ قاتل. كل دقيقة انتظار = ١٠٪ نقص في فرصة النجاة. شخص توقف قلبه لن يستفيق من تلقاء نفسه. الإنعاش يجب أن يبدأ خلال ٤ دقائق ليكون له معنى."
+      },
+      delegate_call: {
+        situation: "زميلك يتصل بـ٩٩٧. تفحص التنفس بالنظر للصدر، الاستماع، والشعور بالنفس على خدك لـ١٠ ثوانٍ. لا يتنفس. الآن ماذا؟",
+        choices: [
+          { text: "أبدأ ضغطات الصدر فوراً بإيقاع ١٠٠-١٢٠ ضغطة/دقيقة", next: "good_cpr" },
+          { text: "أنفخ نَفَسين أولاً ثم أبدأ الضغطات", next: "breaths_first" },
+          { text: "أحاول إيقاظه بصب ماء بارد على وجهه", next: "wrong_water2" }
+        ]
+      },
+      good_cpr: {
+        situation: "تبدأ الضغطات فوراً. بعد دقيقة، يصل زميل آخر بجهاز AED من غرفة الإسعاف. تواصل الضغطات بينما يقوم بتشغيله ووضع اللاصقات. الجهاز يعطي صدمة. تستأنف الإنعاش. بعد ٤ دقائق وصل الإسعاف. الطالب نقل للمستشفى وهو على قيد الحياة.",
+        choices: [
+          { text: "أكمل لرؤية النتيجة", next: "good_cpr_outcome" }
+        ]
+      },
+      good_cpr_outcome: {
+        outcome: "success",
+        result: "نجاح كامل! اتبعت بروتوكول DRSABCD بإتقان: تأمين المكان، فحص الاستجابة، تكليف غيرك بالاتصال، فحص التنفس، إنعاش فوري بإيقاع صحيح، استخدام AED. أنقذت حياة طالب. المستشفى شكر مدرستك على التعامل المثالي."
+      },
+      breaths_first: {
+        situation: "أنت تنفخ نَفَسين أولاً. بروتوكول ٢٠٢٠ المحدّث يبدأ بالضغطات أولاً (C-A-B وليس A-B-C القديم). فقدت ٢٠ ثانية ثمينة لكن ستبدأ الضغطات الآن.",
+        choices: [
+          { text: "أبدأ الضغطات الآن", next: "good_cpr_delayed" }
+        ]
+      },
+      good_cpr_delayed: {
+        outcome: "partial",
+        result: "نجاح جزئي. الطالب وصل المستشفى لكن في حالة حرجة بسبب التأخير الأولي. تذكّر: البروتوكول الجديد C-A-B (الضغطات أولاً ثم المجرى الهوائي ثم التنفس). البروتوكول القديم A-B-C تجاوزه الزمن منذ ٢٠١٠."
+      },
+      wrong_water2: {
+        outcome: "fail",
+        result: "خطأ قاتل ومركب. الماء البارد على وجه شخص فاقد الوعي لا يوقظه - فقط يتأخر الإنعاش. كل ثانية تأخير في بدء الضغطات تقلل فرصة النجاة. الماء أيضاً قد يدخل المجرى الهوائي."
+      }
+    }
+  },
+  {
+    id: 1,
+    title: "السيناريو ٢: اختناق طالب في الفسحة",
+    nodes: {
+      start: {
+        situation: "تصل بسرعة. الطفل يضع يديه على رقبته (علامة الاختناق العالمية). لا يصدر أي صوت. وجهه يتحول للأزرق. ماذا تفعل أولاً؟",
+        choices: [
+          { text: "أسأله مباشرة: هل تختنق؟", next: "ask_choking" },
+          { text: "أبدأ ضرب ظهره فوراً دون سؤال", next: "premature_back" },
+          { text: "أضع إصبعي في فمه لإخراج الجسم", next: "blind_finger" }
+        ]
+      },
+      premature_back: {
+        outcome: "fail",
+        result: "خطأ. الضرب على الظهر دون التأكد من نوع الاختناق قد يدفع الجسم لأسفل في حالات معينة. القاعدة: إن كان يسعل بقوة، اتركه يسعل أولاً (السعال أقوى من ضرباتك). التدخل فقط عند الاختناق الكامل (لا صوت، لا سعال)."
+      },
+      blind_finger: {
+        outcome: "fail",
+        result: "خطر جسيم! الإصبع الأعمى في الفم قد يدفع الجسم أعمق ويسد المجرى تماماً. أيضاً قد يعض المصاب إصبعك بشكل لا إرادي. القاعدة: لا تضع إصبعك في فم مختنق إلا إذا رأيت الجسم بوضوح ويمكنك إمساكه."
+      },
+      ask_choking: {
+        situation: "أومأ برأسه (نعم) لكن لا يستطيع الكلام أو السعال. اختناق كامل مؤكد. ماذا الآن؟",
+        choices: [
+          { text: "أقف خلفه، أحني جذعه للأمام، وأضرب ٥ ضربات بكعب يدي بين الكتفين", next: "back_blows" },
+          { text: "أبدأ مناورة هايمليك مباشرة دون الضربات الظهرية", next: "skip_back" },
+          { text: "أتركه يحاول أن يسعل بنفسه", next: "let_cough" }
+        ]
+      },
+      skip_back: {
+        outcome: "partial",
+        result: "نجح هايمليك أخيراً لكنك تخطيت الضربات الظهرية. البروتوكول المعتمد هو ٥ ضربات ظهرية ثم ٥ ضغطات هايمليك بالتبادل. تخطي خطوة قد يفقدك فرصة الإخراج بأقل أذى للأضلاع."
+      },
+      let_cough: {
+        outcome: "fail",
+        result: "خطأ في التشخيص. لو كان قادراً على السعال لكان فعل. عدم القدرة على الكلام أو السعال = اختناق كامل يحتاج تدخل فوري. ٤ دقائق بدون أكسجين = تلف دماغي."
+      },
+      back_blows: {
+        situation: "بعد ٥ ضربات قوية بين الكتفين، الجسم لم يخرج بعد. ماذا الآن؟",
+        choices: [
+          { text: "٥ ضغطات بطنية (مناورة هايمليك)", next: "heimlich" },
+          { text: "أعيد ٥ ضربات ظهرية أخرى", next: "repeat_back" },
+          { text: "أتصل بـ٩٩٧ وأنتظر وصولهم", next: "wait_emergency" }
+        ]
+      },
+      repeat_back: {
+        outcome: "partial",
+        result: "البروتوكول الصحيح هو التبادل بين الإجراءين: ٥ ضربات ظهرية ثم ٥ ضغطات هايمليك. التكرار المتطابق غير فعال لأن الجسم لم يستجب للضربات بنفس الزاوية."
+      },
+      wait_emergency: {
+        outcome: "fail",
+        result: "خطأ قاتل. ٤ دقائق بدون أكسجين = تلف دماغي دائم. الإسعاف يصل في ٧-١٠ دقائق على الأقل. التدخل الفوري واجب أخلاقي وقانوني، لا اختيار."
+      },
+      heimlich: {
+        situation: "بعد ضغطتين هايمليك قويتين، خرجت قطعة طعام كبيرة من فمه. بدأ يسعل بقوة ويتنفس بصعوبة لكنه يتنفس. ماذا الآن؟",
+        choices: [
+          { text: "أطمئنه، أبقى معه، وأطلب فحصاً طبياً للتأكد من سلامة المجرى", next: "good_choking" },
+          { text: "أعطيه ماء ليبلع آثار الطعام", next: "wrong_water_choke" }
+        ]
+      },
+      wrong_water_choke: {
+        outcome: "partial",
+        result: "نجوت من الكارثة الكبرى لكن بمشكلة. الماء بعد الاختناق قد يستنشقه المصاب لأن المجرى الهوائي ما زال متهيجاً. اتركه يستريح فقط. كل اختناق يحتاج فحصاً طبياً للتأكد من عدم وجود إصابة في المجرى الهوائي."
+      },
+      good_choking: {
+        outcome: "success",
+        result: "نجاح كامل! اتبعت بروتوكول الاختناق الصحيح: تأكيد الاختناق الكامل، ضربات ظهرية، ثم هايمليك بالتبادل. المتابعة الطبية بعد الإخراج مهمة - فالضغط القوي قد يسبب إصابات داخلية صغيرة. أنقذت حياة طفل وحمّيت ما بعد الإنقاذ."
+      }
+    }
+  }
+];
+
+let currentScenarioIdx = null;
+let currentNode = null;
+
+document.querySelectorAll('.scenario-pick').forEach(pick => {
+  pick.addEventListener('click', () => {
+    currentScenarioIdx = parseInt(pick.dataset.scenario);
+    currentNode = 'start';
+    document.getElementById('scenarioPicker').style.display = 'none';
+    renderScenarioNode();
+  });
+});
+
+function renderScenarioNode(){
+  const scenario = scenariosData[currentScenarioIdx];
+  const node = scenario.nodes[currentNode];
+  document.getElementById('scenarioTitle').textContent = scenario.title;
+  
+  if(node.outcome){
+    showScenarioResult(node);
+    return;
+  }
+  
+  document.getElementById('scenarioStage').style.display = '';
+  document.getElementById('scenarioResult').style.display = 'none';
+  document.getElementById('scenarioSituation').textContent = node.situation;
+  
+  const choices = document.getElementById('scenarioChoices');
+  choices.innerHTML = '';
+  node.choices.forEach(ch => {
+    const btn = document.createElement('button');
+    btn.className = 'scenario-choice';
+    btn.textContent = ch.text;
+    btn.onclick = () => {
+      currentNode = ch.next;
+      renderScenarioNode();
+      window.scrollTo({top: document.getElementById('scenarioStage').offsetTop - 80, behavior: 'smooth'});
+    };
+    choices.appendChild(btn);
+  });
+}
+
+function showScenarioResult(node){
+  document.getElementById('scenarioStage').style.display = 'none';
+  document.getElementById('scenarioResult').style.display = '';
+  
+  const iconEl = document.getElementById('outcomeIcon');
+  const titleEl = document.getElementById('outcomeTitle');
+  
+  if(node.outcome === 'success'){
+    iconEl.className = 'outcome-icon outcome-success';
+    iconEl.textContent = '✓';
+    titleEl.textContent = 'نجاح كامل!';
+  } else if(node.outcome === 'partial'){
+    iconEl.className = 'outcome-icon outcome-partial';
+    iconEl.textContent = '⚠';
+    titleEl.textContent = 'نجاح جزئي';
+  } else {
+    iconEl.className = 'outcome-icon outcome-fail';
+    iconEl.textContent = '✕';
+    titleEl.textContent = 'فشل التدخل';
+  }
+  document.getElementById('outcomeDesc').textContent = node.result;
+}
+
+function restartCurrentScenario(){
+  currentNode = 'start';
+  renderScenarioNode();
+}
+
+function exitScenario(){
+  document.getElementById('scenarioPicker').style.display = '';
+  document.getElementById('scenarioStage').style.display = 'none';
+  document.getElementById('scenarioResult').style.display = 'none';
+  currentScenarioIdx = null;
+  currentNode = null;
+}
+
+// ============ CRITICAL TIMERS ============
+const timersData = [
+  { id: "burn", name: "تبريد الحرق", duration: 1200, desc: "ماء جارٍ فاتر متواصل لـ٢٠ دقيقة لتقليل عمق الحرق" },
+  { id: "bleed", name: "ضغط النزيف", duration: 600, desc: "ضغط مباشر متواصل دون رفع لـ١٠ دقائق لتكوين الجلطة" },
+  { id: "asthma", name: "بين جرعات البخاخ", duration: 240, desc: "انتظار ٤ دقائق قبل تكرار الجرعة (قاعدة ٤×٤×٤)" },
+  { id: "cpr", name: "تبديل المنعش CPR", duration: 120, desc: "تبديل بين المنعشين كل دقيقتين لمنع الإرهاق" }
+];
+
+const timerStates = {};
+
+function buildTimers(){
+  const grid = document.getElementById('timerGrid');
+  grid.innerHTML = '';
+  timersData.forEach(t => {
+    timerStates[t.id] = { remaining: t.duration, running: false, interval: null };
+    const card = document.createElement('div');
+    card.className = 'timer-card';
+    card.id = 'tcard-' + t.id;
+    
+    const m = Math.floor(t.duration/60);
+    const s = t.duration%60;
+    
+    card.innerHTML = `
+      <div class="timer-name">${t.name}</div>
+      <div class="timer-purpose">${t.desc}</div>
+      <div class="timer-circle">
+        <svg viewBox="0 0 100 100">
+          <circle class="timer-circle-bg" cx="50" cy="50" r="44"/>
+          <circle class="timer-circle-progress" id="tprog-${t.id}" cx="50" cy="50" r="44" stroke-dasharray="276.46" stroke-dashoffset="0"/>
+        </svg>
+        <div class="timer-display">
+          <div class="timer-time" id="ttime-${t.id}">${arNum(String(m).padStart(2,'0'))}:${arNum(String(s).padStart(2,'0'))}</div>
+          <div class="timer-label">دقيقة:ثانية</div>
+        </div>
+      </div>
+      <div class="timer-actions">
+        <button class="timer-btn timer-btn-primary" id="tstart-${t.id}">▶ ابدأ</button>
+        <button class="timer-btn" id="treset-${t.id}">↻ إعادة</button>
+      </div>
+    `;
+    grid.appendChild(card);
+    
+    document.getElementById('tstart-' + t.id).addEventListener('click', () => toggleTimer(t));
+    document.getElementById('treset-' + t.id).addEventListener('click', () => resetTimer(t));
+  });
+}
+
+function toggleTimer(t){
+  const state = timerStates[t.id];
+  if(state.running) pauseTimer(t);
+  else startTimerCount(t);
+}
+
+function startTimerCount(t){
+  initAudio();
+  const state = timerStates[t.id];
+  state.running = true;
+  document.getElementById('tcard-' + t.id).classList.add('running');
+  document.getElementById('tcard-' + t.id).classList.remove('done');
+  document.getElementById('tstart-' + t.id).textContent = '⏸ إيقاف';
+  
+  state.interval = setInterval(() => {
+    state.remaining--;
+    updateTimerUI(t);
+    if(state.remaining <= 0){
+      finishTimer(t);
+    } else if(state.remaining <= 10 && state.remaining > 0){
+      playClick(800, 0.04, 0.06);
+    } else if(state.remaining % 60 === 0){
+      playClick(500, 0.08, 0.05);
+    }
+  }, 1000);
+}
+
+function pauseTimer(t){
+  const state = timerStates[t.id];
+  state.running = false;
+  if(state.interval){clearInterval(state.interval); state.interval = null;}
+  document.getElementById('tcard-' + t.id).classList.remove('running');
+  document.getElementById('tstart-' + t.id).textContent = state.remaining < t.duration ? '▶ استكمل' : '▶ ابدأ';
+}
+
+function resetTimer(t){
+  pauseTimer(t);
+  const state = timerStates[t.id];
+  state.remaining = t.duration;
+  document.getElementById('tcard-' + t.id).classList.remove('done');
+  document.getElementById('tstart-' + t.id).textContent = '▶ ابدأ';
+  updateTimerUI(t);
+}
+
+function finishTimer(t){
+  const state = timerStates[t.id];
+  state.running = false;
+  if(state.interval){clearInterval(state.interval); state.interval = null;}
+  document.getElementById('tcard-' + t.id).classList.remove('running');
+  document.getElementById('tcard-' + t.id).classList.add('done');
+  document.getElementById('tstart-' + t.id).textContent = '✓ انتهى';
+  // Triple beep
+  playClick(900, 0.18, 0.12);
+  setTimeout(() => playClick(1100, 0.18, 0.12), 220);
+  setTimeout(() => playClick(1300, 0.3, 0.12), 440);
+}
+
+function updateTimerUI(t){
+  const state = timerStates[t.id];
+  const m = Math.floor(state.remaining/60);
+  const s = state.remaining%60;
+  document.getElementById('ttime-' + t.id).textContent =
+    arNum(String(m).padStart(2,'0')) + ':' + arNum(String(s).padStart(2,'0'));
+  
+  const circumference = 2 * Math.PI * 44;
+  const progress = state.remaining / t.duration;
+  const offset = circumference * (1 - progress);
+  document.getElementById('tprog-' + t.id).style.strokeDashoffset = offset;
+}
+
+buildTimers();
+</script>
+
+</body>
+</html>
